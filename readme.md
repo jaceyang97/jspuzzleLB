@@ -47,15 +47,22 @@ Note that there is a gap in the graph for submission counts less than 20; hence,
 
 ## ✨Features
 
-- **Scrape Submissions:** Automatically fetch and process puzzle submissions.
+### Scrape Submissions
+Automatically fetch and process puzzle submissions.
   - **Set Page Limits:** Specify the number of pages to scrape, or leave it unset to scrape all available pages.
   - **Current Month Not Applicable:** Even though Jane Street posts the current month's solver, since it is continuously updated throughout the month and has not been shown on the solution page, the current month's correct submissions will only be counted at the beginning of the next month's puzzle when the solution is revealed.
-  - **Older Puzzles Limitation:** There is no public submissions list before November 2015; therefore, those are not counted. This limitation affects approximately 22 months/puzzles dating back to January 2014.
-- **Unique Names:** Count the number of unique solvers.
-  - **Counting Rule 1:** The program will treat each "name plate" as a whole. If multiple names are found and are formatted using delimiters, they will count as one solver (or actually one group of solvers in this case).
-  - **Counting Rule 2:** When counting solvers, the program is not case-sensitive; e.g., submissions from "XD" and "xd" will be treated as from the same person.
-- **Top K Solvers:** List the top k solvers with their submission counts.
-- **Data Visualization:** Display submission frequencies with a histogram.
+  - **Older Puzzles Limitation:** No public submissions list exists before November 2015; submissions from before this date are not counted, affecting roughly 22 months/puzzles dating back to January 2014.
+
+### Unique Names
+Count the number of unique solvers.
+  - **Counting Rule 1:** Treats each "name plate" as a whole. Multiple names listed together are counted as one group of solvers.
+  - **Counting Rule 2:** The counting is not case-sensitive; variations in capitalization are considered the same solver (e.g., "XD" vs. "xd").
+
+### Top K Solvers
+List the top k solvers with their submission counts.
+
+### Data Visualization
+Display submission frequencies using a histogram.
 
 ## ⚠️*WORK IN PROGRESS NOTICE*
  
