@@ -43,7 +43,7 @@ This program is designed to scrape and analyze the correct puzzle submissions fr
 ### Submission Distribution
 ![](20240809_submission_dist.png)
 
-Note that there is a gap in the graph for submission counts less than 20; hence, the displayed leaderboard consists of solvers with more than 20 successful submissions. For a full list of the leaderboard, please use the script to generate it at your convenience. (This part will be added later.)
+Note that there is a gap in the graph for submission counts less than 20; hence, the displayed leaderboard consists of solvers with more than 20 successful submissions. For a full list of the leaderboard, please use the script to generate it or reference the uploaded database at your convenience. (This part will be added later.)
 
 ## ✨Features
 
