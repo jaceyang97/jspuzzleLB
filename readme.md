@@ -1,30 +1,28 @@
 # 🧩Jane Street Puzzle Leaderboard
 
-This program is designed to scrape and analyze the correct puzzle submissions from the Jane Street Puzzles Archive. It provides insights into the most frequent solvers and visualizes the distribution of submission counts.
+This program is designed to scrape and analyze the correct puzzle submissions from the [Jane Street Puzzles](https://www.janestreet.com/puzzles/) Archive. It provides insights into the most frequent solvers and visualizes the distribution of submission counts.
+
+## ⚠️*WORK IN PROGRESS*
+- For a one-time analytical script, just run ```python main.py```. No databases, no nothing, just a plain simple script.
+- The rest of the modules are initial steps toward building a fully-fledged web-hosted service, which will consist of a backend server and frontend UI. You are more than welcome to inspect and provide feedback in the upcoming updates!
 
 ## ✨Features
 
-- **Scrape Submissions:** Automatically fetches and processes puzzle submissions from the Jane Street Puzzles Archive.
-- **Top Solvers:** Identifies and lists the top 50 most frequent solvers with their submission counts.
-- **Unique Names:** Calculates the number of unique participants who have solved the puzzles.
-- **Data Visualization:** Generates a frequency distribution graph showing the number of times participants have submitted correct solutions.
-
-## ⚙️How It Works
-
-1. **Fetch Puzzle Data:** The program accesses the Jane Street website to retrieve puzzle information and correct submission data.
-2. **Data Processing:** It processes the fetched data to clean and organize solver names.
-3. **Analysis and Visualization:** The program then analyzes the data to determine top solvers, count unique names, and plot a histogram of submission frequencies.
+- **Scrape Submissions:** Automatically fetch and process puzzle submissions.
+- **Top Solvers:** List the top 50 solvers with their submission counts.
+- **Unique Names:** Count the number of unique solvers.
+- **Data Visualization:** Display submission frequencies with a histogram.
 
 ## 🚀How to Use
 
-- **Run the Program:** Execute the script to start the scraping and analysis process.
-- **Set Page Limits:** You can specify the number of pages to scrape. Leave unset to scrape all available pages.
-- **View Results:** After running, the program prints the top solvers and the number of unique solvers. It also displays a histogram visualizing submission counts.
+- **Run the Program:** Execute the script to begin scraping and analysis.
+- **Set Page Limits:** Specify the number of pages to scrape, or leave unset to scrape all available pages.
+- **View Results:** The program outputs top solvers and unique solver counts, and displays a histogram of submission counts.
 
 ## 🛡️Legal Disclaimer
-This project is not affiliated with, endorsed by, or in any way associated with Jane Street or its parent company. The content and data accessed through this script are the property of Jane Street and are used for educational and non-commercial purposes only.
+This project is not affiliated with or endorsed by Jane Street. Data accessed through this script is used for educational purposes only.
 
-By using this script, you agree to use it responsibly and acknowledge that the developers of this project are not liable for any misuse. If the usage of this script is found to harm the web integrity or violate the terms of service of Jane Street, the developers will take immediate action to remove or modify the script as necessary.
+By using this script, you agree to use it responsibly. The developers are not liable for misuse. If the script violates Jane Street's terms of service, corrective action will be taken immediately.
 
 ---
-*This documentation was generated using ChatGPT.*
+*This documentation was partially generated using ChatGPT.*
