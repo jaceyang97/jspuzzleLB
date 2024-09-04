@@ -4,6 +4,7 @@ from datetime import datetime
 import re
 from collections import Counter
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 def fetch_correct_submissions(data_directory):
     json_url = f"https://www.janestreet.com/puzzles/{data_directory}-leaderboard.json"
@@ -61,15 +62,18 @@ def fetch_puzzles(url):
 def scrape_puzzles(base_url, max_pages=None):
     all_puzzles = []
     page = 1
-    while True:
-        page_url = f"{base_url}page{page}/index.html" if page > 1 else f"{base_url}index.html"
-        puzzles = fetch_puzzles(page_url)
-        if not puzzles:
-            break
-        all_puzzles.extend(puzzles)
-        if max_pages and page >= max_pages:
-            break
-        page += 1
+    # Initialize tqdm for progress tracking
+    with tqdm(total=max_pages or float('inf'), desc="Scraping Puzzles", unit="page") as pbar:
+        while True:
+            page_url = f"{base_url}page{page}/index.html" if page > 1 else f"{base_url}index.html"
+            puzzles = fetch_puzzles(page_url)
+            if not puzzles:
+                break
+            all_puzzles.extend(puzzles)
+            if max_pages and page >= max_pages:
+                break
+            page += 1
+            pbar.update(1)  # Update the progress bar for each page
     
     return all_puzzles
 

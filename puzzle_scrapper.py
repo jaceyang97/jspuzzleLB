@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 import re
+from tqdm import tqdm
 
 # Connect to the SQLite database
 connection = sqlite3.connect('puzzle_demographics.db')
@@ -68,16 +69,22 @@ def fetch_puzzles(url):
 def scrape_puzzles(base_url, max_pages=None):
     all_puzzles = []
     page = 1
+    pbar = tqdm(desc="Scraping Puzzles", unit="puzzle")  # Initialize tqdm without total
+
     while True:
         page_url = f"{base_url}page{page}/index.html" if page > 1 else f"{base_url}index.html"
         puzzles = fetch_puzzles(page_url)
         if not puzzles:
             break
         all_puzzles.extend(puzzles)
+        
+        pbar.update(len(puzzles))  # Update progress bar by the number of puzzles fetched
+
         if max_pages and page >= max_pages:
             break
         page += 1
-    
+
+    pbar.close()  # Close the progress bar after scraping is done
     return all_puzzles
 
 def store_puzzle_data(puzzles):

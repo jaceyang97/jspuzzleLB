@@ -2,46 +2,46 @@
 
 This program is designed to scrape and analyze the correct puzzle submissions from the [Jane Street Puzzles](https://www.janestreet.com/puzzles/) Archive. It provides insights into the most frequent solvers and visualizes the distribution of submission counts.
 
-## 📊 Current Stats (as of August 9, 2024)
-### Number of Unique Puzzle Solvers: 7361
-### 🏆 Top 28 Solvers
+## 📊 Current Stats (as of September 4, 2024)
+### Number of Unique Puzzle Solvers: 7673
+### 🏆 Top 30 Solvers
 | Rank | Name                                | Counts |
 |------|-------------------------------------|--------|
-| 1    | Calvin Pozderac                     | 60     |
-| 2    | Senthil Rajasekaran                 | 57     |
-| 3    | Karl Mahlburg                       | 51     |
-| 3    | Sean Egan                           | 51     |
-| 5    | Keith Schneider                     | 46     |
-| 6    | Aaditya Raghavan                    | 41     |
-| 7    | Heidi Stockton                      | 39     |
+| 1    | Calvin Pozderac                     | 61     |
+| 2    | Senthil Rajasekaran                 | 58     |
+| 3    | Karl Mahlburg                       | 52     |
+| 4    | Sean Egan                           | 51     |
+| 5    | Keith Schneider                     | 47     |
+| 6    | Aaditya Raghavan                    | 42     |
 | 7    | Gareth Owen                         | 39     |
-| 9    | Sébastien Geeraert                  | 37     |
-| 10   | Lazar Ilic                          | 36     |
-| 11   | Evan Semet                          | 33     |
+| 7    | Heidi Stockton                      | 39     |
+| 9    | Sébastien Geeraert                  | 38     |
+| 10   | Lazar Ilic                          | 37     |
+| 11   | Evan Semet                          | 34     |
 | 12   | Cubist                              | 31     |
 | 13   | Michael DeLyser                     | 30     |
 | 14   | Hutama                              | 29     |
+| 15   | Sanandan Swaminathan                | 26     |
 | 15   | Guillermo Wildschut                 | 26     |
-| 16   | Sanandan Swaminathan                | 25     |
 | 17   | Dylan Peifer                        | 23     |
 | 17   | Vinay Kameswaran, Shawn Ng, Dave Cox| 23     |
+| 17   | fekstr                              | 23     |
+| 17   | Ian Sleightholme                    | 23     |
 | 17   | Wula                                | 23     |
-| 17   | Scott Okuno                         | 23     |
-| 21   | Sébastien G                         | 22     |
-| 21   | Sandip Ghoshal                      | 22     |
-| 21   | Ian Sleightholme                    | 22     |
-| 21   | fekstr                              | 22     |
-| 25   | Will Christerson                    | 21     |
-| 25   | Kilian B.                           | 21     |
-| 25   | Stephen Emet                        | 21     |
-| 28   | Dimas Ramos                         | 20     |
-| 28   | Stranger                            | 20     |
-| 28   | Tomek Bialach                       | 20     |
-| 28   | Miguel Barbosa Pereira              | 20     |
-| 28   | Alexander Dineen                    | 20     |
+| 22   | Scott Okuno                         | 22     |
+| 22   | Sandip Ghoshal                      | 22     |
+| 22   | Sébastien G                         | 22     |
+| 22   | Kilian B.                           | 22     |
+| 22   | Will Christerson                    | 22     |
+| 27   | Miguel Barbosa Pereira              | 21     |
+| 27   | Alexander Dineen                    | 21     |
+| 27   | Stephen Emet                        | 21     |
+| 30   | Tomek Bialach                       | 20     |
+| 30   | Stranger                            | 20     |
+| 30   | Dimas Ramos                         | 20     |
 
 ### Submission Distribution
-![](20240809_submission_dist.png)
+![](20240905_submission_dist.png)
 
 Note that there is a gap in the graph for submission counts less than 20; hence, the displayed leaderboard consists of solvers with more than 20 successful submissions. For a full list of the leaderboard, please use the script to generate it or reference the uploaded database at your convenience. (This part will be added later.)
 
@@ -67,7 +67,7 @@ Display submission frequencies using a histogram.
 ## ⚠️*WORK IN PROGRESS NOTICE*
  
 - For a one-time analytical script, just run ```python main.py```. No databases, no nothing, just a plain simple script.
-- The rest of the modules are initial steps toward building a fully-fledged web-hosted service, which will consist of a backend server and frontend UI. You are more than welcome to inspect and provide feedback in the upcoming updates!
+- The rest of the modules are initial steps toward building a web-hosted service. Might come some day.
 
 ## 🛡️Legal Disclaimer
 This project is not affiliated with or endorsed by Jane Street. Data accessed through this script is used for clout purposes only.
