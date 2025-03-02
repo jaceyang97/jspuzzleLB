@@ -2,119 +2,246 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 import re
-from collections import Counter
-import matplotlib.pyplot as plt
-from tqdm import tqdm
+from loguru import logger
+import concurrent.futures
+import argparse
+import json
+from typing import List, Dict, Any, Optional
+import os
 
-def fetch_correct_submissions(data_directory):
-    json_url = f"https://www.janestreet.com/puzzles/{data_directory}-leaderboard.json"
-    json_response = requests.get(json_url)
-    if json_response.status_code != 200:
+
+def get_leaderboard_names(puzzle_id: str) -> List[str]:
+    """Fetch and clean solver names from a puzzle's leaderboard."""
+    json_url = f"https://www.janestreet.com/puzzles/{puzzle_id}-leaderboard.json"
+    try:
+        data = requests.get(json_url).json()
+        solvers = data.get("leaders", [])
+        return [re.sub(r"\s*\([^)]*\)", "", solver).strip() for solver in solvers]
+    except:
         return []
 
-    json_data = json_response.json()
-    leaders = json_data.get('leaders', [])
-    # Clean names and remove annotations
-    cleaned_names = [re.sub(r'\s*\([^)]*\)', '', leader).strip() for leader in leaders]
-    return cleaned_names
 
-def fetch_puzzles(url):
-    puzzles = []
-    response = requests.get(url)
-    if response.status_code != 200:
-        return puzzles  # Return an empty list if the page doesn't exist or there's an error
+def get_page_puzzles(
+    page_url: str, existing_puzzles: Optional[Dict[str, Dict[str, Any]]] = None
+) -> List[Dict[str, Any]]:
+    """Fetch puzzles from a single page of the Jane Street archive."""
+    if existing_puzzles is None:
+        existing_puzzles = {}
 
-    soup = BeautifulSoup(response.text, 'html.parser')
-    container = soup.select_one('body > div.site-wrap > main > div > div.container > div > div')
-    rows = container.select('div.row')
+    try:
+        response = requests.get(page_url)
+        soup = BeautifulSoup(response.text, "html.parser")
+        container = soup.select_one(
+            "body > div.site-wrap > main > div > div.container > div > div"
+        )
 
-    for row in rows:
-        date_tag = row.select_one('.left span.date')
-        name_tag = row.select_one('.left span.name')
-        solution_link_tag = row.select_one('.right a.solution-link')
+        if not container:
+            return []
 
-        if date_tag and name_tag:
-            date_text = date_tag.get_text(strip=True).rstrip(':')
+        rows = container.select("div.row")
+        page_puzzles = []
+        puzzle_info_list = []
+
+        for row in rows:
+            date_tag = row.select_one(".left span.date")
+            name_tag = row.select_one(".left span.name")
+            solution_link_tag = row.select_one(".right a.solution-link")
+
+            if not (date_tag and name_tag):
+                continue
+
+            date_text = date_tag.get_text(strip=True).rstrip(":")
             date = datetime.strptime(date_text, "%B %Y")
-            name = name_tag.get_text(strip=True)
-        else:
-            continue
+            puzzle_name = name_tag.get_text(strip=True)
 
-        if solution_link_tag and solution_link_tag.has_attr('href'):
-            solution_url = 'https://www.janestreet.com' + solution_link_tag['href']
-            submissions_tag = BeautifulSoup(requests.get(solution_url).text, 'html.parser').select_one('p.correct-submissions')
-            if submissions_tag and submissions_tag.has_attr('data-directory'):
-                data_directory = submissions_tag['data-directory']
-                if date >= datetime(2015, 11, 1):
-                    correct_submissions = fetch_correct_submissions(data_directory)
+            # Create a unique key for this puzzle
+            puzzle_key = f"{date_text}_{puzzle_name}"
+
+            if solution_link_tag and solution_link_tag.has_attr("href"):
+                href = solution_link_tag["href"]
+                solution_url = "https://www.janestreet.com" + (
+                    href if isinstance(href, str) else str(href)
+                )
+
+                # Check if we already have this puzzle with a solution URL
+                if (
+                    puzzle_key in existing_puzzles
+                    and existing_puzzles[puzzle_key]["solution_url"] == solution_url
+                ):
+                    # We already have this puzzle with the same solution URL, reuse it
+                    page_puzzles.append(existing_puzzles[puzzle_key])
+                    logger.debug(
+                        f"Reusing existing data for {puzzle_name} ({date_text})"
+                    )
                 else:
-                    correct_submissions = "Submissions not available before November 2015"
+                    # New puzzle or updated solution URL, need to fetch
+                    puzzle_info = {
+                        "date_text": date_text,
+                        "name": puzzle_name,
+                        "solution_url": solution_url,
+                        "date": date,
+                    }
+                    puzzle_info_list.append(puzzle_info)
             else:
-                correct_submissions = "Solution link not available or invalid data-directory"
+                # For puzzles without solution URLs (likely current month)
+                # Always check for these as they might get updated
+                puzzle_data = {
+                    "date_text": date_text,
+                    "name": puzzle_name,
+                    "solution_url": "",
+                    "solvers": [],
+                }
+                page_puzzles.append(puzzle_data)
+
+        # Process solution URLs concurrently
+        if puzzle_info_list:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+                results = list(executor.map(get_puzzle_solvers, puzzle_info_list))
+                page_puzzles.extend(results)
+
+        return page_puzzles
+    except:
+        return []
+
+
+def get_puzzle_solvers(puzzle_info: Dict[str, Any]) -> Dict[str, Any]:
+    """Fetch solver data for a single puzzle."""
+    date_text = puzzle_info["date_text"]
+    puzzle_name = puzzle_info["name"]
+    solution_url = puzzle_info["solution_url"]
+    date = puzzle_info["date"]
+
+    try:
+        response = requests.get(solution_url)
+        submissions_tag = BeautifulSoup(response.text, "html.parser").select_one(
+            "p.correct-submissions"
+        )
+
+        if submissions_tag and submissions_tag.has_attr("data-directory"):
+            puzzle_id = submissions_tag["data-directory"]
+            if date >= datetime(2015, 11, 1):
+                # Ensure puzzle_id is a string
+                if isinstance(puzzle_id, str):
+                    solvers = get_leaderboard_names(puzzle_id)
+                else:
+                    solvers = get_leaderboard_names(str(puzzle_id))
+            else:
+                solvers = []
         else:
-            correct_submissions = None
-            solution_url = "Solution URL not available"
+            solvers = []
+    except:
+        solvers = []
 
-        puzzles.append((date_text, name, solution_url, correct_submissions))
+    return {
+        "date_text": date_text,
+        "name": puzzle_name,
+        "solution_url": solution_url,
+        "solvers": solvers,
+    }
 
-    return puzzles
 
-def scrape_puzzles(base_url, max_pages=None):
+def load_existing_puzzles(file_path: str) -> Dict[str, Dict[str, Any]]:
+    """Load existing puzzles from a JSON file into a dictionary keyed by puzzle name and date."""
+    if not os.path.exists(file_path):
+        return {}
+
+    try:
+        with open(file_path, "r") as f:
+            puzzles_list = json.load(f)
+
+        # Convert list to dictionary with keys as "date_text_name" for quick lookup
+        puzzles_dict = {}
+        for puzzle in puzzles_list:
+            key = f"{puzzle['date_text']}_{puzzle['name']}"
+            puzzles_dict[key] = puzzle
+
+        logger.info(f"Loaded {len(puzzles_dict)} existing puzzles from {file_path}")
+        return puzzles_dict
+    except Exception as e:
+        logger.warning(f"Failed to load existing puzzles: {e}")
+        return {}
+
+
+def scrape_all_puzzles(
+    base_url: str,
+    max_pages: Optional[int] = None,
+    existing_puzzles: Optional[Dict[str, Dict[str, Any]]] = None,
+) -> List[Dict[str, Any]]:
+    """Scrape multiple pages of Jane Street puzzles."""
+    if existing_puzzles is None:
+        existing_puzzles = {}
+
     all_puzzles = []
-    page = 1
-    # Initialize tqdm for progress tracking
-    with tqdm(total=max_pages or float('inf'), desc="Scraping Puzzles", unit="page") as pbar:
-        while True:
-            page_url = f"{base_url}page{page}/index.html" if page > 1 else f"{base_url}index.html"
-            puzzles = fetch_puzzles(page_url)
-            if not puzzles:
-                break
-            all_puzzles.extend(puzzles)
-            if max_pages and page >= max_pages:
-                break
-            page += 1
-            pbar.update(1)  # Update the progress bar for each page
-    
+    page_num = 1
+
+    logger.info(f"Starting to scrape puzzles from {base_url}")
+    logger.info(f"Using {len(existing_puzzles)} existing puzzles as reference")
+
+    while True:
+        page_url = (
+            f"{base_url}{'page'+str(page_num)+'/' if page_num > 1 else ''}index.html"
+        )
+        logger.info(f"Scraping page {page_num}")
+
+        page_puzzles = get_page_puzzles(page_url, existing_puzzles)
+        if not page_puzzles:
+            break
+
+        logger.info(f"Found {len(page_puzzles)} puzzles")
+        all_puzzles.extend(page_puzzles)
+
+        if max_pages and page_num >= max_pages:
+            break
+
+        page_num += 1
+
+    logger.info(f"Total puzzles found: {len(all_puzzles)}")
     return all_puzzles
 
-def count_user_submissions(all_puzzles):
-    all_names = []
-    for _, _, _, names in all_puzzles:
-        if isinstance(names, list):
-            all_names.extend(names)
-    
-    return Counter(all_names)
 
-# Set your desired number of pages to scrape or None to scrape all
-max_pages = None
-base_url = 'https://www.janestreet.com/puzzles/archive/'
-puzzles = scrape_puzzles(base_url, max_pages)
+def parse_arguments():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(description="Jane Street Puzzle Scraper")
+    parser.add_argument(
+        "--max-pages",
+        type=int,
+        default=None,
+        help="Maximum number of pages to scrape (default: all pages)",
+    )
+    parser.add_argument(
+        "--output",
+        type=str,
+        default="puzzles.json",
+        help="Output file path (default: puzzles.json)",
+    )
+    parser.add_argument(
+        "--force-refresh",
+        action="store_true",
+        help="Force refresh all puzzles, ignoring existing data",
+    )
+    return parser.parse_args()
 
-# Print the results
-for puzzle in puzzles:
-    print(puzzle)
 
-# Count submissions
-submission_counts = count_user_submissions(puzzles)
+def main():
+    """Run the Jane Street puzzle scraper."""
+    args = parse_arguments()
+    base_url = "https://www.janestreet.com/puzzles/archive/"
 
-# 1. Top 50 names with the count
-print("\nTop 50 names with their counts:")
-for name, count in submission_counts.most_common(50):
-    print(f"{name}: {count}")
+    logger.info("Starting Jane Street puzzle scraper")
 
-# 2. Number of unique names
-unique_names_count = len(submission_counts)
-print(f"\nNumber of unique names: {unique_names_count}")
+    # Load existing puzzles if not forcing a refresh
+    existing_puzzles = {} if args.force_refresh else load_existing_puzzles(args.output)
 
-# 3. Counter frequency distribution graph
-# Prepare data for plotting
-name_counts = list(submission_counts.values())
+    # Scrape puzzles, using existing data where possible
+    puzzles = scrape_all_puzzles(base_url, args.max_pages, existing_puzzles)
 
-plt.figure(figsize=(10, 6))
-plt.hist(name_counts, bins=range(1, max(name_counts) + 2), edgecolor='black')
-plt.title('Frequency Distribution of Submission Counts')
-plt.xlabel('Number of Submissions')
-plt.ylabel('Frequency')
-plt.xticks(range(1, max(name_counts) + 1))
-plt.grid(axis='y', linestyle='--', alpha=0.7)
-plt.show()
+    with open(args.output, "w") as f:
+        json.dump(
+            puzzles, f, indent=2, default=str
+        )  # Added default=str to handle datetime serialization
+
+    logger.info(f"Scraped {len(puzzles)} puzzles and saved to {args.output}")
+
+
+if __name__ == "__main__":
+    main()
