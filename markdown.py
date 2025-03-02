@@ -21,8 +21,6 @@ This leaderboard tracks statistics for solvers of [Jane Street's monthly puzzles
 
 *Last updated: {datetime.now().strftime('%Y-%m-%d')}*
 
-## 📊 Overall Statistics
-
 - **🧩 Puzzles Published**: {len(stats.puzzles)}
 - **👥 Unique Solvers**: {stats.total_unique_solvers}
 
@@ -59,12 +57,12 @@ These solvers have the longest consecutive monthly solving streaks:
             continue
 
         start = (
-            f"{stats_data['max_streak_start'][1]}/{stats_data['max_streak_start'][0]}"
+            f"{datetime(stats_data['max_streak_start'][0], stats_data['max_streak_start'][1], 1).strftime('%b %Y')}"
             if stats_data["max_streak_start"]
             else "N/A"
         )
         end = (
-            f"{stats_data['max_streak_end'][1]}/{stats_data['max_streak_end'][0]}"
+            f"{datetime(stats_data['max_streak_end'][0], stats_data['max_streak_end'][1], 1).strftime('%b %Y')}"
             if stats_data["max_streak_end"]
             else "N/A"
         )
@@ -77,15 +75,15 @@ These solvers have the longest consecutive monthly solving streaks:
 ## 🌟 Rising Stars
 These solvers have started recently (within the past year) but are solving at an impressive rate. The solve rate is calculated by dividing the total number of puzzles solved by the number of months since their first appearance.
 
-| Rank | Solver | Puzzles Solved | Solve Rate | First Appearance |
-|------|--------|---------------|------------|------------------|
+| Solver | Puzzles Solved | Solve Rate | First Appearance |
+|--------|---------------|------------|------------------|
 """
 
         for i, star in enumerate(stats.rising_stars, 1):
             first_solve = star["first_solve"].strftime("%b %Y")
             solve_rate = f"{star['solve_rate']:.2f} puzzles/month"
 
-            md_content += f"| {i} | {star['solver']} | {star['total_solved']} | {solve_rate} | {first_solve} |\n"
+            md_content += f"| {star['solver']} | {star['total_solved']} | {solve_rate} | {first_solve} |\n"
 
     md_content += """
 ## 📈 Visualizations
@@ -107,9 +105,6 @@ These solvers have started recently (within the past year) but are solving at an
 ## ⚠️ Disclaimer
 *Not affiliated with Jane Street. For recreational use only. Users are responsible for proper usage.*
 """
-
-    # Update the image paths to reference the current directory instead of leaderboard_stats
-    md_content = md_content.replace("leaderboard_stats/", "")
 
     # Update the main README.md file in the project root
     with open("README.md", "w", encoding="utf-8") as f:

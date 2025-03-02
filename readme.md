@@ -5,8 +5,6 @@ This leaderboard tracks statistics for solvers of [Jane Street's monthly puzzles
 
 *Last updated: 2025-03-03*
 
-## 📊 Overall Statistics
-
 - **🧩 Puzzles Published**: 133
 - **👥 Unique Solvers**: 10117
 
@@ -71,53 +69,53 @@ These solvers have the longest consecutive monthly solving streaks:
 
 | Rank | Solver | Streak Length | Start | End |
 |------|--------|--------------|-------|-----|
-| 1 | Calvin Pozderac | 51 months | 12/2020 | 2/2025 |
-| 2 | Evan Semet | 40 months | 11/2021 | 2/2025 |
-| 3 | Senthil Rajasekaran | 34 months | 5/2022 | 2/2025 |
-| 4 | Aaditya Raghavan | 33 months | 6/2022 | 2/2025 |
-| 5 | Blaine Hill | 20 months | 7/2023 | 2/2025 |
-| 6 | Gareth Owen | 20 months | 12/2022 | 7/2024 |
-| 7 | Karl Mahlburg | 16 months | 8/2022 | 11/2023 |
-| 8 | Danica Xiong | 15 months | 12/2023 | 2/2025 |
-| 9 | Moritz Kunze & Hai-Yen Van | 15 months | 12/2023 | 2/2025 |
-| 10 | Manuel Felizardo Roxo | 14 months | 1/2024 | 2/2025 |
-| 11 | Lazar Ilic | 14 months | 1/2024 | 2/2025 |
-| 12 | Kevin Gu | 14 months | 10/2018 | 11/2019 |
-| 13 | Brandon Cage | 13 months | 1/2024 | 1/2025 |
-| 14 | Tiago França | 13 months | 1/2024 | 1/2025 |
-| 15 | Andrew Sultana | 12 months | 9/2021 | 8/2022 |
-| 16 | Griffin Pinney | 10 months | 2/2024 | 11/2024 |
-| 17 | Keith Schneider | 10 months | 12/2020 | 9/2021 |
-| 18 | fekstr | 10 months | 11/2022 | 8/2023 |
-| 19 | Sean Egan | 10 months | 2/2021 | 11/2021 |
-| 20 | Daniel Toh | 9 months | 6/2024 | 2/2025 |
+| 1 | Calvin Pozderac | 51 months | Dec 2020 | Feb 2025 |
+| 2 | Evan Semet | 40 months | Nov 2021 | Feb 2025 |
+| 3 | Senthil Rajasekaran | 34 months | May 2022 | Feb 2025 |
+| 4 | Aaditya Raghavan | 33 months | Jun 2022 | Feb 2025 |
+| 5 | Blaine Hill | 20 months | Jul 2023 | Feb 2025 |
+| 6 | Gareth Owen | 20 months | Dec 2022 | Jul 2024 |
+| 7 | Karl Mahlburg | 16 months | Aug 2022 | Nov 2023 |
+| 8 | Danica Xiong | 15 months | Dec 2023 | Feb 2025 |
+| 9 | Moritz Kunze & Hai-Yen Van | 15 months | Dec 2023 | Feb 2025 |
+| 10 | Manuel Felizardo Roxo | 14 months | Jan 2024 | Feb 2025 |
+| 11 | Lazar Ilic | 14 months | Jan 2024 | Feb 2025 |
+| 12 | Kevin Gu | 14 months | Oct 2018 | Nov 2019 |
+| 13 | Brandon Cage | 13 months | Jan 2024 | Jan 2025 |
+| 14 | Tiago França | 13 months | Jan 2024 | Jan 2025 |
+| 15 | Andrew Sultana | 12 months | Sep 2021 | Aug 2022 |
+| 16 | Griffin Pinney | 10 months | Feb 2024 | Nov 2024 |
+| 17 | Keith Schneider | 10 months | Dec 2020 | Sep 2021 |
+| 18 | fekstr | 10 months | Nov 2022 | Aug 2023 |
+| 19 | Sean Egan | 10 months | Feb 2021 | Nov 2021 |
+| 20 | Daniel Toh | 9 months | Jun 2024 | Feb 2025 |
 
 ## 🌟 Rising Stars
 These solvers have started recently (within the past year) but are solving at an impressive rate. The solve rate is calculated by dividing the total number of puzzles solved by the number of months since their first appearance.
 
-| Rank | Solver | Puzzles Solved | Solve Rate | First Appearance |
-|------|--------|---------------|------------|------------------|
-| 1 | Chris Liu | 3 | 1.00 puzzles/month | Dec 2024 |
-| 2 | William de Abreu Pinho | 5 | 1.00 puzzles/month | Oct 2024 |
-| 3 | Kumaran Nathan | 5 | 1.00 puzzles/month | Oct 2024 |
-| 4 | Chady Bensaid | 5 | 1.00 puzzles/month | Oct 2024 |
-| 5 | Sibilla B | 5 | 1.00 puzzles/month | Oct 2024 |
-| 6 | JayGee | 5 | 1.00 puzzles/month | Oct 2024 |
-| 7 | Cameron Mackenzie | 6 | 1.00 puzzles/month | Sep 2024 |
-| 8 | James Press | 6 | 1.00 puzzles/month | Sep 2024 |
-| 9 | Tommaso Corti | 6 | 1.00 puzzles/month | Sep 2024 |
-| 10 | Rubén M.I | 5 | 1.00 puzzles/month | Oct 2024 |
+| Solver | Puzzles Solved | Solve Rate | First Appearance |
+|--------|---------------|------------|------------------|
+| Chris Liu | 3 | 1.00 puzzles/month | Dec 2024 |
+| William de Abreu Pinho | 5 | 1.00 puzzles/month | Oct 2024 |
+| Kumaran Nathan | 5 | 1.00 puzzles/month | Oct 2024 |
+| Chady Bensaid | 5 | 1.00 puzzles/month | Oct 2024 |
+| Sibilla B | 5 | 1.00 puzzles/month | Oct 2024 |
+| JayGee | 5 | 1.00 puzzles/month | Oct 2024 |
+| Cameron Mackenzie | 6 | 1.00 puzzles/month | Sep 2024 |
+| James Press | 6 | 1.00 puzzles/month | Sep 2024 |
+| Tommaso Corti | 6 | 1.00 puzzles/month | Sep 2024 |
+| Rubén M.I | 5 | 1.00 puzzles/month | Oct 2024 |
 
 ## 📈 Visualizations
 
 ### Monthly Participation
-![Monthly Participation](monthly_participation.png)
+![Monthly Participation](leaderboard_stats/monthly_participation.png)
 
 ### Top Solver Activity Matrix
-![Solver Activity Matrix](solver_activity_matrix.png)
+![Solver Activity Matrix](leaderboard_stats/solver_activity_matrix.png)
 
 ### Unique Solvers Growth
-![Unique Solvers Growth](unique_solvers_growth.png)
+![Unique Solvers Growth](leaderboard_stats/unique_solvers_growth.png)
 
 ## 🛠️ Running Locally
 1. Install required dependencies
