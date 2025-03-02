@@ -14,11 +14,11 @@ def generate_markdown(stats):
     )[:20]
 
     # Generate markdown content with more engaging language
-    md_content = f"""# 🧩 Jane Street Puzzle Leaderboard
+    md_content = f"""# Jane Street Puzzle Leaderboard
 
 ![Jane Street Logo](js_logo.png)
 
-## Overview
+## 📋 Overview
 This leaderboard tracks statistics for solvers of [Jane Street's monthly puzzles](https://www.janestreet.com/puzzles/current-puzzle/).
 
 *Last updated: {datetime.now().strftime('%Y-%m-%d')}*
@@ -99,7 +99,7 @@ These solvers have started recently (within the past year) but are solving at an
 ### Top Solver Activities
 ![Solver Activity Matrix](leaderboard_stats/solver_activity_matrix.png)
 
-## 🛠️ Running yourself
+## 🛠️ Running Locally
 1. Install required dependencies
 2. Run `python main.py` to scrape puzzle data (saves to puzzles.json)
 3. Then run `python markdown.py` to generate this README
