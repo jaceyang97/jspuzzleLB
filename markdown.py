@@ -16,6 +16,8 @@ def generate_markdown(stats):
     # Generate markdown content with more engaging language
     md_content = f"""# 🧩 Jane Street Puzzle Leaderboard
 
+![Jane Street Logo](js_logo.png)
+
 ## Overview
 This leaderboard tracks statistics for solvers of [Jane Street's monthly puzzles](https://www.janestreet.com/puzzles/current-puzzle/).
 
@@ -86,21 +88,21 @@ These solvers have started recently (within the past year) but are solving at an
             md_content += f"| {star['solver']} | {star['total_solved']} | {solve_rate} | {first_solve} |\n"
 
     md_content += """
-## 📈 Visualizations
+## 📈 More Stats
+
+### Solvers Growth
+![Unique Solvers Growth](leaderboard_stats/unique_solvers_growth.png)
 
 ### Monthly Participation
 ![Monthly Participation](leaderboard_stats/monthly_participation.png)
 
-### Top Solver Activity Matrix
+### Top Solver Activities
 ![Solver Activity Matrix](leaderboard_stats/solver_activity_matrix.png)
 
-### Unique Solvers Growth
-![Unique Solvers Growth](leaderboard_stats/unique_solvers_growth.png)
-
-## 🛠️ Running Locally
+## 🛠️ Running yourself
 1. Install required dependencies
 2. Run `python main.py` to scrape puzzle data (saves to puzzles.json)
-3. Run `python markdown.py` to generate this README
+3. Then run `python markdown.py` to generate this README
 
 ## ⚠️ Disclaimer
 *Not affiliated with Jane Street. For recreational use only. Users are responsible for proper usage.*
