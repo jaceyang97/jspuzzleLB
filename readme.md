@@ -5,7 +5,8 @@
 </div>
 
 ## Overview
-An interactive dashboard that visualizes data from Jane Street's monthly puzzles and their solvers. Check out the [live page](https://jspuzzlelb.vercel.app/) to see the project in action.
+An interactive dashboard that visualizes data from Jane Street's monthly puzzles and their solvers.
+Check out the [live page](https://jspuzzle-lb.vercel.app/) to see in action.
 
 ## Features
 - **Top Solvers Leaderboard**: Track the most prolific puzzle solvers
