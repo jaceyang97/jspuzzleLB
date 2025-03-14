@@ -366,6 +366,9 @@ const Leaderboard: React.FC = () => {
             <span className="data-date-label">Data updated</span>
             <span className="data-date-value">{getLatestDataDate()}</span>
           </div>
+          <span className="creator-text">
+            Created by <a href="https://www.jaceyang.com/" target="_blank" rel="noopener noreferrer" className="author-link">Jace Yang</a>
+          </span>
           <a 
             href="https://github.com/jaceyang97/jspuzzleLB"
             target="_blank"
@@ -440,8 +443,6 @@ const Leaderboard: React.FC = () => {
       <footer className="dashboard-footer">
         <div className="disclaimer">
           This site is not affiliated with, endorsed by, or sponsored by Jane Street. All puzzle data is compiled from publicly available information.
-          <br />
-          Jane Street and related trademarks are the property of their respective owners. Created by <a href="https://www.jaceyang.com/" target="_blank" rel="noopener noreferrer" className="author-link">Jace Yang</a>.
         </div>
       </footer>
     </div>

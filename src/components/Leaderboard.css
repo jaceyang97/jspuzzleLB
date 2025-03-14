@@ -1262,15 +1262,44 @@ body {
   color: #2c3e50;
 }
 
+/* Creator text styling */
+.creator-text {
+  font-size: 12px;
+  color: #666;
+  font-weight: 400;
+  border-left: 1px solid #e0e4e9;
+  padding-left: 16px;
+}
+
+.creator-text .author-link {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.creator-text .author-link:hover {
+  color: #3498db;
+}
+
 @media (max-width: 768px) {
   .data-date {
     font-size: 11px;
+  }
+  
+  .creator-text {
+    font-size: 11px;
+    padding-left: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .data-date {
     font-size: 10px;
+  }
+  
+  .creator-text {
+    font-size: 10px;
+    padding-left: 8px;
   }
   
   .header-right {
