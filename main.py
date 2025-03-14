@@ -211,8 +211,8 @@ def parse_arguments():
     parser.add_argument(
         "--output",
         type=str,
-        default="puzzles.json",
-        help="Output file path (default: puzzles.json)",
+        default="data.json",
+        help="Output file path (default: data.json)",
     )
     parser.add_argument(
         "--force-refresh",
@@ -229,18 +229,32 @@ def main():
 
     logger.info("Starting Jane Street puzzle scraper")
 
+    # Determine the output path - use src/data/data.json for React app if it exists
+    output_path = args.output
+    react_output_path = "src/data/data.json"
+
+    # Check if we're in a React project by looking for the src/data directory
+    if os.path.exists("src/data"):
+        output_path = react_output_path
+        logger.info(f"React project detected, will save data to {output_path}")
+    else:
+        logger.info(f"Using output path: {output_path}")
+
     # Load existing puzzles if not forcing a refresh
-    existing_puzzles = {} if args.force_refresh else load_existing_puzzles(args.output)
+    existing_puzzles = {} if args.force_refresh else load_existing_puzzles(output_path)
 
     # Scrape puzzles, using existing data where possible
     puzzles = scrape_all_puzzles(base_url, args.max_pages, existing_puzzles)
 
-    with open(args.output, "w") as f:
+    # Ensure the directory exists
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    with open(output_path, "w") as f:
         json.dump(
             puzzles, f, indent=2, default=str
         )  # Added default=str to handle datetime serialization
 
-    logger.info(f"Scraped {len(puzzles)} puzzles and saved to {args.output}")
+    logger.info(f"Scraped {len(puzzles)} puzzles and saved to {output_path}")
 
 
 if __name__ == "__main__":
