@@ -3,7 +3,6 @@ import { calculateLeaderboardData, preProcessData } from '../utils/leaderboardUt
 import './Leaderboard.css';
 import Confetti from '@tholman/confetti';
 import puzzleData from '../data/data.json';
-import { Analytics } from '@vercel/analytics/react';
 
 // Import charts lazily to improve initial load time
 const Charts = lazy(() => import('./charts/Charts'));
@@ -322,7 +321,6 @@ const Leaderboard: React.FC = () => {
 
   return (
     <div className="dashboard-layout">
-      <Analytics />
       {showConfetti && <Confetti total={198} />}
       <header className="dashboard-header">
         <div className="header-title-container">
