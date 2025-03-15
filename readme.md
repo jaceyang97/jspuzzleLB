@@ -61,3 +61,6 @@ This project is not affiliated with Jane Street. All data is compiled from publi
 
 ## Acknowledgments
 Created by [Jace Yang](https://www.jaceyang.com/).
+
+## TODO
+- [ ] Add solvers [category features](https://public.tableau.com/app/profile/heidi.stockton/viz/PuzzlesofJaneStreet/JaneStreet)

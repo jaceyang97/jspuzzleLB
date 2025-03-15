@@ -341,15 +341,15 @@ const Leaderboard: React.FC = () => {
           <div className="intro-container">
             <span className="intro-button">INTRO</span>
             <div className="intro-tooltip">
-              <p><strong>Why Dashboards?</strong></p>
+              <p><strong>Why Leaderboards?</strong></p>
               
-              <p>What's a programmer like me doing building a dashboard for Jane Street puzzles? Good question—it's mostly an excuse to procrastinate while feeling productive.</p>
+              <p>What's a programmer like me doing building a leaderboard for Jane Street puzzles? Good question—it's mostly an excuse to procrastinate while feeling productive.</p>
               
               <p>Jane Street thrives on turning brain teasers into financial wizardry. While they puzzle out market strategies, I puzzle out how to scrape puzzle data without getting banned. It's a delicate dance.</p>
               
               <p>Tracking solvers isn't about glory (okay, <i>maybe a little</i>). It's about justifying hours spent staring at spreadsheets as "research." Plus, if you squint, React components and Python scrapers almost feel like <i>real work</i>.</p>
               
-              <p>Oh, and <strong>this is a dashboard</strong>.</p>
+              <p>Oh, and <strong>this is a leaderboard</strong>.</p>
             </div>
           </div>
           <a 
