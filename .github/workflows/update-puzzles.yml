@@ -25,16 +25,31 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run puzzle scraper
-      run: python main.py
+      run: |
+        cd JaneStreetLeaderboard
+        python main.py
+        echo "Current directory: $(pwd)"
+        echo "Data file contents:"
+        cat src/data/data.json
 
     - name: Configure Git
       run: |
+        cd JaneStreetLeaderboard
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
 
-    - name: Commit and push changes
+    - name: Check for changes
+      id: git-check
       run: |
+        cd JaneStreetLeaderboard
         git add src/data/data.json
+        git status
+        git diff --cached --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
+
+    - name: Commit and push changes
+      if: steps.git-check.outputs.changes == 'true'
+      run: |
+        cd JaneStreetLeaderboard
         git commit -m "Update Jane Street puzzle data [automated]"
         git push
       env:
