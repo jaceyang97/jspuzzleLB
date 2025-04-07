@@ -63,35 +63,29 @@ def get_page_puzzles(
                     href if isinstance(href, str) else str(href)
                 )
 
-                # Check if we already have this puzzle with a solution URL
-                if (
-                    puzzle_key in existing_puzzles
-                    and existing_puzzles[puzzle_key]["solution_url"] == solution_url
-                ):
-                    # We already have this puzzle with the same solution URL, reuse it
-                    page_puzzles.append(existing_puzzles[puzzle_key])
-                    logger.debug(
-                        f"Reusing existing data for {puzzle_name} ({date_text})"
-                    )
-                else:
-                    # New puzzle or updated solution URL, need to fetch
-                    puzzle_info = {
-                        "date_text": date_text,
-                        "name": puzzle_name,
-                        "solution_url": solution_url,
-                        "date": date,
-                    }
-                    puzzle_info_list.append(puzzle_info)
-            else:
-                # For puzzles without solution URLs (likely current month)
-                # Always check for these as they might get updated
-                puzzle_data = {
+                # Always fetch new data for puzzles with solution URLs
+                puzzle_info = {
                     "date_text": date_text,
                     "name": puzzle_name,
-                    "solution_url": "",
-                    "solvers": [],
+                    "solution_url": solution_url,
+                    "date": date,
                 }
-                page_puzzles.append(puzzle_data)
+                puzzle_info_list.append(puzzle_info)
+            else:
+                # For puzzles without solution URLs (current month)
+                # Check if we have existing data for this puzzle
+                if puzzle_key in existing_puzzles:
+                    # If we have existing data, use it
+                    page_puzzles.append(existing_puzzles[puzzle_key])
+                else:
+                    # If no existing data, create new entry
+                    puzzle_data = {
+                        "date_text": date_text,
+                        "name": puzzle_name,
+                        "solution_url": "",
+                        "solvers": [],
+                    }
+                    page_puzzles.append(puzzle_data)
 
         # Process solution URLs concurrently
         if puzzle_info_list:
