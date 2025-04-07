@@ -341,15 +341,36 @@ const Leaderboard: React.FC = () => {
           <div className="intro-container">
             <span className="intro-button">INTRO</span>
             <div className="intro-tooltip">
-              <p><strong>Why Leaderboards?</strong></p>
-              
-              <p>What's a programmer like me doing building a leaderboard for Jane Street puzzles? Good question—it's mostly an excuse to procrastinate while feeling productive.</p>
-              
-              <p>Jane Street thrives on turning brain teasers into financial wizardry. While they puzzle out market strategies, I puzzle out how to scrape puzzle data without getting banned. It's a delicate dance.</p>
-              
-              <p>Tracking solvers isn't about glory (okay, <i>maybe a little</i>). It's about justifying hours spent staring at spreadsheets as "research." Plus, if you squint, React components and Python scrapers almost feel like <i>real work</i>.</p>
-              
-              <p>Oh, and <strong>this is a leaderboard</strong>.</p>
+              <table className="intro-leaderboard-table" style={{ width: '100%', marginBottom: '8px', borderCollapse: 'collapse' }}>
+                <thead>
+                  <tr>
+                    <th style={{ width: '10%', padding: '8px', backgroundColor: '#f5f7fa', fontWeight: '600', color: '#2c3e50', textAlign: 'left', borderBottom: '2px solid #e0e4e9' }}>Rank</th>
+                    <th style={{ width: '90%', padding: '8px', backgroundColor: '#f5f7fa', fontWeight: '600', color: '#2c3e50', textAlign: 'left', borderBottom: '2px solid #e0e4e9' }}>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #eee', verticalAlign: 'top', whiteSpace: 'nowrap' }}>1</td>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #eee', verticalAlign: 'top', whiteSpace: 'normal', wordBreak: 'break-word' }}><strong>Why Leaderboards?</strong></td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #eee', verticalAlign: 'top', whiteSpace: 'nowrap' }}>2</td>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #eee', verticalAlign: 'top', whiteSpace: 'normal', wordBreak: 'break-word' }}>What's a programmer like me doing building a leaderboard for Jane Street puzzles? Good question—it's mostly an excuse to procrastinate while feeling productive.</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #eee', verticalAlign: 'top', whiteSpace: 'nowrap' }}>3</td>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #eee', verticalAlign: 'top', whiteSpace: 'normal', wordBreak: 'break-word' }}>Jane Street thrives on turning brain teasers into financial wizardry. While they puzzle out market strategies, I puzzle out how to scrape puzzle data without getting banned. It's a delicate dance.</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #eee', verticalAlign: 'top', whiteSpace: 'nowrap' }}>4</td>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #eee', verticalAlign: 'top', whiteSpace: 'normal', wordBreak: 'break-word' }}>Tracking solvers isn't about glory (okay, <i>maybe a little</i>). It's about justifying hours spent staring at spreadsheets as "research." Plus, if you squint, React components and Python scrapers almost feel like <i>real work</i>.</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #eee', verticalAlign: 'top', whiteSpace: 'nowrap' }}>5</td>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #eee', verticalAlign: 'top', whiteSpace: 'normal', wordBreak: 'break-word' }}>Oh, and <strong>this is a leaderboard</strong>.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
           <a 

@@ -639,12 +639,12 @@ body {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 300px;
+  width: 330px;
   background-color: white;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 12px;
+  padding: 16px;
   z-index: 1000;
   font-size: 14px;
   line-height: 1.5;
@@ -653,24 +653,44 @@ body {
   margin-top: 8px;
 }
 
-.intro-tooltip p {
-  margin: 0 0 8px;
-}
-
-.intro-tooltip p:first-child {
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 16px;
-  color: #2c3e50;
-}
-
-.intro-tooltip p:last-child {
-  margin-bottom: 0;
-  font-style: italic;
-}
-
 .intro-container:hover .intro-tooltip {
   display: block;
+}
+
+.intro-tooltip table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+}
+
+.intro-tooltip th {
+  background-color: #f5f7fa;
+  font-weight: 600;
+  color: #2c3e50;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 2px solid #e0e4e9;
+}
+
+.intro-tooltip td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.intro-tooltip td:first-child {
+  white-space: nowrap;
+  width: 10%;
+}
+
+.intro-tooltip td:nth-child(2) {
+  width: 90%;
+}
+
+.intro-tooltip tr:hover {
+  background-color: #f9f9f9;
 }
 
 /* Add a small arrow to the tooltip */
@@ -678,7 +698,7 @@ body {
   content: '';
   position: absolute;
   top: -8px;
-  left: 10px;
+  left: 20px;
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
