@@ -1,0 +1,41 @@
+name: Update Jane Street Puzzles
+
+on:
+  schedule:
+    - cron: '0 12 2 * *'  # Run at 12:00 UTC (8:00 PM Shanghai time) on the 2nd day of every month
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  update-puzzles:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Fetch all history for all branches and tags
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run puzzle scraper
+      run: python main.py
+
+    - name: Configure Git
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+    - name: Commit and push changes
+      run: |
+        git add src/data/data.json
+        git commit -m "Update Jane Street puzzle data [automated]"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
