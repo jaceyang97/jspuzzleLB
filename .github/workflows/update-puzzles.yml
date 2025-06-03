@@ -8,11 +8,15 @@ on:
 jobs:
   update-puzzles:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 允许写入仓库内容
+      actions: read    # 允许读取actions
     
     steps:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0  # Fetch all history for all branches and tags
+        token: ${{ secrets.GITHUB_TOKEN }}  # 使用内置token
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -48,4 +52,4 @@ jobs:
         git commit -m "Update Jane Street puzzle data [automated]"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用内置的GITHUB_TOKEN 
