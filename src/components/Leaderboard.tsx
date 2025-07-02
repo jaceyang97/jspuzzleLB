@@ -8,7 +8,7 @@ import puzzleData from '../data/data.json';
 const Charts = lazy(() => import('./charts/Charts'));
 
 // Compact table components for dashboard view
-const TopSolversTable = React.memo(({ data }: { data: any[] }) => {
+const TopSolversTable = React.memo(({ data, searchTerm }: { data: any[], searchTerm: string }) => {
   const [visibleItems, setVisibleItems] = useState(20);
   
   // Debug the data
@@ -16,10 +16,18 @@ const TopSolversTable = React.memo(({ data }: { data: any[] }) => {
     console.log('Top Solvers Data:', data);
   }, [data]);
   
+  // Filter data based on search term
+  const filteredData = useMemo(() => {
+    if (!searchTerm.trim()) return data;
+    return data.filter(solver => 
+      (solver.name || solver.solver || '').toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [data, searchTerm]);
+  
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const bottom = e.currentTarget.scrollHeight - e.currentTarget.scrollTop <= e.currentTarget.clientHeight + 50;
-    if (bottom && visibleItems < data.length) {
-      setVisibleItems(prev => Math.min(prev + 10, data.length));
+    if (bottom && visibleItems < filteredData.length) {
+      setVisibleItems(prev => Math.min(prev + 10, filteredData.length));
     }
   };
   
@@ -35,7 +43,7 @@ const TopSolversTable = React.memo(({ data }: { data: any[] }) => {
           </tr>
         </thead>
         <tbody>
-          {data && data.length > 0 ? data.slice(0, visibleItems).map((solver, index) => (
+          {filteredData && filteredData.length > 0 ? filteredData.slice(0, visibleItems).map((solver, index) => (
             <tr key={`solver-${index}`}>
               <td>{index + 1}</td>
               <td>
@@ -52,7 +60,7 @@ const TopSolversTable = React.memo(({ data }: { data: any[] }) => {
               <td colSpan={4}>No data available</td>
             </tr>
           )}
-          {visibleItems < data.length && (
+          {visibleItems < filteredData.length && (
             <tr className="loading-row">
               <td colSpan={4}>Loading more...</td>
             </tr>
@@ -245,6 +253,7 @@ const Leaderboard: React.FC = () => {
   const [data, setData] = useState<any>(null);
   const [showRisingStarsTooltip, setShowRisingStarsTooltip] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [topSolversSearch, setTopSolversSearch] = useState('');
 
   // Load data progressively to avoid blocking the UI
   useEffect(() => {
@@ -436,8 +445,19 @@ const Leaderboard: React.FC = () => {
         </div>
         
         <div className="dashboard-item top-solvers-column">
-          <h2>🏆 Top Solvers</h2>
-          <TopSolversTable data={data.topSolvers || []} />
+          <div className="section-header">
+            <h2>🏆 Top Solvers</h2>
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="Search solvers..."
+                value={topSolversSearch}
+                onChange={(e) => setTopSolversSearch(e.target.value)}
+                className="search-input"
+              />
+            </div>
+          </div>
+          <TopSolversTable data={data.topSolvers || []} searchTerm={topSolversSearch} />
         </div>
         
         <div className="dashboard-item streaks-column">
