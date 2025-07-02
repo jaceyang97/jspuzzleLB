@@ -160,6 +160,111 @@ const RisingStarsTable = React.memo(({ data }: { data: any[] }) => {
   );
 });
 
+const SolverDistributionChart = React.memo(({ data }: { data: any[] }) => {
+  // Calculate solver distribution
+  const distribution = useMemo(() => {
+    if (!data || data.length === 0) return null;
+    
+    const onePuzzle = data.filter(solver => (solver.puzzlesSolved || 0) === 1).length;
+    const twoToNine = data.filter(solver => {
+      const solved = solver.puzzlesSolved || 0;
+      return solved >= 2 && solved <= 9;
+    }).length;
+    const tenPlus = data.filter(solver => (solver.puzzlesSolved || 0) >= 10).length;
+    
+    const total = data.length;
+    
+    // Calculate raw percentages
+    const onePuzzlePercent = (onePuzzle / total) * 100;
+    const twoToNinePercent = (twoToNine / total) * 100;
+    const tenPlusPercent = (tenPlus / total) * 100;
+    
+    // Round all percentages and adjust the largest one to ensure sum = 100%
+    const roundedOne = Math.round(onePuzzlePercent);
+    const roundedTwo = Math.round(twoToNinePercent);
+    const roundedTen = Math.round(tenPlusPercent);
+    
+    // Find which category has the largest decimal part to adjust
+    const decimals = [
+      { value: onePuzzlePercent - roundedOne, index: 'onePuzzle' },
+      { value: twoToNinePercent - roundedTwo, index: 'twoToNine' },
+      { value: tenPlusPercent - roundedTen, index: 'tenPlus' }
+    ];
+    
+    const largestDecimal = decimals.reduce((max, current) => 
+      current.value > max.value ? current : max
+    );
+    
+    // Adjust the largest decimal to ensure sum = 100%
+    let adjustedOne = roundedOne;
+    let adjustedTwo = roundedTwo;
+    let adjustedTen = roundedTen;
+    
+    if (largestDecimal.index === 'onePuzzle') {
+      adjustedOne = 100 - roundedTwo - roundedTen;
+    } else if (largestDecimal.index === 'twoToNine') {
+      adjustedTwo = 100 - roundedOne - roundedTen;
+    } else {
+      adjustedTen = 100 - roundedOne - roundedTwo;
+    }
+    
+    return {
+      onePuzzle: { count: onePuzzle, percentage: adjustedOne },
+      twoToNine: { count: twoToNine, percentage: adjustedTwo },
+      tenPlus: { count: tenPlus, percentage: adjustedTen }
+    };
+  }, [data]);
+  
+  if (!distribution) return <div>No data available</div>;
+  
+  return (
+    <div className="solver-distribution">
+      <div className="distribution-chart">
+        <div className="distribution-bar">
+          <div 
+            className="bar-segment one-puzzle" 
+            style={{ width: `${distribution.onePuzzle.percentage}%` }}
+          >
+            <div className="segment-label">
+              <span className="percentage">{distribution.onePuzzle.percentage}%</span>
+            </div>
+          </div>
+          <div 
+            className="bar-segment two-nine" 
+            style={{ width: `${distribution.twoToNine.percentage}%` }}
+          >
+            <div className="segment-label">
+              <span className="percentage">{distribution.twoToNine.percentage}%</span>
+            </div>
+          </div>
+          <div 
+            className="bar-segment ten-plus" 
+            style={{ width: `${distribution.tenPlus.percentage}%` }}
+          >
+            <div className="segment-label">
+              <span className="percentage">{distribution.tenPlus.percentage}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="distribution-legend">
+        <div className="legend-item">
+          <span className="legend-color one-puzzle"></span>
+          <span className="legend-text">One-Timers (1 puzzle)</span>
+        </div>
+        <div className="legend-item">
+          <span className="legend-color two-nine"></span>
+          <span className="legend-text">Enthusiasts (2-9 puzzles)</span>
+        </div>
+        <div className="legend-item">
+          <span className="legend-color ten-plus"></span>
+          <span className="legend-text">Masters (10+ puzzles)</span>
+        </div>
+      </div>
+    </div>
+  );
+});
+
 const LoadingSpinner = () => (
   <div className="loading-spinner">
     <div className="spinner"></div>
@@ -301,7 +406,7 @@ const Leaderboard: React.FC = () => {
     data?.monthlyParticipation?.slice(-24) || [], [data]);
   
   const mostSolvedPuzzlesData = useMemo(() => 
-    data?.mostSolvedPuzzles?.slice(0, 5) || [], [data]);
+    data?.mostSolvedPuzzles?.slice(0, 10) || [], [data]);
 
   // Get the latest data date from the puzzle data
   const getLatestDataDate = () => {
@@ -432,6 +537,8 @@ const Leaderboard: React.FC = () => {
               <div className="stat-value">{data.uniqueSolvers.toLocaleString('en-US')}</div>
             </div>
           </div>
+          
+          <SolverDistributionChart data={data.topSolvers || []} />
           
           <div className="charts-container">
             <Suspense fallback={<div className="chart-loading">Loading charts...</div>}>

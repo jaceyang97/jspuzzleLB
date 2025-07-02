@@ -239,7 +239,7 @@ const MostSolvedPuzzlesTable = memo(({ data }: { data: any[] }) => {
   const topPuzzles = useMemo(() => {
     return (data?.length ? [...data] : [])
       .sort((a, b) => b.solvers - a.solvers)
-      .slice(0, 5);
+      .slice(0, 10);
   }, [data]);
   
   const [showTitleTooltip, setShowTitleTooltip] = useState(false);
@@ -276,7 +276,7 @@ const MostSolvedPuzzlesTable = memo(({ data }: { data: any[] }) => {
         onMouseLeave={() => setShowTitleTooltip(false)}
         style={{ position: 'relative', cursor: 'help' }}
       >
-        🧩 Top 5 Most Solved Puzzles
+        🧩 Top 10 Most Solved Puzzles
         {showTitleTooltip && (
           <div className="chart-title-tooltip">
             The number of solvers can reflect the difficulty of the puzzle, but can also reflect the number of unique participants during that month.
