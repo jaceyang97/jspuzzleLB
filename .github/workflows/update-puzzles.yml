@@ -9,14 +9,14 @@ jobs:
   update-puzzles:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 允许写入仓库内容
-      actions: read    # 允许读取actions
+      contents: write  # Allow writing to repository content
+      actions: read    # Allow reading actions
     
     steps:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0  # Fetch all history for all branches and tags
-        token: ${{ secrets.GITHUB_TOKEN }}  # 使用内置token
+        token: ${{ secrets.GITHUB_TOKEN }}  # Use built-in token
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -49,7 +49,7 @@ jobs:
     - name: Commit and push changes
       if: steps.git-check.outputs.changes == 'true'
       run: |
-        git commit -m "Update Jane Street puzzle data [automated]"
+        git commit -m "Update Jane Street puzzle data [automated] - $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S CST')"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用内置的GITHUB_TOKEN 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use built-in GITHUB_TOKEN 
