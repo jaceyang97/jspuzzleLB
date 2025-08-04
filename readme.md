@@ -66,4 +66,5 @@ Created by [Jace Yang](https://www.jaceyang.com/).
 - [✅] Add solvers [category features](https://public.tableau.com/app/profile/heidi.stockton/viz/PuzzlesofJaneStreet/JaneStreet)
 - [✅] Add a search bar
 - [✅] Fix search rank display in Top Solvers to show original ranking instead of filtered index
-- [🔄] Major update on scraping method to collect daily solve data throughout the month
+- [] Major update on scraping method to collect daily solve data throughout the month
+- [] Make the dashboard mobile compatible
