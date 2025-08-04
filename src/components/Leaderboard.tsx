@@ -31,6 +31,14 @@ const TopSolversTable = React.memo(({ data, searchTerm }: { data: any[], searchT
     }
   };
   
+  // Function to get original rank for a solver
+  const getOriginalRank = (solverName: string) => {
+    const originalIndex = data.findIndex(solver => 
+      (solver.name || solver.solver) === solverName
+    );
+    return originalIndex + 1; // Convert to 1-based ranking
+  };
+  
   return (
     <div className="dashboard-table" onScroll={handleScroll}>
       <table className="leaderboard-table mini">
@@ -43,19 +51,22 @@ const TopSolversTable = React.memo(({ data, searchTerm }: { data: any[], searchT
           </tr>
         </thead>
         <tbody>
-          {filteredData && filteredData.length > 0 ? filteredData.slice(0, visibleItems).map((solver, index) => (
-            <tr key={`solver-${index}`}>
-              <td>{index + 1}</td>
-              <td>
-                <span style={{ display: 'inline-block', width: '25px', textAlign: 'center' }}>
-                  {index < 3 ? [`🥇`, `🥈`, `🥉`][index] : ''}
-                </span>
-                {solver.name || solver.solver}
-              </td>
-              <td>{solver.puzzlesSolved}</td>
-              <td>{solver.lastSolve || 'N/A'}</td>
-            </tr>
-          )) : (
+          {filteredData && filteredData.length > 0 ? filteredData.slice(0, visibleItems).map((solver, index) => {
+            const originalRank = getOriginalRank(solver.name || solver.solver);
+            return (
+              <tr key={`solver-${index}`}>
+                <td>{originalRank}</td>
+                <td>
+                  <span style={{ display: 'inline-block', width: '25px', textAlign: 'center' }}>
+                    {originalRank <= 3 ? [`🥇`, `🥈`, `🥉`][originalRank - 1] : ''}
+                  </span>
+                  {solver.name || solver.solver}
+                </td>
+                <td>{solver.puzzlesSolved}</td>
+                <td>{solver.lastSolve || 'N/A'}</td>
+              </tr>
+            );
+          }) : (
             <tr>
               <td colSpan={4}>No data available</td>
             </tr>
