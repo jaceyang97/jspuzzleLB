@@ -14,7 +14,7 @@ def get_leaderboard_names(puzzle_id: str) -> List[str]:
     """Fetch and clean solver names from a puzzle's leaderboard."""
     json_url = f"https://www.janestreet.com/puzzles/{puzzle_id}-leaderboard.json"
     try:
-        data = requests.get(json_url).json()
+        data = requests.get(json_url, verify=False).json()
         solvers = data.get("leaders", [])
         return [re.sub(r"\s*\([^)]*\)", "", solver).strip() for solver in solvers]
     except:
@@ -29,7 +29,7 @@ def get_page_puzzles(
         existing_puzzles = {}
 
     try:
-        response = requests.get(page_url)
+        response = requests.get(page_url, verify=False)
         soup = BeautifulSoup(response.text, "html.parser")
         container = soup.select_one(
             "body > div.site-wrap > main > div > div.container > div > div"
@@ -94,7 +94,8 @@ def get_page_puzzles(
                 page_puzzles.extend(results)
 
         return page_puzzles
-    except:
+    except Exception as e:
+        logger.error(f"Error processing page {page_url}: {e}")
         return []
 
 
@@ -106,7 +107,7 @@ def get_puzzle_solvers(puzzle_info: Dict[str, Any]) -> Dict[str, Any]:
     date = puzzle_info["date"]
 
     try:
-        response = requests.get(solution_url)
+        response = requests.get(solution_url, verify=False)
         submissions_tag = BeautifulSoup(response.text, "html.parser").select_one(
             "p.correct-submissions"
         )
