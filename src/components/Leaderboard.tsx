@@ -2,7 +2,15 @@ import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import { calculateLeaderboardData, preProcessData } from '../utils/leaderboardUtils';
 import './Leaderboard.css';
 import Confetti from '@tholman/confetti';
-import puzzleData from '../data/data.json';
+import puzzleDataRaw from '../data/data.json';
+
+// Type assertion to fix TypeScript inference issue
+const puzzleData = puzzleDataRaw as Array<{
+  date_text: string;
+  name: string;
+  solution_url: string;
+  solvers: string[];
+}>;
 
 // Import charts lazily to improve initial load time
 const Charts = lazy(() => import('./charts/Charts'));
