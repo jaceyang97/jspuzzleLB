@@ -783,7 +783,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: calc(100% - 24px); /* Account for padding */
+  min-height: 300px; /* Set minimum height instead of fixed height */
   max-height: calc(100vh - 122px); /* Ensure it doesn't overflow with the footer */
 }
 
@@ -869,7 +869,8 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 4px;
-  height: calc(100% - 30px); /* Adjust to fill the container, leaving space for the header */
+  min-height: 200px; /* Set minimum height instead of fixed height */
+  max-height: calc(100% - 30px); /* Use max-height instead of height */
   display: flex;
   flex-direction: column;
   border: 1px solid #e0e4e9;
@@ -883,6 +884,7 @@ body {
   font-size: 13px; /* Increased for better readability */
   table-layout: fixed;
   display: table;
+  flex: 1; /* Allow table to grow and fill available space */
 }
 
 .leaderboard-table.mini th,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, useRef, lazy, Suspense } from 'react';
 import { calculateLeaderboardData, preProcessData } from '../utils/leaderboardUtils';
 import './Leaderboard.css';
 import Confetti from '@tholman/confetti';
@@ -18,6 +18,8 @@ const Charts = lazy(() => import('./charts/Charts'));
 // Compact table components for dashboard view
 const TopSolversTable = React.memo(({ data, searchTerm }: { data: any[], searchTerm: string }) => {
   const [visibleItems, setVisibleItems] = useState(20);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLTableElement>(null);
   
   // Debug the data
   useEffect(() => {
@@ -31,6 +33,22 @@ const TopSolversTable = React.memo(({ data, searchTerm }: { data: any[], searchT
       (solver.name || solver.solver || '').toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [data, searchTerm]);
+  
+  // Check if all items fit in the container and show all if they do
+  useEffect(() => {
+    if (filteredData.length > 0 && visibleItems < filteredData.length && containerRef.current && tableRef.current) {
+      // Use a small timeout to ensure the DOM has updated
+      const timer = setTimeout(() => {
+        const containerHeight = containerRef.current!.clientHeight;
+        const tableHeight = tableRef.current!.scrollHeight;
+        // If table fits entirely in container, show all items
+        if (tableHeight <= containerHeight) {
+          setVisibleItems(filteredData.length);
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [filteredData.length, visibleItems]);
   
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const bottom = e.currentTarget.scrollHeight - e.currentTarget.scrollTop <= e.currentTarget.clientHeight + 50;
@@ -48,8 +66,8 @@ const TopSolversTable = React.memo(({ data, searchTerm }: { data: any[], searchT
   };
   
   return (
-    <div className="dashboard-table" onScroll={handleScroll}>
-      <table className="leaderboard-table mini">
+    <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
+      <table className="leaderboard-table mini" ref={tableRef}>
         <thead>
           <tr>
             <th style={{ width: '10%' }}>Rank</th>
@@ -92,6 +110,22 @@ const TopSolversTable = React.memo(({ data, searchTerm }: { data: any[], searchT
 
 const StreaksTable = React.memo(({ data }: { data: any[] }) => {
   const [visibleItems, setVisibleItems] = useState(20);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLTableElement>(null);
+  
+  // Check if all items fit in the container and show all if they do
+  useEffect(() => {
+    if (data.length > 0 && visibleItems < data.length && containerRef.current && tableRef.current) {
+      const timer = setTimeout(() => {
+        const containerHeight = containerRef.current!.clientHeight;
+        const tableHeight = tableRef.current!.scrollHeight;
+        if (tableHeight <= containerHeight) {
+          setVisibleItems(data.length);
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [data.length, visibleItems]);
   
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const bottom = e.currentTarget.scrollHeight - e.currentTarget.scrollTop <= e.currentTarget.clientHeight + 50;
@@ -101,8 +135,8 @@ const StreaksTable = React.memo(({ data }: { data: any[] }) => {
   };
   
   return (
-    <div className="dashboard-table" onScroll={handleScroll}>
-      <table className="leaderboard-table mini">
+    <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
+      <table className="leaderboard-table mini" ref={tableRef}>
         <thead>
           <tr>
             <th>Rank</th>
@@ -140,6 +174,22 @@ const StreaksTable = React.memo(({ data }: { data: any[] }) => {
 
 const RisingStarsTable = React.memo(({ data }: { data: any[] }) => {
   const [visibleItems, setVisibleItems] = useState(20);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLTableElement>(null);
+  
+  // Check if all items fit in the container and show all if they do
+  useEffect(() => {
+    if (data.length > 0 && visibleItems < data.length && containerRef.current && tableRef.current) {
+      const timer = setTimeout(() => {
+        const containerHeight = containerRef.current!.clientHeight;
+        const tableHeight = tableRef.current!.scrollHeight;
+        if (tableHeight <= containerHeight) {
+          setVisibleItems(data.length);
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [data.length, visibleItems]);
   
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const bottom = e.currentTarget.scrollHeight - e.currentTarget.scrollTop <= e.currentTarget.clientHeight + 50;
@@ -149,8 +199,8 @@ const RisingStarsTable = React.memo(({ data }: { data: any[] }) => {
   };
   
   return (
-    <div className="dashboard-table" onScroll={handleScroll}>
-      <table className="leaderboard-table mini">
+    <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
+      <table className="leaderboard-table mini" ref={tableRef}>
         <thead>
           <tr>
             <th style={{ width: '65%' }}>Solver</th>
