@@ -64,6 +64,23 @@ const formatMonthYear = (date: Date) => {
   return formatted;
 };
 
+// Split a solver string into individual solver names.
+// Handles forms like "Alice & Bob", "Alice & Bob, Carol", "Alice and Bob" and HTML entities.
+const splitSolverNames = (solverRaw: string): string[] => {
+  if (!solverRaw || typeof solverRaw !== 'string') return [];
+
+  // Normalize HTML entity for ampersand and trim
+  const normalized = solverRaw.replace(/&amp;/gi, '&').trim();
+
+  // Split on common delimiters: '&', ' and ', ',', '/'
+  const parts = normalized
+    .split(/\s*(?:&|and|,|\/)\s*/i)
+    .map(p => p.trim())
+    .filter(Boolean);
+
+  return parts;
+};
+
 // Pre-process data in chunks to avoid blocking the UI
 export const preProcessData = (callback: () => void) => {
   if (cachedLeaderboardData) {
@@ -106,36 +123,40 @@ export const calculateLeaderboardData = (): LeaderboardData => {
     // Skip empty solver arrays to improve performance
     if (!puzzle.solvers || puzzle.solvers.length === 0) return;
     
-    puzzle.solvers.forEach(solverName => {
-      if (!solverMap.has(solverName)) {
-        solverMap.set(solverName, {
-          name: solverName,
-          puzzlesSolved: 0,
-          firstAppearance: puzzle.date_text,
-          lastSolve: puzzle.date_text,
-          solvedPuzzles: [],
-          monthlyActivity: {},
-          streaks: []
-        });
-      }
-      
-      const solver = solverMap.get(solverName)!;
-      solver.puzzlesSolved += 1;
-      
-      // Don't store puzzle references at all - we don't need them for the leaderboard
-      // This significantly reduces memory usage
-      
-      solver.monthlyActivity[monthKey] = true;
-      
-      // Update first appearance if this puzzle is older
-      if (compareAsc(parseDate(puzzle.date_text), parseDate(solver.firstAppearance)) < 0) {
-        solver.firstAppearance = puzzle.date_text;
-      }
-      
-      // Update last solve if this puzzle is newer
-      if (compareAsc(parseDate(puzzle.date_text), parseDate(solver.lastSolve)) > 0) {
-        solver.lastSolve = puzzle.date_text;
-      }
+    // A single solver entry in the data may contain multiple people (e.g. "A & B").
+    // Split those combined entries into individual solver names and credit each person.
+    puzzle.solvers.forEach(solverRaw => {
+      const solverNames = splitSolverNames(solverRaw);
+
+      solverNames.forEach(solverName => {
+        if (!solverMap.has(solverName)) {
+          solverMap.set(solverName, {
+            name: solverName,
+            puzzlesSolved: 0,
+            firstAppearance: puzzle.date_text,
+            lastSolve: puzzle.date_text,
+            solvedPuzzles: [],
+            monthlyActivity: {},
+            streaks: []
+          });
+        }
+
+        const solver = solverMap.get(solverName)!;
+        solver.puzzlesSolved += 1;
+
+        // Mark activity for the month
+        solver.monthlyActivity[monthKey] = true;
+
+        // Update first appearance if this puzzle is older
+        if (compareAsc(parseDate(puzzle.date_text), parseDate(solver.firstAppearance)) < 0) {
+          solver.firstAppearance = puzzle.date_text;
+        }
+
+        // Update last solve if this puzzle is newer
+        if (compareAsc(parseDate(puzzle.date_text), parseDate(solver.lastSolve)) > 0) {
+          solver.lastSolve = puzzle.date_text;
+        }
+      });
     });
   });
   
