@@ -884,7 +884,7 @@ body {
   font-size: 13px; /* Increased for better readability */
   table-layout: fixed;
   display: table;
-  flex: 1; /* Allow table to grow and fill available space */
+  flex: 0 0 auto; /* Keep natural row height so filtered results don't stretch */
 }
 
 .leaderboard-table.mini th,
