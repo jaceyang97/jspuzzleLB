@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Leaderboard from './components/Leaderboard';
+import App from './App';
 import { Analytics } from '@vercel/analytics/react';
 
 const root = ReactDOM.createRoot(
@@ -11,6 +11,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Analytics />
-    <Leaderboard />
+    <App />
   </React.StrictMode>
 );
