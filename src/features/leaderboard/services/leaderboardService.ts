@@ -41,8 +41,8 @@ const normalizeLeaderboardData = (data: LeaderboardData): NormalizedLeaderboardD
 
   if (data.topSolvers) {
     normalized.topSolvers = data.topSolvers.map((solver) => ({
-      name: solver.name || (solver as any).solver,
-      puzzlesSolved: solver.puzzlesSolved || 0,
+      name: solver.name,
+      puzzlesSolved: solver.puzzlesSolved,
       firstAppearance: formatDate(solver.firstAppearance) || 'N/A',
       lastSolve: formatDate(solver.lastSolve) || 'N/A',
     }));
@@ -50,19 +50,19 @@ const normalizeLeaderboardData = (data: LeaderboardData): NormalizedLeaderboardD
 
   if (data.longestStreaks) {
     normalized.longestStreaks = data.longestStreaks.map((streak) => ({
-      name: streak.solver || (streak as any).name,
-      streakLength: streak.length || (streak as any).streakLength || 0,
-      startDate: formatDate((streak as any).startDate || streak.start) || 'N/A',
-      endDate: formatDate((streak as any).endDate || streak.end) || 'N/A',
+      name: streak.solver,
+      streakLength: streak.length,
+      startDate: formatDate(streak.start) || 'N/A',
+      endDate: formatDate(streak.end) || 'N/A',
     }));
   }
 
   if (data.risingStars) {
-    normalized.risingStars = data.risingStars.map((solver) => ({
-      name: solver.solver || (solver as any).name,
-      solveRate: solver.solveRate || 0,
-      puzzlesSolved: solver.puzzlesSolved || 0,
-      firstAppearance: formatDate(solver.firstAppearance) || 'N/A',
+    normalized.risingStars = data.risingStars.map((star) => ({
+      name: star.solver,
+      solveRate: star.solveRate,
+      puzzlesSolved: star.puzzlesSolved,
+      firstAppearance: formatDate(star.firstAppearance) || 'N/A',
     }));
   }
 

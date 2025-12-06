@@ -46,9 +46,23 @@ const useThemeColors = () => {
   return colors;
 };
 
+// Chart data types
+interface SolversGrowthDataPoint {
+  month: string;
+  totalSolvers: number;
+  isCurrentMonth?: boolean;
+}
+
+interface PuzzleData {
+  id: string;
+  name: string;
+  solvers: number;
+  solution_url: string;
+}
+
 interface ChartsProps {
-  solversGrowthData: any[];
-  mostSolvedPuzzlesData?: any[];
+  solversGrowthData: SolversGrowthDataPoint[];
+  mostSolvedPuzzlesData?: PuzzleData[];
 }
 
 
@@ -60,7 +74,7 @@ const formatXAxisTick = (value: string) => {
 };
 
 // Custom tick formatter to only show years
-const yearTickFormatter = (value: any) => {
+const yearTickFormatter = (value: string | number) => {
   if (typeof value === 'string') {
     return formatXAxisTick(value);
   }
@@ -68,7 +82,7 @@ const yearTickFormatter = (value: any) => {
 };
 
 // Memoized chart components to prevent unnecessary re-renders
-const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
+const SolversGrowthChart = memo(({ data }: { data: SolversGrowthDataPoint[] }) => {
   const themeColors = useThemeColors();
   // Filter data to start from Nov 2015 (first occurrence of solvers)
   const filteredData = data.filter(item => {
@@ -87,7 +101,7 @@ const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
     filteredData.map(item => {
       const yearMatch = item.month.match(/\d{4}$/);
       return yearMatch ? yearMatch[0] : null;
-    }).filter(Boolean)
+    }).filter((year): year is string => year !== null)
   )).sort();
   
   // Select only a subset of years to display on the x-axis to avoid overcrowding
@@ -106,7 +120,7 @@ const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
       // If no January, find any month for this year
       const anyEntry = filteredData.find(item => item.month.endsWith(year));
       return anyEntry ? anyEntry.month : null;
-    }).filter(Boolean);
+    }).filter((tick): tick is string => tick !== null);
   
   // Determine if we need to adjust font size based on number of years
   const fontSize = years.length > 8 ? 11 : 13;
@@ -133,7 +147,19 @@ const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
   }
   
   // Custom tooltip component that shows "Ongoing" for the current month
-  const CustomSolversTooltip = ({ active, payload, label }: any) => {
+  interface TooltipPayloadEntry {
+    color: string;
+    name: string;
+    value: number;
+  }
+  
+  interface CustomTooltipProps {
+    active?: boolean;
+    payload?: TooltipPayloadEntry[];
+    label?: string;
+  }
+  
+  const CustomSolversTooltip = ({ active, payload, label }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
       // Check if this is the current month
       const isCurrentMonth = label === currentMonthStr;
@@ -144,7 +170,7 @@ const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
           border: `1px solid ${themeColors.tooltipBorder}`
         }}>
           <p className="label">{label}</p>
-          {payload.map((entry: any, index: number) => (
+          {payload.map((entry, index) => (
             <p key={`item-${index}`} className="value" style={{ color: entry.color }}>
               {`${entry.name}: ${isCurrentMonth ? 'Ongoing' : entry.value.toLocaleString()}`}
             </p>
@@ -156,8 +182,17 @@ const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
   };
   
   // Custom dot component that flashes for the current month
-  const CustomDot = (props: any) => {
-    const { cx, cy, payload } = props;
+  interface CustomDotProps {
+    cx?: number;
+    cy?: number;
+    r?: number;
+    payload?: SolversGrowthDataPoint & { isCurrentMonth?: boolean };
+  }
+  
+  const CustomDot = (props: CustomDotProps) => {
+    const { cx, cy, payload, r } = props;
+    
+    if (cx === undefined || cy === undefined || !payload) return null;
     
     // Check if this is the current month
     const isCurrentMonth = payload.month === currentMonthStr;
@@ -190,7 +225,7 @@ const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
     }
     
     // For non-current months, return a small dot or nothing
-    return props.r > 0 ? (
+    return r !== undefined && r > 0 ? (
       <circle 
         cx={cx} 
         cy={cy} 
@@ -279,7 +314,7 @@ const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
 });
 
 // Optimized component for displaying top puzzles
-const MostSolvedPuzzlesTable = memo(({ data }: { data: any[] }) => {
+const MostSolvedPuzzlesTable = memo(({ data }: { data: PuzzleData[] }) => {
   const themeColors = useThemeColors();
   
   // Memoize sorted data to prevent recalculation on re-renders
