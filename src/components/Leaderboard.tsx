@@ -111,7 +111,8 @@ const Leaderboard: React.FC = () => {
             <img src="/js_puzzle_solver_logo.svg" alt="Jane Street Puzzle" className="header-logo" />
           </a>
           <h1 className="header-title">
-            <span className="title-bold">Jane Street</span>
+            <span className="title-bold title-full">Jane Street</span>
+            <span className="title-bold title-short">JS</span>
             <span className="title-separator"> | </span>
             <span className="title-regular">Puzzle Leaderboard</span>
           </h1>

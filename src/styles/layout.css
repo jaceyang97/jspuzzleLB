@@ -100,6 +100,10 @@
   font-size: 36px;
 }
 
+.title-short {
+  display: none;
+}
+
 .title-regular {
   font-weight: 400;
   font-size: 36px;
@@ -243,6 +247,8 @@
   }
   
   .title-bold, .title-regular { font-size: 20px; }
+  .title-full { display: none; }
+  .title-short { display: inline; }
   .title-separator { font-size: 20px; margin: 0 5px; }
   .header-logo { height: 36px; width: 36px; margin-right: 10px; flex-shrink: 0; }
   
@@ -277,6 +283,8 @@
   }
   
   .title-bold, .title-regular { font-size: 18px; }
+  .title-full { display: none; }
+  .title-short { display: inline; }
   .title-separator { font-size: 18px; margin: 0 4px; }
   .header-logo { height: 32px; width: 32px; margin-right: 8px; }
   
