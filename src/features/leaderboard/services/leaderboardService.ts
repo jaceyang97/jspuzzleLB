@@ -30,6 +30,7 @@ const normalizeLeaderboardData = (data: LeaderboardData): NormalizedLeaderboardD
   const normalized: NormalizedLeaderboardData = {
     totalPuzzles: data.totalPuzzles,
     uniqueSolvers: data.uniqueSolvers,
+    solverDistribution: data.solverDistribution,
     monthlyParticipation: data.monthlyParticipation ?? [],
     solversGrowth: data.solversGrowth ?? [],
     mostSolvedPuzzles: data.mostSolvedPuzzles ?? [],

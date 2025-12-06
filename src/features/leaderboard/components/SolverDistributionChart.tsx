@@ -1,21 +1,18 @@
 import React, { useMemo } from 'react';
+import { SolverDistribution } from '../types';
 
 interface SolverDistributionChartProps {
-  data: Array<{ puzzlesSolved: number }>;
+  data: SolverDistribution | undefined;
 }
 
 const SolverDistributionChart: React.FC<SolverDistributionChartProps> = React.memo(({ data }) => {
   const distribution = useMemo(() => {
-    if (!data || data.length === 0) return null;
+    if (!data) return null;
 
-    const onePuzzle = data.filter((solver) => (solver.puzzlesSolved || 0) === 1).length;
-    const twoToNine = data.filter((solver) => {
-      const solved = solver.puzzlesSolved || 0;
-      return solved >= 2 && solved <= 9;
-    }).length;
-    const tenPlus = data.filter((solver) => (solver.puzzlesSolved || 0) >= 10).length;
+    const { onePuzzle, twoToNine, tenPlus } = data;
+    const total = onePuzzle + twoToNine + tenPlus;
+    if (total === 0) return null;
 
-    const total = data.length;
     const onePuzzlePercent = (onePuzzle / total) * 100;
     const twoToNinePercent = (twoToNine / total) * 100;
     const tenPlusPercent = (tenPlus / total) * 100;
@@ -24,6 +21,7 @@ const SolverDistributionChart: React.FC<SolverDistributionChartProps> = React.me
     const roundedTwo = Math.round(twoToNinePercent);
     const roundedTen = Math.round(tenPlusPercent);
 
+    // Adjust percentages to sum to exactly 100%
     const decimals = [
       { value: onePuzzlePercent - roundedOne, index: 'onePuzzle' },
       { value: twoToNinePercent - roundedTwo, index: 'twoToNine' },

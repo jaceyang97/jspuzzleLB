@@ -1,6 +1,11 @@
 {
   "totalPuzzles": 142,
   "uniqueSolvers": 12830,
+  "solverDistribution": {
+    "onePuzzle": 9499,
+    "twoToNine": 3115,
+    "tenPlus": 216
+  },
   "topSolvers": [
     {
       "name": "Calvin Pozderac",
@@ -78113,5 +78118,5 @@
       "solution_url": "https://www.janestreet.com/puzzles/number-cross-4-solution"
     }
   ],
-  "generatedAt": "2025-12-06T15:19:39.218639"
+  "generatedAt": "2025-12-06T19:15:07.116922+00:00"
 }

@@ -14,9 +14,16 @@ export interface SolverStats {
   streaks: { length: number; start: string; end: string }[];
 }
 
+export interface SolverDistribution {
+  onePuzzle: number;
+  twoToNine: number;
+  tenPlus: number;
+}
+
 export interface LeaderboardData {
   totalPuzzles: number;
   uniqueSolvers: number;
+  solverDistribution?: SolverDistribution;
   topSolvers: SolverStats[];
   longestStreaks: { solver: string; length: number; start: string; end: string }[];
   risingStars: { solver: string; puzzlesSolved: number; solveRate: number; firstAppearance: string }[];
@@ -29,6 +36,7 @@ export interface LeaderboardData {
 export interface NormalizedLeaderboardData {
   totalPuzzles: number;
   uniqueSolvers: number;
+  solverDistribution?: SolverDistribution;
   topSolvers: Array<{
     name: string;
     puzzlesSolved: number;

@@ -151,9 +151,19 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
         )[:20]
     )
 
+    # Pre-compute solver distribution for the chart
+    one_puzzle = sum(1 for s in solver_map.values() if s["puzzlesSolved"] == 1)
+    two_to_nine = sum(1 for s in solver_map.values() if 2 <= s["puzzlesSolved"] <= 9)
+    ten_plus = sum(1 for s in solver_map.values() if s["puzzlesSolved"] >= 10)
+
     return {
         "totalPuzzles": len(puzzles),
         "uniqueSolvers": len(solver_map),
+        "solverDistribution": {
+            "onePuzzle": one_puzzle,
+            "twoToNine": two_to_nine,
+            "tenPlus": ten_plus,
+        },
         "topSolvers": [
             {
                 "name": solver["name"],

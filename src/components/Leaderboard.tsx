@@ -201,7 +201,7 @@ const Leaderboard: React.FC = () => {
         <div className="dashboard-item stats-charts-column">
           <StatsCards totalPuzzles={data.totalPuzzles} uniqueSolvers={data.uniqueSolvers} />
           
-          <SolverDistributionChart data={data.topSolvers || []} />
+          <SolverDistributionChart data={data.solverDistribution} />
           
           <div className="charts-container">
             <Suspense fallback={<div className="chart-loading">Loading charts...</div>}>

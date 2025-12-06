@@ -220,10 +220,19 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
     })
     .sort((a, b) => b.solvers - a.solvers)
     .slice(0, 20); // Get top 20 to have some buffer
-  
+
+  // Pre-compute solver distribution for the chart
+  const solvers = Array.from(solverMap.values());
+  const solverDistribution = {
+    onePuzzle: solvers.filter(s => s.puzzlesSolved === 1).length,
+    twoToNine: solvers.filter(s => s.puzzlesSolved >= 2 && s.puzzlesSolved <= 9).length,
+    tenPlus: solvers.filter(s => s.puzzlesSolved >= 10).length,
+  };
+
   return {
     totalPuzzles: puzzles.length,
     uniqueSolvers: solverMap.size,
+    solverDistribution,
     topSolvers,
     longestStreaks,
     risingStars,
