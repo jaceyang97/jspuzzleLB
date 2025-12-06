@@ -78,12 +78,18 @@ const fetchJson = async <T>(path: string): Promise<T> => {
 };
 
 export const loadLeaderboardData = async (): Promise<NormalizedLeaderboardData> => {
+  // Try loading precomputed stats first (faster)
   try {
     const data = await fetchJson<LeaderboardData>('/data/stats.json');
     return normalizeLeaderboardData(data);
-  } catch (_statsError) {
+  } catch (statsError) {
+    // Log in development to help debug stats.json issues
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('Failed to load stats.json, falling back to client-side calculation:', statsError);
+    }
   }
 
+  // Fallback: load raw puzzle data and calculate stats client-side
   try {
     const puzzles = await fetchJson<Puzzle[]>('/data/data.json');
     const calculated = calculateLeaderboardData(puzzles);
