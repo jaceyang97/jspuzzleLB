@@ -38,21 +38,36 @@ const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data }) => {
           <tr>
             <th>Rank</th>
             <th>Solver</th>
-            <th>Streak</th>
+            <th className="center">Streak</th>
           </tr>
         </thead>
         <tbody>
           {data && data.length > 0 ? (
             data.slice(0, visibleItems).map((streak, index) => (
               <tr key={`streak-${index}`}>
-                <td>{index + 1}</td>
                 <td>
-                  <span style={{ display: 'inline-block', width: '25px', textAlign: 'center' }}>
-                    {index < 3 ? ['🥇', '🥈', '🥉'][index] : ''}
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      width: '28px',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      lineHeight: '1',
+                    }}
+                  >
+                    {index < 3 ? (
+                      <span style={{ fontSize: '20px', lineHeight: '1' }}>
+                        {['🥇', '🥈', '🥉'][index]}
+                      </span>
+                    ) : (
+                      index + 1
+                    )}
                   </span>
-                  {streak.name || streak.solver}
                 </td>
-                <td>{streak.streakLength || 0}m</td>
+                <td title={streak.name || streak.solver}>
+                  <span className="solver-name">{streak.name || streak.solver}</span>
+                </td>
+                <td className="center">{streak.streakLength || 0}m</td>
               </tr>
             ))
           ) : (

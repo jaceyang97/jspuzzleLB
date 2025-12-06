@@ -37,7 +37,7 @@ const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data }) 
         <thead>
           <tr>
             <th style={{ width: '65%' }}>Solver</th>
-            <th style={{ width: '35%' }}>First Appeared</th>
+            <th className="center" style={{ width: '35%' }}>First Appeared</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +45,7 @@ const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data }) 
             data.slice(0, visibleItems).map((solver, index) => (
               <tr key={`rising-${index}`}>
                 <td>{solver.name || solver.solver}</td>
-                <td>{solver.firstAppearance || 'N/A'}</td>
+                <td className="center">{solver.firstAppearance || 'N/A'}</td>
               </tr>
             ))
           ) : (

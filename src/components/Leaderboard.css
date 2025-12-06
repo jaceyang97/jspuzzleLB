@@ -897,6 +897,20 @@ body {
   text-overflow: ellipsis;
 }
 
+.solver-name {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.leaderboard-table.mini td.center,
+.leaderboard-table.mini th.center {
+  text-align: center;
+}
+
 .leaderboard-table.mini th {
   background-color: #f5f7fa;
   font-weight: 600;

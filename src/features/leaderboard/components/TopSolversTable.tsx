@@ -56,8 +56,8 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
           <tr>
             <th style={{ width: '10%' }}>Rank</th>
             <th style={{ width: '55%' }}>Solver</th>
-            <th style={{ width: '15%' }}>Puzzles</th>
-            <th style={{ width: '20%' }}>Most Recent</th>
+            <th className="center" style={{ width: '15%' }}>Puzzles</th>
+            <th className="center" style={{ width: '20%' }}>Most Recent</th>
           </tr>
         </thead>
         <tbody>
@@ -66,15 +66,30 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
               const originalRank = getOriginalRank(solver.name || solver.solver || '');
               return (
                 <tr key={`solver-${index}`}>
-                  <td>{originalRank}</td>
                   <td>
-                    <span style={{ display: 'inline-block', width: '25px', textAlign: 'center' }}>
-                      {originalRank <= 3 ? ['🥇', '🥈', '🥉'][originalRank - 1] : ''}
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        width: '28px',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        lineHeight: '1',
+                      }}
+                    >
+                      {originalRank <= 3 ? (
+                        <span style={{ fontSize: '20px', lineHeight: '1' }}>
+                          {['🥇', '🥈', '🥉'][originalRank - 1]}
+                        </span>
+                      ) : (
+                        originalRank
+                      )}
                     </span>
-                    {solver.name || solver.solver}
                   </td>
-                  <td>{solver.puzzlesSolved}</td>
-                  <td>{solver.lastSolve || 'N/A'}</td>
+                  <td title={solver.name || solver.solver}>
+                    <span className="solver-name">{solver.name || solver.solver}</span>
+                  </td>
+                  <td className="center">{solver.puzzlesSolved}</td>
+                  <td className="center">{solver.lastSolve || 'N/A'}</td>
                 </tr>
               );
             })
