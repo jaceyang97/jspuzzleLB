@@ -9,7 +9,12 @@ export const useTheme = () => {
     if (savedTheme === 'dark' || savedTheme === 'light') {
       return savedTheme;
     }
-    // Fall back to system preference
+    // On mobile, default to light mode
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      return 'light';
+    }
+    // Fall back to system preference on desktop
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
