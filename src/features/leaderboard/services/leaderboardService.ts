@@ -6,29 +6,24 @@ const formatDate = (dateText: string): string => {
 
   if (/^[A-Za-z]{3} \d{4}$/.test(dateText)) return dateText;
 
-  try {
-    const monthNames = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
 
-    const monthCodes = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ];
+  const monthCodes = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
 
-    const monthMap = new Map(monthNames.map((name, i) => [name, monthCodes[i]]));
+  const monthMap = new Map(monthNames.map((name, i) => [name, monthCodes[i]]));
 
-    const parts = dateText.split(' ');
-    if (parts.length === 2 && monthMap.has(parts[0])) {
-      return `${monthMap.get(parts[0])} ${parts[1]}`;
-    }
-
-    return dateText;
-  } catch (e) {
-    console.error('Error formatting date:', dateText, e);
-    return dateText;
+  const parts = dateText.split(' ');
+  if (parts.length === 2 && monthMap.has(parts[0])) {
+    return `${monthMap.get(parts[0])} ${parts[1]}`;
   }
+
+  return dateText;
 };
 
 const normalizeLeaderboardData = (data: LeaderboardData): NormalizedLeaderboardData => {
@@ -86,8 +81,7 @@ export const loadLeaderboardData = async (): Promise<NormalizedLeaderboardData> 
   try {
     const data = await fetchJson<LeaderboardData>('/data/stats.json');
     return normalizeLeaderboardData(data);
-  } catch (statsError) {
-    console.warn('Falling back to data.json after stats.json failure', statsError);
+  } catch (_statsError) {
   }
 
   try {
@@ -95,7 +89,6 @@ export const loadLeaderboardData = async (): Promise<NormalizedLeaderboardData> 
     const calculated = calculateLeaderboardData(puzzles);
     return normalizeLeaderboardData(calculated);
   } catch (dataError) {
-    console.error('Failed to load data.json fallback', dataError);
     throw dataError instanceof Error ? dataError : new Error('Unable to load leaderboard data');
   }
 };

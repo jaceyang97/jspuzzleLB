@@ -39,7 +39,6 @@ const parseDate = (dateText: string) => {
     dateCache.set(dateText, date);
     return date;
   } catch (e) {
-    console.error(`Error parsing date: ${dateText}`, e);
     const fallbackDate = new Date();
     dateCache.set(dateText, fallbackDate);
     return fallbackDate;
@@ -83,8 +82,6 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
   if (cachedLeaderboardData) {
     return cachedLeaderboardData;
   }
-
-  console.time('calculateLeaderboardData');
   
   const solverMap = new Map<string, SolverStats>();
   const allMonths = new Set<string>();
@@ -307,8 +304,6 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
     solversGrowth,
     mostSolvedPuzzles
   };
-  
-  console.timeEnd('calculateLeaderboardData');
   
   return cachedLeaderboardData;
 }; 

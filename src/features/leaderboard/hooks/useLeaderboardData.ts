@@ -23,7 +23,6 @@ export const useLeaderboardData = (): UseLeaderboardDataResult => {
       })
       .catch((err) => {
         if (cancelled) return;
-        console.error('Failed to load leaderboard data', err);
         setData(null);
         setError(err as Error);
       })
