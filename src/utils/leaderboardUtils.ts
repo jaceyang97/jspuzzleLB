@@ -1,88 +1,27 @@
 import { format, parse, compareAsc, differenceInMonths, addMonths } from 'date-fns';
 import { LeaderboardData, Puzzle, SolverStats } from '../features/leaderboard/types';
 
-// Cache for memoization
-let cachedLeaderboardData: LeaderboardData | null = null;
-let cachedPuzzleSignature: string | null = null;
-let dateCache: Map<string, Date> = new Map(); // Cache for parsed dates
-let monthFormatCache: Map<string, string> = new Map(); // Cache for formatted months
-
-const getPuzzleSignature = (puzzles: Puzzle[]) => {
-  if (!puzzles || puzzles.length === 0) return 'empty';
-  const first = puzzles[0]?.date_text ?? 'unknown';
-  const last = puzzles[puzzles.length - 1]?.date_text ?? 'unknown';
-  return `${puzzles.length}-${first}-${last}`;
-};
-
-const resetCaches = (signature: string) => {
-  cachedLeaderboardData = null;
-  cachedPuzzleSignature = signature;
-  dateCache = new Map();
-  monthFormatCache = new Map();
-};
-
-const ensureCacheFresh = (puzzles: Puzzle[]) => {
-  const signature = getPuzzleSignature(puzzles);
-  if (cachedPuzzleSignature !== signature) {
-    resetCaches(signature);
-  }
-};
-
-// Parse date from format like "March 2025" with caching
-const parseDate = (dateText: string) => {
-  if (dateCache.has(dateText)) {
-    return dateCache.get(dateText)!;
-  }
-  
+// Parse date from format like "March 2025"
+const parseDate = (dateText: string): Date => {
   try {
-    const date = parse(dateText, 'MMMM yyyy', new Date());
-    dateCache.set(dateText, date);
-    return date;
-  } catch (e) {
-    const fallbackDate = new Date();
-    dateCache.set(dateText, fallbackDate);
-    return fallbackDate;
+    return parse(dateText, 'MMMM yyyy', new Date());
+  } catch {
+    return new Date();
   }
 };
 
-// Format date to "MMM yyyy" with caching
-const formatMonthYear = (date: Date) => {
-  const key = date.toISOString();
-  if (monthFormatCache.has(key)) {
-    return monthFormatCache.get(key)!;
-  }
-  
-  const formatted = format(date, 'MMM yyyy');
-  monthFormatCache.set(key, formatted);
-  return formatted;
-};
+// Format date to "MMM yyyy"
+const formatMonthYear = (date: Date): string => format(date, 'MMM yyyy');
 
-// Pre-process data in chunks to avoid blocking the UI
-export const preProcessData = (puzzles: Puzzle[], callback: () => void) => {
-  ensureCacheFresh(puzzles);
-  if (cachedLeaderboardData) {
-    callback();
-    return;
-  }
-  
-  setTimeout(() => {
-    calculateLeaderboardData(puzzles);
-    callback();
-  }, 0);
-};
-
-// Calculate all solver statistics
+/**
+ * Calculate leaderboard statistics from raw puzzle data.
+ * This is a fallback for when pre-computed stats.json is unavailable.
+ */
 export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => {
   if (!puzzles || puzzles.length === 0) {
     throw new Error('No puzzle data provided for leaderboard calculation');
   }
 
-  ensureCacheFresh(puzzles);
-  // Return cached data if available
-  if (cachedLeaderboardData) {
-    return cachedLeaderboardData;
-  }
-  
   const solverMap = new Map<string, SolverStats>();
   const allMonths = new Set<string>();
   
@@ -282,8 +221,7 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
     .sort((a, b) => b.solvers - a.solvers)
     .slice(0, 20); // Get top 20 to have some buffer
   
-// Create and cache the result
-  cachedLeaderboardData = {
+  return {
     totalPuzzles: puzzles.length,
     uniqueSolvers: solverMap.size,
     topSolvers,
@@ -291,8 +229,6 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
     risingStars,
     monthlyParticipation,
     solversGrowth,
-    mostSolvedPuzzles
+    mostSolvedPuzzles,
   };
-  
-  return cachedLeaderboardData;
 }; 

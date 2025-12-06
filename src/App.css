@@ -1,7 +1,4 @@
 .App {
-  text-align: center;
   background-color: var(--bg-primary);
   min-height: 100vh;
-  padding: 0;
-  margin: 0;
 }

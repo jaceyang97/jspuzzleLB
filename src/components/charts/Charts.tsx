@@ -418,10 +418,6 @@ const Charts: React.FC<ChartsProps> = ({
     <div className="charts-dashboard">
       <SolversGrowthChart data={solversGrowthData} />
       <MostSolvedPuzzlesTable data={mostSolvedPuzzlesData} />
-      {/* 
-        When adding the Rising Stars section, use this emoji for the header:
-        - 💫 for Rising Stars section
-      */}
     </div>
   );
 };
