@@ -1,4 +1,3 @@
-import { calculateLeaderboardData, preProcessData } from '../../../utils/leaderboardUtils';
 import { LeaderboardData, NormalizedLeaderboardData } from '../types';
 
 const formatDate = (dateText: string): string => {
@@ -31,7 +30,7 @@ const formatDate = (dateText: string): string => {
   }
 };
 
-export const normalizeLeaderboardData = (data: LeaderboardData): NormalizedLeaderboardData => {
+const normalizeLeaderboardData = (data: LeaderboardData): NormalizedLeaderboardData => {
   const normalized: NormalizedLeaderboardData = {
     totalPuzzles: data.totalPuzzles,
     uniqueSolvers: data.uniqueSolvers,
@@ -73,13 +72,19 @@ export const normalizeLeaderboardData = (data: LeaderboardData): NormalizedLeade
   return normalized;
 };
 
-export const loadLeaderboardData = (): Promise<NormalizedLeaderboardData> => {
-  return new Promise((resolve) => {
-    preProcessData(() => {
-      const leaderboardData = calculateLeaderboardData();
-      const normalized = normalizeLeaderboardData(leaderboardData);
-      resolve(normalized);
-    });
-  });
+export const loadLeaderboardData = async (): Promise<NormalizedLeaderboardData> => {
+  try {
+    const response = await fetch('/data/stats.json', { cache: 'no-cache' });
+    if (!response.ok) {
+      throw new Error(`Failed to load stats.json: ${response.status}`);
+    }
+    const data = (await response.json()) as NormalizedLeaderboardData;
+    return data;
+  } catch (err) {
+    console.error('Failed to load precomputed leaderboard data, falling back to client calculation', err);
+    const { calculateLeaderboardData } = await import('../../../utils/leaderboardUtils');
+    const computed = calculateLeaderboardData();
+    return normalizeLeaderboardData(computed);
+  }
 };
 

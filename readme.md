@@ -49,6 +49,9 @@ git clone https://github.com/jaceyang97/jspuzzleLB.git
 # Install dependencies
 npm install
 
+# Precompute leaderboard stats (writes to public/data/stats.json)
+npm run build:data
+
 # Start development server
 npm start
 ```
