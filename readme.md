@@ -23,6 +23,17 @@ Check out the [live page](https://jspuzzle-lb.vercel.app/) to see in action.
 - **Frontend**: React and TypeScript
 - **Data Collection**: Python web scraping with BeautifulSoup and Requests
 
+## Project Structure
+- `src/` React app
+  - `components/` page-level UI (e.g., `Leaderboard.tsx`)
+  - `features/leaderboard/` tables, charts, hooks, services, types
+  - `utils/leaderboardUtils.ts` client-side fallback calculations
+  - `data/data.json` raw scraped puzzles
+- `public/data/stats.json` precomputed leaderboard stats served to the app
+- `scripts/buildLeaderboardData.js` Node script to generate `public/data/stats.json`
+- `scraper/` Python scraper (`main.py` entry, `scraper/jane/*` pipeline)
+- `.github/workflows/update-puzzles.yml` monthly CI to scrape and rebuild stats
+
 ## Data Pipeline
 The project uses a Python scraper (`main.py`) to collect puzzle solver data:
 - Scrapes the Jane Street puzzles archive and leaderboards
@@ -47,7 +58,7 @@ python main.py --max-pages 5    # Limit pages to scrape
 git clone https://github.com/jaceyang97/jspuzzleLB.git
 
 # Install dependencies
-npm install
+npm ci
 
 # Precompute leaderboard stats (writes to public/data/stats.json)
 npm run build:data
@@ -55,6 +66,12 @@ npm run build:data
 # Start development server
 npm start
 ```
+
+### Local Test Loop
+- `python main.py` → refreshes `src/data/data.json`
+- `npm run build:data` → generates `public/data/stats.json`
+- `npm start` → dev server; Network tab should show `GET /data/stats.json`
+- To test fallback, temporarily move/rename `public/data/stats.json` and reload; UI will compute in-browser (slower).
 
 ## License
 MIT License
@@ -71,3 +88,4 @@ Created by [Jace Yang](https://www.jaceyang.com/).
 - [✅] Fix search rank display in Top Solvers to show original ranking instead of filtered index
 - [] Major update on scraping method to collect daily solve data throughout the month
 - [] Make the dashboard mobile compatible
+- [✅] Refactorization of codebase 1.0
