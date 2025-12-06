@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Any
 
 
@@ -11,7 +11,7 @@ def _parse_date(date_text: str) -> datetime:
         try:
             return datetime.strptime(date_text, "%b %Y")
         except Exception:
-            return datetime.utcnow()
+            return datetime.now(timezone.utc)
 
 
 def _format_month_year(dt: datetime) -> str:
@@ -91,7 +91,7 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
     longest_streaks = sorted(longest_streaks, key=lambda s: s["length"], reverse=True)[:20]
 
     # Rising stars
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     one_year_ago = datetime(now.year, now.month, 1).replace(year=now.year - 1)
 
     rising_stars = []
@@ -168,7 +168,7 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
         "monthlyParticipation": monthly_participation,
         "solversGrowth": solvers_growth,
         "mostSolvedPuzzles": most_solved_puzzles,
-        "generatedAt": datetime.utcnow().isoformat(),
+        "generatedAt": datetime.now(timezone.utc).isoformat(),
     }
 
 
