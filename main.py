@@ -1,4 +1,5 @@
 import requests
+from requests import RequestException
 from bs4 import BeautifulSoup
 from datetime import datetime
 import re
@@ -14,10 +15,13 @@ def get_leaderboard_names(puzzle_id: str) -> List[str]:
     """Fetch and clean solver names from a puzzle's leaderboard."""
     json_url = f"https://www.janestreet.com/puzzles/{puzzle_id}-leaderboard.json"
     try:
-        data = requests.get(json_url, verify=False).json()
+        response = requests.get(json_url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
         solvers = data.get("leaders", [])
         return [re.sub(r"\s*\([^)]*\)", "", solver).strip() for solver in solvers]
-    except:
+    except RequestException as exc:
+        logger.warning(f"Failed to fetch leaderboard {puzzle_id}: {exc}")
         return []
 
 
@@ -29,7 +33,8 @@ def get_page_puzzles(
         existing_puzzles = {}
 
     try:
-        response = requests.get(page_url, verify=False)
+        response = requests.get(page_url, timeout=10)
+        response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
         container = soup.select_one(
             "body > div.site-wrap > main > div > div.container > div > div"
@@ -94,8 +99,11 @@ def get_page_puzzles(
                 page_puzzles.extend(results)
 
         return page_puzzles
-    except Exception as e:
+    except RequestException as e:
         logger.error(f"Error processing page {page_url}: {e}")
+        return []
+    except Exception as e:
+        logger.error(f"Unexpected error processing page {page_url}: {e}")
         return []
 
 
@@ -107,7 +115,8 @@ def get_puzzle_solvers(puzzle_info: Dict[str, Any]) -> Dict[str, Any]:
     date = puzzle_info["date"]
 
     try:
-        response = requests.get(solution_url, verify=False)
+        response = requests.get(solution_url, timeout=10)
+        response.raise_for_status()
         submissions_tag = BeautifulSoup(response.text, "html.parser").select_one(
             "p.correct-submissions"
         )
@@ -124,7 +133,11 @@ def get_puzzle_solvers(puzzle_info: Dict[str, Any]) -> Dict[str, Any]:
                 solvers = []
         else:
             solvers = []
-    except:
+    except RequestException as exc:
+        logger.warning(f"Failed to fetch solvers for {puzzle_name}: {exc}")
+        solvers = []
+    except Exception as exc:
+        logger.error(f"Unexpected error parsing solvers for {puzzle_name}: {exc}")
         solvers = []
 
     return {
@@ -242,7 +255,8 @@ def main():
     puzzles = scrape_all_puzzles(base_url, args.max_pages, existing_puzzles)
 
     # Ensure the directory exists
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    output_dir = os.path.dirname(output_path) or "."
+    os.makedirs(output_dir, exist_ok=True)
 
     with open(output_path, "w") as f:
         json.dump(

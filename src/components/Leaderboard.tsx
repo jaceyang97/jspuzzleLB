@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef, lazy, Suspense } from 'react';
+import { parse } from 'date-fns';
 import { calculateLeaderboardData, preProcessData } from '../utils/leaderboardUtils';
 import './Leaderboard.css';
 import Confetti from '@tholman/confetti';
@@ -20,11 +21,6 @@ const TopSolversTable = React.memo(({ data, searchTerm }: { data: any[], searchT
   const [visibleItems, setVisibleItems] = useState(20);
   const containerRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLTableElement>(null);
-  
-  // Debug the data
-  useEffect(() => {
-    console.log('Top Solvers Data:', data);
-  }, [data]);
   
   // Filter data based on search term
   const filteredData = useMemo(() => {
@@ -481,11 +477,18 @@ const Leaderboard: React.FC = () => {
   const getLatestDataDate = () => {
     if (!puzzleData || puzzleData.length === 0) return 'Unknown';
     
+    const parsePuzzleDate = (dateText: string) => {
+      const parsed = parse(dateText, 'MMMM yyyy', new Date());
+      return isNaN(parsed.getTime()) ? null : parsed;
+    };
+    
     // Sort puzzles by date (newest first)
     const sortedPuzzles = [...puzzleData].sort((a, b) => {
-      const dateA = new Date(a.date_text);
-      const dateB = new Date(b.date_text);
-      return dateB.getTime() - dateA.getTime();
+      const dateA = parsePuzzleDate(a.date_text);
+      const dateB = parsePuzzleDate(b.date_text);
+      const timeA = dateA ? dateA.getTime() : 0;
+      const timeB = dateB ? dateB.getTime() : 0;
+      return timeB - timeA;
     });
     
     // Find the most recent puzzle that has solvers
