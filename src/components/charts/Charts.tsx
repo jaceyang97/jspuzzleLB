@@ -1,8 +1,50 @@
-import React, { memo, useState, useMemo } from 'react';
+import React, { memo, useState, useMemo, useEffect } from 'react';
 import { 
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   AreaChart, Area
 } from 'recharts';
+
+// Hook to get current theme colors
+const useThemeColors = () => {
+  const [colors, setColors] = useState({
+    gridStroke: '#eee',
+    axisStroke: '#ccc',
+    textColor: '#666',
+    tooltipBg: 'rgba(255, 255, 255, 0.95)',
+    tooltipBorder: '#ddd',
+  });
+
+  useEffect(() => {
+    const updateColors = () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      setColors({
+        gridStroke: isDark ? '#30363d' : '#eee',
+        axisStroke: isDark ? '#484f58' : '#ccc',
+        textColor: isDark ? '#8b949e' : '#666',
+        tooltipBg: isDark ? 'rgba(22, 27, 34, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+        tooltipBorder: isDark ? '#30363d' : '#ddd',
+      });
+    };
+
+    // Initial update
+    updateColors();
+
+    // Watch for theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          updateColors();
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return colors;
+};
 
 interface ChartsProps {
   solversGrowthData: any[];
@@ -28,6 +70,7 @@ const yearTickFormatter = (value: any) => {
 
 // Memoized chart components to prevent unnecessary re-renders
 const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
+  const themeColors = useThemeColors();
   // Filter data to start from Nov 2015 (first occurrence of solvers)
   const filteredData = data.filter(item => {
     const dateMatch = item.month.match(/^([A-Za-z]{3})\s(\d{4})$/);
@@ -97,7 +140,10 @@ const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
       const isCurrentMonth = label === currentMonthStr;
       
       return (
-        <div className="custom-tooltip">
+        <div className="custom-tooltip" style={{ 
+          backgroundColor: themeColors.tooltipBg,
+          border: `1px solid ${themeColors.tooltipBorder}`
+        }}>
           <p className="label">{label}</p>
           {payload.map((entry: any, index: number) => (
             <p key={`item-${index}`} className="value" style={{ color: entry.color }}>
@@ -192,26 +238,26 @@ const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
               <stop offset="95%" stopColor="#2E8B57" stopOpacity={0.1}/>
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
+          <CartesianGrid strokeDasharray="3 3" stroke={themeColors.gridStroke} />
           <XAxis 
             dataKey="month" 
-            tick={{ fontSize, fontWeight: 500 }}
+            tick={{ fontSize, fontWeight: 500, fill: themeColors.textColor }}
             ticks={customTicks}
             tickFormatter={yearTickFormatter}
             tickMargin={8}
             height={30}
             padding={{ left: 5, right: 5 }}
-            axisLine={{ stroke: '#ccc' }}
-            tickLine={{ stroke: '#ccc' }}
+            axisLine={{ stroke: themeColors.axisStroke }}
+            tickLine={{ stroke: themeColors.axisStroke }}
             interval={0} // Force display of all ticks
             scale="band"
           />
           <YAxis 
-            tick={{ fontSize: 12 }} 
+            tick={{ fontSize: 12, fill: themeColors.textColor }} 
             width={35}
             tickFormatter={(value) => value >= 1000 ? `${(value/1000).toFixed(0)}k` : value}
-            axisLine={{ stroke: '#ccc' }}
-            tickLine={{ stroke: '#ccc' }}
+            axisLine={{ stroke: themeColors.axisStroke }}
+            tickLine={{ stroke: themeColors.axisStroke }}
             domain={[0, 'dataMax']}
           />
           <Tooltip content={<CustomSolversTooltip />} />
@@ -235,6 +281,8 @@ const SolversGrowthChart = memo(({ data }: { data: any[] }) => {
 
 // Optimized component for displaying top puzzles
 const MostSolvedPuzzlesTable = memo(({ data }: { data: any[] }) => {
+  const themeColors = useThemeColors();
+  
   // Memoize sorted data to prevent recalculation on re-renders
   const topPuzzles = useMemo(() => {
     return (data?.length ? [...data] : [])
@@ -296,7 +344,7 @@ const MostSolvedPuzzlesTable = memo(({ data }: { data: any[] }) => {
             {topPuzzles.length > 0 ? (
               topPuzzles.map((puzzle, index) => {
                 const isLast = index === topPuzzles.length - 1;
-                const borderStyle = isLast ? 'none' : '1px solid #eee';
+                const borderStyle = isLast ? 'none' : `1px solid ${themeColors.gridStroke}`;
                 
                 return (
                   <tr key={puzzle.id || `puzzle-${index}`}>

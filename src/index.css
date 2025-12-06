@@ -1,3 +1,99 @@
+/* Theme CSS Custom Properties */
+:root {
+  /* Light theme (default) */
+  --bg-primary: #f0f2f5;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f5f7fa;
+  --bg-hover: #f9f9f9;
+  --bg-hover-strong: #f0f4f8;
+  
+  --text-primary: #2c3e50;
+  --text-secondary: #333;
+  --text-tertiary: #666;
+  --text-muted: #656d76;
+  
+  --border-primary: #e0e4e9;
+  --border-secondary: #eee;
+  --border-light: #ddd;
+  
+  --accent-primary: #3498db;
+  --accent-primary-hover: #2980b9;
+  --accent-secondary: #0969da;
+  
+  --shadow-sm: rgba(0, 0, 0, 0.05);
+  --shadow-md: rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.15);
+  
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #ccc;
+  --scrollbar-thumb-hover: #aaa;
+  
+  --tooltip-bg: rgba(44, 62, 80, 0.95);
+  --tooltip-text: white;
+  
+  --chart-loading-bg: #f9f9f9;
+  
+  /* Distribution bar colors (same for both themes) */
+  --bar-one-puzzle: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  --bar-two-nine: linear-gradient(135deg, #4ecdc4, #44a08d);
+  --bar-ten-plus: linear-gradient(135deg, #45b7d1, #96c93d);
+  
+  /* Spinner colors */
+  --spinner-border: rgba(0, 0, 0, 0.1);
+  --spinner-active: #3498db;
+  
+  /* Table row alternating */
+  --table-row-even: #f9fafb;
+  
+  /* GitHub icon */
+  --github-fill: #2c3e50;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --bg-hover: #1f2428;
+  --bg-hover-strong: #30363d;
+  
+  --text-primary: #e6edf3;
+  --text-secondary: #c9d1d9;
+  --text-tertiary: #8b949e;
+  --text-muted: #6e7681;
+  
+  --border-primary: #30363d;
+  --border-secondary: #21262d;
+  --border-light: #30363d;
+  
+  --accent-primary: #58a6ff;
+  --accent-primary-hover: #79b8ff;
+  --accent-secondary: #58a6ff;
+  
+  --shadow-sm: rgba(0, 0, 0, 0.2);
+  --shadow-md: rgba(0, 0, 0, 0.3);
+  --shadow-lg: rgba(0, 0, 0, 0.4);
+  
+  --scrollbar-track: #21262d;
+  --scrollbar-thumb: #484f58;
+  --scrollbar-thumb-hover: #6e7681;
+  
+  --tooltip-bg: rgba(22, 27, 34, 0.95);
+  --tooltip-text: #e6edf3;
+  
+  --chart-loading-bg: #21262d;
+  
+  /* Spinner colors */
+  --spinner-border: rgba(255, 255, 255, 0.1);
+  --spinner-active: #58a6ff;
+  
+  /* Table row alternating */
+  --table-row-even: #161b22;
+  
+  /* GitHub icon */
+  --github-fill: #e6edf3;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -12,7 +108,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f0f2f5;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
 }
 
 #root {
