@@ -1,11 +1,21 @@
-import React, { useState, useEffect, useMemo, useRef, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import { parse } from 'date-fns';
-import { calculateLeaderboardData, preProcessData } from '../utils/leaderboardUtils';
 import './Leaderboard.css';
 import Confetti from '@tholman/confetti';
 import puzzleDataRaw from '../data/data.json';
+import { useLeaderboardData } from '../features/leaderboard/hooks/useLeaderboardData';
+import {
+  TopSolversTable,
+  StreaksTable,
+  RisingStarsTable,
+  SolverDistributionChart,
+  LoadingSpinner,
+  StatsCards,
+} from '../features/leaderboard/components';
 
-// Type assertion to fix TypeScript inference issue
+// Import charts lazily to improve initial load time
+const Charts = lazy(() => import('./charts/Charts'));
+
 const puzzleData = puzzleDataRaw as Array<{
   date_text: string;
   name: string;
@@ -13,444 +23,17 @@ const puzzleData = puzzleDataRaw as Array<{
   solvers: string[];
 }>;
 
-// Import charts lazily to improve initial load time
-const Charts = lazy(() => import('./charts/Charts'));
-
-// Compact table components for dashboard view
-const TopSolversTable = React.memo(({ data, searchTerm }: { data: any[], searchTerm: string }) => {
-  const [visibleItems, setVisibleItems] = useState(20);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const tableRef = useRef<HTMLTableElement>(null);
-  
-  // Filter data based on search term
-  const filteredData = useMemo(() => {
-    if (!searchTerm.trim()) return data;
-    return data.filter(solver => 
-      (solver.name || solver.solver || '').toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [data, searchTerm]);
-  
-  // Check if all items fit in the container and show all if they do
-  useEffect(() => {
-    if (filteredData.length > 0 && visibleItems < filteredData.length && containerRef.current && tableRef.current) {
-      // Use a small timeout to ensure the DOM has updated
-      const timer = setTimeout(() => {
-        const containerHeight = containerRef.current!.clientHeight;
-        const tableHeight = tableRef.current!.scrollHeight;
-        // If table fits entirely in container, show all items
-        if (tableHeight <= containerHeight) {
-          setVisibleItems(filteredData.length);
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [filteredData.length, visibleItems]);
-  
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const bottom = e.currentTarget.scrollHeight - e.currentTarget.scrollTop <= e.currentTarget.clientHeight + 50;
-    if (bottom && visibleItems < filteredData.length) {
-      setVisibleItems(prev => Math.min(prev + 10, filteredData.length));
-    }
-  };
-  
-  // Function to get original rank for a solver
-  const getOriginalRank = (solverName: string) => {
-    const originalIndex = data.findIndex(solver => 
-      (solver.name || solver.solver) === solverName
-    );
-    return originalIndex + 1; // Convert to 1-based ranking
-  };
-  
-  return (
-    <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
-      <table className="leaderboard-table mini" ref={tableRef}>
-        <thead>
-          <tr>
-            <th style={{ width: '10%' }}>Rank</th>
-            <th style={{ width: '55%' }}>Solver</th>
-            <th style={{ width: '15%' }}>Puzzles</th>
-            <th style={{ width: '20%' }}>Most Recent</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData && filteredData.length > 0 ? filteredData.slice(0, visibleItems).map((solver, index) => {
-            const originalRank = getOriginalRank(solver.name || solver.solver);
-            return (
-              <tr key={`solver-${index}`}>
-                <td>{originalRank}</td>
-                <td>
-                  <span style={{ display: 'inline-block', width: '25px', textAlign: 'center' }}>
-                    {originalRank <= 3 ? [`🥇`, `🥈`, `🥉`][originalRank - 1] : ''}
-                  </span>
-                  {solver.name || solver.solver}
-                </td>
-                <td>{solver.puzzlesSolved}</td>
-                <td>{solver.lastSolve || 'N/A'}</td>
-              </tr>
-            );
-          }) : (
-            <tr>
-              <td colSpan={4}>No data available</td>
-            </tr>
-          )}
-          {visibleItems < filteredData.length && (
-            <tr className="loading-row">
-              <td colSpan={4}>Loading more...</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
-  );
-});
-
-const StreaksTable = React.memo(({ data }: { data: any[] }) => {
-  const [visibleItems, setVisibleItems] = useState(20);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const tableRef = useRef<HTMLTableElement>(null);
-  
-  // Check if all items fit in the container and show all if they do
-  useEffect(() => {
-    if (data.length > 0 && visibleItems < data.length && containerRef.current && tableRef.current) {
-      const timer = setTimeout(() => {
-        const containerHeight = containerRef.current!.clientHeight;
-        const tableHeight = tableRef.current!.scrollHeight;
-        if (tableHeight <= containerHeight) {
-          setVisibleItems(data.length);
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [data.length, visibleItems]);
-  
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const bottom = e.currentTarget.scrollHeight - e.currentTarget.scrollTop <= e.currentTarget.clientHeight + 50;
-    if (bottom && visibleItems < data.length) {
-      setVisibleItems(prev => Math.min(prev + 10, data.length));
-    }
-  };
-  
-  return (
-    <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
-      <table className="leaderboard-table mini" ref={tableRef}>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Solver</th>
-            <th>Streak</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data && data.length > 0 ? data.slice(0, visibleItems).map((streak, index) => (
-            <tr key={`streak-${index}`}>
-              <td>{index + 1}</td>
-              <td>
-                <span style={{ display: 'inline-block', width: '25px', textAlign: 'center' }}>
-                  {index < 3 ? [`🥇`, `🥈`, `🥉`][index] : ''}
-                </span>
-                {streak.solver || streak.name}
-              </td>
-              <td>{streak.length || streak.streakLength}m</td>
-            </tr>
-          )) : (
-            <tr>
-              <td colSpan={3}>No data available</td>
-            </tr>
-          )}
-          {visibleItems < data.length && (
-            <tr className="loading-row">
-              <td colSpan={3}>Loading more...</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
-  );
-});
-
-const RisingStarsTable = React.memo(({ data }: { data: any[] }) => {
-  const [visibleItems, setVisibleItems] = useState(20);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const tableRef = useRef<HTMLTableElement>(null);
-  
-  // Check if all items fit in the container and show all if they do
-  useEffect(() => {
-    if (data.length > 0 && visibleItems < data.length && containerRef.current && tableRef.current) {
-      const timer = setTimeout(() => {
-        const containerHeight = containerRef.current!.clientHeight;
-        const tableHeight = tableRef.current!.scrollHeight;
-        if (tableHeight <= containerHeight) {
-          setVisibleItems(data.length);
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [data.length, visibleItems]);
-  
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const bottom = e.currentTarget.scrollHeight - e.currentTarget.scrollTop <= e.currentTarget.clientHeight + 50;
-    if (bottom && visibleItems < data.length) {
-      setVisibleItems(prev => Math.min(prev + 10, data.length));
-    }
-  };
-  
-  return (
-    <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
-      <table className="leaderboard-table mini" ref={tableRef}>
-        <thead>
-          <tr>
-            <th style={{ width: '65%' }}>Solver</th>
-            <th style={{ width: '35%' }}>First Appeared</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data && data.length > 0 ? data.slice(0, visibleItems).map((solver, index) => (
-            <tr key={`rising-${index}`}>
-              <td>{solver.solver || solver.name}</td>
-              <td>{solver.firstAppearance || 'N/A'}</td>
-            </tr>
-          )) : (
-            <tr>
-              <td colSpan={2}>No data available</td>
-            </tr>
-          )}
-          {visibleItems < data.length && (
-            <tr className="loading-row">
-              <td colSpan={2}>Loading more...</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
-  );
-});
-
-const SolverDistributionChart = React.memo(({ data }: { data: any[] }) => {
-  // Calculate solver distribution
-  const distribution = useMemo(() => {
-    if (!data || data.length === 0) return null;
-    
-    const onePuzzle = data.filter(solver => (solver.puzzlesSolved || 0) === 1).length;
-    const twoToNine = data.filter(solver => {
-      const solved = solver.puzzlesSolved || 0;
-      return solved >= 2 && solved <= 9;
-    }).length;
-    const tenPlus = data.filter(solver => (solver.puzzlesSolved || 0) >= 10).length;
-    
-    const total = data.length;
-    
-    // Calculate raw percentages
-    const onePuzzlePercent = (onePuzzle / total) * 100;
-    const twoToNinePercent = (twoToNine / total) * 100;
-    const tenPlusPercent = (tenPlus / total) * 100;
-    
-    // Round all percentages and adjust the largest one to ensure sum = 100%
-    const roundedOne = Math.round(onePuzzlePercent);
-    const roundedTwo = Math.round(twoToNinePercent);
-    const roundedTen = Math.round(tenPlusPercent);
-    
-    // Find which category has the largest decimal part to adjust
-    const decimals = [
-      { value: onePuzzlePercent - roundedOne, index: 'onePuzzle' },
-      { value: twoToNinePercent - roundedTwo, index: 'twoToNine' },
-      { value: tenPlusPercent - roundedTen, index: 'tenPlus' }
-    ];
-    
-    const largestDecimal = decimals.reduce((max, current) => 
-      current.value > max.value ? current : max
-    );
-    
-    // Adjust the largest decimal to ensure sum = 100%
-    let adjustedOne = roundedOne;
-    let adjustedTwo = roundedTwo;
-    let adjustedTen = roundedTen;
-    
-    if (largestDecimal.index === 'onePuzzle') {
-      adjustedOne = 100 - roundedTwo - roundedTen;
-    } else if (largestDecimal.index === 'twoToNine') {
-      adjustedTwo = 100 - roundedOne - roundedTen;
-    } else {
-      adjustedTen = 100 - roundedOne - roundedTwo;
-    }
-    
-    return {
-      onePuzzle: { count: onePuzzle, percentage: adjustedOne },
-      twoToNine: { count: twoToNine, percentage: adjustedTwo },
-      tenPlus: { count: tenPlus, percentage: adjustedTen }
-    };
-  }, [data]);
-  
-  if (!distribution) return <div>No data available</div>;
-  
-  return (
-    <div className="solver-distribution">
-      <div className="distribution-chart">
-        <div className="distribution-bar">
-          <div 
-            className="bar-segment one-puzzle" 
-            style={{ width: `${distribution.onePuzzle.percentage}%` }}
-          >
-            <div className="segment-label">
-              <span className="percentage">{distribution.onePuzzle.percentage}%</span>
-            </div>
-          </div>
-          <div 
-            className="bar-segment two-nine" 
-            style={{ width: `${distribution.twoToNine.percentage}%` }}
-          >
-            <div className="segment-label">
-              <span className="percentage">{distribution.twoToNine.percentage}%</span>
-            </div>
-          </div>
-          <div 
-            className="bar-segment ten-plus" 
-            style={{ width: `${distribution.tenPlus.percentage}%` }}
-          >
-            <div className="segment-label">
-              <span className="percentage">{distribution.tenPlus.percentage}%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="distribution-legend">
-        <div className="legend-item">
-          <span className="legend-color one-puzzle"></span>
-          <span className="legend-text">One-Timers (1 puzzle)</span>
-        </div>
-        <div className="legend-item">
-          <span className="legend-color two-nine"></span>
-          <span className="legend-text">Enthusiasts (2-9 puzzles)</span>
-        </div>
-        <div className="legend-item">
-          <span className="legend-color ten-plus"></span>
-          <span className="legend-text">Masters (10+ puzzles)</span>
-        </div>
-      </div>
-    </div>
-  );
-});
-
-const LoadingSpinner = () => (
-  <div className="loading-spinner">
-    <div className="spinner"></div>
-    <p>Loading dashboard...</p>
-  </div>
-);
-
-// Progressive loading states
-enum LoadingState {
-  INITIAL = 'initial',
-  COMPLETE = 'complete'
-}
-
-// Normalize data structure to ensure consistent property names
-const normalizeData = (data: any) => {
-  if (!data) return null;
-  
-  // Create a deep copy to avoid mutating the original data
-  const normalizedData = JSON.parse(JSON.stringify(data));
-  
-  // Helper function to format dates consistently (MMM YYYY format)
-  const formatDate = (dateText: string) => {
-    if (!dateText) return 'N/A';
-    
-    // If the date is already in MMM YYYY format, return it as is
-    if (/^[A-Za-z]{3} \d{4}$/.test(dateText)) return dateText;
-    
-    // If the date is in "Month YYYY" format (e.g., "January 2023"), convert to "MMM YYYY"
-    try {
-      const monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-      ];
-      
-      const monthCodes = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-      ];
-      
-      // Use a more efficient approach with a Map for month lookup
-      const monthMap = new Map(monthNames.map((name, i) => [name, monthCodes[i]]));
-      
-      const parts = dateText.split(' ');
-      if (parts.length === 2 && monthMap.has(parts[0])) {
-        return `${monthMap.get(parts[0])} ${parts[1]}`;
-      }
-      
-      return dateText;
-    } catch (e) {
-      console.error('Error formatting date:', dateText, e);
-      return dateText;
-    }
-  };
-  
-  // Normalize top solvers data
-  if (normalizedData.topSolvers) {
-    normalizedData.topSolvers = normalizedData.topSolvers.map((solver: any) => ({
-      name: solver.name || solver.solver,
-      puzzlesSolved: solver.puzzlesSolved || 0,
-      firstAppearance: formatDate(solver.firstAppearance) || 'N/A',
-      lastSolve: formatDate(solver.lastSolve) || 'N/A'
-    }));
-  }
-  
-  // Normalize streaks data
-  if (normalizedData.longestStreaks) {
-    normalizedData.longestStreaks = normalizedData.longestStreaks.map((streak: any) => ({
-      name: streak.solver || streak.name,
-      streakLength: streak.length || streak.streakLength || 0,
-      startDate: formatDate(streak.startDate || streak.start) || 'N/A',
-      endDate: formatDate(streak.endDate || streak.end) || 'N/A'
-    }));
-  }
-  
-  // Normalize rising stars data
-  if (normalizedData.risingStars) {
-    normalizedData.risingStars = normalizedData.risingStars.map((solver: any) => ({
-      name: solver.solver || solver.name,
-      solveRate: solver.solveRate || 0,
-      puzzlesSolved: solver.puzzlesSolved || 0,
-      firstAppearance: formatDate(solver.firstAppearance) || 'N/A'
-    }));
-  }
-  
-  return normalizedData;
-};
-
 const Leaderboard: React.FC = () => {
-  // Use progressive loading states
-  const [loadingState, setLoadingState] = useState<LoadingState>(LoadingState.INITIAL);
-  const [data, setData] = useState<any>(null);
+  const { data, loading } = useLeaderboardData();
   const [showRisingStarsTooltip, setShowRisingStarsTooltip] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [topSolversSearch, setTopSolversSearch] = useState('');
 
-  // Load data progressively to avoid blocking the UI
   useEffect(() => {
-    let isMounted = true;
-    
-    // Start pre-processing data in the background
-    preProcessData(() => {
-      // Load data function - optimize with web workers if data processing becomes heavier
-      const loadData = () => {
-        const leaderboardData = calculateLeaderboardData();
-        
-        // Normalize data structure for consistent property access
-        const normalizedData = normalizeData(leaderboardData);
-        
-        if (isMounted) {
-          setData(normalizedData);
-          setLoadingState(LoadingState.COMPLETE);
-          setShowConfetti(true);
-        }
-      };
-      
-      // Use requestAnimationFrame to schedule non-blocking UI update
-      requestAnimationFrame(loadData);
-    });
-    
-    return () => { isMounted = false; };
-  }, []);
+    if (data) {
+      setShowConfetti(true);
+    }
+  }, [data]);
 
   // Hide confetti after 5 seconds
   useEffect(() => {
@@ -501,7 +84,7 @@ const Leaderboard: React.FC = () => {
   };
 
   // Show loading spinner while data is being loaded
-  if (loadingState === LoadingState.INITIAL || !data) {
+  if (loading || !data) {
     return <LoadingSpinner />;
   }
 
@@ -599,16 +182,7 @@ const Leaderboard: React.FC = () => {
       
       <div className="dashboard-grid four-column">
         <div className="dashboard-item stats-charts-column">
-          <div className="stats-cards">
-            <div className="stats-card">
-              <h3>Total Puzzles</h3>
-              <div className="stat-value">{data.totalPuzzles}</div>
-            </div>
-            <div className="stats-card">
-              <h3>Unique Solvers</h3>
-              <div className="stat-value">{data.uniqueSolvers.toLocaleString('en-US')}</div>
-            </div>
-          </div>
+          <StatsCards totalPuzzles={data.totalPuzzles} uniqueSolvers={data.uniqueSolvers} />
           
           <SolverDistributionChart data={data.topSolvers || []} />
           
