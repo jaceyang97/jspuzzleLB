@@ -102,6 +102,15 @@ html, body {
   overflow: hidden;
 }
 
+/* Enable scrolling on mobile devices */
+@media (max-width: 768px) {
+  html, body {
+    overflow: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

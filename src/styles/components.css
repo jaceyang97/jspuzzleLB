@@ -732,49 +732,165 @@
 
 @media (max-width: 768px) {
   .dashboard-table {
-    max-height: none;
+    max-height: 280px;
     height: auto;
-    min-height: 250px;
+    min-height: 200px;
     overflow-y: auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .github-icon { width: 24px !important; height: 24px !important; }
-  .js-nav-link { font-size: 12px; padding: 3px 6px; }
-  .data-date { font-size: 11px; }
-  .creator-text { font-size: 11px; padding-left: 12px; }
-  .theme-toggle { width: 32px; height: 32px; }
-  .theme-toggle svg { width: 18px; height: 18px; }
+  .js-nav-link { display: none; }
+  .data-date { font-size: 11px; flex-direction: row; gap: 4px; }
+  .data-date-label::after { content: ':'; }
+  .creator-text { display: none; }
+  .theme-toggle { display: none; }
   
   /* Section header */
-  .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .search-input { width: 100%; max-width: 200px; }
+  .section-header { flex-direction: column; align-items: stretch; gap: 8px; }
+  .search-input { width: 100%; max-width: none; font-size: 16px; padding: 8px 12px; }
+  .search-container { width: 100%; }
   
   /* Distribution chart */
-  .solver-distribution { padding: 12px; }
-  .distribution-header h3 { font-size: 13px; margin-bottom: 10px; }
+  .solver-distribution { padding: 10px; margin-bottom: 8px; }
+  .distribution-header h3 { font-size: 13px; margin-bottom: 8px; }
   .distribution-bar { height: 28px; }
   .segment-label { font-size: 10px; }
-  .distribution-legend { gap: 4px; }
-  .legend-item { gap: 6px; }
+  .bar-segment { min-width: 30px; }
+  .distribution-legend { 
+    flex-direction: row; 
+    flex-wrap: wrap;
+    gap: 6px 12px; 
+    justify-content: flex-start;
+  }
+  .legend-item { gap: 4px; }
   .legend-color { width: 10px; height: 10px; }
-  .legend-text { font-size: 11px; }
+  .legend-text { font-size: 10px; }
+  
+  /* Stats cards */
+  .stats-cards { 
+    flex-direction: row; 
+    gap: 8px; 
+    margin-bottom: 10px; 
+  }
+  .stats-card { 
+    flex: 1; 
+    min-width: 0; 
+    padding: 10px 12px; 
+  }
+  .stats-card h3 { font-size: 12px; margin-bottom: 3px; }
+  .stat-value { font-size: 20px; }
+  
+  /* Stats-charts column specific styling */
+  .stats-charts-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
   
   /* Tables */
-  .leaderboard-table.mini { font-size: 12px; }
+  .leaderboard-table.mini { font-size: 12px; min-width: 100%; }
   .leaderboard-table.mini th,
-  .leaderboard-table.mini td { padding: 8px 6px; }
+  .leaderboard-table.mini td { padding: 10px 6px; }
+  
+  /* Charts container */
+  .charts-container { 
+    height: auto; 
+    max-height: none; 
+    min-height: 280px;
+    position: relative;
+    z-index: 1;
+  }
+  .charts-dashboard { gap: 8px; }
+  .chart-container.mini { 
+    min-height: 140px; 
+    padding: 8px; 
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+    background-color: var(--bg-tertiary);
+  }
+  .chart-container.mini h3 { font-size: 12px; margin-bottom: 4px; }
+  
+  /* Ensure proper stacking */
+  .solver-distribution {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .dashboard-table {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Puzzle table - show ~5 rows with scroll */
+  .puzzle-table-container {
+    max-height: 180px;
+    overflow-y: auto;
+  }
+  .puzzle-table { font-size: 11px; }
+  .puzzle-table th, .puzzle-table td { padding: 6px 4px; }
+  
+  /* Intro tooltip - hide on mobile for better UX */
+  .intro-container { display: none; }
 }
 
 @media (max-width: 480px) {
-  .github-icon { width: 20px !important; height: 20px !important; }
-  .intro-container { margin-left: 8px; }
-  .js-nav-link { font-size: 11px; padding: 2px 4px; margin-left: 8px; }
-  .intro-button { font-size: 11px; padding: 2px 5px; }
-  .intro-tooltip { width: 200px; left: -100px; }
-  .intro-tooltip::before { left: 110px; }
-  .data-date { font-size: 10px; }
-  .creator-text { font-size: 10px; padding-left: 8px; }
-  .theme-toggle { width: 28px; height: 28px; margin-left: 4px; }
-  .theme-toggle svg { width: 16px; height: 16px; }
+  .github-icon { width: 22px !important; height: 22px !important; }
+  .github-link { min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+  .js-nav-link { display: none; }
+  .data-date { font-size: 10px; text-align: left; align-items: flex-start; flex-direction: row; gap: 4px; }
+  .data-date-label { display: none; }
+  .creator-text { display: none; }
+  .theme-toggle { display: none; }
+  
+  /* Stats cards - keep side by side */
+  .stats-cards { flex-direction: row; gap: 8px; }
+  .stats-card { flex: 1; min-width: 0; padding: 8px 10px; }
+  .stats-card h3 { font-size: 12px; }
+  .stat-value { font-size: 18px; }
+  
+  /* Tables - limit height and make scrollable */
+  .dashboard-table { 
+    max-height: 240px;
+    min-height: 180px; 
+  }
+  .leaderboard-table.mini { font-size: 11px; }
+  .leaderboard-table.mini th,
+  .leaderboard-table.mini td { padding: 8px 4px; }
+  
+  /* Column width adjustments for small screens */
+  .leaderboard-table.mini th:first-child,
+  .leaderboard-table.mini td:first-child { width: 40px; min-width: 40px; }
+  .leaderboard-table.mini th:nth-child(3),
+  .leaderboard-table.mini td:nth-child(3) { width: 50px; min-width: 50px; }
+  .leaderboard-table.mini th:nth-child(4),
+  .leaderboard-table.mini td:nth-child(4) { width: 70px; min-width: 70px; }
+  
+  /* Chart adjustments */
+  .chart-container.mini { min-height: 140px; }
+  .chart-container.mini h3 { font-size: 11px; }
+  .chart-title-tooltip { width: 180px; font-size: 11px; padding: 6px 10px; }
+  
+  /* Puzzle table - show ~5 rows with scroll */
+  .puzzle-table-container {
+    max-height: 160px;
+    overflow-y: auto;
+  }
+  .puzzle-table { font-size: 10px; }
+  .puzzle-table th, .puzzle-table td { padding: 5px 3px; height: 16px; line-height: 16px; }
+  .puzzle-table th { height: 20px; }
+  
+  /* Distribution chart */
+  .solver-distribution { padding: 10px; margin-bottom: 8px; }
+  .distribution-bar { height: 26px; }
+  .segment-label { font-size: 9px; }
+  .distribution-legend { 
+    flex-direction: row; 
+    flex-wrap: wrap;
+    gap: 4px 10px; 
+  }
+  .legend-text { font-size: 9px; }
 }
 
