@@ -1,4 +1,5 @@
-import { LeaderboardData, NormalizedLeaderboardData } from '../types';
+import { calculateLeaderboardData } from '../../../utils/leaderboardUtils';
+import { LeaderboardData, NormalizedLeaderboardData, Puzzle } from '../types';
 
 const formatDate = (dateText: string): string => {
   if (!dateText) return 'N/A';
@@ -73,12 +74,29 @@ const normalizeLeaderboardData = (data: LeaderboardData): NormalizedLeaderboardD
   return normalized;
 };
 
-export const loadLeaderboardData = async (): Promise<NormalizedLeaderboardData> => {
-  const response = await fetch('/data/stats.json', { cache: 'no-cache' });
+const fetchJson = async <T>(path: string): Promise<T> => {
+  const response = await fetch(path, { cache: 'no-cache' });
   if (!response.ok) {
-    throw new Error(`Failed to load stats.json: ${response.status}`);
+    throw new Error(`Failed to load ${path}: ${response.status}`);
   }
-  const data = (await response.json()) as LeaderboardData;
-  return normalizeLeaderboardData(data);
+  return (await response.json()) as T;
+};
+
+export const loadLeaderboardData = async (): Promise<NormalizedLeaderboardData> => {
+  try {
+    const data = await fetchJson<LeaderboardData>('/data/stats.json');
+    return normalizeLeaderboardData(data);
+  } catch (statsError) {
+    console.warn('Falling back to data.json after stats.json failure', statsError);
+  }
+
+  try {
+    const puzzles = await fetchJson<Puzzle[]>('/data/data.json');
+    const calculated = calculateLeaderboardData(puzzles);
+    return normalizeLeaderboardData(calculated);
+  } catch (dataError) {
+    console.error('Failed to load data.json fallback', dataError);
+    throw dataError instanceof Error ? dataError : new Error('Unable to load leaderboard data');
+  }
 };
 

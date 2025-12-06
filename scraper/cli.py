@@ -49,14 +49,12 @@ def main():
 
     logger.info("Starting Jane Street puzzle scraper")
 
-    # Determine the output path - use src/data/data.json for React app if it exists
-    output_path = args.output
-    react_output_path = "src/data/data.json"
-    if os.path.exists("src/data"):
-        output_path = react_output_path
-        logger.info(f"React project detected, will save data to {output_path}")
-    else:
-        logger.info(f"Using output path: {output_path}")
+    # Keep data.json and stats.json side by side for the frontend
+    react_data_dir = os.path.join("public", "data")
+    output_dir = react_data_dir if os.path.exists("public") else (os.path.dirname(args.output) or ".")
+    output_path = os.path.join(output_dir, "data.json") if os.path.exists("public") else args.output
+
+    logger.info(f"Using output directory: {output_dir}")
 
     puzzles = scrape_all(
         base_url=base_url,
@@ -68,9 +66,7 @@ def main():
     )
 
     # Derive stats JSON alongside the scraped data for the frontend
-    stats_output = os.path.join("public", "data", "stats.json") if os.path.exists("public") else os.path.join(
-        os.path.dirname(output_path) or ".", "stats.json"
-    )
+    stats_output = os.path.join(output_dir, "stats.json")
     stats = build_stats([p.to_dict() if hasattr(p, "to_dict") else p for p in puzzles])
     save_stats(stats_output, stats)
     logger.info(f"Saved leaderboard stats to {stats_output}")

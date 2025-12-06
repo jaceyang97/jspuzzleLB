@@ -1,11 +1,32 @@
 import { format, parse, compareAsc, differenceInMonths, addMonths } from 'date-fns';
-import puzzleData from '../data/data.json';
 import { LeaderboardData, Puzzle, SolverStats } from '../features/leaderboard/types';
 
 // Cache for memoization
 let cachedLeaderboardData: LeaderboardData | null = null;
+let cachedPuzzleSignature: string | null = null;
 let dateCache: Map<string, Date> = new Map(); // Cache for parsed dates
 let monthFormatCache: Map<string, string> = new Map(); // Cache for formatted months
+
+const getPuzzleSignature = (puzzles: Puzzle[]) => {
+  if (!puzzles || puzzles.length === 0) return 'empty';
+  const first = puzzles[0]?.date_text ?? 'unknown';
+  const last = puzzles[puzzles.length - 1]?.date_text ?? 'unknown';
+  return `${puzzles.length}-${first}-${last}`;
+};
+
+const resetCaches = (signature: string) => {
+  cachedLeaderboardData = null;
+  cachedPuzzleSignature = signature;
+  dateCache = new Map();
+  monthFormatCache = new Map();
+};
+
+const ensureCacheFresh = (puzzles: Puzzle[]) => {
+  const signature = getPuzzleSignature(puzzles);
+  if (cachedPuzzleSignature !== signature) {
+    resetCaches(signature);
+  }
+};
 
 // Parse date from format like "March 2025" with caching
 const parseDate = (dateText: string) => {
@@ -38,20 +59,26 @@ const formatMonthYear = (date: Date) => {
 };
 
 // Pre-process data in chunks to avoid blocking the UI
-export const preProcessData = (callback: () => void) => {
+export const preProcessData = (puzzles: Puzzle[], callback: () => void) => {
+  ensureCacheFresh(puzzles);
   if (cachedLeaderboardData) {
     callback();
     return;
   }
   
   setTimeout(() => {
-    calculateLeaderboardData();
+    calculateLeaderboardData(puzzles);
     callback();
   }, 0);
 };
 
 // Calculate all solver statistics
-export const calculateLeaderboardData = (): LeaderboardData => {
+export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => {
+  if (!puzzles || puzzles.length === 0) {
+    throw new Error('No puzzle data provided for leaderboard calculation');
+  }
+
+  ensureCacheFresh(puzzles);
   // Return cached data if available
   if (cachedLeaderboardData) {
     return cachedLeaderboardData;
@@ -59,7 +86,6 @@ export const calculateLeaderboardData = (): LeaderboardData => {
 
   console.time('calculateLeaderboardData');
   
-  const puzzles = puzzleData as Puzzle[];
   const solverMap = new Map<string, SolverStats>();
   const allMonths = new Set<string>();
   

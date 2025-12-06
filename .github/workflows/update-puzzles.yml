@@ -32,7 +32,7 @@ jobs:
       run: |
         python main.py
         echo "Data file contents:"
-        cat src/data/data.json
+        cat public/data/data.json
         echo "Stats file contents:"
         cat public/data/stats.json
 
@@ -44,7 +44,7 @@ jobs:
     - name: Check for changes
       id: git-check
       run: |
-        git add src/data/data.json public/data/stats.json
+        git add public/data/data.json public/data/stats.json
         git status
         git diff --cached --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
 

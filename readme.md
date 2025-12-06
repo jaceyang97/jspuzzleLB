@@ -28,7 +28,7 @@ Check out the [live page](https://jspuzzle-lb.vercel.app/) to see in action.
   - `components/` page-level UI (e.g., `Leaderboard.tsx`)
   - `features/leaderboard/` tables, charts, hooks, services, types
   - `utils/leaderboardUtils.ts` client-side fallback calculations
-  - `data/data.json` raw scraped puzzles
+- `public/data/data.json` raw scraped puzzles (served alongside stats)
 - `public/data/stats.json` precomputed leaderboard stats served to the app
 - `scraper/` Python scraper (`main.py` entry, `scraper/jane/*` pipeline and stats aggregation)
 - `.github/workflows/update-puzzles.yml` monthly CI to scrape and rebuild stats
@@ -37,7 +37,7 @@ Check out the [live page](https://jspuzzle-lb.vercel.app/) to see in action.
 The project uses a Python scraper (`main.py`) to collect puzzle solver data:
 - Scrapes the Jane Street puzzles archive and leaderboards
 - Processes and normalizes solver names
-- Stores data in JSON format at `src/data/data.json`
+- Stores data in JSON format at `public/data/data.json`
 
 ## Development
 
@@ -64,7 +64,7 @@ npm start
 ```
 
 ### Local Test Loop
-- `python main.py` → refreshes `src/data/data.json` and writes `public/data/stats.json`
+- `python main.py` → refreshes `public/data/data.json` and `public/data/stats.json`
 - `npm start` → dev server; Network tab should show `GET /data/stats.json`
 - To test fallback, temporarily move/rename `public/data/stats.json` and reload; UI will compute in-browser (slower).
 
