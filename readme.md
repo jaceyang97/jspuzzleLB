@@ -91,10 +91,10 @@ Created by [Jace Yang](https://www.jaceyang.com/).
 - [✅] Added `aria-labels` and `scope` attributes to table headers (Accessibility & UX)
 - [✅] Added `focus-visible` outline to theme toggle (Accessibility & UX)
 - [✅] Improved layout responsiveness (Accessibility & UX)
+- [✅] Mobile-friendly layout with responsive design (Accessibility & UX)
 - [✅] Precomputed stats via `stats.json` with client-side fallback (Infrastructure)
 - [✅] Automated monthly data updates via GitHub Actions (Infrastructure)
 - [✅] Enhanced error handling in data loading and scraper (Infrastructure)
 
 ### Planned
 - [ ] Major update on scraping method to collect daily solve data throughout the month
-- [ ] Make the dashboard mobile compatible
