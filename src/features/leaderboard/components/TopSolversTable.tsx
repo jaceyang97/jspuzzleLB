@@ -10,6 +10,16 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
   const containerRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLTableElement>(null);
 
+  // Build a lookup map for O(1) rank access instead of O(n) findIndex per row
+  const rankMap = useMemo(() => {
+    const map = new Map<string, number>();
+    data.forEach((solver, index) => {
+      const name = solver.name || solver.solver || '';
+      map.set(name, index + 1);
+    });
+    return map;
+  }, [data]);
+
   const filteredData = useMemo(() => {
     if (!searchTerm.trim()) return data;
     return data.filter((solver) =>
@@ -44,11 +54,6 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
     }
   };
 
-  const getOriginalRank = (solverName: string) => {
-    const originalIndex = data.findIndex((solver) => (solver.name || solver.solver) === solverName);
-    return originalIndex + 1;
-  };
-
   return (
     <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
       <table className="leaderboard-table mini" ref={tableRef} aria-label="Top puzzle solvers ranked by number of puzzles solved">
@@ -62,10 +67,11 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
         </thead>
         <tbody>
           {filteredData && filteredData.length > 0 ? (
-            filteredData.slice(0, visibleItems).map((solver, index) => {
-              const originalRank = getOriginalRank(solver.name || solver.solver || '');
+            filteredData.slice(0, visibleItems).map((solver) => {
+              const solverName = solver.name || solver.solver || '';
+              const originalRank = rankMap.get(solverName) ?? 0;
               return (
-                <tr key={`solver-${index}`}>
+                <tr key={solverName}>
                   <td>
                     <span
                       style={{
