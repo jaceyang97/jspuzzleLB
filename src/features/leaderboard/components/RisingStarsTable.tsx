@@ -33,11 +33,11 @@ const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data }) 
 
   return (
     <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
-      <table className="leaderboard-table mini" ref={tableRef}>
+      <table className="leaderboard-table mini" ref={tableRef} aria-label="Rising stars - new solvers with high solve rates">
         <thead>
           <tr>
-            <th style={{ width: '65%' }}>Solver</th>
-            <th className="center" style={{ width: '35%' }}>First Appeared</th>
+            <th scope="col" style={{ width: '65%' }}>Solver</th>
+            <th scope="col" className="center" style={{ width: '35%' }}>First Appeared</th>
           </tr>
         </thead>
         <tbody>

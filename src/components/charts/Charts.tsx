@@ -331,12 +331,12 @@ const MostSolvedPuzzlesTable = memo(({ data }: { data: any[] }) => {
         )}
       </h3>
       <div className="puzzle-table-container" style={{ flex: '1', display: 'flex', flexDirection: 'column', marginBottom: '0' }}>
-        <table className="puzzle-table" style={{ flex: '1', marginBottom: '0' }}>
+        <table className="puzzle-table" style={{ flex: '1', marginBottom: '0' }} aria-label="Top 10 most solved puzzles">
           <thead>
             <tr>
-              <th style={{ width: 'calc(100% - 160px)' }}>Puzzle</th>
-              <th style={{ width: '80px' }}>Date</th>
-              <th style={{ width: '80px' }}>Solvers</th>
+              <th scope="col" style={{ width: 'calc(100% - 160px)' }}>Puzzle</th>
+              <th scope="col" style={{ width: '80px' }}>Date</th>
+              <th scope="col" style={{ width: '80px' }}>Solvers</th>
             </tr>
           </thead>
           <tbody>

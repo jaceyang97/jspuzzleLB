@@ -51,13 +51,13 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
 
   return (
     <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
-      <table className="leaderboard-table mini" ref={tableRef}>
+      <table className="leaderboard-table mini" ref={tableRef} aria-label="Top puzzle solvers ranked by number of puzzles solved">
         <thead>
           <tr>
-            <th style={{ width: '10%' }}>Rank</th>
-            <th style={{ width: '55%' }}>Solver</th>
-            <th className="center" style={{ width: '15%' }}>Puzzles</th>
-            <th className="center" style={{ width: '20%' }}>Most Recent</th>
+            <th scope="col" style={{ width: '10%' }}>Rank</th>
+            <th scope="col" style={{ width: '55%' }}>Solver</th>
+            <th scope="col" className="center" style={{ width: '15%' }}>Puzzles</th>
+            <th scope="col" className="center" style={{ width: '20%' }}>Most Recent</th>
           </tr>
         </thead>
         <tbody>

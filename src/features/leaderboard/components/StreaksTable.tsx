@@ -33,12 +33,12 @@ const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data }) => {
 
   return (
     <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
-      <table className="leaderboard-table mini" ref={tableRef}>
+      <table className="leaderboard-table mini" ref={tableRef} aria-label="Solvers with longest consecutive monthly solving streaks">
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>Solver</th>
-            <th className="center">Streak</th>
+            <th scope="col">Rank</th>
+            <th scope="col">Solver</th>
+            <th scope="col" className="center">Streak</th>
           </tr>
         </thead>
         <tbody>
