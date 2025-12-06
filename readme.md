@@ -43,12 +43,11 @@ The project uses a Python scraper (`main.py`) to collect puzzle solver data:
 
 ### Data Collection & Stats Generation
 ```bash
-# Run the scraper
-python main.py
-
-# Options
-python main.py --force-refresh  # Refresh all data
-python main.py --max-pages 5    # Limit pages to scrape
+python main.py                  # Scrape and generate stats to public/data/
+python main.py --force-refresh  # Ignore cache, re-scrape everything
+python main.py --max-pages 5    # Limit to 5 archive pages
+python main.py --workers 20     # Increase concurrency (default: 10)
+python main.py --timeout 15     # Per-request timeout in seconds (default: 10)
 ```
 
 ### Frontend Setup
@@ -77,10 +76,25 @@ This project is not affiliated with Jane Street. All data is compiled from publi
 ## Acknowledgments
 Created by [Jace Yang](https://www.jaceyang.com/).
 
-## TODO
-- [✅] Add solvers [category features](https://public.tableau.com/app/profile/heidi.stockton/viz/PuzzlesofJaneStreet/JaneStreet)
-- [✅] Add a search bar
-- [✅] Fix search rank display in Top Solvers to show original ranking instead of filtered index
-- [] Major update on scraping method to collect daily solve data throughout the month
-- [] Make the dashboard mobile compatible
-- [✅] Refactorization of codebase 1.0
+## Changelog
+
+### Completed
+- [✅] Solvers category features ([inspiration](https://public.tableau.com/app/profile/heidi.stockton/viz/PuzzlesofJaneStreet/JaneStreet)) (Features)
+- [✅] Search bar with original rank display preservation (Features)
+- [✅] Solver Distribution Chart (Features)
+- [✅] Dark/light theme toggle with CSS variables (Features)
+- [✅] Solvers Growth chart with "Ongoing" indicator for current month (Features)
+- [✅] Top 10 Most Solved Puzzles table (Features)
+- [✅] Refactorization of codebase 1.0 (Code Quality)
+- [✅] Type safety improvements (Code Quality)
+- [✅] Performance optimizations (Code Quality)
+- [✅] Added `aria-labels` and `scope` attributes to table headers (Accessibility & UX)
+- [✅] Added `focus-visible` outline to theme toggle (Accessibility & UX)
+- [✅] Improved layout responsiveness (Accessibility & UX)
+- [✅] Precomputed stats via `stats.json` with client-side fallback (Infrastructure)
+- [✅] Automated monthly data updates via GitHub Actions (Infrastructure)
+- [✅] Enhanced error handling in data loading and scraper (Infrastructure)
+
+### Planned
+- [ ] Major update on scraping method to collect daily solve data throughout the month
+- [ ] Make the dashboard mobile compatible
