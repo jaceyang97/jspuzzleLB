@@ -10,7 +10,6 @@ export interface SolverStats {
   puzzlesSolved: number;
   firstAppearance: string;
   lastSolve: string;
-  solvedPuzzles: Puzzle[];
   monthlyActivity: Record<string, boolean>;
   streaks: { length: number; start: string; end: string }[];
 }

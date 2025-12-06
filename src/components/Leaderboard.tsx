@@ -97,9 +97,6 @@ const Leaderboard: React.FC = () => {
   // Memoize chart data to prevent unnecessary recalculations
   const solversGrowthData = useMemo(() => 
     data?.solversGrowth || [], [data]);
-
-  const monthlyParticipationData = useMemo(() => 
-    data?.monthlyParticipation?.slice(-24) || [], [data]);
   
   const mostSolvedPuzzlesData = useMemo(() => 
     data?.mostSolvedPuzzles?.slice(0, 10) || [], [data]);
@@ -250,7 +247,6 @@ const Leaderboard: React.FC = () => {
             <Suspense fallback={<div className="chart-loading">Loading charts...</div>}>
               <Charts 
                 solversGrowthData={solversGrowthData} 
-                monthlyParticipationData={monthlyParticipationData}
                 mostSolvedPuzzlesData={mostSolvedPuzzlesData}
               />
             </Suspense>

@@ -109,7 +109,6 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
           puzzlesSolved: 0,
           firstAppearance: puzzle.date_text,
           lastSolve: puzzle.date_text,
-          solvedPuzzles: [],
           monthlyActivity: {},
           streaks: []
         });
@@ -117,10 +116,6 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
       
       const solver = solverMap.get(solverName)!;
       solver.puzzlesSolved += 1;
-      
-      // Don't store puzzle references at all - we don't need them for the leaderboard
-      // This significantly reduces memory usage
-      
       solver.monthlyActivity[monthKey] = true;
       
       // Update first appearance if this puzzle is older
@@ -287,13 +282,7 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
     .sort((a, b) => b.solvers - a.solvers)
     .slice(0, 20); // Get top 20 to have some buffer
   
-  // Clean up memory by removing unnecessary data
-  solverMap.forEach(solver => {
-    // Remove solved puzzles array to save memory
-    solver.solvedPuzzles = [];
-  });
-  
-  // Create and cache the result
+// Create and cache the result
   cachedLeaderboardData = {
     totalPuzzles: puzzles.length,
     uniqueSolvers: solverMap.size,

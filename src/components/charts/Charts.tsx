@@ -48,8 +48,7 @@ const useThemeColors = () => {
 
 interface ChartsProps {
   solversGrowthData: any[];
-  monthlyParticipationData: any[];
-  mostSolvedPuzzlesData?: any[]; // Add new prop for most solved puzzles
+  mostSolvedPuzzlesData?: any[];
 }
 
 
@@ -378,7 +377,6 @@ const MostSolvedPuzzlesTable = memo(({ data }: { data: any[] }) => {
 
 const Charts: React.FC<ChartsProps> = ({ 
   solversGrowthData, 
-  monthlyParticipationData,
   mostSolvedPuzzlesData = [] 
 }) => {
   return (
