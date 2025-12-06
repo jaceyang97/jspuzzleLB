@@ -24,6 +24,7 @@ export interface LeaderboardData {
   monthlyParticipation: { month: string; solvers: number }[];
   solversGrowth: { month: string; totalSolvers: number }[];
   mostSolvedPuzzles: { id: string; name: string; solvers: number; solution_url: string }[];
+  generatedAt?: string;
 }
 
 export interface NormalizedLeaderboardData {
@@ -50,5 +51,6 @@ export interface NormalizedLeaderboardData {
   monthlyParticipation: { month: string; solvers: number }[];
   solversGrowth: { month: string; totalSolvers: number }[];
   mostSolvedPuzzles: { id: string; name: string; solvers: number; solution_url: string }[];
+  generatedAt?: string;
 }
 

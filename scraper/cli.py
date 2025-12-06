@@ -6,6 +6,7 @@ import os
 from loguru import logger
 
 from .jane.pipeline import scrape_all
+from .jane.aggregator import build_stats, save_stats
 
 
 def parse_arguments():
@@ -57,7 +58,7 @@ def main():
     else:
         logger.info(f"Using output path: {output_path}")
 
-    scrape_all(
+    puzzles = scrape_all(
         base_url=base_url,
         max_pages=args.max_pages,
         output_path=output_path,
@@ -65,6 +66,14 @@ def main():
         workers=args.workers,
         timeout=args.timeout,
     )
+
+    # Derive stats JSON alongside the scraped data for the frontend
+    stats_output = os.path.join("public", "data", "stats.json") if os.path.exists("public") else os.path.join(
+        os.path.dirname(output_path) or ".", "stats.json"
+    )
+    stats = build_stats([p.to_dict() if hasattr(p, "to_dict") else p for p in puzzles])
+    save_stats(stats_output, stats)
+    logger.info(f"Saved leaderboard stats to {stats_output}")
 
 
 if __name__ == "__main__":

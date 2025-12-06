@@ -37,6 +37,7 @@ const normalizeLeaderboardData = (data: LeaderboardData): NormalizedLeaderboardD
     monthlyParticipation: data.monthlyParticipation ?? [],
     solversGrowth: data.solversGrowth ?? [],
     mostSolvedPuzzles: data.mostSolvedPuzzles ?? [],
+    generatedAt: data.generatedAt,
     topSolvers: [],
     longestStreaks: [],
     risingStars: [],
@@ -73,18 +74,11 @@ const normalizeLeaderboardData = (data: LeaderboardData): NormalizedLeaderboardD
 };
 
 export const loadLeaderboardData = async (): Promise<NormalizedLeaderboardData> => {
-  try {
-    const response = await fetch('/data/stats.json', { cache: 'no-cache' });
-    if (!response.ok) {
-      throw new Error(`Failed to load stats.json: ${response.status}`);
-    }
-    const data = (await response.json()) as NormalizedLeaderboardData;
-    return data;
-  } catch (err) {
-    console.error('Failed to load precomputed leaderboard data, falling back to client calculation', err);
-    const { calculateLeaderboardData } = await import('../../../utils/leaderboardUtils');
-    const computed = calculateLeaderboardData();
-    return normalizeLeaderboardData(computed);
+  const response = await fetch('/data/stats.json', { cache: 'no-cache' });
+  if (!response.ok) {
+    throw new Error(`Failed to load stats.json: ${response.status}`);
   }
+  const data = (await response.json()) as LeaderboardData;
+  return normalizeLeaderboardData(data);
 };
 

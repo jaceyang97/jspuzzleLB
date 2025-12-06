@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
-import { parse } from 'date-fns';
 import './Leaderboard.css';
 import Confetti from '@tholman/confetti';
-import puzzleDataRaw from '../data/data.json';
 import { useLeaderboardData } from '../features/leaderboard/hooks/useLeaderboardData';
 import {
   TopSolversTable,
@@ -16,15 +14,8 @@ import {
 // Import charts lazily to improve initial load time
 const Charts = lazy(() => import('./charts/Charts'));
 
-const puzzleData = puzzleDataRaw as Array<{
-  date_text: string;
-  name: string;
-  solution_url: string;
-  solvers: string[];
-}>;
-
 const Leaderboard: React.FC = () => {
-  const { data, loading } = useLeaderboardData();
+  const { data, loading, error } = useLeaderboardData();
   const [showRisingStarsTooltip, setShowRisingStarsTooltip] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [topSolversSearch, setTopSolversSearch] = useState('');
@@ -56,36 +47,40 @@ const Leaderboard: React.FC = () => {
   const mostSolvedPuzzlesData = useMemo(() => 
     data?.mostSolvedPuzzles?.slice(0, 10) || [], [data]);
 
-  // Get the latest data date from the puzzle data
+  // Use the precomputed stats month as the last updated marker
   const getLatestDataDate = () => {
-    if (!puzzleData || puzzleData.length === 0) return 'Unknown';
-    
-    const parsePuzzleDate = (dateText: string) => {
-      const parsed = parse(dateText, 'MMMM yyyy', new Date());
-      return isNaN(parsed.getTime()) ? null : parsed;
-    };
-    
-    // Sort puzzles by date (newest first)
-    const sortedPuzzles = [...puzzleData].sort((a, b) => {
-      const dateA = parsePuzzleDate(a.date_text);
-      const dateB = parsePuzzleDate(b.date_text);
-      const timeA = dateA ? dateA.getTime() : 0;
-      const timeB = dateB ? dateB.getTime() : 0;
-      return timeB - timeA;
-    });
-    
-    // Find the most recent puzzle that has solvers
-    const latestWithSolvers = sortedPuzzles.find(puzzle => 
-      puzzle.solvers && puzzle.solvers.length > 0
-    );
-    
-    // Return the date of the most recent puzzle with solvers, or "Unknown" if none found
-    return latestWithSolvers ? latestWithSolvers.date_text : 'Unknown';
+    if (data?.monthlyParticipation?.length) {
+      const latestEntry = data.monthlyParticipation[data.monthlyParticipation.length - 1];
+      if (latestEntry?.month) return latestEntry.month;
+    }
+    if (data?.generatedAt) {
+      return new Date(data.generatedAt).toISOString().split('T')[0];
+    }
+    return 'Unknown';
   };
 
   // Show loading spinner while data is being loaded
-  if (loading || !data) {
+  if (loading) {
     return <LoadingSpinner />;
+  }
+
+  if (error || !data) {
+    return (
+      <div className="dashboard-layout">
+        <header className="dashboard-header">
+          <div className="header-title-container">
+            <h1 className="header-title">
+              <span className="title-bold">Jane Street</span>
+              <span className="title-separator"> | </span>
+              <span className="title-regular">Puzzle Leaderboard</span>
+            </h1>
+          </div>
+        </header>
+        <div className="dashboard-grid" style={{ padding: '32px', textAlign: 'center' }}>
+          Unable to load leaderboard data. Please try again later.
+        </div>
+      </div>
+    );
   }
 
   return (
