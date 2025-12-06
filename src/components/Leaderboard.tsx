@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
-import './Leaderboard.css';
+import '../styles/layout.css';
+import '../styles/components.css';
 import Confetti from '@tholman/confetti';
 import { useLeaderboardData } from '../features/leaderboard/hooks/useLeaderboardData';
 import { useTheme } from '../hooks/useTheme';

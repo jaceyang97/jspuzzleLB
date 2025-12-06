@@ -1,125 +1,9 @@
 /* ================================================
-   JANE STREET PUZZLE LEADERBOARD - STYLES
+   COMPONENTS - Buttons, Cards, Tables, Charts
    ================================================ */
 
 /* ------------------------------------------------
-   LAYOUT: Dashboard Structure
-   ------------------------------------------------ */
-.dashboard-layout {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bg-primary);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-.dashboard-grid.four-column {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr 1fr 0.9fr;
-  gap: 10px;
-  padding: 10px;
-  flex: 1;
-  height: calc(100vh - 122px);
-  margin: 0;
-  overflow: hidden;
-}
-
-.dashboard-item {
-  background-color: var(--bg-secondary);
-  border-radius: 4px;
-  box-shadow: 0 1px 3px var(--shadow-md);
-  padding: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: 300px;
-  max-height: calc(100vh - 122px);
-}
-
-.stats-charts-column { grid-column: 1; }
-.top-solvers-column { grid-column: 2; }
-.streaks-column { grid-column: 3; }
-.rising-stars-column { grid-column: 4; }
-
-/* ------------------------------------------------
-   HEADER
-   ------------------------------------------------ */
-.dashboard-header {
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
-  padding: 4px 16px;
-  text-align: left;
-  box-shadow: 0 1px 3px var(--shadow-md);
-  height: 80px;
-  display: flex;
-  align-items: center;
-  margin: 0;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border-primary);
-}
-
-.header-title-container {
-  display: flex;
-  align-items: center;
-}
-
-.header-logo {
-  height: 70px;
-  width: 70px;
-  margin-right: 18px;
-  object-fit: contain;
-}
-
-.logo-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease;
-}
-
-.logo-link:hover {
-  transform: scale(1.05);
-}
-
-.header-title {
-  margin: 0;
-  font-size: 38px;
-  text-align: left;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  line-height: 1.1;
-}
-
-.title-bold {
-  font-weight: 700;
-  font-size: 36px;
-}
-
-.title-regular {
-  font-weight: 400;
-  font-size: 36px;
-}
-
-.title-separator {
-  margin: 0 10px;
-  color: var(--text-primary);
-  font-weight: 400;
-  font-size: 36px;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-/* ------------------------------------------------
-   HEADER: Navigation Links & Buttons
+   NAVIGATION LINKS & BUTTONS
    ------------------------------------------------ */
 .intro-container {
   position: relative;
@@ -178,7 +62,7 @@
 }
 
 /* ------------------------------------------------
-   HEADER: Theme Toggle
+   THEME TOGGLE
    ------------------------------------------------ */
 .theme-toggle {
   display: flex;
@@ -220,7 +104,7 @@
 }
 
 /* ------------------------------------------------
-   HEADER: Data Date & Credits
+   DATA DATE & CREDITS
    ------------------------------------------------ */
 .data-date {
   display: flex;
@@ -427,7 +311,7 @@
 }
 
 /* ------------------------------------------------
-   TABLES: Dashboard Tables
+   TABLES
    ------------------------------------------------ */
 .dashboard-table {
   flex: 1;
@@ -508,6 +392,76 @@
 .rising-stars-column .leaderboard-table.mini td:first-child { width: 65%; }
 .rising-stars-column .leaderboard-table.mini th:nth-child(2),
 .rising-stars-column .leaderboard-table.mini td:nth-child(2) { width: 35%; }
+
+/* ------------------------------------------------
+   PUZZLE TABLE
+   ------------------------------------------------ */
+.puzzle-table-container {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 5px;
+  max-height: calc(100% - 40px);
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.puzzle-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  height: auto;
+}
+
+.puzzle-table th,
+.puzzle-table td {
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-secondary);
+  height: 18px;
+  line-height: 18px;
+}
+
+.puzzle-table th {
+  background-color: var(--bg-tertiary);
+  font-weight: 600;
+  color: var(--text-primary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 1px 0 var(--border-secondary);
+  height: 24px;
+}
+
+.puzzle-table tr:hover {
+  background-color: var(--bg-hover-strong);
+}
+
+.puzzle-table tr:nth-child(even) {
+  background-color: var(--table-row-even);
+}
+
+.puzzle-link-table {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.puzzle-link-table:hover {
+  color: var(--accent-primary-hover);
+  text-decoration: underline;
+}
+
+.puzzle-table td:last-child {
+  text-align: right;
+  font-weight: 500;
+  color: var(--text-primary);
+  width: 80px;
+}
 
 /* ------------------------------------------------
    SOLVER DISTRIBUTION CHART
@@ -714,76 +668,6 @@
 }
 
 /* ------------------------------------------------
-   PUZZLE TABLE
-   ------------------------------------------------ */
-.puzzle-table-container {
-  flex: 1;
-  overflow-y: auto;
-  margin-top: 5px;
-  max-height: calc(100% - 40px);
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-}
-
-.puzzle-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-  height: auto;
-}
-
-.puzzle-table th,
-.puzzle-table td {
-  padding: 6px 8px;
-  text-align: left;
-  border-bottom: 1px solid var(--border-secondary);
-  height: 18px;
-  line-height: 18px;
-}
-
-.puzzle-table th {
-  background-color: var(--bg-tertiary);
-  font-weight: 600;
-  color: var(--text-primary);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  box-shadow: 0 1px 0 var(--border-secondary);
-  height: 24px;
-}
-
-.puzzle-table tr:hover {
-  background-color: var(--bg-hover-strong);
-}
-
-.puzzle-table tr:nth-child(even) {
-  background-color: var(--table-row-even);
-}
-
-.puzzle-link-table {
-  color: var(--accent-primary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%;
-}
-
-.puzzle-link-table:hover {
-  color: var(--accent-primary-hover);
-  text-decoration: underline;
-}
-
-.puzzle-table td:last-child {
-  text-align: right;
-  font-weight: 500;
-  color: var(--text-primary);
-  width: 80px;
-}
-
-/* ------------------------------------------------
    LOADING SPINNER
    ------------------------------------------------ */
 .loading-spinner {
@@ -817,41 +701,6 @@
 }
 
 /* ------------------------------------------------
-   FOOTER
-   ------------------------------------------------ */
-.dashboard-footer {
-  background-color: var(--bg-tertiary);
-  border-top: 1px solid var(--border-primary);
-  padding: 6px 12px;
-  text-align: center;
-  font-size: 12px;
-  color: var(--text-tertiary);
-  width: 100%;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.disclaimer {
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.4;
-}
-
-.author-link {
-  color: var(--accent-primary);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.author-link:hover {
-  color: var(--accent-primary-hover);
-  text-decoration: underline;
-}
-
-/* ------------------------------------------------
    SCROLLBARS (WebKit)
    ------------------------------------------------ */
 .dashboard-table::-webkit-scrollbar,
@@ -878,56 +727,10 @@
 }
 
 /* ================================================
-   RESPONSIVE STYLES
+   RESPONSIVE COMPONENT OVERRIDES
    ================================================ */
 
-/* Medium screens (tablets) */
-@media (max-width: 1200px) {
-  .dashboard-grid.four-column {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-  }
-  
-  .stats-charts-column { grid-column: 1; grid-row: 1; }
-  .top-solvers-column { grid-column: 2; grid-row: 1; }
-  .streaks-column { grid-column: 1; grid-row: 2; }
-  .rising-stars-column { grid-column: 2; grid-row: 2; }
-}
-
-/* Small screens (mobile landscape) */
 @media (max-width: 768px) {
-  .dashboard-grid.four-column {
-    grid-template-columns: 1fr;
-    height: auto;
-    overflow-y: auto;
-    padding-bottom: 40px;
-  }
-  
-  .stats-charts-column,
-  .top-solvers-column,
-  .streaks-column,
-  .rising-stars-column {
-    grid-column: 1;
-  }
-  
-  .dashboard-item {
-    margin-bottom: 10px;
-    max-height: none;
-    height: auto;
-    min-height: 300px;
-    overflow: visible;
-  }
-  
-  .stats-charts-column {
-    min-height: 400px;
-  }
-  
-  .dashboard-layout {
-    height: auto;
-    min-height: 100vh;
-    overflow-y: auto;
-  }
-  
   .dashboard-table {
     max-height: none;
     height: auto;
@@ -935,17 +738,6 @@
     overflow-y: auto;
   }
   
-  .dashboard-footer {
-    position: relative;
-    margin-top: 20px;
-  }
-  
-  /* Header adjustments */
-  .header-title-container { flex: 1; overflow: hidden; }
-  .header-title { font-size: 18px; flex-wrap: wrap; }
-  .title-bold, .title-regular, .title-separator { font-size: 18px; }
-  .header-logo { height: 36px; width: 36px; margin-right: 8px; }
-  .dashboard-header { height: 50px; padding: 4px 10px; }
   .github-icon { width: 24px !important; height: 24px !important; }
   .js-nav-link { font-size: 12px; padding: 3px 6px; }
   .data-date { font-size: 11px; }
@@ -973,12 +765,7 @@
   .leaderboard-table.mini td { padding: 8px 6px; }
 }
 
-/* Extra small screens (mobile portrait) */
 @media (max-width: 480px) {
-  .header-title { font-size: 16px; }
-  .title-bold, .title-regular, .title-separator { font-size: 16px; }
-  .header-logo { height: 28px; width: 28px; margin-right: 6px; }
-  .dashboard-header { height: 44px; padding: 4px 8px; }
   .github-icon { width: 20px !important; height: 20px !important; }
   .intro-container { margin-left: 8px; }
   .js-nav-link { font-size: 11px; padding: 2px 4px; margin-left: 8px; }
@@ -987,7 +774,7 @@
   .intro-tooltip::before { left: 110px; }
   .data-date { font-size: 10px; }
   .creator-text { font-size: 10px; padding-left: 8px; }
-  .header-right { gap: 8px; }
   .theme-toggle { width: 28px; height: 28px; margin-left: 4px; }
   .theme-toggle svg { width: 16px; height: 16px; }
 }
+
