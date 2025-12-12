@@ -102,7 +102,7 @@ const Leaderboard: React.FC = () => {
       <header className="dashboard-header">
         <div className="header-title-container">
           <a 
-            href="https://github.com/jaceyang97/practices/blob/main/p31.js"
+            href="https://github.com/jaceyang97/practices/blob/main/artworks/p31.js"
             target="_blank"
             rel="noopener noreferrer"
             className="logo-link"
