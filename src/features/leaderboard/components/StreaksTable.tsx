@@ -1,5 +1,6 @@
 import React from 'react';
 import { useScrollPagination } from '../../../hooks/useScrollPagination';
+import RankBadge from './RankBadge';
 
 interface StreaksTableProps {
   data: Array<{ name: string; streakLength: number }>;
@@ -24,25 +25,7 @@ const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data }) => {
           {data && data.length > 0 ? (
             data.slice(0, visibleItems).map((streak, index) => (
               <tr key={`streak-${index}`}>
-                <td>
-                  <span
-                    style={{
-                      display: 'inline-flex',
-                      width: '28px',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      lineHeight: '1',
-                    }}
-                  >
-                    {index < 3 ? (
-                      <span style={{ fontSize: '20px', lineHeight: '1' }}>
-                        {['🥇', '🥈', '🥉'][index]}
-                      </span>
-                    ) : (
-                      index + 1
-                    )}
-                  </span>
-                </td>
+                <td><RankBadge rank={index + 1} /></td>
                 <td title={streak.name}>
                   <span className="solver-name">{streak.name}</span>
                 </td>

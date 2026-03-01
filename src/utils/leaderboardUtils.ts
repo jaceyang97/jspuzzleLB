@@ -1,6 +1,29 @@
 import { format, parse, compareAsc, differenceInMonths, addMonths } from 'date-fns';
 import { LeaderboardData, Puzzle, SolverStats } from '../features/leaderboard/types';
 
+export const MONTH_CODES = [
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+];
+
+const FULL_TO_SHORT = new Map(
+  ['January', 'February', 'March', 'April', 'May', 'June',
+   'July', 'August', 'September', 'October', 'November', 'December']
+    .map((full, i) => [full, MONTH_CODES[i]])
+);
+
+/** Convert "January 2025" → "Jan 2025". Already-short dates pass through. */
+export const formatDate = (dateText: string): string => {
+  if (!dateText) return 'N/A';
+  if (/^[A-Za-z]{3} \d{4}$/.test(dateText)) return dateText;
+  const parts = dateText.split(' ');
+  if (parts.length === 2) {
+    const short = FULL_TO_SHORT.get(parts[0]);
+    if (short) return `${short} ${parts[1]}`;
+  }
+  return dateText;
+};
+
 // Parse date from format like "March 2025"
 const parseDate = (dateText: string): Date => {
   try {
@@ -118,17 +141,24 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
     solver.streaks.sort((a, b) => b.length - a.length);
   });
   
-  // Get all solvers by puzzles solved
-  const topSolvers = topSolversByCount;
+  // Get all solvers by puzzles solved, mapped to output shape
+  const topSolvers = topSolversByCount.map(s => ({
+    name: s.name,
+    puzzlesSolved: s.puzzlesSolved,
+    firstAppearance: formatMonthYear(parseDate(s.firstAppearance)),
+    lastSolve: formatMonthYear(parseDate(s.lastSolve)),
+  }));
   
   // Get solvers with longest streaks
   const longestStreaks = topSolversByCount
     .filter(solver => solver.streaks.length > 0)
     .map(solver => ({
-      solver: solver.name,
-      ...solver.streaks[0]
+      name: solver.name,
+      streakLength: solver.streaks[0].length,
+      startDate: formatMonthYear(parse(solver.streaks[0].start, 'MMM yyyy', new Date())),
+      endDate: formatMonthYear(parse(solver.streaks[0].end, 'MMM yyyy', new Date())),
     }))
-    .sort((a, b) => b.length - a.length)
+    .sort((a, b) => b.streakLength - a.streakLength)
     .slice(0, 20);
   
   // Calculate rising stars (started in the last year with high solve rate)
@@ -144,10 +174,10 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
       const firstDate = parseDate(solver.firstAppearance);
       const monthsSinceStart = Math.max(1, differenceInMonths(currentDate, firstDate));
       return {
-        solver: solver.name,
+        name: solver.name,
         puzzlesSolved: solver.puzzlesSolved,
         solveRate: solver.puzzlesSolved / monthsSinceStart,
-        firstAppearance: solver.firstAppearance
+        firstAppearance: formatMonthYear(firstDate),
       };
     })
     .sort((a, b) => b.solveRate - a.solveRate)

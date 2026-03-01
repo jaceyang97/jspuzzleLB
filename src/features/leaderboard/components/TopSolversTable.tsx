@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useScrollPagination } from '../../../hooks/useScrollPagination';
+import RankBadge from './RankBadge';
 
 interface TopSolversTableProps {
   data: Array<{ name: string; puzzlesSolved: number; lastSolve: string }>;
@@ -44,25 +45,7 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
               const originalRank = rankMap.get(solver.name) ?? 0;
               return (
                 <tr key={solver.name}>
-                  <td>
-                    <span
-                      style={{
-                        display: 'inline-flex',
-                        width: '28px',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        lineHeight: '1',
-                      }}
-                    >
-                      {originalRank <= 3 ? (
-                        <span style={{ fontSize: '20px', lineHeight: '1' }}>
-                          {['🥇', '🥈', '🥉'][originalRank - 1]}
-                        </span>
-                      ) : (
-                        originalRank
-                      )}
-                    </span>
-                  </td>
+                  <td><RankBadge rank={originalRank} /></td>
                   <td title={solver.name}>
                     <span className="solver-name">{solver.name}</span>
                   </td>

@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { loadLeaderboardData } from '../services/leaderboardService';
-import { NormalizedLeaderboardData } from '../types';
+import { LeaderboardData } from '../types';
 
 interface UseLeaderboardDataResult {
-  data: NormalizedLeaderboardData | null;
+  data: LeaderboardData | null;
   loading: boolean;
   error: Error | null;
 }
 
 export const useLeaderboardData = (): UseLeaderboardDataResult => {
-  const [data, setData] = useState<NormalizedLeaderboardData | null>(null);
+  const [data, setData] = useState<LeaderboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 

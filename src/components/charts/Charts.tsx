@@ -1,8 +1,9 @@
 import React, { memo, useState, useMemo, useEffect } from 'react';
-import { 
+import {
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   AreaChart, Area
 } from 'recharts';
+import { MONTH_CODES } from '../../utils/leaderboardUtils';
 
 // Hook to get current theme colors
 const useThemeColors = () => {
@@ -80,11 +81,6 @@ const yearTickFormatter = (value: string | number) => {
   }
   return '';
 };
-
-const MONTH_CODES = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-];
 
 // Memoized chart components to prevent unnecessary re-renders
 const SolversGrowthChart = memo(({ data }: { data: SolversGrowthDataPoint[] }) => {

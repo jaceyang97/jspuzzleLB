@@ -24,19 +24,6 @@ export interface LeaderboardData {
   totalPuzzles: number;
   uniqueSolvers: number;
   solverDistribution?: SolverDistribution;
-  topSolvers: SolverStats[];
-  longestStreaks: { solver: string; length: number; start: string; end: string }[];
-  risingStars: { solver: string; puzzlesSolved: number; solveRate: number; firstAppearance: string }[];
-  monthlyParticipation: { month: string; solvers: number }[];
-  solversGrowth: { month: string; totalSolvers: number }[];
-  mostSolvedPuzzles: { id: string; name: string; solvers: number; solution_url: string }[];
-  generatedAt?: string;
-}
-
-export interface NormalizedLeaderboardData {
-  totalPuzzles: number;
-  uniqueSolvers: number;
-  solverDistribution?: SolverDistribution;
   topSolvers: Array<{
     name: string;
     puzzlesSolved: number;
