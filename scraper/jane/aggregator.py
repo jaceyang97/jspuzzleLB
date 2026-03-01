@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+import functools
+import json
+import os
 from datetime import datetime, timezone
 from typing import Dict, List, Any
 
 
+@functools.lru_cache(maxsize=256)
 def _parse_date(date_text: str) -> datetime:
     try:
         return datetime.strptime(date_text, "%B %Y")
@@ -49,9 +53,9 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
             solver["puzzlesSolved"] += 1
             solver["monthlyActivity"].add(month_key)
 
-            if _parse_date(puzzle.get("date_text", "")) < _parse_date(solver["firstAppearance"]):
+            if puzzle_date < _parse_date(solver["firstAppearance"]):
                 solver["firstAppearance"] = puzzle.get("date_text", "N/A")
-            if _parse_date(puzzle.get("date_text", "")) > _parse_date(solver["lastSolve"]):
+            if puzzle_date > _parse_date(solver["lastSolve"]):
                 solver["lastSolve"] = puzzle.get("date_text", "N/A")
 
     # Top solvers by solve count
@@ -122,15 +126,15 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
         monthly_participation.append({"month": month, "solvers": solvers_count})
 
     # Solvers growth (cumulative new solvers per month)
+    new_solvers_by_month: Dict[str, int] = {}
+    for solver in solver_map.values():
+        first_month = _format_month_year(_parse_date(solver["firstAppearance"]))
+        new_solvers_by_month[first_month] = new_solvers_by_month.get(first_month, 0) + 1
+
     solvers_growth = []
     total = 0
     for month in sorted_months:
-        new_solvers = sum(
-            1
-            for solver in solver_map.values()
-            if _format_month_year(_parse_date(solver["firstAppearance"])) == month
-        )
-        total += new_solvers
+        total += new_solvers_by_month.get(month, 0)
         solvers_growth.append({"month": month, "totalSolvers": total})
     if solvers_growth:
         solvers_growth[-1]["totalSolvers"] = len(solver_map)
@@ -139,7 +143,7 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
         sorted(
             [
                 {
-                    "id": f"{_parse_date(p['date_text']).year}-{_parse_date(p['date_text']).month}",
+                    "id": f"{_parse_date(p.get('date_text', '')).year}-{_parse_date(p.get('date_text', '')).month}",
                     "name": p.get("name", "Unknown"),
                     "solvers": len(p.get("solvers") or []),
                     "solution_url": p.get("solution_url", ""),
@@ -183,9 +187,6 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 def save_stats(file_path: str, stats: Dict[str, Any]) -> None:
-    import json
-    import os
-
     os.makedirs(os.path.dirname(file_path) or ".", exist_ok=True)
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(stats, f, indent=2)

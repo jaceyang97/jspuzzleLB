@@ -1,21 +1,17 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo } from 'react';
+import { useScrollPagination } from '../../../hooks/useScrollPagination';
 
 interface TopSolversTableProps {
-  data: Array<{ name: string; puzzlesSolved: number; lastSolve: string; solver?: string }>;
+  data: Array<{ name: string; puzzlesSolved: number; lastSolve: string }>;
   searchTerm: string;
 }
 
 const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, searchTerm }) => {
-  const [visibleItems, setVisibleItems] = useState(20);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const tableRef = useRef<HTMLTableElement>(null);
-
   // Build a lookup map for O(1) rank access instead of O(n) findIndex per row
   const rankMap = useMemo(() => {
     const map = new Map<string, number>();
     data.forEach((solver, index) => {
-      const name = solver.name || solver.solver || '';
-      map.set(name, index + 1);
+      map.set(solver.name, index + 1);
     });
     return map;
   }, [data]);
@@ -23,36 +19,13 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
   const filteredData = useMemo(() => {
     if (!searchTerm.trim()) return data;
     return data.filter((solver) =>
-      (solver.name || solver.solver || '').toLowerCase().includes(searchTerm.toLowerCase())
+      solver.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [data, searchTerm]);
 
-  useEffect(() => {
-    if (
-      filteredData.length > 0 &&
-      visibleItems < filteredData.length &&
-      containerRef.current &&
-      tableRef.current
-    ) {
-      const timer = setTimeout(() => {
-        const containerHeight = containerRef.current!.clientHeight;
-        const tableHeight = tableRef.current!.scrollHeight;
-        if (tableHeight <= containerHeight) {
-          setVisibleItems(filteredData.length);
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [filteredData.length, visibleItems]);
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const bottom =
-      e.currentTarget.scrollHeight - e.currentTarget.scrollTop <=
-      e.currentTarget.clientHeight + 50;
-    if (bottom && visibleItems < filteredData.length) {
-      setVisibleItems((prev) => Math.min(prev + 10, filteredData.length));
-    }
-  };
+  const { visibleItems, containerRef, tableRef, handleScroll } = useScrollPagination({
+    totalItems: filteredData.length,
+  });
 
   return (
     <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
@@ -68,10 +41,9 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
         <tbody>
           {filteredData && filteredData.length > 0 ? (
             filteredData.slice(0, visibleItems).map((solver) => {
-              const solverName = solver.name || solver.solver || '';
-              const originalRank = rankMap.get(solverName) ?? 0;
+              const originalRank = rankMap.get(solver.name) ?? 0;
               return (
-                <tr key={solverName}>
+                <tr key={solver.name}>
                   <td>
                     <span
                       style={{
@@ -91,8 +63,8 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
                       )}
                     </span>
                   </td>
-                  <td title={solver.name || solver.solver}>
-                    <span className="solver-name">{solver.name || solver.solver}</span>
+                  <td title={solver.name}>
+                    <span className="solver-name">{solver.name}</span>
                   </td>
                   <td className="center">{solver.puzzlesSolved}</td>
                   <td className="center">{solver.lastSolve || 'N/A'}</td>
@@ -116,5 +88,3 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(({ data, sear
 });
 
 export default TopSolversTable;
-
-

@@ -1,35 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { useScrollPagination } from '../../../hooks/useScrollPagination';
 
 interface StreaksTableProps {
-  data: Array<{ name: string; streakLength: number; solver?: string }>;
+  data: Array<{ name: string; streakLength: number }>;
 }
 
 const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data }) => {
-  const [visibleItems, setVisibleItems] = useState(20);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const tableRef = useRef<HTMLTableElement>(null);
-
-  useEffect(() => {
-    if (data.length > 0 && visibleItems < data.length && containerRef.current && tableRef.current) {
-      const timer = setTimeout(() => {
-        const containerHeight = containerRef.current!.clientHeight;
-        const tableHeight = tableRef.current!.scrollHeight;
-        if (tableHeight <= containerHeight) {
-          setVisibleItems(data.length);
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [data.length, visibleItems]);
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const bottom =
-      e.currentTarget.scrollHeight - e.currentTarget.scrollTop <=
-      e.currentTarget.clientHeight + 50;
-    if (bottom && visibleItems < data.length) {
-      setVisibleItems((prev) => Math.min(prev + 10, data.length));
-    }
-  };
+  const { visibleItems, containerRef, tableRef, handleScroll } = useScrollPagination({
+    totalItems: data.length,
+  });
 
   return (
     <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
@@ -64,8 +43,8 @@ const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data }) => {
                     )}
                   </span>
                 </td>
-                <td title={streak.name || streak.solver}>
-                  <span className="solver-name">{streak.name || streak.solver}</span>
+                <td title={streak.name}>
+                  <span className="solver-name">{streak.name}</span>
                 </td>
                 <td className="center">{streak.streakLength || 0}m</td>
               </tr>
@@ -87,5 +66,3 @@ const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data }) => {
 });
 
 export default StreaksTable;
-
-

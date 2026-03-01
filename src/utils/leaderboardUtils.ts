@@ -58,12 +58,12 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
       solver.monthlyActivity[monthKey] = true;
       
       // Update first appearance if this puzzle is older
-      if (compareAsc(parseDate(puzzle.date_text), parseDate(solver.firstAppearance)) < 0) {
+      if (compareAsc(puzzleDate, parseDate(solver.firstAppearance)) < 0) {
         solver.firstAppearance = puzzle.date_text;
       }
-      
+
       // Update last solve if this puzzle is newer
-      if (compareAsc(parseDate(puzzle.date_text), parseDate(solver.lastSolve)) > 0) {
+      if (compareAsc(puzzleDate, parseDate(solver.lastSolve)) > 0) {
         solver.lastSolve = puzzle.date_text;
       }
     });
@@ -175,24 +175,17 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
   });
   
   // Calculate solvers growth over time - include every month for complete visualization
+  const newSolversByMonth = new Map<string, number>();
+  solverMap.forEach(solver => {
+    const firstMonth = formatMonthYear(parseDate(solver.firstAppearance));
+    newSolversByMonth.set(firstMonth, (newSolversByMonth.get(firstMonth) || 0) + 1);
+  });
+
   const solversGrowth: { month: string; totalSolvers: number }[] = [];
   let totalSolvers = 0;
-  
-  // Use all months for solvers growth to show every data point
   sortedMonths.forEach(month => {
-    const newSolvers = Array.from(solverMap.values())
-      .filter(solver => {
-        const firstMonth = formatMonthYear(parseDate(solver.firstAppearance));
-        return firstMonth === month;
-      })
-      .length;
-    
-    totalSolvers += newSolvers;
-    
-    solversGrowth.push({
-      month,
-      totalSolvers
-    });
+    totalSolvers += newSolversByMonth.get(month) || 0;
+    solversGrowth.push({ month, totalSolvers });
   });
   
   // Ensure the last data point shows the total number of unique solvers

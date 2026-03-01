@@ -894,3 +894,13 @@
   .legend-text { font-size: 9px; }
 }
 
+/* Pulsing animation for "Ongoing" indicator in Solvers Growth chart */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+.pulsing-dot, .pulsing-text {
+  animation: pulse 1s infinite ease-in-out;
+}
+

@@ -22,16 +22,13 @@ export const useTheme = () => {
   });
 
   useEffect(() => {
-    // Apply theme to document
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
   }, [theme]);
 
-  // Listen for system theme changes
+  // Listen for system theme changes when user hasn't explicitly chosen
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e: MediaQueryListEvent) => {
-      // Only auto-switch if user hasn't explicitly set a preference
       const savedTheme = localStorage.getItem('theme');
       if (!savedTheme) {
         setTheme(e.matches ? 'dark' : 'light');
@@ -43,7 +40,11 @@ export const useTheme = () => {
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+    setTheme(prev => {
+      const next = prev === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', next);
+      return next;
+    });
   }, []);
 
   return { theme, toggleTheme };

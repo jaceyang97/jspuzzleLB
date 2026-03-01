@@ -1,35 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { useScrollPagination } from '../../../hooks/useScrollPagination';
 
 interface RisingStarsTableProps {
-  data: Array<{ name: string; firstAppearance: string; solver?: string }>;
+  data: Array<{ name: string; firstAppearance: string }>;
 }
 
 const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data }) => {
-  const [visibleItems, setVisibleItems] = useState(20);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const tableRef = useRef<HTMLTableElement>(null);
-
-  useEffect(() => {
-    if (data.length > 0 && visibleItems < data.length && containerRef.current && tableRef.current) {
-      const timer = setTimeout(() => {
-        const containerHeight = containerRef.current!.clientHeight;
-        const tableHeight = tableRef.current!.scrollHeight;
-        if (tableHeight <= containerHeight) {
-          setVisibleItems(data.length);
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [data.length, visibleItems]);
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const bottom =
-      e.currentTarget.scrollHeight - e.currentTarget.scrollTop <=
-      e.currentTarget.clientHeight + 50;
-    if (bottom && visibleItems < data.length) {
-      setVisibleItems((prev) => Math.min(prev + 10, data.length));
-    }
-  };
+  const { visibleItems, containerRef, tableRef, handleScroll } = useScrollPagination({
+    totalItems: data.length,
+  });
 
   return (
     <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
@@ -44,7 +23,7 @@ const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data }) 
           {data && data.length > 0 ? (
             data.slice(0, visibleItems).map((solver, index) => (
               <tr key={`rising-${index}`}>
-                <td>{solver.name || solver.solver}</td>
+                <td>{solver.name}</td>
                 <td className="center">{solver.firstAppearance || 'N/A'}</td>
               </tr>
             ))
@@ -65,5 +44,3 @@ const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data }) 
 });
 
 export default RisingStarsTable;
-
-

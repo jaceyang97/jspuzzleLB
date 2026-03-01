@@ -37,27 +37,15 @@ const Leaderboard: React.FC = () => {
   const [topSolversSearch, setTopSolversSearch] = useState('');
 
   useEffect(() => {
-    if (data) {
-      setShowConfetti(true);
-    }
+    if (!data) return;
+    setShowConfetti(true);
+    const timer = setTimeout(() => setShowConfetti(false), 5000);
+    return () => clearTimeout(timer);
   }, [data]);
 
-  // Hide confetti after 5 seconds
-  useEffect(() => {
-    if (!showConfetti) return;
-    
-    const timer = setTimeout(() => {
-      setShowConfetti(false);
-    }, 5000);
-    
-    return () => clearTimeout(timer);
-  }, [showConfetti]);
+  const solversGrowthData = data?.solversGrowth || [];
 
-  // Memoize chart data to prevent unnecessary recalculations
-  const solversGrowthData = useMemo(() => 
-    data?.solversGrowth || [], [data]);
-  
-  const mostSolvedPuzzlesData = useMemo(() => 
+  const mostSolvedPuzzlesData = useMemo(() =>
     data?.mostSolvedPuzzles?.slice(0, 10) || [], [data]);
 
   // Use the precomputed stats month as the last updated marker

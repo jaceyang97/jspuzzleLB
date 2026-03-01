@@ -81,6 +81,11 @@ const yearTickFormatter = (value: string | number) => {
   return '';
 };
 
+const MONTH_CODES = [
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+];
+
 // Memoized chart components to prevent unnecessary re-renders
 const SolversGrowthChart = memo(({ data }: { data: SolversGrowthDataPoint[] }) => {
   const themeColors = useThemeColors();
@@ -104,13 +109,8 @@ const SolversGrowthChart = memo(({ data }: { data: SolversGrowthDataPoint[] }) =
     }).filter((year): year is string => year !== null)
   )).sort();
   
-  // Select only a subset of years to display on the x-axis to avoid overcrowding
-  const displayYears = years.length > 10 
-    ? years // Show every year instead of every other year
-    : years;
-  
-  // Create custom ticks for selected years
-  const customTicks = displayYears
+  // Create custom ticks for years
+  const customTicks = years
     .filter(year => year !== '2015') // Remove 2015 from the displayed years
     .map(year => {
       // Find a data point for this year, preferably January
@@ -130,7 +130,7 @@ const SolversGrowthChart = memo(({ data }: { data: SolversGrowthDataPoint[] }) =
   
   // Get current month string
   const now = new Date();
-  const currentMonthStr = `${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][now.getMonth()]} ${now.getFullYear()}`;
+  const currentMonthStr = `${MONTH_CODES[now.getMonth()]} ${now.getFullYear()}`;
   
   // Check if current month exists in data
   const currentMonthExists = filteredData.some(item => item.month === currentMonthStr);
@@ -249,18 +249,6 @@ const SolversGrowthChart = memo(({ data }: { data: SolversGrowthDataPoint[] }) =
           </div>
         )}
       </h3>
-      <style>
-        {`
-          @keyframes pulse {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
-          }
-          .pulsing-dot, .pulsing-text {
-            animation: pulse 1s infinite ease-in-out;
-          }
-        `}
-      </style>
       <ResponsiveContainer width="100%" height="100%" minHeight={120}>
         <AreaChart 
           data={dataWithCurrentMonth} 
@@ -326,30 +314,18 @@ const MostSolvedPuzzlesTable = memo(({ data }: { data: PuzzleData[] }) => {
   
   const [showTitleTooltip, setShowTitleTooltip] = useState(false);
   
-  // Pre-compute month codes for date formatting
-  const monthCodes = useMemo(() => [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-  ], []);
-  
-  // Memoized helper functions to avoid recreating on each render
   const helpers = useMemo(() => ({
-    // Convert solution URL to puzzle URL
     getPuzzleUrl: (solutionUrl: string) => {
       return solutionUrl?.replace("-solution", "-index") || "#";
     },
-    
-    // Format puzzle date from ID (YYYY-MM)
     formatPuzzleDate: (id: string) => {
       if (!id?.includes('-')) return 'N/A';
-      
       const [year, monthStr] = id.split('-');
       const month = parseInt(monthStr, 10);
-      
-      return month >= 1 && month <= 12 ? 
-        `${monthCodes[month-1]} ${year}` : 'N/A';
+      return month >= 1 && month <= 12 ?
+        `${MONTH_CODES[month-1]} ${year}` : 'N/A';
     }
-  }), [monthCodes]);
+  }), []);
 
   return (
     <div className="chart-container mini" style={{ display: 'flex', flexDirection: 'column', padding: '8px 5px 0' }}>
