@@ -79380,124 +79380,124 @@
   ],
   "risingStars": [
     {
-      "solver": "IMW",
-      "puzzlesSolved": 7,
-      "solveRate": 1.0,
-      "firstAppearance": "July 2025"
-    },
-    {
       "solver": "Robert Berec",
       "puzzlesSolved": 9,
-      "solveRate": 1.0,
+      "solveRate": 0.9,
       "firstAppearance": "May 2025"
     },
     {
-      "solver": "Joshua Kindler",
-      "puzzlesSolved": 5,
-      "solveRate": 1.0,
-      "firstAppearance": "September 2025"
+      "solver": "IMW",
+      "puzzlesSolved": 7,
+      "solveRate": 0.875,
+      "firstAppearance": "July 2025"
     },
     {
       "solver": "Kibria Awais",
       "puzzlesSolved": 6,
-      "solveRate": 1.0,
+      "solveRate": 0.8571428571428571,
       "firstAppearance": "August 2025"
     },
     {
-      "solver": "Frederic Hamelink",
-      "puzzlesSolved": 4,
-      "solveRate": 1.0,
-      "firstAppearance": "October 2025"
+      "solver": "Joshua Kindler",
+      "puzzlesSolved": 5,
+      "solveRate": 0.8333333333333334,
+      "firstAppearance": "September 2025"
     },
     {
       "solver": "Joel Pulikkan",
       "puzzlesSolved": 5,
-      "solveRate": 1.0,
+      "solveRate": 0.8333333333333334,
       "firstAppearance": "September 2025"
+    },
+    {
+      "solver": "Frederic Hamelink",
+      "puzzlesSolved": 4,
+      "solveRate": 0.8,
+      "firstAppearance": "October 2025"
     },
     {
       "solver": "JY",
       "puzzlesSolved": 4,
-      "solveRate": 1.0,
+      "solveRate": 0.8,
       "firstAppearance": "October 2025"
     },
     {
       "solver": "ekunazanu",
       "puzzlesSolved": 7,
-      "solveRate": 0.875,
+      "solveRate": 0.7777777777777778,
       "firstAppearance": "June 2025"
+    },
+    {
+      "solver": "doudian",
+      "puzzlesSolved": 9,
+      "solveRate": 0.75,
+      "firstAppearance": "March 2025"
+    },
+    {
+      "solver": "Lukas Bergholz",
+      "puzzlesSolved": 8,
+      "solveRate": 0.7272727272727273,
+      "firstAppearance": "April 2025"
+    },
+    {
+      "solver": "Eren Yildiz",
+      "puzzlesSolved": 8,
+      "solveRate": 0.7272727272727273,
+      "firstAppearance": "April 2025"
     },
     {
       "solver": "Andrew Yoo",
       "puzzlesSolved": 5,
-      "solveRate": 0.8333333333333334,
+      "solveRate": 0.7142857142857143,
       "firstAppearance": "August 2025"
     },
     {
       "solver": "Francisco Rodr\u00edguez-Carretero Rold\u00e1n",
       "puzzlesSolved": 5,
-      "solveRate": 0.8333333333333334,
+      "solveRate": 0.7142857142857143,
       "firstAppearance": "August 2025"
-    },
-    {
-      "solver": "doudian",
-      "puzzlesSolved": 9,
-      "solveRate": 0.8181818181818182,
-      "firstAppearance": "March 2025"
     },
     {
       "solver": "J\u00f8rgen Boganes",
       "puzzlesSolved": 4,
-      "solveRate": 0.8,
+      "solveRate": 0.6666666666666666,
       "firstAppearance": "September 2025"
     },
     {
       "solver": "Yug Nakrani",
       "puzzlesSolved": 4,
-      "solveRate": 0.8,
+      "solveRate": 0.6666666666666666,
       "firstAppearance": "September 2025"
+    },
+    {
+      "solver": "Baocheng Jiao",
+      "puzzlesSolved": 8,
+      "solveRate": 0.6666666666666666,
+      "firstAppearance": "March 2025"
+    },
+    {
+      "solver": "David Chow Yee Chui",
+      "puzzlesSolved": 8,
+      "solveRate": 0.6666666666666666,
+      "firstAppearance": "March 2025"
     },
     {
       "solver": "Lazar Todorov",
       "puzzlesSolved": 4,
-      "solveRate": 0.8,
+      "solveRate": 0.6666666666666666,
       "firstAppearance": "September 2025"
+    },
+    {
+      "solver": "PJS",
+      "puzzlesSolved": 6,
+      "solveRate": 0.6666666666666666,
+      "firstAppearance": "June 2025"
     },
     {
       "solver": "Sean Lowery",
       "puzzlesSolved": 4,
-      "solveRate": 0.8,
+      "solveRate": 0.6666666666666666,
       "firstAppearance": "September 2025"
-    },
-    {
-      "solver": "Louise Warhurst",
-      "puzzlesSolved": 4,
-      "solveRate": 0.8,
-      "firstAppearance": "September 2025"
-    },
-    {
-      "solver": "James Thomson",
-      "puzzlesSolved": 4,
-      "solveRate": 0.8,
-      "firstAppearance": "September 2025"
-    },
-    {
-      "solver": "Nick Nordlund",
-      "puzzlesSolved": 4,
-      "solveRate": 0.8,
-      "firstAppearance": "September 2025"
-    },
-    {
-      "solver": "Ruhi + Jeff",
-      "puzzlesSolved": 4,
-      "solveRate": 0.8,
-      "firstAppearance": "September 2025"
-    },
-    {
-      "solver": "Lukas Bergholz",
-      "puzzlesSolved": 8,
-      "solveRate": 0.8,
-      "firstAppearance": "April 2025"
     }
   ],
   "monthlyParticipation": [
@@ -80398,5 +80398,5 @@
       "solution_url": "https://www.janestreet.com/puzzles/some-off-square-solution"
     }
   ],
-  "generatedAt": "2026-02-02T12:19:09.570279+00:00"
+  "generatedAt": "2026-03-02T12:19:28.203135+00:00"
 }
