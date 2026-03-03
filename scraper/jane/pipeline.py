@@ -73,19 +73,26 @@ def update_current(
     output_path: str,
     stats_path: str,
     timeout: int = DEFAULT_TIMEOUT,
-) -> List[Dict[str, Any]]:
+) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """
     Lightweight daily update: only refresh the current puzzle's leaderboard.
     Handles month transitions (new puzzle appearing) automatically.
+
+    Returns (puzzles, notification) where notification contains info about
+    new solvers detected during this run.
     """
     from .aggregator import build_stats, save_stats
+
+    empty_notification: Dict[str, Any] = {
+        "puzzle_name": "", "puzzle_date": "", "new_solvers": [], "total_solvers": 0,
+    }
 
     session = build_session()
     puzzles = load_puzzles_list(output_path)
 
     if not puzzles:
         logger.error("No existing data found. Run with --full to do initial scrape.")
-        return puzzles
+        return puzzles, empty_notification
 
     # Scrape the current puzzle page
     result = scrape_current_puzzle(session, timeout=timeout)
@@ -93,9 +100,10 @@ def update_current(
         logger.warning("Could not fetch current puzzle; saving stats and exiting")
         stats = build_stats(puzzles)
         save_stats(stats_path, stats)
-        return puzzles
+        return puzzles, empty_notification
 
     puzzle_id, fresh_solvers = result
+    notification = dict(empty_notification)
 
     # Find the existing "current" entry (no solution_url)
     current_idx = None
@@ -112,12 +120,19 @@ def update_current(
             # Case A: Same puzzle — merge solvers + timestamps
             existing_ts = current_entry.get("solver_timestamps", {})
             merged_ts = merge_solvers_with_timestamps(fresh_solvers, existing_ts)
+            new_solver_names = [s for s in fresh_solvers if s not in existing_ts]
             current_entry["solvers"] = fresh_solvers
             current_entry["solver_timestamps"] = merged_ts
             current_entry["puzzle_id"] = puzzle_id
+
+            notification["puzzle_name"] = current_entry.get("name", "")
+            notification["puzzle_date"] = current_entry.get("date_text", "")
+            notification["new_solvers"] = new_solver_names
+            notification["total_solvers"] = len(fresh_solvers)
+
             logger.info(
                 f"Updated current puzzle: {len(fresh_solvers)} solvers "
-                f"({len(merged_ts) - len(existing_ts)} new)"
+                f"({len(new_solver_names)} new)"
             )
         else:
             # Case B: New puzzle detected — month transition
@@ -126,6 +141,11 @@ def update_current(
                 session, base_url, puzzles, current_idx,
                 puzzle_id, fresh_solvers, timeout,
             )
+            # After transition, new puzzle is at index 0
+            notification["puzzle_name"] = puzzles[0].get("name", "")
+            notification["puzzle_date"] = puzzles[0].get("date_text", "")
+            notification["new_solvers"] = fresh_solvers
+            notification["total_solvers"] = len(fresh_solvers)
     else:
         # No current entry found — add the new puzzle
         logger.info("No current puzzle entry found; adding new entry")
@@ -140,10 +160,15 @@ def update_current(
         }
         puzzles.insert(0, new_entry)
 
+        notification["puzzle_name"] = new_entry["name"]
+        notification["puzzle_date"] = new_entry["date_text"]
+        notification["new_solvers"] = fresh_solvers
+        notification["total_solvers"] = len(fresh_solvers)
+
     save_puzzles_raw(output_path, puzzles)
     stats = build_stats(puzzles)
     save_stats(stats_path, stats)
-    return puzzles
+    return puzzles, notification
 
 
 def _handle_month_transition(

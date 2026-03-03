@@ -7,6 +7,7 @@ from loguru import logger
 
 from .jane.pipeline import scrape_all, update_current
 from .jane.aggregator import build_stats, save_stats
+from .jane.notifier import send_notification
 
 
 def parse_arguments():
@@ -78,12 +79,15 @@ def main():
         logger.info(f"Saved leaderboard stats to {stats_path}")
     else:
         logger.info("Running lightweight current-puzzle update")
-        update_current(
+        puzzles, notification = update_current(
             base_url=base_url,
             output_path=output_path,
             stats_path=stats_path,
             timeout=args.timeout,
         )
+
+        # Send daily email notification
+        send_notification(notification)
 
 
 if __name__ == "__main__":
