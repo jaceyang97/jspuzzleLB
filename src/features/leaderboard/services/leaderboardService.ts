@@ -40,6 +40,7 @@ export const loadLeaderboardData = async (): Promise<LeaderboardData> => {
         puzzlesSolved: s.puzzlesSolved,
         firstAppearance: formatDate(s.firstAppearance),
       })),
+      currentPuzzleProgress: raw.currentPuzzleProgress ?? undefined,
     };
   } catch {
     // Fallback: load raw puzzle data and calculate stats client-side
