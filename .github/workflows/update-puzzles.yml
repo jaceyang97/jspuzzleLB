@@ -2,8 +2,12 @@ name: Update Jane Street Puzzles
 
 on:
   schedule:
-    - cron: '0 12 1-7 * *'  # Run at 12:00 UTC (8:00 PM Shanghai time) daily on days 1-7 of each month
+    - cron: '0 12 * * *'  # Daily at 12:00 UTC (8:00 PM Shanghai time)
   workflow_dispatch:  # Allow manual triggering
+
+concurrency:
+  group: puzzle-scraper
+  cancel-in-progress: true
 
 jobs:
   update-puzzles:
@@ -11,7 +15,7 @@ jobs:
     permissions:
       contents: write  # Allow writing to repository content
       actions: read    # Allow reading actions
-    
+
     steps:
     - uses: actions/checkout@v3
       with:
@@ -28,7 +32,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run puzzle scraper (produces data.json and stats.json)
+    - name: Run puzzle scraper (lightweight daily update)
       run: |
         python main.py
         echo "Data file contents:"

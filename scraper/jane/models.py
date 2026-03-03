@@ -11,6 +11,7 @@ class Puzzle:
     name: str
     solution_url: str
     solvers: List[str] = field(default_factory=list)
+    solver_timestamps: Dict[str, str] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

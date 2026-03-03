@@ -4,7 +4,7 @@ import functools
 import json
 import os
 from datetime import datetime, timezone
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 
 @functools.lru_cache(maxsize=256)
@@ -160,6 +160,9 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
     two_to_nine = sum(1 for s in solver_map.values() if 2 <= s["puzzlesSolved"] <= 9)
     ten_plus = sum(1 for s in solver_map.values() if s["puzzlesSolved"] >= 10)
 
+    # Current puzzle progress (timestamp-based timeline)
+    current_puzzle_progress = _build_current_puzzle_progress(sorted_puzzles)
+
     return {
         "totalPuzzles": len(puzzles),
         "uniqueSolvers": len(solver_map),
@@ -182,8 +185,29 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
         "monthlyParticipation": monthly_participation,
         "solversGrowth": solvers_growth,
         "mostSolvedPuzzles": most_solved_puzzles,
+        "currentPuzzleProgress": current_puzzle_progress,
         "generatedAt": datetime.now(timezone.utc).isoformat(),
     }
+
+
+def _build_current_puzzle_progress(
+    sorted_puzzles: List[Dict[str, Any]],
+) -> Optional[Dict[str, Any]]:
+    """Build a timeline of solver additions for the most recent puzzle with timestamps."""
+    for puzzle in sorted_puzzles:
+        timestamps = puzzle.get("solver_timestamps", {})
+        if timestamps:
+            entries = sorted(timestamps.items(), key=lambda x: x[1])
+            return {
+                "puzzleName": puzzle.get("name", ""),
+                "puzzleDate": puzzle.get("date_text", ""),
+                "solverCount": len(puzzle.get("solvers", [])),
+                "timeline": [
+                    {"solver": name, "timestamp": ts}
+                    for name, ts in entries
+                ],
+            }
+    return None
 
 
 def save_stats(file_path: str, stats: Dict[str, Any]) -> None:

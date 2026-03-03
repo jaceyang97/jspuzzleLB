@@ -39,3 +39,23 @@ def save_puzzles(file_path: str, puzzles: List[Puzzle]) -> None:
     logger.info(f"Saved {len(puzzles)} puzzles to {file_path}")
 
 
+def load_puzzles_list(file_path: str) -> List[Dict[str, Any]]:
+    """Load puzzles from disk as a raw list of dicts (preserves order and all fields)."""
+    if not os.path.exists(file_path):
+        return []
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as exc:
+        logger.warning(f"Failed to load puzzles list from {file_path}: {exc}")
+        return []
+
+
+def save_puzzles_raw(file_path: str, puzzles: List[Dict[str, Any]]) -> None:
+    """Save a list of raw puzzle dicts to disk."""
+    os.makedirs(os.path.dirname(file_path) or ".", exist_ok=True)
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(puzzles, f, indent=2, ensure_ascii=False)
+    logger.info(f"Saved {len(puzzles)} puzzles to {file_path}")
+
+
