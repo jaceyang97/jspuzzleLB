@@ -2,7 +2,7 @@ name: Update Jane Street Puzzles
 
 on:
   schedule:
-    - cron: '0 12 2 * *'  # Run at 12:00 UTC (8:00 PM Shanghai time) on the 2nd day of every month
+    - cron: '0 12 1-7 * *'  # Run at 12:00 UTC (8:00 PM Shanghai time) daily on days 1-7 of each month
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
