@@ -54,4 +54,8 @@ jobs:
         git commit -m "Update Jane Street puzzle data [automated] - $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S CST')"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use built-in GITHUB_TOKEN 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Trigger Vercel redeploy
+      if: steps.git-check.outputs.changes == 'true'
+      run: curl -s -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
