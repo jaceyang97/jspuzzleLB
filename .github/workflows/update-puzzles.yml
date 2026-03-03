@@ -33,6 +33,9 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run puzzle scraper (lightweight daily update)
+      env:
+        GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+        GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
       run: |
         python main.py
         echo "Data file contents:"
