@@ -3,8 +3,28 @@
     "date_text": "March 2026",
     "name": "Planetary Parade",
     "solution_url": "",
-    "solvers": [],
-    "solver_timestamps": {},
+    "solvers": [
+      "Aiden Bailey",
+      "Lazar Ilic",
+      "yap",
+      "Jette + Béla Rohloff",
+      "Fari",
+      "Utkarsh Naman",
+      "Daniel Shields",
+      "MDD",
+      "Theodoros Eleftheriou"
+    ],
+    "solver_timestamps": {
+      "Aiden Bailey": "2026-03-05T12:13:06.160562+00:00",
+      "Lazar Ilic": "2026-03-05T12:13:06.160562+00:00",
+      "yap": "2026-03-05T12:13:06.160562+00:00",
+      "Jette + Béla Rohloff": "2026-03-05T12:13:06.160562+00:00",
+      "Fari": "2026-03-05T12:13:06.160562+00:00",
+      "Utkarsh Naman": "2026-03-05T12:13:06.160562+00:00",
+      "Daniel Shields": "2026-03-05T12:13:06.160562+00:00",
+      "MDD": "2026-03-05T12:13:06.160562+00:00",
+      "Theodoros Eleftheriou": "2026-03-05T12:13:06.160562+00:00"
+    },
     "puzzle_id": "2026-03-01-planetary-parade"
   },
   {

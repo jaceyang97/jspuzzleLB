@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 145,
-  "uniqueSolvers": 13792,
+  "uniqueSolvers": 13796,
   "solverDistribution": {
-    "onePuzzle": 10268,
-    "twoToNine": 3286,
+    "onePuzzle": 10270,
+    "twoToNine": 3288,
     "tenPlus": 238
   },
   "topSolvers": [
@@ -38,15 +38,15 @@
       "lastSolve": "February 2026"
     },
     {
+      "name": "Lazar Ilic",
+      "puzzlesSolved": 56,
+      "firstAppearance": "October 2020",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Gareth Owen",
       "puzzlesSolved": 56,
       "firstAppearance": "July 2020",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Lazar Ilic",
-      "puzzlesSolved": 55,
-      "firstAppearance": "October 2020",
       "lastSolve": "February 2026"
     },
     {
@@ -4694,6 +4694,18 @@
       "lastSolve": "March 2016"
     },
     {
+      "name": "Aiden Bailey",
+      "puzzlesSolved": 4,
+      "firstAppearance": "July 2025",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Jette + B\u00e9la Rohloff",
+      "puzzlesSolved": 4,
+      "firstAppearance": "September 2025",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "James Leach",
       "puzzlesSolved": 4,
       "firstAppearance": "November 2021",
@@ -7304,12 +7316,6 @@
       "lastSolve": "February 2026"
     },
     {
-      "name": "Aiden Bailey",
-      "puzzlesSolved": 3,
-      "firstAppearance": "July 2025",
-      "lastSolve": "February 2026"
-    },
-    {
       "name": "Michael Ott",
       "puzzlesSolved": 3,
       "firstAppearance": "October 2025",
@@ -7325,12 +7331,6 @@
       "name": "Jie Sun",
       "puzzlesSolved": 3,
       "firstAppearance": "October 2025",
-      "lastSolve": "December 2025"
-    },
-    {
-      "name": "Jette + B\u00e9la Rohloff",
-      "puzzlesSolved": 3,
-      "firstAppearance": "September 2025",
       "lastSolve": "December 2025"
     },
     {
@@ -10848,6 +10848,18 @@
       "puzzlesSolved": 3,
       "firstAppearance": "December 2015",
       "lastSolve": "March 2016"
+    },
+    {
+      "name": "Utkarsh Naman",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Daniel Shields",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
+      "lastSolve": "March 2026"
     },
     {
       "name": "Carter Tran",
@@ -21152,6 +21164,30 @@
       "lastSolve": "December 2015"
     },
     {
+      "name": "yap",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Fari",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "MDD",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Theodoros Eleftheriou",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Dap",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
@@ -22772,12 +22808,6 @@
       "lastSolve": "February 2026"
     },
     {
-      "name": "Utkarsh Naman",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
       "name": "\u017darko Gvozdenovi\u0107",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
@@ -23397,12 +23427,6 @@
     },
     {
       "name": "Yi Zheng",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Daniel Shields",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -82786,6 +82810,12 @@
       "length": 45
     },
     {
+      "solver": "Lazar Ilic",
+      "start": "Jan 2024",
+      "end": "Mar 2026",
+      "length": 27
+    },
+    {
       "solver": "Danica Xiong",
       "start": "Dec 2023",
       "end": "Feb 2026",
@@ -82796,12 +82826,6 @@
       "start": "Dec 2023",
       "end": "Feb 2026",
       "length": 27
-    },
-    {
-      "solver": "Lazar Ilic",
-      "start": "Jan 2024",
-      "end": "Feb 2026",
-      "length": 26
     },
     {
       "solver": "Blaine Hill",
@@ -83199,7 +83223,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 0
+      "solvers": 9
     }
   ],
   "solversGrowth": [
@@ -83781,7 +83805,7 @@
     },
     {
       "month": "Mar 2026",
-      "totalSolvers": 13792
+      "totalSolvers": 13796
     }
   ],
   "mostSolvedPuzzles": [
@@ -83906,6 +83930,48 @@
       "solution_url": "https://www.janestreet.com/puzzles/hooks-10-solution"
     }
   ],
-  "currentPuzzleProgress": null,
-  "generatedAt": "2026-03-04T12:11:50.031883+00:00"
+  "currentPuzzleProgress": {
+    "puzzleName": "Planetary Parade",
+    "puzzleDate": "March 2026",
+    "solverCount": 9,
+    "timeline": [
+      {
+        "solver": "Aiden Bailey",
+        "timestamp": "2026-03-05T12:13:06.160562+00:00"
+      },
+      {
+        "solver": "Lazar Ilic",
+        "timestamp": "2026-03-05T12:13:06.160562+00:00"
+      },
+      {
+        "solver": "yap",
+        "timestamp": "2026-03-05T12:13:06.160562+00:00"
+      },
+      {
+        "solver": "Jette + B\u00e9la Rohloff",
+        "timestamp": "2026-03-05T12:13:06.160562+00:00"
+      },
+      {
+        "solver": "Fari",
+        "timestamp": "2026-03-05T12:13:06.160562+00:00"
+      },
+      {
+        "solver": "Utkarsh Naman",
+        "timestamp": "2026-03-05T12:13:06.160562+00:00"
+      },
+      {
+        "solver": "Daniel Shields",
+        "timestamp": "2026-03-05T12:13:06.160562+00:00"
+      },
+      {
+        "solver": "MDD",
+        "timestamp": "2026-03-05T12:13:06.160562+00:00"
+      },
+      {
+        "solver": "Theodoros Eleftheriou",
+        "timestamp": "2026-03-05T12:13:06.160562+00:00"
+      }
+    ]
+  },
+  "generatedAt": "2026-03-05T12:13:06.312466+00:00"
 }
