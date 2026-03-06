@@ -1,10 +1,10 @@
 {
   "totalPuzzles": 145,
-  "uniqueSolvers": 13796,
+  "uniqueSolvers": 13801,
   "solverDistribution": {
-    "onePuzzle": 10270,
-    "twoToNine": 3288,
-    "tenPlus": 238
+    "onePuzzle": 10275,
+    "twoToNine": 3286,
+    "tenPlus": 240
   },
   "topSolvers": [
     {
@@ -446,6 +446,12 @@
       "lastSolve": "October 2021"
     },
     {
+      "name": "Jackson La Vallee",
+      "puzzlesSolved": 17,
+      "firstAppearance": "November 2024",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Daniel Toh",
       "puzzlesSolved": 17,
       "firstAppearance": "January 2024",
@@ -500,10 +506,10 @@
       "lastSolve": "February 2021"
     },
     {
-      "name": "Jackson La Vallee",
+      "name": "Cameron Jeffery",
       "puzzlesSolved": 16,
-      "firstAppearance": "November 2024",
-      "lastSolve": "February 2026"
+      "firstAppearance": "September 2024",
+      "lastSolve": "March 2026"
     },
     {
       "name": "Rub\u00e9n M.I",
@@ -588,12 +594,6 @@
       "puzzlesSolved": 16,
       "firstAppearance": "July 2018",
       "lastSolve": "January 2020"
-    },
-    {
-      "name": "Cameron Jeffery",
-      "puzzlesSolved": 15,
-      "firstAppearance": "September 2024",
-      "lastSolve": "February 2026"
     },
     {
       "name": "Paul Kress",
@@ -696,6 +696,12 @@
       "puzzlesSolved": 14,
       "firstAppearance": "July 2020",
       "lastSolve": "May 2023"
+    },
+    {
+      "name": "",
+      "puzzlesSolved": 13,
+      "firstAppearance": "August 2021",
+      "lastSolve": "March 2026"
     },
     {
       "name": "Takaki Oshima",
@@ -908,12 +914,6 @@
       "lastSolve": "December 2025"
     },
     {
-      "name": "",
-      "puzzlesSolved": 12,
-      "firstAppearance": "August 2021",
-      "lastSolve": "December 2025"
-    },
-    {
       "name": "Hubert Banaszewski",
       "puzzlesSolved": 12,
       "firstAppearance": "July 2023",
@@ -1056,6 +1056,12 @@
       "puzzlesSolved": 12,
       "firstAppearance": "March 2016",
       "lastSolve": "April 2021"
+    },
+    {
+      "name": "Andre Emery",
+      "puzzlesSolved": 11,
+      "firstAppearance": "June 2022",
+      "lastSolve": "March 2026"
     },
     {
       "name": "Kelvin Tse Chak Kwan",
@@ -1220,6 +1226,18 @@
       "lastSolve": "January 2019"
     },
     {
+      "name": "Gareth White",
+      "puzzlesSolved": 10,
+      "firstAppearance": "August 2024",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Jake Mallen",
+      "puzzlesSolved": 10,
+      "firstAppearance": "February 2024",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Patrick Deumann",
       "puzzlesSolved": 10,
       "firstAppearance": "January 2025",
@@ -1265,12 +1283,6 @@
       "name": "Tomonari Feehan - GT '19",
       "puzzlesSolved": 10,
       "firstAppearance": "October 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Andre Emery",
-      "puzzlesSolved": 10,
-      "firstAppearance": "June 2022",
       "lastSolve": "February 2026"
     },
     {
@@ -1436,12 +1448,6 @@
       "lastSolve": "June 2019"
     },
     {
-      "name": "Jake Mallen",
-      "puzzlesSolved": 9,
-      "firstAppearance": "February 2024",
-      "lastSolve": "February 2026"
-    },
-    {
       "name": "Jimmy Brito",
       "puzzlesSolved": 9,
       "firstAppearance": "October 2024",
@@ -1530,12 +1536,6 @@
       "puzzlesSolved": 9,
       "firstAppearance": "May 2023",
       "lastSolve": "February 2026"
-    },
-    {
-      "name": "Gareth White",
-      "puzzlesSolved": 9,
-      "firstAppearance": "August 2024",
-      "lastSolve": "January 2026"
     },
     {
       "name": "doudian",
@@ -1692,6 +1692,12 @@
       "puzzlesSolved": 9,
       "firstAppearance": "February 2017",
       "lastSolve": "November 2017"
+    },
+    {
+      "name": "Kibria Awais",
+      "puzzlesSolved": 8,
+      "firstAppearance": "August 2025",
+      "lastSolve": "March 2026"
     },
     {
       "name": "Kristjan Solmann",
@@ -2189,12 +2195,6 @@
       "name": "Noah Butler",
       "puzzlesSolved": 7,
       "firstAppearance": "June 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Kibria Awais",
-      "puzzlesSolved": 7,
-      "firstAppearance": "August 2025",
       "lastSolve": "February 2026"
     },
     {
@@ -21183,6 +21183,36 @@
     },
     {
       "name": "Theodoros Eleftheriou",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "John",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "ZM",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Sanjeeva Rao Peela",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Choijilsuren Natsagdorj",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Matteo Dagos + Matteo G. + sebgg",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
       "lastSolve": "March 2026"
@@ -82864,15 +82894,15 @@
       "length": 17
     },
     {
+      "solver": "Jackson La Vallee",
+      "start": "Nov 2024",
+      "end": "Mar 2026",
+      "length": 17
+    },
+    {
       "solver": "Josh Richman",
       "start": "Aug 2024",
       "end": "Nov 2025",
-      "length": 16
-    },
-    {
-      "solver": "Jackson La Vallee",
-      "start": "Nov 2024",
-      "end": "Feb 2026",
       "length": 16
     },
     {
@@ -82909,8 +82939,8 @@
   "risingStars": [
     {
       "solver": "Kibria Awais",
-      "puzzlesSolved": 7,
-      "solveRate": 1.0,
+      "puzzlesSolved": 8,
+      "solveRate": 1.1428571428571428,
       "firstAppearance": "August 2025"
     },
     {
@@ -83223,7 +83253,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 9
+      "solvers": 21
     }
   ],
   "solversGrowth": [
@@ -83805,7 +83835,7 @@
     },
     {
       "month": "Mar 2026",
-      "totalSolvers": 13796
+      "totalSolvers": 13801
     }
   ],
   "mostSolvedPuzzles": [
@@ -83933,7 +83963,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 9,
+    "solverCount": 21,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -83970,8 +84000,56 @@
       {
         "solver": "Theodoros Eleftheriou",
         "timestamp": "2026-03-05T12:13:06.160562+00:00"
+      },
+      {
+        "solver": "Andre Emery",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "Gareth White",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "John",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "ZM",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "Sanjeeva Rao Peela",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "Cameron Jeffery",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "Jackson La Vallee",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "Choijilsuren Natsagdorj",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "Kibria Awais",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "Matteo Dagos + Matteo G. + sebgg",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "Jake Mallen",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "",
+        "timestamp": "2026-03-06T12:11:15.893903+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-05T12:13:06.312466+00:00"
+  "generatedAt": "2026-03-06T12:11:16.053144+00:00"
 }
