@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 145,
-  "uniqueSolvers": 13801,
+  "uniqueSolvers": 13803,
   "solverDistribution": {
-    "onePuzzle": 10275,
+    "onePuzzle": 10277,
     "twoToNine": 3286,
     "tenPlus": 240
   },
@@ -698,12 +698,6 @@
       "lastSolve": "May 2023"
     },
     {
-      "name": "",
-      "puzzlesSolved": 13,
-      "firstAppearance": "August 2021",
-      "lastSolve": "March 2026"
-    },
-    {
       "name": "Takaki Oshima",
       "puzzlesSolved": 13,
       "firstAppearance": "September 2019",
@@ -911,6 +905,12 @@
       "name": "Tongyang Song",
       "puzzlesSolved": 12,
       "firstAppearance": "July 2020",
+      "lastSolve": "December 2025"
+    },
+    {
+      "name": "",
+      "puzzlesSolved": 12,
+      "firstAppearance": "August 2021",
       "lastSolve": "December 2025"
     },
     {
@@ -21213,6 +21213,18 @@
     },
     {
       "name": "Matteo Dagos + Matteo G. + sebgg",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Joydeep Datta",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Srinjan",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
       "lastSolve": "March 2026"
@@ -83253,7 +83265,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 21
+      "solvers": 22
     }
   ],
   "solversGrowth": [
@@ -83835,7 +83847,7 @@
     },
     {
       "month": "Mar 2026",
-      "totalSolvers": 13801
+      "totalSolvers": 13803
     }
   ],
   "mostSolvedPuzzles": [
@@ -83963,7 +83975,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 21,
+    "solverCount": 22,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84048,8 +84060,16 @@
       {
         "solver": "",
         "timestamp": "2026-03-06T12:11:15.893903+00:00"
+      },
+      {
+        "solver": "Joydeep Datta",
+        "timestamp": "2026-03-07T12:08:29.503535+00:00"
+      },
+      {
+        "solver": "Srinjan",
+        "timestamp": "2026-03-07T12:08:29.503535+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-06T12:11:16.053144+00:00"
+  "generatedAt": "2026-03-07T12:08:29.700706+00:00"
 }
