@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 145,
-  "uniqueSolvers": 13803,
+  "uniqueSolvers": 13806,
   "solverDistribution": {
-    "onePuzzle": 10277,
-    "twoToNine": 3286,
+    "onePuzzle": 10279,
+    "twoToNine": 3287,
     "tenPlus": 240
   },
   "topSolvers": [
@@ -86,15 +86,15 @@
       "lastSolve": "December 2025"
     },
     {
+      "name": "Josh Richman",
+      "puzzlesSolved": 33,
+      "firstAppearance": "December 2022",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Danica Xiong",
       "puzzlesSolved": 33,
       "firstAppearance": "May 2023",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Josh Richman",
-      "puzzlesSolved": 32,
-      "firstAppearance": "December 2022",
       "lastSolve": "February 2026"
     },
     {
@@ -698,6 +698,12 @@
       "lastSolve": "May 2023"
     },
     {
+      "name": "",
+      "puzzlesSolved": 13,
+      "firstAppearance": "August 2021",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Takaki Oshima",
       "puzzlesSolved": 13,
       "firstAppearance": "September 2019",
@@ -905,12 +911,6 @@
       "name": "Tongyang Song",
       "puzzlesSolved": 12,
       "firstAppearance": "July 2020",
-      "lastSolve": "December 2025"
-    },
-    {
-      "name": "",
-      "puzzlesSolved": 12,
-      "firstAppearance": "August 2021",
       "lastSolve": "December 2025"
     },
     {
@@ -10859,6 +10859,12 @@
       "name": "Daniel Shields",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "ML",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2021",
       "lastSolve": "March 2026"
     },
     {
@@ -21225,6 +21231,24 @@
     },
     {
       "name": "Srinjan",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Garrett",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Sijelmassi Iliass",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "borek",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
       "lastSolve": "March 2026"
@@ -72638,12 +72662,6 @@
       "lastSolve": "February 2021"
     },
     {
-      "name": "ML",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2021",
-      "lastSolve": "February 2021"
-    },
-    {
       "name": "Igor Magalhaes",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2021",
@@ -83265,7 +83283,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 22
+      "solvers": 28
     }
   ],
   "solversGrowth": [
@@ -83847,7 +83865,7 @@
     },
     {
       "month": "Mar 2026",
-      "totalSolvers": 13803
+      "totalSolvers": 13806
     }
   ],
   "mostSolvedPuzzles": [
@@ -83975,7 +83993,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 22,
+    "solverCount": 28,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84068,8 +84086,28 @@
       {
         "solver": "Srinjan",
         "timestamp": "2026-03-07T12:08:29.503535+00:00"
+      },
+      {
+        "solver": "Josh Richman",
+        "timestamp": "2026-03-09T12:12:56.334617+00:00"
+      },
+      {
+        "solver": "Garrett",
+        "timestamp": "2026-03-09T12:12:56.334617+00:00"
+      },
+      {
+        "solver": "Sijelmassi Iliass",
+        "timestamp": "2026-03-09T12:12:56.334617+00:00"
+      },
+      {
+        "solver": "ML",
+        "timestamp": "2026-03-09T12:12:56.334617+00:00"
+      },
+      {
+        "solver": "borek",
+        "timestamp": "2026-03-09T12:12:56.334617+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-08T12:08:35.641392+00:00"
+  "generatedAt": "2026-03-09T12:12:56.489252+00:00"
 }
