@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 145,
-  "uniqueSolvers": 13806,
+  "uniqueSolvers": 13807,
   "solverDistribution": {
     "onePuzzle": 10279,
-    "twoToNine": 3287,
+    "twoToNine": 3288,
     "tenPlus": 240
   },
   "topSolvers": [
@@ -86,16 +86,16 @@
       "lastSolve": "December 2025"
     },
     {
+      "name": "Danica Xiong",
+      "puzzlesSolved": 34,
+      "firstAppearance": "May 2023",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Josh Richman",
       "puzzlesSolved": 33,
       "firstAppearance": "December 2022",
       "lastSolve": "March 2026"
-    },
-    {
-      "name": "Danica Xiong",
-      "puzzlesSolved": 33,
-      "firstAppearance": "May 2023",
-      "lastSolve": "February 2026"
     },
     {
       "name": "Michael DeLyser",
@@ -698,12 +698,6 @@
       "lastSolve": "May 2023"
     },
     {
-      "name": "",
-      "puzzlesSolved": 13,
-      "firstAppearance": "August 2021",
-      "lastSolve": "March 2026"
-    },
-    {
       "name": "Takaki Oshima",
       "puzzlesSolved": 13,
       "firstAppearance": "September 2019",
@@ -911,6 +905,12 @@
       "name": "Tongyang Song",
       "puzzlesSolved": 12,
       "firstAppearance": "July 2020",
+      "lastSolve": "December 2025"
+    },
+    {
+      "name": "",
+      "puzzlesSolved": 12,
+      "firstAppearance": "August 2021",
       "lastSolve": "December 2025"
     },
     {
@@ -1700,6 +1700,12 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "IMW",
+      "puzzlesSolved": 8,
+      "firstAppearance": "July 2025",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Kristjan Solmann",
       "puzzlesSolved": 8,
       "firstAppearance": "December 2024",
@@ -2192,6 +2198,12 @@
       "lastSolve": "October 2017"
     },
     {
+      "name": "Yun Han",
+      "puzzlesSolved": 7,
+      "firstAppearance": "October 2024",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Noah Butler",
       "puzzlesSolved": 7,
       "firstAppearance": "June 2024",
@@ -2244,12 +2256,6 @@
       "puzzlesSolved": 7,
       "firstAppearance": "May 2024",
       "lastSolve": "February 2026"
-    },
-    {
-      "name": "IMW",
-      "puzzlesSolved": 7,
-      "firstAppearance": "July 2025",
-      "lastSolve": "January 2026"
     },
     {
       "name": "Mediha Meltem Limon",
@@ -2771,12 +2777,6 @@
       "name": "Joey Allcock",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2025",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Yun Han",
-      "puzzlesSolved": 6,
-      "firstAppearance": "October 2024",
       "lastSolve": "February 2026"
     },
     {
@@ -6926,6 +6926,12 @@
       "lastSolve": "February 2016"
     },
     {
+      "name": "vich",
+      "puzzlesSolved": 3,
+      "firstAppearance": "March 2025",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Douglas Bruce",
       "puzzlesSolved": 3,
       "firstAppearance": "November 2025",
@@ -10868,6 +10874,12 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "Pie854",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Carter Tran",
       "puzzlesSolved": 2,
       "firstAppearance": "December 2025",
@@ -12551,12 +12563,6 @@
       "name": "victorhuang",
       "puzzlesSolved": 2,
       "firstAppearance": "May 2025",
-      "lastSolve": "September 2025"
-    },
-    {
-      "name": "vich",
-      "puzzlesSolved": 2,
-      "firstAppearance": "March 2025",
       "lastSolve": "September 2025"
     },
     {
@@ -21254,6 +21260,12 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "Hao Li",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Dap",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
@@ -22197,12 +22209,6 @@
     },
     {
       "name": "sb2",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Pie854",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -82870,15 +82876,15 @@
       "length": 45
     },
     {
+      "solver": "Danica Xiong",
+      "start": "Dec 2023",
+      "end": "Mar 2026",
+      "length": 28
+    },
+    {
       "solver": "Lazar Ilic",
       "start": "Jan 2024",
       "end": "Mar 2026",
-      "length": 27
-    },
-    {
-      "solver": "Danica Xiong",
-      "start": "Dec 2023",
-      "end": "Feb 2026",
       "length": 27
     },
     {
@@ -82974,6 +82980,12 @@
       "firstAppearance": "August 2025"
     },
     {
+      "solver": "IMW",
+      "puzzlesSolved": 8,
+      "solveRate": 1.0,
+      "firstAppearance": "July 2025"
+    },
+    {
       "solver": "Joshua Kindler",
       "puzzlesSolved": 6,
       "solveRate": 1.0,
@@ -83008,12 +83020,6 @@
       "puzzlesSolved": 3,
       "solveRate": 1.0,
       "firstAppearance": "December 2025"
-    },
-    {
-      "solver": "IMW",
-      "puzzlesSolved": 7,
-      "solveRate": 0.875,
-      "firstAppearance": "July 2025"
     },
     {
       "solver": "Francisco Rodr\u00edguez-Carretero Rold\u00e1n",
@@ -83283,7 +83289,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 28
+      "solvers": 33
     }
   ],
   "solversGrowth": [
@@ -83865,7 +83871,7 @@
     },
     {
       "month": "Mar 2026",
-      "totalSolvers": 13806
+      "totalSolvers": 13807
     }
   ],
   "mostSolvedPuzzles": [
@@ -83993,7 +83999,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 28,
+    "solverCount": 33,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84106,8 +84112,32 @@
       {
         "solver": "borek",
         "timestamp": "2026-03-09T12:12:56.334617+00:00"
+      },
+      {
+        "solver": "Pie854",
+        "timestamp": "2026-03-10T12:12:28.389389+00:00"
+      },
+      {
+        "solver": "vich",
+        "timestamp": "2026-03-10T12:12:28.389389+00:00"
+      },
+      {
+        "solver": "Yun Han",
+        "timestamp": "2026-03-10T12:12:28.389389+00:00"
+      },
+      {
+        "solver": "Danica Xiong",
+        "timestamp": "2026-03-10T12:12:28.389389+00:00"
+      },
+      {
+        "solver": "IMW",
+        "timestamp": "2026-03-10T12:12:28.389389+00:00"
+      },
+      {
+        "solver": "Hao Li",
+        "timestamp": "2026-03-10T12:12:28.389389+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-09T12:12:56.489252+00:00"
+  "generatedAt": "2026-03-10T12:12:28.544475+00:00"
 }
