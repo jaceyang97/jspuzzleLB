@@ -2,8 +2,8 @@
   "totalPuzzles": 145,
   "uniqueSolvers": 13807,
   "solverDistribution": {
-    "onePuzzle": 10279,
-    "twoToNine": 3288,
+    "onePuzzle": 10278,
+    "twoToNine": 3289,
     "tenPlus": 240
   },
   "topSolvers": [
@@ -1064,6 +1064,12 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "Robert Berec",
+      "puzzlesSolved": 11,
+      "firstAppearance": "May 2025",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Kelvin Tse Chak Kwan",
       "puzzlesSolved": 11,
       "firstAppearance": "September 2024",
@@ -1283,12 +1289,6 @@
       "name": "Tomonari Feehan - GT '19",
       "puzzlesSolved": 10,
       "firstAppearance": "October 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Robert Berec",
-      "puzzlesSolved": 10,
-      "firstAppearance": "May 2025",
       "lastSolve": "February 2026"
     },
     {
@@ -2750,6 +2750,12 @@
       "lastSolve": "February 2018"
     },
     {
+      "name": "Max Froomkin",
+      "puzzlesSolved": 6,
+      "firstAppearance": "December 2024",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Joshua Kindler",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2025",
@@ -3896,12 +3902,6 @@
       "lastSolve": "May 2025"
     },
     {
-      "name": "Max Froomkin",
-      "puzzlesSolved": 5,
-      "firstAppearance": "December 2024",
-      "lastSolve": "May 2025"
-    },
-    {
       "name": "Jonah Vanke",
       "puzzlesSolved": 5,
       "firstAppearance": "November 2024",
@@ -4703,6 +4703,12 @@
       "name": "Jette + B\u00e9la Rohloff",
       "puzzlesSolved": 4,
       "firstAppearance": "September 2025",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Hubert Puszklewicz",
+      "puzzlesSolved": 4,
+      "firstAppearance": "June 2025",
       "lastSolve": "March 2026"
     },
     {
@@ -7745,12 +7751,6 @@
       "name": "Tom L",
       "puzzlesSolved": 3,
       "firstAppearance": "October 2024",
-      "lastSolve": "September 2025"
-    },
-    {
-      "name": "Hubert Puszklewicz",
-      "puzzlesSolved": 3,
-      "firstAppearance": "June 2025",
       "lastSolve": "September 2025"
     },
     {
@@ -10877,6 +10877,12 @@
       "name": "Pie854",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "JT",
+      "puzzlesSolved": 2,
+      "firstAppearance": "October 2025",
       "lastSolve": "March 2026"
     },
     {
@@ -29301,12 +29307,6 @@
     },
     {
       "name": "Tarang Pande",
-      "puzzlesSolved": 1,
-      "firstAppearance": "October 2025",
-      "lastSolve": "October 2025"
-    },
-    {
-      "name": "JT",
       "puzzlesSolved": 1,
       "firstAppearance": "October 2025",
       "lastSolve": "October 2025"
@@ -82980,6 +82980,12 @@
       "firstAppearance": "August 2025"
     },
     {
+      "solver": "Robert Berec",
+      "puzzlesSolved": 11,
+      "solveRate": 1.1,
+      "firstAppearance": "May 2025"
+    },
+    {
       "solver": "IMW",
       "puzzlesSolved": 8,
       "solveRate": 1.0,
@@ -83002,12 +83008,6 @@
       "puzzlesSolved": 3,
       "solveRate": 1.0,
       "firstAppearance": "December 2025"
-    },
-    {
-      "solver": "Robert Berec",
-      "puzzlesSolved": 10,
-      "solveRate": 1.0,
-      "firstAppearance": "May 2025"
     },
     {
       "solver": "Frederic Hamelink",
@@ -83289,7 +83289,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 33
+      "solvers": 37
     }
   ],
   "solversGrowth": [
@@ -83999,7 +83999,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 33,
+    "solverCount": 37,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84136,8 +84136,24 @@
       {
         "solver": "Hao Li",
         "timestamp": "2026-03-10T12:12:28.389389+00:00"
+      },
+      {
+        "solver": "Max Froomkin",
+        "timestamp": "2026-03-11T12:13:16.591145+00:00"
+      },
+      {
+        "solver": "JT",
+        "timestamp": "2026-03-11T12:13:16.591145+00:00"
+      },
+      {
+        "solver": "Hubert Puszklewicz",
+        "timestamp": "2026-03-11T12:13:16.591145+00:00"
+      },
+      {
+        "solver": "Robert Berec",
+        "timestamp": "2026-03-11T12:13:16.591145+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-10T12:12:28.544475+00:00"
+  "generatedAt": "2026-03-11T12:13:16.792247+00:00"
 }

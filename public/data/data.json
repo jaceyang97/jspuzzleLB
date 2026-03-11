@@ -36,7 +36,11 @@
       "Yun Han",
       "Danica Xiong",
       "IMW",
-      "Hao Li"
+      "Hao Li",
+      "Max Froomkin",
+      "JT",
+      "Hubert Puszklewicz",
+      "Robert Berec"
     ],
     "solver_timestamps": {
       "Aiden Bailey": "2026-03-05T12:13:06.160562+00:00",
@@ -72,7 +76,11 @@
       "Yun Han": "2026-03-10T12:12:28.389389+00:00",
       "Danica Xiong": "2026-03-10T12:12:28.389389+00:00",
       "IMW": "2026-03-10T12:12:28.389389+00:00",
-      "Hao Li": "2026-03-10T12:12:28.389389+00:00"
+      "Hao Li": "2026-03-10T12:12:28.389389+00:00",
+      "Max Froomkin": "2026-03-11T12:13:16.591145+00:00",
+      "JT": "2026-03-11T12:13:16.591145+00:00",
+      "Hubert Puszklewicz": "2026-03-11T12:13:16.591145+00:00",
+      "Robert Berec": "2026-03-11T12:13:16.591145+00:00"
     },
     "puzzle_id": "2026-03-01-planetary-parade"
   },
