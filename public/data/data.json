@@ -40,7 +40,12 @@
       "Max Froomkin",
       "JT",
       "Hubert Puszklewicz",
-      "Robert Berec"
+      "Robert Berec",
+      "Joshua Kindler",
+      "Eric Chen USC27",
+      "Toby Johnstone",
+      "Utkarsh Gupta",
+      "Atharv Pratap Singh Chauhan"
     ],
     "solver_timestamps": {
       "Aiden Bailey": "2026-03-05T12:13:06.160562+00:00",
@@ -80,7 +85,12 @@
       "Max Froomkin": "2026-03-11T12:13:16.591145+00:00",
       "JT": "2026-03-11T12:13:16.591145+00:00",
       "Hubert Puszklewicz": "2026-03-11T12:13:16.591145+00:00",
-      "Robert Berec": "2026-03-11T12:13:16.591145+00:00"
+      "Robert Berec": "2026-03-11T12:13:16.591145+00:00",
+      "Joshua Kindler": "2026-03-12T12:11:33.373521+00:00",
+      "Eric Chen USC27": "2026-03-12T12:11:33.373521+00:00",
+      "Toby Johnstone": "2026-03-12T12:11:33.373521+00:00",
+      "Utkarsh Gupta": "2026-03-12T12:11:33.373521+00:00",
+      "Atharv Pratap Singh Chauhan": "2026-03-12T12:11:33.373521+00:00"
     },
     "puzzle_id": "2026-03-01-planetary-parade"
   },
