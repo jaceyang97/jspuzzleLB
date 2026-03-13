@@ -11,6 +11,7 @@ import {
   SolverDistributionChart,
   LoadingSpinner,
   StatsCards,
+  NewSolversBanner,
 } from '../features/leaderboard/components';
 
 // Import charts lazily to improve initial load time
@@ -184,7 +185,13 @@ const Leaderboard: React.FC = () => {
           </button>
         </div>
       </header>
-      
+
+      <NewSolversBanner
+        currentPuzzleProgress={data.currentPuzzleProgress}
+        generatedAt={data.generatedAt}
+        monthlyParticipation={data.monthlyParticipation}
+      />
+
       <div className="dashboard-grid four-column">
         <div className="dashboard-item stats-charts-column">
           <StatsCards totalPuzzles={data.totalPuzzles} uniqueSolvers={data.uniqueSolvers} />
