@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 145,
-  "uniqueSolvers": 13808,
+  "uniqueSolvers": 13809,
   "solverDistribution": {
-    "onePuzzle": 10278,
+    "onePuzzle": 10279,
     "twoToNine": 3290,
     "tenPlus": 240
   },
@@ -158,6 +158,12 @@
       "lastSolve": "January 2021"
     },
     {
+      "name": "Brandon Cage",
+      "puzzlesSolved": 25,
+      "firstAppearance": "September 2023",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Will Christerson",
       "puzzlesSolved": 25,
       "firstAppearance": "June 2017",
@@ -174,12 +180,6 @@
       "puzzlesSolved": 25,
       "firstAppearance": "July 2023",
       "lastSolve": "September 2025"
-    },
-    {
-      "name": "Brandon Cage",
-      "puzzlesSolved": 24,
-      "firstAppearance": "September 2023",
-      "lastSolve": "February 2026"
     },
     {
       "name": "fekstr",
@@ -21279,6 +21279,12 @@
     },
     {
       "name": "Atharv Pratap Singh Chauhan",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Miguel Vasconcelos + Alvaro RH",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
       "lastSolve": "March 2026"
@@ -83295,7 +83301,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 42
+      "solvers": 44
     }
   ],
   "solversGrowth": [
@@ -83877,7 +83883,7 @@
     },
     {
       "month": "Mar 2026",
-      "totalSolvers": 13808
+      "totalSolvers": 13809
     }
   ],
   "mostSolvedPuzzles": [
@@ -84005,7 +84011,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 42,
+    "solverCount": 44,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84178,8 +84184,16 @@
       {
         "solver": "Atharv Pratap Singh Chauhan",
         "timestamp": "2026-03-12T12:11:33.373521+00:00"
+      },
+      {
+        "solver": "Miguel Vasconcelos + Alvaro RH",
+        "timestamp": "2026-03-13T12:12:18.173702+00:00"
+      },
+      {
+        "solver": "Brandon Cage",
+        "timestamp": "2026-03-13T12:12:18.173702+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-12T12:11:33.569226+00:00"
+  "generatedAt": "2026-03-13T12:12:18.340360+00:00"
 }
