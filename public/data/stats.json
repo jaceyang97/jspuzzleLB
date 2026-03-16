@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 145,
-  "uniqueSolvers": 13809,
+  "uniqueSolvers": 13811,
   "solverDistribution": {
-    "onePuzzle": 10278,
+    "onePuzzle": 10280,
     "twoToNine": 3291,
     "tenPlus": 240
   },
@@ -320,6 +320,12 @@
       "lastSolve": "January 2023"
     },
     {
+      "name": "Isaac Carruthers",
+      "puzzlesSolved": 19,
+      "firstAppearance": "January 2023",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Georgy Bulgakov",
       "puzzlesSolved": 19,
       "firstAppearance": "March 2023",
@@ -383,12 +389,6 @@
       "name": "Stephen Ebert",
       "puzzlesSolved": 18,
       "firstAppearance": "July 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Isaac Carruthers",
-      "puzzlesSolved": 18,
-      "firstAppearance": "January 2023",
       "lastSolve": "February 2026"
     },
     {
@@ -21291,6 +21291,18 @@
     },
     {
       "name": "Miguel Vasconcelos + Alvaro RH",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Rehaan Mundy + Medha Mehra",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Faty",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
       "lastSolve": "March 2026"
@@ -83301,7 +83313,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 47
+      "solvers": 50
     }
   ],
   "solversGrowth": [
@@ -83883,7 +83895,7 @@
     },
     {
       "month": "Mar 2026",
-      "totalSolvers": 13809
+      "totalSolvers": 13811
     }
   ],
   "mostSolvedPuzzles": [
@@ -84011,7 +84023,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 47,
+    "solverCount": 50,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84204,8 +84216,20 @@
       {
         "solver": "Andre Riva",
         "timestamp": "2026-03-14T12:08:56.328440+00:00"
+      },
+      {
+        "solver": "Isaac Carruthers",
+        "timestamp": "2026-03-16T12:18:21.562242+00:00"
+      },
+      {
+        "solver": "Rehaan Mundy + Medha Mehra",
+        "timestamp": "2026-03-16T12:18:21.562242+00:00"
+      },
+      {
+        "solver": "Faty",
+        "timestamp": "2026-03-16T12:18:21.562242+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-15T12:10:40.339739+00:00"
+  "generatedAt": "2026-03-16T12:18:21.718823+00:00"
 }
