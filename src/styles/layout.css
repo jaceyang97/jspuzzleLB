@@ -30,8 +30,11 @@
 
 .dashboard-item {
   background-color: var(--bg-secondary);
-  border-radius: 4px;
-  box-shadow: 0 1px 3px var(--shadow-md);
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 1px var(--shadow-sm),
+    0 1px 3px var(--shadow-sm),
+    0 4px 8px var(--shadow-sm);
   padding: 12px;
   overflow: hidden;
   display: flex;
@@ -72,6 +75,8 @@
   width: 70px;
   margin-right: 18px;
   object-fit: contain;
+  outline: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
 }
 
 .logo-link {
@@ -93,6 +98,7 @@
   display: flex;
   align-items: center;
   line-height: 1.1;
+  text-wrap: balance;
 }
 
 .title-bold {
@@ -157,9 +163,16 @@
   cursor: pointer;
   font-size: 16px;
   line-height: 1;
-  padding: 0 2px;
+  padding: 0;
   margin-left: 4px;
   transition: color 0.2s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 6px;
 }
 
 .banner-dismiss:hover {

@@ -181,7 +181,14 @@ const Leaderboard: React.FC = () => {
             title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
-            {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+            <span className="theme-icon-wrapper">
+              <span className={`theme-icon ${theme === 'light' ? 'active' : 'inactive'}`}>
+                <MoonIcon />
+              </span>
+              <span className={`theme-icon ${theme === 'dark' ? 'active' : 'inactive'}`}>
+                <SunIcon />
+              </span>
+            </span>
           </button>
         </div>
       </header>
