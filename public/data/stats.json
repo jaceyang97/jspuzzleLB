@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 145,
-  "uniqueSolvers": 13811,
+  "uniqueSolvers": 13813,
   "solverDistribution": {
-    "onePuzzle": 10280,
-    "twoToNine": 3291,
+    "onePuzzle": 10281,
+    "twoToNine": 3292,
     "tenPlus": 240
   },
   "topSolvers": [
@@ -2762,6 +2762,12 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "Frederic Hamelink",
+      "puzzlesSolved": 6,
+      "firstAppearance": "October 2025",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Joel Pulikkan",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2025",
@@ -3581,12 +3587,6 @@
       "name": "Chris Yi",
       "puzzlesSolved": 5,
       "firstAppearance": "July 2023",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Frederic Hamelink",
-      "puzzlesSolved": 5,
-      "firstAppearance": "October 2025",
       "lastSolve": "February 2026"
     },
     {
@@ -4709,6 +4709,12 @@
       "name": "Hubert Puszklewicz",
       "puzzlesSolved": 4,
       "firstAppearance": "June 2025",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Denis Borisov",
+      "puzzlesSolved": 4,
+      "firstAppearance": "March 2025",
       "lastSolve": "March 2026"
     },
     {
@@ -7223,12 +7229,6 @@
       "name": "Anshul Agarwal",
       "puzzlesSolved": 3,
       "firstAppearance": "August 2025",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Denis Borisov",
-      "puzzlesSolved": 3,
-      "firstAppearance": "March 2025",
       "lastSolve": "February 2026"
     },
     {
@@ -10907,6 +10907,12 @@
       "name": "Davi Hasuda",
       "puzzlesSolved": 2,
       "firstAppearance": "December 2025",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "mniip",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
       "lastSolve": "March 2026"
     },
     {
@@ -21308,6 +21314,18 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "Jus",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Justin Graham",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Dap",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
@@ -21327,12 +21345,6 @@
     },
     {
       "name": "Lee Eisenberg",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "mniip",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -83004,6 +83016,12 @@
       "firstAppearance": "January 2026"
     },
     {
+      "solver": "Frederic Hamelink",
+      "puzzlesSolved": 6,
+      "solveRate": 1.2,
+      "firstAppearance": "October 2025"
+    },
+    {
       "solver": "Joshua Kindler",
       "puzzlesSolved": 7,
       "solveRate": 1.1666666666666667,
@@ -83038,12 +83056,6 @@
       "puzzlesSolved": 3,
       "solveRate": 1.0,
       "firstAppearance": "December 2025"
-    },
-    {
-      "solver": "Frederic Hamelink",
-      "puzzlesSolved": 5,
-      "solveRate": 1.0,
-      "firstAppearance": "October 2025"
     },
     {
       "solver": "Achintya Paningapalli",
@@ -83313,7 +83325,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 50
+      "solvers": 55
     }
   ],
   "solversGrowth": [
@@ -83895,7 +83907,7 @@
     },
     {
       "month": "Mar 2026",
-      "totalSolvers": 13811
+      "totalSolvers": 13813
     }
   ],
   "mostSolvedPuzzles": [
@@ -84023,7 +84035,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 50,
+    "solverCount": 55,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84228,8 +84240,28 @@
       {
         "solver": "Faty",
         "timestamp": "2026-03-16T12:18:21.562242+00:00"
+      },
+      {
+        "solver": "Jus",
+        "timestamp": "2026-03-17T12:17:22.641674+00:00"
+      },
+      {
+        "solver": "Justin Graham",
+        "timestamp": "2026-03-17T12:17:22.641674+00:00"
+      },
+      {
+        "solver": "mniip",
+        "timestamp": "2026-03-17T12:17:22.641674+00:00"
+      },
+      {
+        "solver": "Frederic Hamelink",
+        "timestamp": "2026-03-17T12:17:22.641674+00:00"
+      },
+      {
+        "solver": "Denis Borisov",
+        "timestamp": "2026-03-17T12:17:22.641674+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-16T12:18:21.718823+00:00"
+  "generatedAt": "2026-03-17T12:17:22.981686+00:00"
 }
