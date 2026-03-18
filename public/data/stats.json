@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 145,
-  "uniqueSolvers": 13813,
+  "uniqueSolvers": 13816,
   "solverDistribution": {
-    "onePuzzle": 10281,
-    "twoToNine": 3292,
+    "onePuzzle": 10282,
+    "twoToNine": 3294,
     "tenPlus": 240
   },
   "topSolvers": [
@@ -27,9 +27,9 @@
     },
     {
       "name": "Aaditya Raghavan",
-      "puzzlesSolved": 60,
+      "puzzlesSolved": 61,
       "firstAppearance": "April 2020",
-      "lastSolve": "February 2026"
+      "lastSolve": "March 2026"
     },
     {
       "name": "Sean Egan",
@@ -10916,6 +10916,18 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "Jan Ondras",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Marianna Sykopetritou",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Carter Tran",
       "puzzlesSolved": 2,
       "firstAppearance": "December 2025",
@@ -21326,6 +21338,24 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "Samvit Shandilya",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Yash Modi",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Coll",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Dap",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
@@ -22994,12 +23024,6 @@
       "lastSolve": "February 2026"
     },
     {
-      "name": "Marianna Sykopetritou",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
       "name": "Bohan Wang",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
@@ -23553,12 +23577,6 @@
     },
     {
       "name": "Dan Liu",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Jan Ondras",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -82908,8 +82926,8 @@
     {
       "solver": "Aaditya Raghavan",
       "start": "Jun 2022",
-      "end": "Feb 2026",
-      "length": 45
+      "end": "Mar 2026",
+      "length": 46
     },
     {
       "solver": "Danica Xiong",
@@ -83325,7 +83343,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 55
+      "solvers": 61
     }
   ],
   "solversGrowth": [
@@ -83907,7 +83925,7 @@
     },
     {
       "month": "Mar 2026",
-      "totalSolvers": 13813
+      "totalSolvers": 13816
     }
   ],
   "mostSolvedPuzzles": [
@@ -84035,7 +84053,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 55,
+    "solverCount": 61,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84260,8 +84278,32 @@
       {
         "solver": "Denis Borisov",
         "timestamp": "2026-03-17T12:17:22.641674+00:00"
+      },
+      {
+        "solver": "Jan Ondras",
+        "timestamp": "2026-03-18T12:18:18.265727+00:00"
+      },
+      {
+        "solver": "Marianna Sykopetritou",
+        "timestamp": "2026-03-18T12:18:18.265727+00:00"
+      },
+      {
+        "solver": "Samvit Shandilya",
+        "timestamp": "2026-03-18T12:18:18.265727+00:00"
+      },
+      {
+        "solver": "Yash Modi",
+        "timestamp": "2026-03-18T12:18:18.265727+00:00"
+      },
+      {
+        "solver": "Coll",
+        "timestamp": "2026-03-18T12:18:18.265727+00:00"
+      },
+      {
+        "solver": "Aaditya Raghavan",
+        "timestamp": "2026-03-18T12:18:18.265727+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-17T12:17:22.981686+00:00"
+  "generatedAt": "2026-03-18T12:18:18.439923+00:00"
 }
