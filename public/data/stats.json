@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 145,
-  "uniqueSolvers": 13818,
+  "uniqueSolvers": 13819,
   "solverDistribution": {
-    "onePuzzle": 10283,
+    "onePuzzle": 10284,
     "twoToNine": 3295,
     "tenPlus": 240
   },
@@ -21369,6 +21369,12 @@
     },
     {
       "name": "Seulig",
+      "puzzlesSolved": 1,
+      "firstAppearance": "March 2026",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Anirudh Sunil + Krish Yadav",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
       "lastSolve": "March 2026"
@@ -83355,7 +83361,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 65
+      "solvers": 66
     }
   ],
   "solversGrowth": [
@@ -83937,7 +83943,7 @@
     },
     {
       "month": "Mar 2026",
-      "totalSolvers": 13818
+      "totalSolvers": 13819
     }
   ],
   "mostSolvedPuzzles": [
@@ -84065,7 +84071,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 65,
+    "solverCount": 66,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84330,8 +84336,12 @@
       {
         "solver": "Seulig",
         "timestamp": "2026-03-19T12:13:18.669002+00:00"
+      },
+      {
+        "solver": "Anirudh Sunil + Krish Yadav",
+        "timestamp": "2026-03-20T12:11:54.291070+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-19T12:13:18.822768+00:00"
+  "generatedAt": "2026-03-20T12:11:54.440884+00:00"
 }
