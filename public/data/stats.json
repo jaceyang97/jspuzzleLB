@@ -2,8 +2,8 @@
   "totalPuzzles": 145,
   "uniqueSolvers": 13820,
   "solverDistribution": {
-    "onePuzzle": 10285,
-    "twoToNine": 3295,
+    "onePuzzle": 10284,
+    "twoToNine": 3296,
     "tenPlus": 240
   },
   "topSolvers": [
@@ -2768,6 +2768,12 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "Sebastian Stroppel",
+      "puzzlesSolved": 6,
+      "firstAppearance": "July 2025",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Joel Pulikkan",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2025",
@@ -3623,12 +3629,6 @@
       "name": "Terence Zeng",
       "puzzlesSolved": 5,
       "firstAppearance": "May 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Sebastian Stroppel",
-      "puzzlesSolved": 5,
-      "firstAppearance": "July 2025",
       "lastSolve": "February 2026"
     },
     {
@@ -10931,6 +10931,12 @@
       "name": "Jackie Zhang",
       "puzzlesSolved": 2,
       "firstAppearance": "August 2025",
+      "lastSolve": "March 2026"
+    },
+    {
+      "name": "Andrei Levin",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
       "lastSolve": "March 2026"
     },
     {
@@ -23181,12 +23187,6 @@
     },
     {
       "name": "Robert P. P. McKone",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Andrei Levin",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -83367,7 +83367,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 67
+      "solvers": 69
     }
   ],
   "solversGrowth": [
@@ -84077,7 +84077,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 67,
+    "solverCount": 69,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84350,8 +84350,16 @@
       {
         "solver": "Jeet Vyas",
         "timestamp": "2026-03-23T12:17:07.961087+00:00"
+      },
+      {
+        "solver": "Andrei Levin",
+        "timestamp": "2026-03-24T12:18:01.400920+00:00"
+      },
+      {
+        "solver": "Sebastian Stroppel",
+        "timestamp": "2026-03-24T12:18:01.400920+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-23T12:17:08.105810+00:00"
+  "generatedAt": "2026-03-24T12:18:01.551958+00:00"
 }
