@@ -2210,6 +2210,12 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "PJS",
+      "puzzlesSolved": 7,
+      "firstAppearance": "June 2025",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "Noah Butler",
       "puzzlesSolved": 7,
       "firstAppearance": "June 2024",
@@ -2909,12 +2915,6 @@
       "name": "Kunal Singhal",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2018",
-      "lastSolve": "December 2025"
-    },
-    {
-      "name": "PJS",
-      "puzzlesSolved": 6,
-      "firstAppearance": "June 2025",
       "lastSolve": "December 2025"
     },
     {
@@ -83367,7 +83367,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 69
+      "solvers": 70
     }
   ],
   "solversGrowth": [
@@ -84077,7 +84077,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 69,
+    "solverCount": 70,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84358,8 +84358,12 @@
       {
         "solver": "Sebastian Stroppel",
         "timestamp": "2026-03-24T12:18:01.400920+00:00"
+      },
+      {
+        "solver": "PJS",
+        "timestamp": "2026-03-25T12:16:58.301673+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-24T12:18:01.551958+00:00"
+  "generatedAt": "2026-03-25T12:16:58.450418+00:00"
 }
