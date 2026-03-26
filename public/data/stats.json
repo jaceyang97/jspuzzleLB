@@ -51,9 +51,9 @@
     },
     {
       "name": "Evan Semet",
-      "puzzlesSolved": 52,
+      "puzzlesSolved": 53,
       "firstAppearance": "November 2021",
-      "lastSolve": "February 2026"
+      "lastSolve": "March 2026"
     },
     {
       "name": "Keith Schneider",
@@ -4718,6 +4718,12 @@
       "lastSolve": "March 2026"
     },
     {
+      "name": "Carl K",
+      "puzzlesSolved": 4,
+      "firstAppearance": "April 2024",
+      "lastSolve": "March 2026"
+    },
+    {
       "name": "James Leach",
       "puzzlesSolved": 4,
       "firstAppearance": "November 2021",
@@ -7697,12 +7703,6 @@
       "name": "Vraj Shah",
       "puzzlesSolved": 3,
       "firstAppearance": "March 2025",
-      "lastSolve": "October 2025"
-    },
-    {
-      "name": "Carl K",
-      "puzzlesSolved": 3,
-      "firstAppearance": "April 2024",
       "lastSolve": "October 2025"
     },
     {
@@ -82938,8 +82938,8 @@
     {
       "solver": "Evan Semet",
       "start": "Nov 2021",
-      "end": "Feb 2026",
-      "length": 52
+      "end": "Mar 2026",
+      "length": 53
     },
     {
       "solver": "Senthil Rajasekaran",
@@ -83367,7 +83367,7 @@
     },
     {
       "month": "Mar 2026",
-      "solvers": 70
+      "solvers": 72
     }
   ],
   "solversGrowth": [
@@ -84077,7 +84077,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Planetary Parade",
     "puzzleDate": "March 2026",
-    "solverCount": 70,
+    "solverCount": 72,
     "timeline": [
       {
         "solver": "Aiden Bailey",
@@ -84362,8 +84362,16 @@
       {
         "solver": "PJS",
         "timestamp": "2026-03-25T12:16:58.301673+00:00"
+      },
+      {
+        "solver": "Carl K",
+        "timestamp": "2026-03-26T12:20:38.694961+00:00"
+      },
+      {
+        "solver": "Evan Semet",
+        "timestamp": "2026-03-26T12:20:38.694961+00:00"
       }
     ]
   },
-  "generatedAt": "2026-03-25T12:16:58.450418+00:00"
+  "generatedAt": "2026-03-26T12:20:38.849493+00:00"
 }
