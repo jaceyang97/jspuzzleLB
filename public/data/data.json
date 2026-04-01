@@ -1,8 +1,16 @@
 [
   {
+    "date_text": "April 2026",
+    "name": "Can U Dig It?",
+    "solution_url": "",
+    "solvers": [],
+    "solver_timestamps": {},
+    "puzzle_id": "2026-04-01-can-u-dig-it"
+  },
+  {
     "date_text": "March 2026",
     "name": "Planetary Parade",
-    "solution_url": "",
+    "solution_url": "https://www.janestreet.com/puzzles/planetary-parade-solution",
     "solvers": [
       "Aiden Bailey",
       "Lazar Ilic",
@@ -89,7 +97,10 @@
       "Edgar Gonzalez Gascou",
       "Stephen Ebert",
       "Angus King",
-      "poduval"
+      "poduval",
+      "Hao-Yu Sun",
+      "Adrien Servière",
+      "Jagraj Kahlon"
     ],
     "solver_timestamps": {
       "Aiden Bailey": "2026-03-05T12:13:06.160562+00:00",
@@ -178,9 +189,11 @@
       "Edgar Gonzalez Gascou": "2026-03-31T12:20:27.054650+00:00",
       "Stephen Ebert": "2026-03-31T12:20:27.054650+00:00",
       "Angus King": "2026-03-31T12:20:27.054650+00:00",
-      "poduval": "2026-03-31T12:20:27.054650+00:00"
-    },
-    "puzzle_id": "2026-03-01-planetary-parade"
+      "poduval": "2026-03-31T12:20:27.054650+00:00",
+      "Hao-Yu Sun": "2026-04-01T12:20:46.771942+00:00",
+      "Adrien Servière": "2026-04-01T12:20:46.771942+00:00",
+      "Jagraj Kahlon": "2026-04-01T12:20:46.771942+00:00"
+    }
   },
   {
     "date_text": "February 2026",
