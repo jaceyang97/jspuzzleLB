@@ -3,8 +3,18 @@
     "date_text": "April 2026",
     "name": "Can U Dig It?",
     "solution_url": "",
-    "solvers": [],
-    "solver_timestamps": {},
+    "solvers": [
+      "Rahid Z.",
+      "Jeremy Yap",
+      "riddlers",
+      "Danica Xiong"
+    ],
+    "solver_timestamps": {
+      "Rahid Z.": "2026-04-03T12:14:57.209280+00:00",
+      "Jeremy Yap": "2026-04-03T12:14:57.209280+00:00",
+      "riddlers": "2026-04-03T12:14:57.209280+00:00",
+      "Danica Xiong": "2026-04-03T12:14:57.209280+00:00"
+    },
     "puzzle_id": "2026-04-01-can-u-dig-it"
   },
   {
