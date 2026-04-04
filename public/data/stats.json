@@ -93,9 +93,9 @@
     },
     {
       "name": "Josh Richman",
-      "puzzlesSolved": 33,
+      "puzzlesSolved": 34,
       "firstAppearance": "December 2022",
-      "lastSolve": "March 2026"
+      "lastSolve": "April 2026"
     },
     {
       "name": "Michael DeLyser",
@@ -83413,7 +83413,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 4
+      "solvers": 5
     }
   ],
   "solversGrowth": [
@@ -84127,7 +84127,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 4,
+    "solverCount": 5,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84144,8 +84144,12 @@
       {
         "solver": "Danica Xiong",
         "timestamp": "2026-04-03T12:14:57.209280+00:00"
+      },
+      {
+        "solver": "Josh Richman",
+        "timestamp": "2026-04-04T12:11:39.340041+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-03T12:14:57.360404+00:00"
+  "generatedAt": "2026-04-04T12:11:39.490380+00:00"
 }
