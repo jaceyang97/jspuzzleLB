@@ -2,8 +2,8 @@
   "totalPuzzles": 146,
   "uniqueSolvers": 13827,
   "solverDistribution": {
-    "onePuzzle": 10288,
-    "twoToNine": 3299,
+    "onePuzzle": 10287,
+    "twoToNine": 3300,
     "tenPlus": 240
   },
   "topSolvers": [
@@ -27,9 +27,9 @@
     },
     {
       "name": "Aaditya Raghavan",
-      "puzzlesSolved": 61,
+      "puzzlesSolved": 62,
       "firstAppearance": "April 2020",
-      "lastSolve": "March 2026"
+      "lastSolve": "April 2026"
     },
     {
       "name": "Sean Egan",
@@ -398,6 +398,12 @@
       "lastSolve": "January 2022"
     },
     {
+      "name": "Jackson La Vallee",
+      "puzzlesSolved": 18,
+      "firstAppearance": "November 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Josh Silverman",
       "puzzlesSolved": 18,
       "firstAppearance": "June 2021",
@@ -444,12 +450,6 @@
       "puzzlesSolved": 18,
       "firstAppearance": "May 2019",
       "lastSolve": "October 2021"
-    },
-    {
-      "name": "Jackson La Vallee",
-      "puzzlesSolved": 17,
-      "firstAppearance": "November 2024",
-      "lastSolve": "March 2026"
     },
     {
       "name": "Rub\u00e9n M.I",
@@ -1454,6 +1454,18 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Martin Thorne",
+      "puzzlesSolved": 9,
+      "firstAppearance": "October 2024",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Kibria Awais",
+      "puzzlesSolved": 9,
+      "firstAppearance": "August 2025",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Andre Riva",
       "puzzlesSolved": 9,
       "firstAppearance": "April 2025",
@@ -1712,12 +1724,6 @@
       "lastSolve": "November 2017"
     },
     {
-      "name": "Kibria Awais",
-      "puzzlesSolved": 8,
-      "firstAppearance": "August 2025",
-      "lastSolve": "March 2026"
-    },
-    {
       "name": "IMW",
       "puzzlesSolved": 8,
       "firstAppearance": "July 2025",
@@ -1769,12 +1775,6 @@
       "name": "Harry Jenkins",
       "puzzlesSolved": 8,
       "firstAppearance": "September 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Martin Thorne",
-      "puzzlesSolved": 8,
-      "firstAppearance": "October 2024",
       "lastSolve": "February 2026"
     },
     {
@@ -10872,6 +10872,12 @@
       "puzzlesSolved": 3,
       "firstAppearance": "December 2015",
       "lastSolve": "March 2016"
+    },
+    {
+      "name": "ZM",
+      "puzzlesSolved": 2,
+      "firstAppearance": "March 2026",
+      "lastSolve": "April 2026"
     },
     {
       "name": "Utkarsh Naman",
@@ -21279,12 +21285,6 @@
     },
     {
       "name": "John",
-      "puzzlesSolved": 1,
-      "firstAppearance": "March 2026",
-      "lastSolve": "March 2026"
-    },
-    {
-      "name": "ZM",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
       "lastSolve": "March 2026"
@@ -82992,8 +82992,8 @@
     {
       "solver": "Aaditya Raghavan",
       "start": "Jun 2022",
-      "end": "Mar 2026",
-      "length": 46
+      "end": "Apr 2026",
+      "length": 47
     },
     {
       "solver": "Danica Xiong",
@@ -83044,15 +83044,15 @@
       "length": 18
     },
     {
+      "solver": "Jackson La Vallee",
+      "start": "Nov 2024",
+      "end": "Apr 2026",
+      "length": 18
+    },
+    {
       "solver": "Miguel Barbosa Pereira",
       "start": "Aug 2024",
       "end": "Dec 2025",
-      "length": 17
-    },
-    {
-      "solver": "Jackson La Vallee",
-      "start": "Nov 2024",
-      "end": "Mar 2026",
       "length": 17
     },
     {
@@ -83095,8 +83095,8 @@
   "risingStars": [
     {
       "solver": "Kibria Awais",
-      "puzzlesSolved": 8,
-      "solveRate": 1.0,
+      "puzzlesSolved": 9,
+      "solveRate": 1.125,
       "firstAppearance": "August 2025"
     },
     {
@@ -83413,7 +83413,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 5
+      "solvers": 10
     }
   ],
   "solversGrowth": [
@@ -84127,7 +84127,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 5,
+    "solverCount": 10,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84148,8 +84148,28 @@
       {
         "solver": "Josh Richman",
         "timestamp": "2026-04-04T12:11:39.340041+00:00"
+      },
+      {
+        "solver": "Martin Thorne",
+        "timestamp": "2026-04-05T12:12:09.617518+00:00"
+      },
+      {
+        "solver": "Jackson La Vallee",
+        "timestamp": "2026-04-05T12:12:09.617518+00:00"
+      },
+      {
+        "solver": "Aaditya Raghavan",
+        "timestamp": "2026-04-05T12:12:09.617518+00:00"
+      },
+      {
+        "solver": "Kibria Awais",
+        "timestamp": "2026-04-05T12:12:09.617518+00:00"
+      },
+      {
+        "solver": "ZM",
+        "timestamp": "2026-04-05T12:12:09.617518+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-04T12:11:39.490380+00:00"
+  "generatedAt": "2026-04-05T12:12:09.774178+00:00"
 }
