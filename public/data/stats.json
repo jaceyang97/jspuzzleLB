@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13830,
+  "uniqueSolvers": 13832,
   "solverDistribution": {
-    "onePuzzle": 10290,
+    "onePuzzle": 10292,
     "twoToNine": 3300,
     "tenPlus": 240
   },
@@ -39,9 +39,9 @@
     },
     {
       "name": "Lazar Ilic",
-      "puzzlesSolved": 56,
+      "puzzlesSolved": 57,
       "firstAppearance": "October 2020",
-      "lastSolve": "March 2026"
+      "lastSolve": "April 2026"
     },
     {
       "name": "Gareth Owen",
@@ -662,6 +662,18 @@
       "lastSolve": "September 2019"
     },
     {
+      "name": "Shea Greenberg",
+      "puzzlesSolved": 14,
+      "firstAppearance": "October 2022",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Jon Ander",
+      "puzzlesSolved": 14,
+      "firstAppearance": "January 2025",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Jagraj Kahlon",
       "puzzlesSolved": 14,
       "firstAppearance": "August 2024",
@@ -716,12 +728,6 @@
       "lastSolve": "February 2026"
     },
     {
-      "name": "Jon Ander",
-      "puzzlesSolved": 13,
-      "firstAppearance": "January 2025",
-      "lastSolve": "February 2026"
-    },
-    {
       "name": "Mason Dowsett",
       "puzzlesSolved": 13,
       "firstAppearance": "August 2024",
@@ -768,12 +774,6 @@
       "puzzlesSolved": 13,
       "firstAppearance": "October 2021",
       "lastSolve": "October 2025"
-    },
-    {
-      "name": "Shea Greenberg",
-      "puzzlesSolved": 13,
-      "firstAppearance": "October 2022",
-      "lastSolve": "August 2025"
     },
     {
       "name": "Wes Chow",
@@ -1064,6 +1064,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Gareth White",
+      "puzzlesSolved": 11,
+      "firstAppearance": "August 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Andre Emery",
       "puzzlesSolved": 11,
       "firstAppearance": "June 2022",
@@ -1242,12 +1248,6 @@
       "puzzlesSolved": 11,
       "firstAppearance": "September 2017",
       "lastSolve": "January 2019"
-    },
-    {
-      "name": "Gareth White",
-      "puzzlesSolved": 10,
-      "firstAppearance": "August 2024",
-      "lastSolve": "March 2026"
     },
     {
       "name": "Patrick Deumann",
@@ -6944,6 +6944,18 @@
       "lastSolve": "February 2016"
     },
     {
+      "name": "Carter Tran",
+      "puzzlesSolved": 3,
+      "firstAppearance": "December 2025",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Daniel Shields",
+      "puzzlesSolved": 3,
+      "firstAppearance": "February 2026",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "vich",
       "puzzlesSolved": 3,
       "firstAppearance": "March 2025",
@@ -10886,12 +10898,6 @@
       "lastSolve": "March 2026"
     },
     {
-      "name": "Daniel Shields",
-      "puzzlesSolved": 2,
-      "firstAppearance": "February 2026",
-      "lastSolve": "March 2026"
-    },
-    {
       "name": "ML",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2021",
@@ -10968,12 +10974,6 @@
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
       "lastSolve": "March 2026"
-    },
-    {
-      "name": "Carter Tran",
-      "puzzlesSolved": 2,
-      "firstAppearance": "December 2025",
-      "lastSolve": "February 2026"
     },
     {
       "name": "\u5f90\u745c\u9633",
@@ -21273,6 +21273,18 @@
     },
     {
       "name": "Alexander Joukov",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Christina",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Sams and the Ashley",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -83022,8 +83034,8 @@
     {
       "solver": "Lazar Ilic",
       "start": "Jan 2024",
-      "end": "Mar 2026",
-      "length": 27
+      "end": "Apr 2026",
+      "length": 28
     },
     {
       "solver": "Moritz Kunze & Hai-Yen Van",
@@ -83112,6 +83124,12 @@
   ],
   "risingStars": [
     {
+      "solver": "Daniel Shields",
+      "puzzlesSolved": 3,
+      "solveRate": 1.5,
+      "firstAppearance": "February 2026"
+    },
+    {
       "solver": "Kibria Awais",
       "puzzlesSolved": 9,
       "solveRate": 1.125,
@@ -83152,6 +83170,12 @@
       "puzzlesSolved": 6,
       "solveRate": 0.8571428571428571,
       "firstAppearance": "September 2025"
+    },
+    {
+      "solver": "Carter Tran",
+      "puzzlesSolved": 3,
+      "solveRate": 0.75,
+      "firstAppearance": "December 2025"
     },
     {
       "solver": "Andre Riva",
@@ -83218,18 +83242,6 @@
       "puzzlesSolved": 5,
       "solveRate": 0.7142857142857143,
       "firstAppearance": "September 2025"
-    },
-    {
-      "solver": "PJS",
-      "puzzlesSolved": 7,
-      "solveRate": 0.7,
-      "firstAppearance": "June 2025"
-    },
-    {
-      "solver": "ekunazanu",
-      "puzzlesSolved": 7,
-      "solveRate": 0.7,
-      "firstAppearance": "June 2025"
     }
   ],
   "monthlyParticipation": [
@@ -83431,7 +83443,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 15
+      "solvers": 23
     }
   ],
   "solversGrowth": [
@@ -84017,7 +84029,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13830
+      "totalSolvers": 13832
     }
   ],
   "mostSolvedPuzzles": [
@@ -84145,7 +84157,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 15,
+    "solverCount": 23,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84206,8 +84218,40 @@
       {
         "solver": "Brenton Bostick",
         "timestamp": "2026-04-07T12:20:55.661804+00:00"
+      },
+      {
+        "solver": "Carter Tran",
+        "timestamp": "2026-04-08T12:20:48.390342+00:00"
+      },
+      {
+        "solver": "Gareth White",
+        "timestamp": "2026-04-08T12:20:48.390342+00:00"
+      },
+      {
+        "solver": "Lazar Ilic",
+        "timestamp": "2026-04-08T12:20:48.390342+00:00"
+      },
+      {
+        "solver": "Christina",
+        "timestamp": "2026-04-08T12:20:48.390342+00:00"
+      },
+      {
+        "solver": "Daniel Shields",
+        "timestamp": "2026-04-08T12:20:48.390342+00:00"
+      },
+      {
+        "solver": "Shea Greenberg",
+        "timestamp": "2026-04-08T12:20:48.390342+00:00"
+      },
+      {
+        "solver": "Jon Ander",
+        "timestamp": "2026-04-08T12:20:48.390342+00:00"
+      },
+      {
+        "solver": "Sams and the Ashley",
+        "timestamp": "2026-04-08T12:20:48.390342+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-07T12:20:55.827482+00:00"
+  "generatedAt": "2026-04-08T12:20:48.568037+00:00"
 }
