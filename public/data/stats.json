@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13832,
+  "uniqueSolvers": 13833,
   "solverDistribution": {
-    "onePuzzle": 10292,
+    "onePuzzle": 10293,
     "twoToNine": 3300,
     "tenPlus": 240
   },
@@ -2204,6 +2204,12 @@
       "lastSolve": "October 2017"
     },
     {
+      "name": "Bhavik Mehta",
+      "puzzlesSolved": 7,
+      "firstAppearance": "February 2017",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Yun Han",
       "puzzlesSolved": 7,
       "firstAppearance": "October 2024",
@@ -3468,12 +3474,6 @@
       "puzzlesSolved": 6,
       "firstAppearance": "November 2017",
       "lastSolve": "April 2018"
-    },
-    {
-      "name": "Bhavik Mehta",
-      "puzzlesSolved": 6,
-      "firstAppearance": "February 2017",
-      "lastSolve": "November 2017"
     },
     {
       "name": "Michael Borkowski",
@@ -21285,6 +21285,12 @@
     },
     {
       "name": "Sams and the Ashley",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Richard L.",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -83443,7 +83449,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 23
+      "solvers": 25
     }
   ],
   "solversGrowth": [
@@ -84029,7 +84035,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13832
+      "totalSolvers": 13833
     }
   ],
   "mostSolvedPuzzles": [
@@ -84157,7 +84163,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 23,
+    "solverCount": 25,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84250,8 +84256,16 @@
       {
         "solver": "Sams and the Ashley",
         "timestamp": "2026-04-08T12:20:48.390342+00:00"
+      },
+      {
+        "solver": "Richard L.",
+        "timestamp": "2026-04-10T12:18:21.257906+00:00"
+      },
+      {
+        "solver": "Bhavik Mehta",
+        "timestamp": "2026-04-10T12:18:21.257906+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-09T12:23:07.142070+00:00"
+  "generatedAt": "2026-04-10T12:18:21.423211+00:00"
 }
