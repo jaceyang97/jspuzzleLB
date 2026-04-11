@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13833,
+  "uniqueSolvers": 13834,
   "solverDistribution": {
-    "onePuzzle": 10293,
+    "onePuzzle": 10294,
     "twoToNine": 3300,
     "tenPlus": 240
   },
@@ -21291,6 +21291,12 @@
     },
     {
       "name": "Richard L.",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Daniel Sun & Sonny Young",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -83449,7 +83455,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 25
+      "solvers": 26
     }
   ],
   "solversGrowth": [
@@ -84035,7 +84041,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13833
+      "totalSolvers": 13834
     }
   ],
   "mostSolvedPuzzles": [
@@ -84163,7 +84169,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 25,
+    "solverCount": 26,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84264,8 +84270,12 @@
       {
         "solver": "Bhavik Mehta",
         "timestamp": "2026-04-10T12:18:21.257906+00:00"
+      },
+      {
+        "solver": "Daniel Sun & Sonny Young",
+        "timestamp": "2026-04-11T12:12:02.392606+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-10T12:18:21.423211+00:00"
+  "generatedAt": "2026-04-11T12:12:02.552797+00:00"
 }
