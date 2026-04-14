@@ -15,9 +15,9 @@
     },
     {
       "name": "Senthil Rajasekaran",
-      "puzzlesSolved": 77,
+      "puzzlesSolved": 78,
       "firstAppearance": "October 2018",
-      "lastSolve": "March 2026"
+      "lastSolve": "April 2026"
     },
     {
       "name": "Karl Mahlburg",
@@ -1070,6 +1070,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Ronald_D_D",
+      "puzzlesSolved": 11,
+      "firstAppearance": "May 2023",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Andre Emery",
       "puzzlesSolved": 11,
       "firstAppearance": "June 2022",
@@ -1295,12 +1301,6 @@
       "name": "vsh",
       "puzzlesSolved": 10,
       "firstAppearance": "November 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Ronald_D_D",
-      "puzzlesSolved": 10,
-      "firstAppearance": "May 2023",
       "lastSolve": "February 2026"
     },
     {
@@ -83034,8 +83034,8 @@
     {
       "solver": "Senthil Rajasekaran",
       "start": "May 2022",
-      "end": "Mar 2026",
-      "length": 47
+      "end": "Apr 2026",
+      "length": 48
     },
     {
       "solver": "Aaditya Raghavan",
@@ -83461,7 +83461,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 27
+      "solvers": 29
     }
   ],
   "solversGrowth": [
@@ -84175,7 +84175,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 27,
+    "solverCount": 29,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84284,8 +84284,16 @@
       {
         "solver": "King",
         "timestamp": "2026-04-12T12:13:00.467968+00:00"
+      },
+      {
+        "solver": "Ronald_D_D",
+        "timestamp": "2026-04-14T12:23:22.187607+00:00"
+      },
+      {
+        "solver": "Senthil Rajasekaran",
+        "timestamp": "2026-04-14T12:23:22.187607+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-13T12:24:55.183945+00:00"
+  "generatedAt": "2026-04-14T12:23:22.354503+00:00"
 }
