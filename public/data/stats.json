@@ -51,9 +51,9 @@
     },
     {
       "name": "Evan Semet",
-      "puzzlesSolved": 53,
+      "puzzlesSolved": 54,
       "firstAppearance": "November 2021",
-      "lastSolve": "March 2026"
+      "lastSolve": "April 2026"
     },
     {
       "name": "Keith Schneider",
@@ -596,6 +596,12 @@
       "lastSolve": "January 2020"
     },
     {
+      "name": "Evan Tian",
+      "puzzlesSolved": 15,
+      "firstAppearance": "January 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Paul Kress",
       "puzzlesSolved": 15,
       "firstAppearance": "December 2022",
@@ -680,12 +686,6 @@
       "lastSolve": "March 2026"
     },
     {
-      "name": "Evan Tian",
-      "puzzlesSolved": 14,
-      "firstAppearance": "January 2024",
-      "lastSolve": "February 2026"
-    },
-    {
       "name": "Nils R\u00f6rup",
       "puzzlesSolved": 14,
       "firstAppearance": "May 2024",
@@ -714,6 +714,12 @@
       "puzzlesSolved": 14,
       "firstAppearance": "July 2020",
       "lastSolve": "May 2023"
+    },
+    {
+      "name": "",
+      "puzzlesSolved": 13,
+      "firstAppearance": "August 2021",
+      "lastSolve": "April 2026"
     },
     {
       "name": "Takaki Oshima",
@@ -905,12 +911,6 @@
       "name": "Tongyang Song",
       "puzzlesSolved": 12,
       "firstAppearance": "July 2020",
-      "lastSolve": "December 2025"
-    },
-    {
-      "name": "",
-      "puzzlesSolved": 12,
-      "firstAppearance": "August 2021",
       "lastSolve": "December 2025"
     },
     {
@@ -83028,8 +83028,8 @@
     {
       "solver": "Evan Semet",
       "start": "Nov 2021",
-      "end": "Mar 2026",
-      "length": 53
+      "end": "Apr 2026",
+      "length": 54
     },
     {
       "solver": "Senthil Rajasekaran",
@@ -83461,7 +83461,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 29
+      "solvers": 32
     }
   ],
   "solversGrowth": [
@@ -84175,7 +84175,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 29,
+    "solverCount": 32,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84292,8 +84292,20 @@
       {
         "solver": "Senthil Rajasekaran",
         "timestamp": "2026-04-14T12:23:22.187607+00:00"
+      },
+      {
+        "solver": "Evan Tian",
+        "timestamp": "2026-04-15T12:23:01.505354+00:00"
+      },
+      {
+        "solver": "Evan Semet",
+        "timestamp": "2026-04-15T12:23:01.505354+00:00"
+      },
+      {
+        "solver": "",
+        "timestamp": "2026-04-15T12:23:01.505354+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-14T12:23:22.354503+00:00"
+  "generatedAt": "2026-04-15T12:23:01.659874+00:00"
 }
