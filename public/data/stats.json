@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13835,
+  "uniqueSolvers": 13836,
   "solverDistribution": {
-    "onePuzzle": 10295,
+    "onePuzzle": 10296,
     "twoToNine": 3300,
     "tenPlus": 240
   },
@@ -1724,6 +1724,12 @@
       "lastSolve": "November 2017"
     },
     {
+      "name": "PJS",
+      "puzzlesSolved": 8,
+      "firstAppearance": "June 2025",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "IMW",
       "puzzlesSolved": 8,
       "firstAppearance": "July 2025",
@@ -2219,12 +2225,6 @@
       "name": "Joshua Kindler",
       "puzzlesSolved": 7,
       "firstAppearance": "September 2025",
-      "lastSolve": "March 2026"
-    },
-    {
-      "name": "PJS",
-      "puzzlesSolved": 7,
-      "firstAppearance": "June 2025",
       "lastSolve": "March 2026"
     },
     {
@@ -21303,6 +21303,12 @@
     },
     {
       "name": "King",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Rik Attrill",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -83190,6 +83196,12 @@
       "firstAppearance": "September 2025"
     },
     {
+      "solver": "PJS",
+      "puzzlesSolved": 8,
+      "solveRate": 0.8,
+      "firstAppearance": "June 2025"
+    },
+    {
       "solver": "Carter Tran",
       "puzzlesSolved": 3,
       "solveRate": 0.75,
@@ -83251,12 +83263,6 @@
     },
     {
       "solver": "Nick Nordlund",
-      "puzzlesSolved": 5,
-      "solveRate": 0.7142857142857143,
-      "firstAppearance": "September 2025"
-    },
-    {
-      "solver": "Ruhi + Jeff",
       "puzzlesSolved": 5,
       "solveRate": 0.7142857142857143,
       "firstAppearance": "September 2025"
@@ -83461,7 +83467,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 32
+      "solvers": 34
     }
   ],
   "solversGrowth": [
@@ -84047,7 +84053,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13835
+      "totalSolvers": 13836
     }
   ],
   "mostSolvedPuzzles": [
@@ -84175,7 +84181,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 32,
+    "solverCount": 34,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84304,8 +84310,16 @@
       {
         "solver": "",
         "timestamp": "2026-04-15T12:23:01.505354+00:00"
+      },
+      {
+        "solver": "Rik Attrill",
+        "timestamp": "2026-04-17T12:21:43.462594+00:00"
+      },
+      {
+        "solver": "PJS",
+        "timestamp": "2026-04-17T12:21:43.462594+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-16T12:25:08.366333+00:00"
+  "generatedAt": "2026-04-17T12:21:43.619733+00:00"
 }
