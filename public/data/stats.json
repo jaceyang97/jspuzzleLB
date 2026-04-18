@@ -1076,6 +1076,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Giovanni Basso",
+      "puzzlesSolved": 11,
+      "firstAppearance": "September 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Andre Emery",
       "puzzlesSolved": 11,
       "firstAppearance": "June 2022",
@@ -1301,12 +1307,6 @@
       "name": "vsh",
       "puzzlesSolved": 10,
       "firstAppearance": "November 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Giovanni Basso",
-      "puzzlesSolved": 10,
-      "firstAppearance": "September 2024",
       "lastSolve": "February 2026"
     },
     {
@@ -3498,6 +3498,12 @@
       "puzzlesSolved": 6,
       "firstAppearance": "January 2016",
       "lastSolve": "July 2016"
+    },
+    {
+      "name": "Scott Campbell",
+      "puzzlesSolved": 5,
+      "firstAppearance": "March 2024",
+      "lastSolve": "April 2026"
     },
     {
       "name": "Martin Hesse",
@@ -5729,12 +5735,6 @@
       "name": "Miguel Barros",
       "puzzlesSolved": 4,
       "firstAppearance": "January 2024",
-      "lastSolve": "March 2025"
-    },
-    {
-      "name": "Scott Campbell",
-      "puzzlesSolved": 4,
-      "firstAppearance": "March 2024",
       "lastSolve": "March 2025"
     },
     {
@@ -83467,7 +83467,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 34
+      "solvers": 36
     }
   ],
   "solversGrowth": [
@@ -84181,7 +84181,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 34,
+    "solverCount": 36,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84318,8 +84318,16 @@
       {
         "solver": "PJS",
         "timestamp": "2026-04-17T12:21:43.462594+00:00"
+      },
+      {
+        "solver": "Giovanni Basso",
+        "timestamp": "2026-04-18T12:12:59.575942+00:00"
+      },
+      {
+        "solver": "Scott Campbell",
+        "timestamp": "2026-04-18T12:12:59.575942+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-17T12:21:43.619733+00:00"
+  "generatedAt": "2026-04-18T12:12:59.719932+00:00"
 }
