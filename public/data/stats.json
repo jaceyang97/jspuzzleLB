@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13836,
+  "uniqueSolvers": 13838,
   "solverDistribution": {
-    "onePuzzle": 10296,
-    "twoToNine": 3300,
+    "onePuzzle": 10297,
+    "twoToNine": 3301,
     "tenPlus": 240
   },
   "topSolvers": [
@@ -4700,6 +4700,12 @@
       "lastSolve": "March 2016"
     },
     {
+      "name": "vich",
+      "puzzlesSolved": 4,
+      "firstAppearance": "March 2025",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Aiden Bailey",
       "puzzlesSolved": 4,
       "firstAppearance": "July 2025",
@@ -6956,10 +6962,10 @@
       "lastSolve": "April 2026"
     },
     {
-      "name": "vich",
+      "name": "Marianna Sykopetritou",
       "puzzlesSolved": 3,
-      "firstAppearance": "March 2025",
-      "lastSolve": "March 2026"
+      "firstAppearance": "February 2026",
+      "lastSolve": "April 2026"
     },
     {
       "name": "Eric Chen USC27",
@@ -10892,6 +10898,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Christos Panayi",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Utkarsh Naman",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
@@ -10935,12 +10947,6 @@
     },
     {
       "name": "Jan Ondras",
-      "puzzlesSolved": 2,
-      "firstAppearance": "February 2026",
-      "lastSolve": "March 2026"
-    },
-    {
-      "name": "Marianna Sykopetritou",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
       "lastSolve": "March 2026"
@@ -21314,6 +21320,18 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Finn S\u00f8ren Marx",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Adam C. Jones",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "yap",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
@@ -23745,12 +23763,6 @@
     },
     {
       "name": "Gabbo",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Christos Panayi",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -83154,6 +83166,12 @@
       "firstAppearance": "February 2026"
     },
     {
+      "solver": "Marianna Sykopetritou",
+      "puzzlesSolved": 3,
+      "solveRate": 1.5,
+      "firstAppearance": "February 2026"
+    },
+    {
       "solver": "Kibria Awais",
       "puzzlesSolved": 9,
       "solveRate": 1.125,
@@ -83257,12 +83275,6 @@
     },
     {
       "solver": "Sean Lowery",
-      "puzzlesSolved": 5,
-      "solveRate": 0.7142857142857143,
-      "firstAppearance": "September 2025"
-    },
-    {
-      "solver": "Nick Nordlund",
       "puzzlesSolved": 5,
       "solveRate": 0.7142857142857143,
       "firstAppearance": "September 2025"
@@ -83467,7 +83479,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 36
+      "solvers": 41
     }
   ],
   "solversGrowth": [
@@ -84053,7 +84065,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13836
+      "totalSolvers": 13838
     }
   ],
   "mostSolvedPuzzles": [
@@ -84181,7 +84193,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 36,
+    "solverCount": 41,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84326,8 +84338,28 @@
       {
         "solver": "Scott Campbell",
         "timestamp": "2026-04-18T12:12:59.575942+00:00"
+      },
+      {
+        "solver": "Marianna Sykopetritou",
+        "timestamp": "2026-04-21T12:24:18.956212+00:00"
+      },
+      {
+        "solver": "Christos Panayi",
+        "timestamp": "2026-04-21T12:24:18.956212+00:00"
+      },
+      {
+        "solver": "vich",
+        "timestamp": "2026-04-21T12:24:18.956212+00:00"
+      },
+      {
+        "solver": "Finn S\u00f8ren Marx",
+        "timestamp": "2026-04-21T12:24:18.956212+00:00"
+      },
+      {
+        "solver": "Adam C. Jones",
+        "timestamp": "2026-04-21T12:24:18.956212+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-20T12:26:47.334478+00:00"
+  "generatedAt": "2026-04-21T12:24:19.086042+00:00"
 }
