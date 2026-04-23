@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13838,
+  "uniqueSolvers": 13841,
   "solverDistribution": {
-    "onePuzzle": 10297,
+    "onePuzzle": 10300,
     "twoToNine": 3301,
     "tenPlus": 240
   },
@@ -404,6 +404,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Rub\u00e9n M.I",
+      "puzzlesSolved": 18,
+      "firstAppearance": "October 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Josh Silverman",
       "puzzlesSolved": 18,
       "firstAppearance": "June 2021",
@@ -450,12 +456,6 @@
       "puzzlesSolved": 18,
       "firstAppearance": "May 2019",
       "lastSolve": "October 2021"
-    },
-    {
-      "name": "Rub\u00e9n M.I",
-      "puzzlesSolved": 17,
-      "firstAppearance": "October 2024",
-      "lastSolve": "March 2026"
     },
     {
       "name": "Daniel Toh",
@@ -1082,6 +1082,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Tomonari Feehan - GT '19",
+      "puzzlesSolved": 11,
+      "firstAppearance": "October 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Andre Emery",
       "puzzlesSolved": 11,
       "firstAppearance": "June 2022",
@@ -1295,12 +1301,6 @@
       "name": "Hsin-Yi Wang",
       "puzzlesSolved": 10,
       "firstAppearance": "May 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Tomonari Feehan - GT '19",
-      "puzzlesSolved": 10,
-      "firstAppearance": "October 2024",
       "lastSolve": "February 2026"
     },
     {
@@ -4706,6 +4706,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Susie Park",
+      "puzzlesSolved": 4,
+      "firstAppearance": "November 2025",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Aiden Bailey",
       "puzzlesSolved": 4,
       "firstAppearance": "July 2025",
@@ -7325,12 +7331,6 @@
       "name": "Niklas Fraccaro",
       "puzzlesSolved": 3,
       "firstAppearance": "September 2025",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Susie Park",
-      "puzzlesSolved": 3,
-      "firstAppearance": "November 2025",
       "lastSolve": "February 2026"
     },
     {
@@ -21327,6 +21327,24 @@
     },
     {
       "name": "Adam C. Jones",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "AmyM",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Taylor J. Anderson",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Dylan Zucker",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -83220,6 +83238,12 @@
       "firstAppearance": "June 2025"
     },
     {
+      "solver": "Susie Park",
+      "puzzlesSolved": 4,
+      "solveRate": 0.8,
+      "firstAppearance": "November 2025"
+    },
+    {
       "solver": "Carter Tran",
       "puzzlesSolved": 3,
       "solveRate": 0.75,
@@ -83269,12 +83293,6 @@
     },
     {
       "solver": "J\u00f8rgen Boganes",
-      "puzzlesSolved": 5,
-      "solveRate": 0.7142857142857143,
-      "firstAppearance": "September 2025"
-    },
-    {
-      "solver": "Sean Lowery",
       "puzzlesSolved": 5,
       "solveRate": 0.7142857142857143,
       "firstAppearance": "September 2025"
@@ -83479,7 +83497,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 41
+      "solvers": 47
     }
   ],
   "solversGrowth": [
@@ -84065,7 +84083,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13838
+      "totalSolvers": 13841
     }
   ],
   "mostSolvedPuzzles": [
@@ -84193,7 +84211,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 41,
+    "solverCount": 47,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84358,8 +84376,32 @@
       {
         "solver": "Adam C. Jones",
         "timestamp": "2026-04-21T12:24:18.956212+00:00"
+      },
+      {
+        "solver": "Tomonari Feehan - GT '19",
+        "timestamp": "2026-04-23T12:23:28.395924+00:00"
+      },
+      {
+        "solver": "AmyM",
+        "timestamp": "2026-04-23T12:23:28.395924+00:00"
+      },
+      {
+        "solver": "Taylor J. Anderson",
+        "timestamp": "2026-04-23T12:23:28.395924+00:00"
+      },
+      {
+        "solver": "Susie Park",
+        "timestamp": "2026-04-23T12:23:28.395924+00:00"
+      },
+      {
+        "solver": "Dylan Zucker",
+        "timestamp": "2026-04-23T12:23:28.395924+00:00"
+      },
+      {
+        "solver": "Rub\u00e9n M.I",
+        "timestamp": "2026-04-23T12:23:28.395924+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-22T12:23:38.891880+00:00"
+  "generatedAt": "2026-04-23T12:23:28.554533+00:00"
 }
