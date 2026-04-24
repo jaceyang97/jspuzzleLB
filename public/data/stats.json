@@ -1,10 +1,10 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13841,
+  "uniqueSolvers": 13843,
   "solverDistribution": {
-    "onePuzzle": 10300,
-    "twoToNine": 3301,
-    "tenPlus": 240
+    "onePuzzle": 10299,
+    "twoToNine": 3303,
+    "tenPlus": 241
   },
   "topSolvers": [
     {
@@ -272,6 +272,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Stephen Ebert",
+      "puzzlesSolved": 20,
+      "firstAppearance": "July 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Dan Samuels",
       "puzzlesSolved": 20,
       "firstAppearance": "July 2022",
@@ -329,12 +335,6 @@
       "name": "Isaac Carruthers",
       "puzzlesSolved": 19,
       "firstAppearance": "January 2023",
-      "lastSolve": "March 2026"
-    },
-    {
-      "name": "Stephen Ebert",
-      "puzzlesSolved": 19,
-      "firstAppearance": "July 2024",
       "lastSolve": "March 2026"
     },
     {
@@ -458,6 +458,12 @@
       "lastSolve": "October 2021"
     },
     {
+      "name": "David Jennings",
+      "puzzlesSolved": 17,
+      "firstAppearance": "August 2023",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Daniel Toh",
       "puzzlesSolved": 17,
       "firstAppearance": "January 2024",
@@ -533,12 +539,6 @@
       "name": "I-Iias",
       "puzzlesSolved": 16,
       "firstAppearance": "March 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "David Jennings",
-      "puzzlesSolved": 16,
-      "firstAppearance": "August 2023",
       "lastSolve": "February 2026"
     },
     {
@@ -1268,6 +1268,12 @@
       "lastSolve": "January 2019"
     },
     {
+      "name": "Cal Craven",
+      "puzzlesSolved": 10,
+      "firstAppearance": "March 2021",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Patrick Deumann",
       "puzzlesSolved": 10,
       "firstAppearance": "January 2025",
@@ -1529,12 +1535,6 @@
       "name": "David Chow Yee Chui",
       "puzzlesSolved": 9,
       "firstAppearance": "March 2025",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Cal Craven",
-      "puzzlesSolved": 9,
-      "firstAppearance": "March 2021",
       "lastSolve": "February 2026"
     },
     {
@@ -2213,6 +2213,12 @@
       "name": "Bhavik Mehta",
       "puzzlesSolved": 7,
       "firstAppearance": "February 2017",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Mark Ebert",
+      "puzzlesSolved": 7,
+      "firstAppearance": "July 2024",
       "lastSolve": "April 2026"
     },
     {
@@ -2910,12 +2916,6 @@
       "puzzlesSolved": 6,
       "firstAppearance": "October 2024",
       "lastSolve": "February 2026"
-    },
-    {
-      "name": "Mark Ebert",
-      "puzzlesSolved": 6,
-      "firstAppearance": "July 2024",
-      "lastSolve": "January 2026"
     },
     {
       "name": "Benjamin Hadad IV",
@@ -10901,6 +10901,24 @@
       "name": "Christos Panayi",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Hannot Hugo",
+      "puzzlesSolved": 2,
+      "firstAppearance": "April 2025",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Nathan Chiu",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Sergey Serebryakov",
+      "puzzlesSolved": 2,
+      "firstAppearance": "October 2020",
       "lastSolve": "April 2026"
     },
     {
@@ -21350,6 +21368,18 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Nikas Lukyanov",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Harold F",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "yap",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
@@ -21615,12 +21645,6 @@
     },
     {
       "name": "Riya Gupta",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Nathan Chiu",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -34899,12 +34923,6 @@
     },
     {
       "name": "Pavlo2203",
-      "puzzlesSolved": 1,
-      "firstAppearance": "April 2025",
-      "lastSolve": "April 2025"
-    },
-    {
-      "name": "Hannot Hugo",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2025",
       "lastSolve": "April 2025"
@@ -73400,12 +73418,6 @@
       "lastSolve": "October 2020"
     },
     {
-      "name": "Sergey Serebryakov",
-      "puzzlesSolved": 1,
-      "firstAppearance": "October 2020",
-      "lastSolve": "October 2020"
-    },
-    {
       "name": "Irmoit",
       "puzzlesSolved": 1,
       "firstAppearance": "October 2020",
@@ -83497,7 +83509,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 47
+      "solvers": 56
     }
   ],
   "solversGrowth": [
@@ -84083,7 +84095,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13841
+      "totalSolvers": 13843
     }
   ],
   "mostSolvedPuzzles": [
@@ -84211,7 +84223,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 47,
+    "solverCount": 56,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84400,8 +84412,44 @@
       {
         "solver": "Rub\u00e9n M.I",
         "timestamp": "2026-04-23T12:23:28.395924+00:00"
+      },
+      {
+        "solver": "Nikas Lukyanov",
+        "timestamp": "2026-04-24T12:23:10.690222+00:00"
+      },
+      {
+        "solver": "Hannot Hugo",
+        "timestamp": "2026-04-24T12:23:10.690222+00:00"
+      },
+      {
+        "solver": "Nathan Chiu",
+        "timestamp": "2026-04-24T12:23:10.690222+00:00"
+      },
+      {
+        "solver": "Harold F",
+        "timestamp": "2026-04-24T12:23:10.690222+00:00"
+      },
+      {
+        "solver": "David Jennings",
+        "timestamp": "2026-04-24T12:23:10.690222+00:00"
+      },
+      {
+        "solver": "Mark Ebert",
+        "timestamp": "2026-04-24T12:23:10.690222+00:00"
+      },
+      {
+        "solver": "Stephen Ebert",
+        "timestamp": "2026-04-24T12:23:10.690222+00:00"
+      },
+      {
+        "solver": "Sergey Serebryakov",
+        "timestamp": "2026-04-24T12:23:10.690222+00:00"
+      },
+      {
+        "solver": "Cal Craven",
+        "timestamp": "2026-04-24T12:23:10.690222+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-23T12:23:28.554533+00:00"
+  "generatedAt": "2026-04-24T12:23:10.843953+00:00"
 }
