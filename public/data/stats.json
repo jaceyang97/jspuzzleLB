@@ -1,17 +1,17 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13843,
+  "uniqueSolvers": 13844,
   "solverDistribution": {
     "onePuzzle": 10299,
-    "twoToNine": 3303,
+    "twoToNine": 3304,
     "tenPlus": 241
   },
   "topSolvers": [
     {
       "name": "Calvin Pozderac",
-      "puzzlesSolved": 79,
+      "puzzlesSolved": 80,
       "firstAppearance": "September 2017",
-      "lastSolve": "February 2026"
+      "lastSolve": "April 2026"
     },
     {
       "name": "Senthil Rajasekaran",
@@ -45,9 +45,9 @@
     },
     {
       "name": "Gareth Owen",
-      "puzzlesSolved": 56,
+      "puzzlesSolved": 57,
       "firstAppearance": "July 2020",
-      "lastSolve": "February 2026"
+      "lastSolve": "April 2026"
     },
     {
       "name": "Evan Semet",
@@ -716,12 +716,6 @@
       "lastSolve": "May 2023"
     },
     {
-      "name": "",
-      "puzzlesSolved": 13,
-      "firstAppearance": "August 2021",
-      "lastSolve": "April 2026"
-    },
-    {
       "name": "Takaki Oshima",
       "puzzlesSolved": 13,
       "firstAppearance": "September 2019",
@@ -911,6 +905,12 @@
       "name": "Tongyang Song",
       "puzzlesSolved": 12,
       "firstAppearance": "July 2020",
+      "lastSolve": "December 2025"
+    },
+    {
+      "name": "",
+      "puzzlesSolved": 12,
+      "firstAppearance": "August 2021",
       "lastSolve": "December 2025"
     },
     {
@@ -2222,6 +2222,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Andrew Yoo",
+      "puzzlesSolved": 7,
+      "firstAppearance": "August 2025",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Yun Han",
       "puzzlesSolved": 7,
       "firstAppearance": "October 2024",
@@ -2837,12 +2843,6 @@
       "name": "Dan Hicks",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Andrew Yoo",
-      "puzzlesSolved": 6,
-      "firstAppearance": "August 2025",
       "lastSolve": "February 2026"
     },
     {
@@ -6974,6 +6974,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Cosmin-C.R",
+      "puzzlesSolved": 3,
+      "firstAppearance": "November 2025",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Eric Chen USC27",
       "puzzlesSolved": 3,
       "firstAppearance": "January 2026",
@@ -10922,6 +10928,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Satya J",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Utkarsh Naman",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
@@ -11357,12 +11369,6 @@
       "name": "Tong Shu Li",
       "puzzlesSolved": 2,
       "firstAppearance": "March 2025",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Cosmin-C.R",
-      "puzzlesSolved": 2,
-      "firstAppearance": "November 2025",
       "lastSolve": "February 2026"
     },
     {
@@ -21380,6 +21386,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Giacomo Milano",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "yap",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
@@ -24447,12 +24459,6 @@
     },
     {
       "name": "Jiam Song",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Satya J",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -83238,6 +83244,12 @@
       "firstAppearance": "July 2025"
     },
     {
+      "solver": "Andrew Yoo",
+      "puzzlesSolved": 7,
+      "solveRate": 0.875,
+      "firstAppearance": "August 2025"
+    },
+    {
       "solver": "Joel Pulikkan",
       "puzzlesSolved": 6,
       "solveRate": 0.8571428571428571,
@@ -83290,12 +83302,6 @@
       "puzzlesSolved": 9,
       "solveRate": 0.75,
       "firstAppearance": "April 2025"
-    },
-    {
-      "solver": "Andrew Yoo",
-      "puzzlesSolved": 6,
-      "solveRate": 0.75,
-      "firstAppearance": "August 2025"
     },
     {
       "solver": "Achintya Paningapalli",
@@ -83509,7 +83515,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 56
+      "solvers": 61
     }
   ],
   "solversGrowth": [
@@ -84095,7 +84101,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13843
+      "totalSolvers": 13844
     }
   ],
   "mostSolvedPuzzles": [
@@ -84223,7 +84229,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 56,
+    "solverCount": 61,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84448,8 +84454,32 @@
       {
         "solver": "Cal Craven",
         "timestamp": "2026-04-24T12:23:10.690222+00:00"
+      },
+      {
+        "solver": "Calvin Pozderac",
+        "timestamp": "2026-04-25T12:15:12.327976+00:00"
+      },
+      {
+        "solver": "Satya J",
+        "timestamp": "2026-04-25T12:15:12.327976+00:00"
+      },
+      {
+        "solver": "Gareth Owen",
+        "timestamp": "2026-04-25T12:15:12.327976+00:00"
+      },
+      {
+        "solver": "Cosmin-C.R",
+        "timestamp": "2026-04-25T12:15:12.327976+00:00"
+      },
+      {
+        "solver": "Giacomo Milano",
+        "timestamp": "2026-04-25T12:15:12.327976+00:00"
+      },
+      {
+        "solver": "Andrew Yoo",
+        "timestamp": "2026-04-25T12:15:12.327976+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-24T12:23:10.843953+00:00"
+  "generatedAt": "2026-04-25T12:15:12.486210+00:00"
 }
