@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13844,
+  "uniqueSolvers": 13845,
   "solverDistribution": {
-    "onePuzzle": 10299,
+    "onePuzzle": 10300,
     "twoToNine": 3304,
     "tenPlus": 241
   },
@@ -212,6 +212,12 @@
       "lastSolve": "August 2018"
     },
     {
+      "name": "Zequn Yang",
+      "puzzlesSolved": 22,
+      "firstAppearance": "October 2023",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Vincent",
       "puzzlesSolved": 22,
       "firstAppearance": "September 2021",
@@ -234,12 +240,6 @@
       "puzzlesSolved": 22,
       "firstAppearance": "November 2015",
       "lastSolve": "June 2018"
-    },
-    {
-      "name": "Zequn Yang",
-      "puzzlesSolved": 21,
-      "firstAppearance": "October 2023",
-      "lastSolve": "March 2026"
     },
     {
       "name": "NickDay",
@@ -1730,6 +1730,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Joshua Kindler",
+      "puzzlesSolved": 8,
+      "firstAppearance": "September 2025",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "IMW",
       "puzzlesSolved": 8,
       "firstAppearance": "July 2025",
@@ -2231,12 +2237,6 @@
       "name": "Yun Han",
       "puzzlesSolved": 7,
       "firstAppearance": "October 2024",
-      "lastSolve": "March 2026"
-    },
-    {
-      "name": "Joshua Kindler",
-      "puzzlesSolved": 7,
-      "firstAppearance": "September 2025",
       "lastSolve": "March 2026"
     },
     {
@@ -6977,6 +6977,12 @@
       "name": "Cosmin-C.R",
       "puzzlesSolved": 3,
       "firstAppearance": "November 2025",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Philip Naveen",
+      "puzzlesSolved": 3,
+      "firstAppearance": "July 2025",
       "lastSolve": "April 2026"
     },
     {
@@ -11993,12 +11999,6 @@
       "name": "Jacek Rak",
       "puzzlesSolved": 2,
       "firstAppearance": "November 2025",
-      "lastSolve": "December 2025"
-    },
-    {
-      "name": "Philip Naveen",
-      "puzzlesSolved": 2,
-      "firstAppearance": "July 2025",
       "lastSolve": "December 2025"
     },
     {
@@ -21387,6 +21387,12 @@
     },
     {
       "name": "Giacomo Milano",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Hobart Doyle",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -83122,15 +83128,15 @@
       "length": 22
     },
     {
+      "solver": "Zequn Yang",
+      "start": "Aug 2024",
+      "end": "Apr 2026",
+      "length": 21
+    },
+    {
       "solver": "Gareth Owen",
       "start": "Dec 2022",
       "end": "Jul 2024",
-      "length": 20
-    },
-    {
-      "solver": "Zequn Yang",
-      "start": "Aug 2024",
-      "end": "Mar 2026",
       "length": 20
     },
     {
@@ -83208,6 +83214,12 @@
       "firstAppearance": "February 2026"
     },
     {
+      "solver": "Joshua Kindler",
+      "puzzlesSolved": 8,
+      "solveRate": 1.1428571428571428,
+      "firstAppearance": "September 2025"
+    },
+    {
       "solver": "Kibria Awais",
       "puzzlesSolved": 9,
       "solveRate": 1.125,
@@ -83218,12 +83230,6 @@
       "puzzlesSolved": 11,
       "solveRate": 1.0,
       "firstAppearance": "May 2025"
-    },
-    {
-      "solver": "Joshua Kindler",
-      "puzzlesSolved": 7,
-      "solveRate": 1.0,
-      "firstAppearance": "September 2025"
     },
     {
       "solver": "Eric Chen USC27",
@@ -83515,7 +83521,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 61
+      "solvers": 65
     }
   ],
   "solversGrowth": [
@@ -84101,7 +84107,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13844
+      "totalSolvers": 13845
     }
   ],
   "mostSolvedPuzzles": [
@@ -84229,7 +84235,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 61,
+    "solverCount": 65,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84478,8 +84484,24 @@
       {
         "solver": "Andrew Yoo",
         "timestamp": "2026-04-25T12:15:12.327976+00:00"
+      },
+      {
+        "solver": "Zequn Yang",
+        "timestamp": "2026-04-26T12:16:28.164267+00:00"
+      },
+      {
+        "solver": "Joshua Kindler",
+        "timestamp": "2026-04-26T12:16:28.164267+00:00"
+      },
+      {
+        "solver": "Philip Naveen",
+        "timestamp": "2026-04-26T12:16:28.164267+00:00"
+      },
+      {
+        "solver": "Hobart Doyle",
+        "timestamp": "2026-04-26T12:16:28.164267+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-25T12:15:12.486210+00:00"
+  "generatedAt": "2026-04-26T12:16:28.327624+00:00"
 }
