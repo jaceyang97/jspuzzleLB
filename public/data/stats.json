@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13845,
+  "uniqueSolvers": 13846,
   "solverDistribution": {
-    "onePuzzle": 10300,
+    "onePuzzle": 10301,
     "twoToNine": 3304,
     "tenPlus": 241
   },
@@ -21393,6 +21393,12 @@
     },
     {
       "name": "Hobart Doyle",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Piyali Mittal",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -83521,7 +83527,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 65
+      "solvers": 66
     }
   ],
   "solversGrowth": [
@@ -84107,7 +84113,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13845
+      "totalSolvers": 13846
     }
   ],
   "mostSolvedPuzzles": [
@@ -84235,7 +84241,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 65,
+    "solverCount": 66,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84500,8 +84506,12 @@
       {
         "solver": "Hobart Doyle",
         "timestamp": "2026-04-26T12:16:28.164267+00:00"
+      },
+      {
+        "solver": "Piyali Mittal",
+        "timestamp": "2026-04-27T12:34:20.137180+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-26T12:16:28.327624+00:00"
+  "generatedAt": "2026-04-27T12:34:20.302594+00:00"
 }
