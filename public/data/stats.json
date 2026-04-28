@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13846,
+  "uniqueSolvers": 13852,
   "solverDistribution": {
-    "onePuzzle": 10301,
-    "twoToNine": 3304,
+    "onePuzzle": 10306,
+    "twoToNine": 3305,
     "tenPlus": 241
   },
   "topSolvers": [
@@ -6986,6 +6986,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Griffin Pinney & Fred Vu",
+      "puzzlesSolved": 3,
+      "firstAppearance": "December 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Eric Chen USC27",
       "puzzlesSolved": 3,
       "firstAppearance": "January 2026",
@@ -10940,6 +10946,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Markus Str\u00f8mme",
+      "puzzlesSolved": 2,
+      "firstAppearance": "June 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Utkarsh Naman",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
@@ -12894,12 +12906,6 @@
       "puzzlesSolved": 2,
       "firstAppearance": "June 2025",
       "lastSolve": "July 2025"
-    },
-    {
-      "name": "Griffin Pinney & Fred Vu",
-      "puzzlesSolved": 2,
-      "firstAppearance": "December 2024",
-      "lastSolve": "June 2025"
     },
     {
       "name": "Michael Blumberg",
@@ -21399,6 +21405,42 @@
     },
     {
       "name": "Piyali Mittal",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Denis Abuti",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Kristof Lommers",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Patrik Malinsky",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Matteo Giri + Matteo Dagos",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Leonardo Z",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Corey Casmedes",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -52437,12 +52479,6 @@
     },
     {
       "name": "Sam Carruthers",
-      "puzzlesSolved": 1,
-      "firstAppearance": "June 2024",
-      "lastSolve": "June 2024"
-    },
-    {
-      "name": "Markus Str\u00f8mme",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2024",
       "lastSolve": "June 2024"
@@ -83527,7 +83563,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 66
+      "solvers": 74
     }
   ],
   "solversGrowth": [
@@ -84113,7 +84149,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13846
+      "totalSolvers": 13852
     }
   ],
   "mostSolvedPuzzles": [
@@ -84241,7 +84277,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 66,
+    "solverCount": 74,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84510,8 +84546,40 @@
       {
         "solver": "Piyali Mittal",
         "timestamp": "2026-04-27T12:34:20.137180+00:00"
+      },
+      {
+        "solver": "Griffin Pinney & Fred Vu",
+        "timestamp": "2026-04-28T12:37:50.063174+00:00"
+      },
+      {
+        "solver": "Denis Abuti",
+        "timestamp": "2026-04-28T12:37:50.063174+00:00"
+      },
+      {
+        "solver": "Kristof Lommers",
+        "timestamp": "2026-04-28T12:37:50.063174+00:00"
+      },
+      {
+        "solver": "Patrik Malinsky",
+        "timestamp": "2026-04-28T12:37:50.063174+00:00"
+      },
+      {
+        "solver": "Matteo Giri + Matteo Dagos",
+        "timestamp": "2026-04-28T12:37:50.063174+00:00"
+      },
+      {
+        "solver": "Leonardo Z",
+        "timestamp": "2026-04-28T12:37:50.063174+00:00"
+      },
+      {
+        "solver": "Markus Str\u00f8mme",
+        "timestamp": "2026-04-28T12:37:50.063174+00:00"
+      },
+      {
+        "solver": "Corey Casmedes",
+        "timestamp": "2026-04-28T12:37:50.063174+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-27T12:34:20.302594+00:00"
+  "generatedAt": "2026-04-28T12:37:50.487737+00:00"
 }
