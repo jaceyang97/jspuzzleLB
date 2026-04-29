@@ -405,12 +405,16 @@
   border-bottom: 2px solid var(--border-primary);
 }
 
-.leaderboard-table.mini tr:hover {
-  background-color: var(--bg-hover-strong);
-}
-
 .leaderboard-table.mini tr:nth-child(even) {
   background-color: var(--table-row-even);
+}
+
+/* Hover wins on both odd and even rows. The combined
+   :nth-child(even):hover selector has higher specificity than
+   :nth-child(even) alone, so the alternate-row tint can't override it. */
+.leaderboard-table.mini tr:hover,
+.leaderboard-table.mini tr:nth-child(even):hover {
+  background-color: var(--bg-hover-strong);
 }
 
 .solver-name {
@@ -477,12 +481,13 @@
   height: 24px;
 }
 
-.puzzle-table tr:hover {
-  background-color: var(--bg-hover-strong);
-}
-
 .puzzle-table tr:nth-child(even) {
   background-color: var(--table-row-even);
+}
+
+.puzzle-table tr:hover,
+.puzzle-table tr:nth-child(even):hover {
+  background-color: var(--bg-hover-strong);
 }
 
 .puzzle-link-table {
@@ -515,15 +520,15 @@
 .solver-distribution {
   background-color: var(--bg-secondary);
   border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 12px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
   box-shadow: 0 2px 4px var(--shadow-md);
   border: 1px solid var(--border-primary);
 }
 
 .distribution-header h3 {
-  margin: 0 0 12px 0;
-  font-size: 14px;
+  margin: 0 0 8px 0;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-primary);
 }
@@ -531,13 +536,13 @@
 .distribution-chart {
   display: flex;
   flex-direction: column;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 .distribution-bar {
   display: flex;
-  height: 32px;
-  border-radius: 6px;
+  height: 22px;
+  border-radius: 4px;
   overflow: hidden;
   box-shadow: inset 0 1px 3px var(--shadow-md);
 }
@@ -561,7 +566,7 @@
   justify-content: center;
   color: white;
   font-weight: 700;
-  font-size: 11px;
+  font-size: 10px;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   white-space: nowrap;
@@ -569,23 +574,27 @@
   text-overflow: ellipsis;
   max-width: 100%;
   padding: 0 4px;
+  letter-spacing: 0.02em;
 }
 
 .distribution-legend {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
 }
 
 .legend-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
+  cursor: help;
 }
 
 .legend-color {
-  width: 12px;
-  height: 12px;
+  width: 9px;
+  height: 9px;
   border-radius: 2px;
   flex-shrink: 0;
 }
@@ -595,9 +604,10 @@
 .legend-color.ten-plus { background: var(--bar-ten-plus); }
 
 .legend-text {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-tertiary);
   font-weight: 500;
+  white-space: nowrap;
 }
 
 /* ------------------------------------------------
@@ -950,5 +960,326 @@
 }
 .pulsing-dot, .pulsing-text {
   animation: pulse 1s infinite ease-in-out;
+}
+
+/* ================================================
+   CLICKABLE ROW — entire <tr> opens the solver profile.
+   Larger click target than just the name text.
+   ================================================ */
+.leaderboard-table.mini tr.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+.leaderboard-table.mini tr.clickable-row:hover .solver-name {
+  color: var(--accent-primary);
+}
+.leaderboard-table.mini tr.clickable-row:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: -2px;
+}
+.leaderboard-table.mini tr.clickable-row:active {
+  background-color: var(--bg-hover-strong);
+}
+
+/* ================================================
+   SOLVER PROFILE MODAL — compact profile card
+   ================================================ */
+.solver-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: solver-modal-fade 0.15s ease-out;
+}
+@keyframes solver-modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.solver-modal {
+  position: relative;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 14px;
+  width: min(420px, 100%);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  animation: solver-modal-pop 0.18s cubic-bezier(0.2, 0, 0, 1);
+}
+@keyframes solver-modal-pop {
+  from { transform: translateY(8px) scale(0.985); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+.solver-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  z-index: 2;
+}
+.solver-modal-close:hover {
+  background-color: var(--bg-hover-strong);
+  color: var(--text-primary);
+}
+
+/* Profile-card identity: avatar centered, name and meta below */
+.solver-modal-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 22px 20px 14px;
+  gap: 10px;
+}
+.solver-modal-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25),
+              inset 0 -2px 4px rgba(0, 0, 0, 0.12);
+}
+.solver-modal-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-word;
+  line-height: 1.25;
+}
+.solver-modal-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.02em;
+}
+
+/* Two-stat row, centered, no card backgrounds — keeps the card calm */
+.solver-modal-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 6px 20px 16px;
+  border-bottom: 1px solid var(--border-secondary);
+}
+.solver-stat {
+  text-align: center;
+  padding: 8px 6px;
+  border-radius: 8px;
+  background-color: var(--bg-tertiary);
+}
+.solver-stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.solver-stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+}
+
+.solver-modal-section-label {
+  padding: 12px 20px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+}
+.solver-modal-list {
+  overflow-y: auto;
+  padding: 0 16px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+.solver-modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.solver-modal-table td {
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--border-secondary);
+  color: var(--text-secondary);
+}
+.solver-modal-table tr:last-child td {
+  border-bottom: none;
+}
+.solver-modal-date {
+  width: 86px;
+  white-space: nowrap;
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+.solver-modal-state {
+  padding: 22px;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+.solver-modal-state.error {
+  color: #c0392b;
+}
+
+@media (max-width: 480px) {
+  .solver-modal {
+    width: 100%;
+    border-radius: 12px;
+  }
+  .solver-modal-title {
+    font-size: 16px;
+  }
+  .solver-stat-value {
+    font-size: 17px;
+  }
+}
+
+/* ================================================
+   GROWTH CHART TABS
+   ------------------------------------------------
+   The Solvers Growth chart panel hosts three tabs:
+   Growth (default), Year-over-Year, and First-Time.
+   ================================================ */
+.growth-chart-tabs {
+  position: relative;
+}
+.growth-tabs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 0 2px 4px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+.growth-chart-tabs h3 {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.growth-tabs-strip {
+  flex-shrink: 0;
+}
+.growth-tabs-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-secondary);
+  border-radius: 6px;
+}
+.growth-tab-btn {
+  background: none;
+  border: none;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  padding: 3px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+}
+.growth-tab-btn:hover {
+  color: var(--text-primary);
+}
+.growth-tab-btn.active {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  box-shadow: inset 0 0 0 1px var(--border-primary);
+}
+.growth-tab-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.growth-chart-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  position: relative;
+}
+/* Inline toolbar above the chart body content (used by the YoY tab for the
+   Recent / All years toggle). Sits in normal flow so it never overlaps the
+   tab strip above. */
+.growth-chart-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 2px 4px;
+  flex-shrink: 0;
+}
+.growth-chart-body .chart-toggle {
+  display: inline-flex;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-secondary);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.chart-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  padding: 3px 7px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.chart-toggle-btn:hover {
+  color: var(--text-primary);
+}
+.chart-toggle-btn.active {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .growth-tabs-header { gap: 4px; }
+  .growth-tab-btn { padding: 3px 6px; font-size: 10px; }
 }
 

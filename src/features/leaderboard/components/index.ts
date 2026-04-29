@@ -5,3 +5,4 @@ export { default as SolverDistributionChart } from './SolverDistributionChart';
 export { default as LoadingSpinner } from './LoadingSpinner';
 export { default as StatsCards } from './StatsCards';
 export { default as NewSolversBanner } from './NewSolversBanner';
+export { default as SolverProfileModal } from './SolverProfileModal';
