@@ -37,6 +37,18 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       (entry) => entry.timestamp.slice(0, 10) === crawlDate
     );
 
+    const puzzleLink = (
+      <a
+        href="https://www.janestreet.com/puzzles/current-puzzle/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="banner-puzzle-link"
+        title={`Open "${currentPuzzleProgress.puzzleName}" on janestreet.com`}
+      >
+        {currentPuzzleProgress.puzzleName}
+      </a>
+    );
+
     if (todaysSolvers.length > 0) {
       const names = todaysSolvers.map((e) => e.solver);
       const displayNames = names.length > 5
@@ -46,7 +58,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
         <>
           <span className="banner-highlight">NEW TODAY</span>
           {' '}
-          {formatNames(displayNames)} joined the {currentPuzzleProgress.puzzleName} board
+          {formatNames(displayNames)} joined the {puzzleLink} board
         </>
       );
     } else {
@@ -57,7 +69,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       const diffDays = Math.floor((crawlDateObj.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
       content = (
         <>
-          {currentPuzzleProgress.puzzleName} · {currentPuzzleProgress.solverCount} solvers · last added {daysAgoText(diffDays)}
+          {puzzleLink} · {currentPuzzleProgress.solverCount} solvers · last added {daysAgoText(diffDays)}
         </>
       );
     }
