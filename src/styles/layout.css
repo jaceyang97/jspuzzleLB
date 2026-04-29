@@ -156,6 +156,25 @@
   font-size: 11px;
 }
 
+.banner-puzzle-link {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent-primary), var(--accent-primary));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  padding-bottom: 1px;
+  transition: background-size 0.25s ease, color 0.2s ease;
+}
+
+.banner-puzzle-link:hover,
+.banner-puzzle-link:focus-visible {
+  color: var(--accent-primary);
+  background-size: 100% 1px;
+  outline: none;
+}
+
 .banner-dismiss {
   background: none;
   border: none;
