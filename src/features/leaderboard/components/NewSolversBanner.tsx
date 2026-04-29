@@ -56,7 +56,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
         : names;
       content = (
         <>
-          <span className="banner-highlight">NEW TODAY</span>
+          <span className="banner-tag">NEW TODAY</span>
           {' '}
           {formatNames(displayNames)} joined the {puzzleLink} board
         </>

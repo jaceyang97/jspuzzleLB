@@ -149,11 +149,24 @@
   line-height: 1.3;
 }
 
-.banner-highlight {
-  font-weight: 600;
-  color: var(--accent-primary);
-  letter-spacing: 0.5px;
-  font-size: 11px;
+/* "NEW TODAY" construction-sign tag — solid yellow, black border, slight tilt */
+.banner-tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ffd60a;
+  color: #0a0a0a;
+  border: 2px solid #0a0a0a;
+  border-radius: 3px;
+  padding: 2px 7px;
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: middle;
+  transform: rotate(-2deg);
+  box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 0.25);
+  -webkit-font-smoothing: antialiased;
 }
 
 .banner-puzzle-link {
