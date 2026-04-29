@@ -18,6 +18,7 @@ def build_email_body(notification: Dict[str, Any]) -> str:
     puzzle_date = notification.get("puzzle_date", "")
     new_solvers: List[str] = notification.get("new_solvers", [])
     total_solvers: int = notification.get("total_solvers", 0)
+    late_by_puzzle: Dict[str, List[str]] = notification.get("late_solvers_by_puzzle", {}) or {}
 
     lines = [f"Jane Street Puzzle: {puzzle_name} ({puzzle_date})", ""]
 
@@ -30,6 +31,18 @@ def build_email_body(notification: Dict[str, Any]) -> str:
 
     lines.append("")
     lines.append(f"Total solvers on leaderboard: {total_solvers}")
+
+    if late_by_puzzle:
+        total_late = sum(len(v) for v in late_by_puzzle.values())
+        lines.append("")
+        lines.append(
+            f"Late additions to recently archived puzzles ({total_late} total):"
+        )
+        for label, names in late_by_puzzle.items():
+            lines.append(f"  {label}:")
+            for name in names:
+                lines.append(f"    - {name}")
+
     return "\n".join(lines)
 
 
