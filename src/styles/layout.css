@@ -188,6 +188,160 @@
   outline: none;
 }
 
+/* ------------------------------------------------
+   SOLVER CHIPS — pill with colored avatar showing the
+   solver's first initial (deterministic hue per name).
+   Used in the banner and in the "N more" tooltip.
+   ------------------------------------------------ */
+.solver-chip-row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  vertical-align: middle;
+}
+.solver-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  vertical-align: middle;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  padding: 1px 9px 1px 3px;
+  border-radius: 999px;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-secondary);
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.solver-chip:hover {
+  background-color: var(--bg-hover-strong);
+  border-color: var(--border-primary);
+}
+.solver-chip-name {
+  display: inline-block;
+}
+.solver-chip-and {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin: 0 2px;
+}
+.solver-chip-initial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+/* "N more" hoverable affordance — credits the hidden solvers without
+   crowding the banner. The trigger looks like a subtle pill so it reads as
+   interactive; the tooltip on hover/focus lists every hidden solver. */
+.banner-more {
+  position: relative;
+  display: inline-block;
+}
+.banner-more-trigger {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-secondary);
+  cursor: help;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+.banner-more:hover .banner-more-trigger,
+.banner-more:focus-within .banner-more-trigger {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #fff;
+}
+.banner-more:focus-within {
+  outline: none;
+}
+.banner-more-tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  width: max-content;
+  min-width: 220px;
+  max-width: min(380px, calc(100vw - 32px));
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 6px;
+  padding: 10px 12px;
+  box-shadow: 0 6px 18px var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1500;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  text-align: left;
+}
+.banner-more:hover .banner-more-tooltip,
+.banner-more:focus-within .banner-more-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.banner-more-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid var(--bg-secondary);
+  filter: drop-shadow(0 -1px 0 var(--border-primary));
+}
+.banner-more-tooltip-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  margin-bottom: 6px;
+}
+.banner-more-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+.banner-more-list li {
+  display: flex;
+}
+/* Inside the tooltip, let chips wrap their names if extremely long
+   so the full name is always visible. */
+.banner-more-list .solver-chip {
+  white-space: normal;
+  word-break: break-word;
+  max-width: 100%;
+}
+
 .banner-dismiss {
   background: none;
   border: none;

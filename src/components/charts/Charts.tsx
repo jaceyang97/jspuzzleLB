@@ -4,6 +4,8 @@ import {
   AreaChart, Area
 } from 'recharts';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
+import { Puzzle } from '../../features/leaderboard/types';
+import { YoYChart, FirstTimeSolversChart } from './AdvancedCharts';
 
 // Hook to get current theme colors
 const useThemeColors = () => {
@@ -64,6 +66,8 @@ interface PuzzleData {
 interface ChartsProps {
   solversGrowthData: SolversGrowthDataPoint[];
   mostSolvedPuzzlesData?: PuzzleData[];
+  rawPuzzles?: Puzzle[] | null;
+  puzzlesLoading?: boolean;
 }
 
 
@@ -82,8 +86,10 @@ const yearTickFormatter = (value: string | number) => {
   return '';
 };
 
-// Memoized chart components to prevent unnecessary re-renders
-const SolversGrowthChart = memo(({ data }: { data: SolversGrowthDataPoint[] }) => {
+// Body of the Solvers Growth area chart, without its container or title.
+// The title + container are rendered by GrowthChartTabs so the same outer
+// frame can host the YoY and First-Time charts as alternate tabs.
+const SolversGrowthBody = memo(({ data }: { data: SolversGrowthDataPoint[] }) => {
   const themeColors = useThemeColors();
   // Filter data to start from Nov 2015 (first occurrence of solvers)
   const filteredData = data.filter(item => {
@@ -120,10 +126,7 @@ const SolversGrowthChart = memo(({ data }: { data: SolversGrowthDataPoint[] }) =
   
   // Determine if we need to adjust font size based on number of years
   const fontSize = years.length > 8 ? 11 : 13;
-  
-  // Tooltip state for the chart title
-  const [showTitleTooltip, setShowTitleTooltip] = useState(false);
-  
+
   // Get current month string
   const now = new Date();
   const currentMonthStr = `${MONTH_CODES[now.getMonth()]} ${now.getFullYear()}`;
@@ -232,19 +235,7 @@ const SolversGrowthChart = memo(({ data }: { data: SolversGrowthDataPoint[] }) =
   };
   
   return (
-    <div className="chart-container mini" style={{ display: 'flex', flexDirection: 'column', padding: '8px 5px 0 5px' }}>
-      <h3 
-        onMouseEnter={() => setShowTitleTooltip(true)}
-        onMouseLeave={() => setShowTitleTooltip(false)}
-        style={{ position: 'relative', cursor: 'help' }}
-      >
-        🌱 Solvers Growth
-        {showTitleTooltip && (
-          <div className="chart-title-tooltip">
-            The puzzle series started in Jan 2014, but solver lists are only publicly available from Nov 2015 onwards.
-          </div>
-        )}
-      </h3>
+    <div className="growth-chart-body">
       <ResponsiveContainer width="100%" height="100%" minHeight={120}>
         <AreaChart 
           data={dataWithCurrentMonth} 
@@ -296,6 +287,86 @@ const SolversGrowthChart = memo(({ data }: { data: SolversGrowthDataPoint[] }) =
     </div>
   );
 });
+
+// Tabbed wrapper that swaps between Solvers Growth, Year-over-Year, and
+// First-Time Solvers in the same chart panel. The panel header keeps a
+// static title so the layout doesn't reflow when the active tab changes.
+type GrowthTab = 'growth' | 'yoy' | 'first-time';
+
+interface GrowthChartTabsProps {
+  solversGrowthData: SolversGrowthDataPoint[];
+  rawPuzzles?: Puzzle[] | null;
+  puzzlesLoading?: boolean;
+}
+
+const TAB_META: Record<GrowthTab, { label: string; tooltip: string }> = {
+  growth: {
+    label: 'Total',
+    tooltip:
+      'Cumulative unique solvers over time. Solver lists are publicly available from Nov 2015 onwards.',
+  },
+  yoy: {
+    label: 'YoY',
+    tooltip:
+      'Unique solvers per month, one line per year. Useful for comparing seasonal participation across years.',
+  },
+  'first-time': {
+    label: 'New',
+    tooltip:
+      'First-time solvers per month — newcomers who had never appeared in any prior puzzle.',
+  },
+};
+
+const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
+  solversGrowthData,
+  rawPuzzles,
+  puzzlesLoading,
+}) => {
+  const [tab, setTab] = useState<GrowthTab>('growth');
+  const [showTitleTooltip, setShowTitleTooltip] = useState(false);
+
+  return (
+    <div
+      className="chart-container mini growth-chart-tabs"
+      style={{ display: 'flex', flexDirection: 'column', padding: '8px 5px 0 5px' }}
+    >
+      <div className="growth-tabs-header">
+        <h3
+          onMouseEnter={() => setShowTitleTooltip(true)}
+          onMouseLeave={() => setShowTitleTooltip(false)}
+          style={{ position: 'relative', cursor: 'help' }}
+        >
+          🌱 Solvers Growth
+          {showTitleTooltip && (
+            <div className="chart-title-tooltip">{TAB_META[tab].tooltip}</div>
+          )}
+        </h3>
+        <div className="growth-tabs-strip" role="tablist" aria-label="Growth chart view">
+          {(['growth', 'yoy', 'first-time'] as GrowthTab[]).map((t) => (
+            <button
+              key={t}
+              role="tab"
+              aria-selected={tab === t}
+              className={`growth-tab-btn ${tab === t ? 'active' : ''}`}
+              onClick={() => setTab(t)}
+              title={TAB_META[t].tooltip}
+            >
+              {TAB_META[t].label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="growth-tab-panel">
+        {tab === 'growth' && <SolversGrowthBody data={solversGrowthData} />}
+        {tab === 'yoy' && (
+          <YoYChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />
+        )}
+        {tab === 'first-time' && <FirstTimeSolversChart solversGrowth={solversGrowthData} />}
+      </div>
+    </div>
+  );
+};
 
 // Optimized component for displaying top puzzles
 const MostSolvedPuzzlesTable = memo(({ data }: { data: PuzzleData[] }) => {
@@ -382,13 +453,19 @@ const MostSolvedPuzzlesTable = memo(({ data }: { data: PuzzleData[] }) => {
   );
 });
 
-const Charts: React.FC<ChartsProps> = ({ 
-  solversGrowthData, 
-  mostSolvedPuzzlesData = [] 
+const Charts: React.FC<ChartsProps> = ({
+  solversGrowthData,
+  mostSolvedPuzzlesData = [],
+  rawPuzzles,
+  puzzlesLoading,
 }) => {
   return (
     <div className="charts-dashboard">
-      <SolversGrowthChart data={solversGrowthData} />
+      <GrowthChartTabs
+        solversGrowthData={solversGrowthData}
+        rawPuzzles={rawPuzzles}
+        puzzlesLoading={puzzlesLoading}
+      />
       <MostSolvedPuzzlesTable data={mostSolvedPuzzlesData} />
     </div>
   );

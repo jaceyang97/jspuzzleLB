@@ -3,6 +3,7 @@ import '../styles/layout.css';
 import '../styles/components.css';
 import Confetti from '@tholman/confetti';
 import { useLeaderboardData } from '../features/leaderboard/hooks/useLeaderboardData';
+import { useRawPuzzleData } from '../features/leaderboard/hooks/useRawPuzzleData';
 import { useTheme } from '../hooks/useTheme';
 import {
   TopSolversTable,
@@ -12,7 +13,9 @@ import {
   LoadingSpinner,
   StatsCards,
   NewSolversBanner,
+  SolverProfileModal,
 } from '../features/leaderboard/components';
+import { formatRelativeTime, formatExactTime } from '../utils/relativeTime';
 
 // Import charts lazily to improve initial load time
 const Charts = lazy(() => import('./charts/Charts'));
@@ -36,6 +39,20 @@ const Leaderboard: React.FC = () => {
   const [showRisingStarsTooltip, setShowRisingStarsTooltip] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [topSolversSearch, setTopSolversSearch] = useState('');
+  const [selectedSolver, setSelectedSolver] = useState<string | null>(null);
+
+  // Lazy-load raw puzzle data once a solver modal is opened or once the
+  // YoY chart needs it. The hook caches at module scope so opening multiple
+  // modals only fetches once.
+  const needPuzzles = !!selectedSolver || !!data;
+  const { puzzles: rawPuzzles, loading: puzzlesLoading } = useRawPuzzleData(needPuzzles);
+
+  // Tick once a minute so the relative-time string stays fresh while the tab is open.
+  const [, setNow] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setNow((n) => n + 1), 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     if (!data) return;
@@ -49,17 +66,25 @@ const Leaderboard: React.FC = () => {
   const mostSolvedPuzzlesData = useMemo(() =>
     data?.mostSolvedPuzzles?.slice(0, 10) || [], [data]);
 
-  // Use the precomputed stats month as the last updated marker
-  const getLatestDataDate = () => {
+  // Relative + exact "data updated" strings, derived from generatedAt.
+  const updatedRelative = useMemo(
+    () => (data?.generatedAt ? formatRelativeTime(data.generatedAt) : ''),
+    // Re-eval each minute via the setNow tick above
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [data?.generatedAt]
+  );
+  const updatedExact = useMemo(
+    () => (data?.generatedAt ? formatExactTime(data.generatedAt) : ''),
+    [data?.generatedAt]
+  );
+  // Latest puzzle month, kept as a fallback when no generatedAt is present.
+  const latestMonth = useMemo(() => {
     if (data?.monthlyParticipation?.length) {
-      const latestEntry = data.monthlyParticipation[data.monthlyParticipation.length - 1];
-      if (latestEntry?.month) return latestEntry.month;
+      const latest = data.monthlyParticipation[data.monthlyParticipation.length - 1];
+      if (latest?.month) return latest.month;
     }
-    if (data?.generatedAt) {
-      return new Date(data.generatedAt).toISOString().split('T')[0];
-    }
-    return 'Unknown';
-  };
+    return '';
+  }, [data]);
 
   // Show loading spinner while data is being loaded
   if (loading) {
@@ -150,9 +175,20 @@ const Leaderboard: React.FC = () => {
           </a>
         </div>
         <div className="header-right">
-          <div className="data-date">
+          <div
+            className="data-date"
+            title={
+              updatedExact
+                ? `Stats generated ${updatedExact}${latestMonth ? ` · latest puzzle: ${latestMonth}` : ''}`
+                : latestMonth
+                ? `Latest puzzle: ${latestMonth}`
+                : ''
+            }
+          >
             <span className="data-date-label">Data updated</span>
-            <span className="data-date-value">{getLatestDataDate()}</span>
+            <span className="data-date-value">
+              {updatedRelative || latestMonth || 'Unknown'}
+            </span>
           </div>
           <span className="creator-text">
             Created by <a href="https://www.jaceyang.com/" target="_blank" rel="noopener noreferrer" className="author-link">Jace Yang</a>
@@ -207,9 +243,11 @@ const Leaderboard: React.FC = () => {
           
           <div className="charts-container">
             <Suspense fallback={<div className="chart-loading">Loading charts...</div>}>
-              <Charts 
-                solversGrowthData={solversGrowthData} 
+              <Charts
+                solversGrowthData={solversGrowthData}
                 mostSolvedPuzzlesData={mostSolvedPuzzlesData}
+                rawPuzzles={rawPuzzles}
+                puzzlesLoading={puzzlesLoading}
               />
             </Suspense>
           </div>
@@ -228,12 +266,16 @@ const Leaderboard: React.FC = () => {
               />
             </div>
           </div>
-          <TopSolversTable data={data.topSolvers || []} searchTerm={topSolversSearch} />
+          <TopSolversTable
+            data={data.topSolvers || []}
+            searchTerm={topSolversSearch}
+            onSolverClick={setSelectedSolver}
+          />
         </div>
         
         <div className="dashboard-item streaks-column">
           <h2>🔥 Longest Streaks</h2>
-          <StreaksTable data={data.longestStreaks || []} />
+          <StreaksTable data={data.longestStreaks || []} onSolverClick={setSelectedSolver} />
         </div>
         
         <div className="dashboard-item rising-stars-column">
@@ -249,9 +291,14 @@ const Leaderboard: React.FC = () => {
               </div>
             )}
           </h2>
-          <RisingStarsTable data={data.risingStars || []} />
+          <RisingStarsTable data={data.risingStars || []} onSolverClick={setSelectedSolver} />
         </div>
       </div>
+      <SolverProfileModal
+        solverName={selectedSolver}
+        onClose={() => setSelectedSolver(null)}
+      />
+
       <footer className="dashboard-footer">
         <div className="disclaimer">
           This site is not affiliated with, endorsed by, or sponsored by Jane Street. All puzzle data is compiled from publicly available information.
