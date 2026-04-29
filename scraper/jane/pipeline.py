@@ -13,6 +13,12 @@ from .storage import load_existing, save_puzzles, load_puzzles_list, save_puzzle
 
 CURRENT_PUZZLE_URL = "https://www.janestreet.com/puzzles/current-puzzle/"
 
+# Jane Street sometimes adds late solvers to the previous month's puzzle after
+# it has already moved into the archive. Re-check archived puzzles whose
+# nominal archival date is within this many days of "now" on each daily run,
+# so those late additions land on the leaderboard.
+LEEWAY_DAYS = 30
+
 
 def get_leaderboard_names(session, puzzle_id: str, timeout: int = DEFAULT_TIMEOUT) -> List[str]:
     json_url = f"https://www.janestreet.com/puzzles/{puzzle_id}-leaderboard.json"
@@ -85,6 +91,7 @@ def update_current(
 
     empty_notification: Dict[str, Any] = {
         "puzzle_name": "", "puzzle_date": "", "new_solvers": [], "total_solvers": 0,
+        "late_solvers_by_puzzle": {},
     }
 
     session = build_session()
@@ -165,6 +172,17 @@ def update_current(
         notification["new_solvers"] = fresh_solvers
         notification["total_solvers"] = len(fresh_solvers)
 
+    # Re-check recently archived puzzles for late solver additions that
+    # Jane Street made after the puzzle moved into the archive.
+    late_by_puzzle = refresh_recent_archives(session, puzzles, timeout=timeout)
+    if late_by_puzzle:
+        total_late = sum(len(v) for v in late_by_puzzle.values())
+        logger.info(
+            f"Picked up {total_late} late solver(s) across "
+            f"{len(late_by_puzzle)} archived puzzle(s)"
+        )
+        notification["late_solvers_by_puzzle"] = late_by_puzzle
+
     save_puzzles_raw(output_path, puzzles)
     stats = build_stats(puzzles)
     save_stats(stats_path, stats)
@@ -197,7 +215,10 @@ def _handle_month_transition(
     old_entry = puzzles[old_current_idx]
     old_key = _puzzle_key_from_dict(old_entry)
 
-    # Step 2: Try to finalize the old puzzle with its solution page data
+    # Step 2: Try to finalize the old puzzle with its solution page data.
+    # We keep `puzzle_id` on the archived entry (rather than popping it) so
+    # subsequent daily runs can re-fetch the leaderboard cheaply and pick up
+    # late solver additions during the LEEWAY_DAYS window.
     for meta in metas:
         key = f"{meta.date_text}_{meta.name}"
         if key == old_key and meta.solution_url:
@@ -212,7 +233,8 @@ def _handle_month_transition(
                     old_entry["solvers"] = final_solvers
                     old_entry["solver_timestamps"] = merged_ts
                     old_entry["solution_url"] = meta.solution_url
-                    old_entry.pop("puzzle_id", None)
+                    old_entry["puzzle_id"] = solution_puzzle_id
+                    old_entry["archived_at"] = datetime.now(timezone.utc).isoformat()
             except Exception as exc:
                 logger.warning(f"Failed to finalize old puzzle: {exc}")
             break
@@ -243,6 +265,154 @@ def _handle_month_transition(
     }
     puzzles.insert(0, new_entry)
     logger.info(f"Added new puzzle: {new_entry_name} ({new_entry_date})")
+
+
+def _approx_archive_date(date_text: str) -> Optional[datetime]:
+    """Approximate when a puzzle was archived: the 1st of the month after `date_text`."""
+    try:
+        puzzle_dt = datetime.strptime(date_text, "%B %Y")
+    except Exception:
+        return None
+    if puzzle_dt.month == 12:
+        return datetime(puzzle_dt.year + 1, 1, 1, tzinfo=timezone.utc)
+    return datetime(puzzle_dt.year, puzzle_dt.month + 1, 1, tzinfo=timezone.utc)
+
+
+def _days_since_archived(entry: Dict[str, Any]) -> Optional[int]:
+    """How many days ago was this puzzle archived (None if undeterminable)."""
+    archived_at = entry.get("archived_at")
+    archived_dt: Optional[datetime] = None
+    if archived_at:
+        try:
+            archived_dt = datetime.fromisoformat(archived_at)
+            if archived_dt.tzinfo is None:
+                archived_dt = archived_dt.replace(tzinfo=timezone.utc)
+        except Exception:
+            archived_dt = None
+    if archived_dt is None:
+        archived_dt = _approx_archive_date(entry.get("date_text", ""))
+    if archived_dt is None:
+        return None
+    return (datetime.now(timezone.utc) - archived_dt).days
+
+
+def _ensure_puzzle_id(
+    session,
+    entry: Dict[str, Any],
+    timeout: int,
+) -> Optional[str]:
+    """Return puzzle_id for an archived entry, fetching the solution page if needed."""
+    pid = entry.get("puzzle_id")
+    if pid:
+        return pid
+    solution_url = entry.get("solution_url")
+    if not solution_url:
+        return None
+    try:
+        html = fetch_html(session, solution_url, timeout=timeout)
+        pid = parse_solution_page(html)
+    except Exception as exc:
+        logger.warning(
+            f"Failed to fetch solution page for {entry.get('name', '?')}: {exc}"
+        )
+        return None
+    if pid:
+        entry["puzzle_id"] = pid
+    return pid
+
+
+def refresh_archived_entry(
+    session,
+    entry: Dict[str, Any],
+    timeout: int,
+) -> List[str]:
+    """
+    Re-fetch leaderboard for a single archived puzzle entry, merge late solvers,
+    and return the list of newly-added solver names (empty if none).
+    """
+    puzzle_id = _ensure_puzzle_id(session, entry, timeout)
+    if not puzzle_id:
+        return []
+    fresh_solvers = get_leaderboard_names(session, puzzle_id, timeout=timeout)
+    if not fresh_solvers:
+        return []
+    existing_solvers = set(entry.get("solvers") or [])
+    late_solvers = [s for s in fresh_solvers if s not in existing_solvers]
+    if not late_solvers:
+        # Still keep the leaderboard list in sync (handles renames/removals are
+        # rare; only overwrite if the content actually changed).
+        if list(entry.get("solvers") or []) != fresh_solvers:
+            entry["solvers"] = fresh_solvers
+        return []
+
+    existing_ts = entry.get("solver_timestamps", {})
+    merged_ts = merge_solvers_with_timestamps(fresh_solvers, existing_ts)
+    entry["solvers"] = fresh_solvers
+    entry["solver_timestamps"] = merged_ts
+    logger.info(
+        f"Late additions for {entry.get('name', '?')} "
+        f"({entry.get('date_text', '?')}): {len(late_solvers)} new solver(s)"
+    )
+    return late_solvers
+
+
+def refresh_recent_archives(
+    session,
+    puzzles: List[Dict[str, Any]],
+    timeout: int,
+    leeway_days: int = LEEWAY_DAYS,
+) -> Dict[str, List[str]]:
+    """
+    Re-check archived puzzles whose archive date is within `leeway_days`,
+    merging in any late solvers Jane Street has added since last run.
+
+    Returns a mapping {"<date_text> - <name>": [late_solvers]} for any
+    entries that gained new names; empty if nothing changed.
+    """
+    late_by_puzzle: Dict[str, List[str]] = {}
+    for entry in puzzles:
+        if not entry.get("solution_url"):
+            continue  # current puzzle, handled elsewhere
+        age = _days_since_archived(entry)
+        if age is None or age < 0 or age > leeway_days:
+            continue
+        late = refresh_archived_entry(session, entry, timeout)
+        if late:
+            label = f"{entry.get('date_text', '?')} - {entry.get('name', '?')}"
+            late_by_puzzle[label] = late
+    return late_by_puzzle
+
+
+def backfill_archives(
+    session,
+    puzzles: List[Dict[str, Any]],
+    timeout: int,
+    months: int = 24,
+) -> Dict[str, List[str]]:
+    """
+    One-shot retroactive scan: re-fetch leaderboards for archived puzzles up to
+    `months` old, regardless of the leeway window. Used to recover late solvers
+    that were previously dropped on finalize. Stamps `puzzle_id` and
+    `archived_at` on entries that lack them.
+    """
+    late_by_puzzle: Dict[str, List[str]] = {}
+    cutoff_days = months * 31  # generous, calendar approximation
+    for entry in puzzles:
+        if not entry.get("solution_url"):
+            continue
+        age = _days_since_archived(entry)
+        if age is None or age < 0 or age > cutoff_days:
+            continue
+        late = refresh_archived_entry(session, entry, timeout)
+        # Stamp archived_at so subsequent leeway-window checks work cleanly.
+        if not entry.get("archived_at"):
+            approx = _approx_archive_date(entry.get("date_text", ""))
+            if approx is not None:
+                entry["archived_at"] = approx.isoformat()
+        if late:
+            label = f"{entry.get('date_text', '?')} - {entry.get('name', '?')}"
+            late_by_puzzle[label] = late
+    return late_by_puzzle
 
 
 def _date_text_from_puzzle_id(puzzle_id: str) -> str:
