@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13852,
+  "uniqueSolvers": 13854,
   "solverDistribution": {
-    "onePuzzle": 10306,
+    "onePuzzle": 10308,
     "twoToNine": 3305,
     "tenPlus": 241
   },
@@ -4712,6 +4712,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Darren Cheung",
+      "puzzlesSolved": 4,
+      "firstAppearance": "April 2025",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Aiden Bailey",
       "puzzlesSolved": 4,
       "firstAppearance": "July 2025",
@@ -7499,12 +7505,6 @@
       "name": "Abtin Moghadam",
       "puzzlesSolved": 3,
       "firstAppearance": "October 2025",
-      "lastSolve": "December 2025"
-    },
-    {
-      "name": "Darren Cheung",
-      "puzzlesSolved": 3,
-      "firstAppearance": "April 2025",
       "lastSolve": "December 2025"
     },
     {
@@ -21441,6 +21441,18 @@
     },
     {
       "name": "Corey Casmedes",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Vas / Sam / Jack",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Miguel V",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -83563,7 +83575,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 74
+      "solvers": 77
     }
   ],
   "solversGrowth": [
@@ -84149,7 +84161,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13852
+      "totalSolvers": 13854
     }
   ],
   "mostSolvedPuzzles": [
@@ -84277,7 +84289,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 74,
+    "solverCount": 77,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84578,8 +84590,20 @@
       {
         "solver": "Corey Casmedes",
         "timestamp": "2026-04-28T12:37:50.063174+00:00"
+      },
+      {
+        "solver": "Vas / Sam / Jack",
+        "timestamp": "2026-04-29T12:34:43.965966+00:00"
+      },
+      {
+        "solver": "Miguel V",
+        "timestamp": "2026-04-29T12:34:43.965966+00:00"
+      },
+      {
+        "solver": "Darren Cheung",
+        "timestamp": "2026-04-29T12:34:43.965966+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-28T12:37:50.487737+00:00"
+  "generatedAt": "2026-04-29T12:34:44.166836+00:00"
 }
