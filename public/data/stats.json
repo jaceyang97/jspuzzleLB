@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 146,
-  "uniqueSolvers": 13859,
+  "uniqueSolvers": 13860,
   "solverDistribution": {
     "onePuzzle": 10312,
-    "twoToNine": 3306,
+    "twoToNine": 3307,
     "tenPlus": 241
   },
   "topSolvers": [
@@ -686,6 +686,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "\u3042\u304a\u304d \u307b\u3046\u3072",
+      "puzzlesSolved": 14,
+      "firstAppearance": "November 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Jagraj Kahlon",
       "puzzlesSolved": 14,
       "firstAppearance": "August 2024",
@@ -722,12 +728,6 @@
       "lastSolve": "May 2023"
     },
     {
-      "name": "",
-      "puzzlesSolved": 13,
-      "firstAppearance": "August 2021",
-      "lastSolve": "April 2026"
-    },
-    {
       "name": "Mario E.",
       "puzzlesSolved": 13,
       "firstAppearance": "June 2021",
@@ -755,12 +755,6 @@
       "name": "Jack Oliver",
       "puzzlesSolved": 13,
       "firstAppearance": "February 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "\u3042\u304a\u304d \u307b\u3046\u3072",
-      "puzzlesSolved": 13,
-      "firstAppearance": "November 2024",
       "lastSolve": "February 2026"
     },
     {
@@ -854,6 +848,12 @@
       "lastSolve": "February 2021"
     },
     {
+      "name": "Robert Berec",
+      "puzzlesSolved": 12,
+      "firstAppearance": "May 2025",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Logan Seaburg",
       "puzzlesSolved": 12,
       "firstAppearance": "December 2024",
@@ -917,6 +917,12 @@
       "name": "Tongyang Song",
       "puzzlesSolved": 12,
       "firstAppearance": "July 2020",
+      "lastSolve": "December 2025"
+    },
+    {
+      "name": "",
+      "puzzlesSolved": 12,
+      "firstAppearance": "August 2021",
       "lastSolve": "December 2025"
     },
     {
@@ -1091,12 +1097,6 @@
       "name": "Andre Emery",
       "puzzlesSolved": 11,
       "firstAppearance": "June 2022",
-      "lastSolve": "March 2026"
-    },
-    {
-      "name": "Robert Berec",
-      "puzzlesSolved": 11,
-      "firstAppearance": "May 2025",
       "lastSolve": "March 2026"
     },
     {
@@ -10955,6 +10955,12 @@
       "name": "Siddhartha Sarma",
       "puzzlesSolved": 2,
       "firstAppearance": "December 2025",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "sebgg",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
       "lastSolve": "April 2026"
     },
     {
@@ -21482,6 +21488,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Lucas Reymond",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "yap",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2026",
@@ -22071,12 +22083,6 @@
     },
     {
       "name": "Minh and Sam",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "sebgg",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -83311,8 +83317,8 @@
     },
     {
       "solver": "Robert Berec",
-      "puzzlesSolved": 11,
-      "solveRate": 1.0,
+      "puzzlesSolved": 12,
+      "solveRate": 1.0909090909090908,
       "firstAppearance": "May 2025"
     },
     {
@@ -83605,7 +83611,7 @@
     },
     {
       "month": "Apr 2026",
-      "solvers": 84
+      "solvers": 87
     }
   ],
   "solversGrowth": [
@@ -84191,7 +84197,7 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13859
+      "totalSolvers": 13860
     }
   ],
   "mostSolvedPuzzles": [
@@ -84319,7 +84325,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 84,
+    "solverCount": 87,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84656,8 +84662,24 @@
       {
         "solver": "Wes Chow",
         "timestamp": "2026-04-29T16:55:34.710004+00:00"
+      },
+      {
+        "solver": "sebgg",
+        "timestamp": "2026-04-30T12:33:52.869896+00:00"
+      },
+      {
+        "solver": "Robert Berec",
+        "timestamp": "2026-04-30T12:33:52.869896+00:00"
+      },
+      {
+        "solver": "Lucas Reymond",
+        "timestamp": "2026-04-30T12:33:52.869896+00:00"
+      },
+      {
+        "solver": "\u3042\u304a\u304d \u307b\u3046\u3072",
+        "timestamp": "2026-04-30T12:33:52.869896+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-29T16:55:35.154718+00:00"
+  "generatedAt": "2026-04-30T12:33:53.038962+00:00"
 }
