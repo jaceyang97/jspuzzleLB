@@ -38,10 +38,6 @@
   --bar-two-nine: linear-gradient(135deg, #4ecdc4, #44a08d);
   --bar-ten-plus: linear-gradient(135deg, #45b7d1, #96c93d);
   
-  /* Spinner colors */
-  --spinner-border: rgba(0, 0, 0, 0.1);
-  --spinner-active: #3498db;
-  
   /* Table row alternating */
   --table-row-even: #f9fafb;
   
@@ -82,10 +78,6 @@
   --tooltip-text: #e6edf3;
   
   --chart-loading-bg: #21262d;
-  
-  /* Spinner colors */
-  --spinner-border: rgba(255, 255, 255, 0.1);
-  --spinner-active: #58a6ff;
   
   /* Table row alternating */
   --table-row-even: #161b22;

@@ -1,39 +1,11 @@
-import React, { memo, useMemo, useState, useEffect } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import {
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   LineChart, Line, BarChart, Bar, Legend,
 } from 'recharts';
 import { Puzzle } from '../../features/leaderboard/types';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
-
-const useThemeColors = () => {
-  const [colors, setColors] = useState({
-    gridStroke: '#eee',
-    axisStroke: '#ccc',
-    textColor: '#666',
-    tooltipBg: 'rgba(255, 255, 255, 0.95)',
-    tooltipBorder: '#ddd',
-  });
-
-  useEffect(() => {
-    const update = () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      setColors({
-        gridStroke: isDark ? '#30363d' : '#eee',
-        axisStroke: isDark ? '#484f58' : '#ccc',
-        textColor: isDark ? '#8b949e' : '#666',
-        tooltipBg: isDark ? 'rgba(22, 27, 34, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-        tooltipBorder: isDark ? '#30363d' : '#ddd',
-      });
-    };
-    update();
-    const observer = new MutationObserver(() => update());
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    return () => observer.disconnect();
-  }, []);
-
-  return colors;
-};
+import { useThemeColors } from '../../hooks/useThemeColors';
 
 // Year colors — cool→warm so recent years pop a bit.
 const YEAR_COLORS = [
@@ -249,17 +221,3 @@ export const FirstTimeSolversChart = memo(({ solversGrowth }: FirstTimeProps) =>
     </div>
   );
 });
-
-// Default export retained for backwards compatibility (unused by the new tabs UI).
-const AdvancedCharts: React.FC<{
-  puzzles: Puzzle[] | null;
-  puzzlesLoading: boolean;
-  solversGrowth: { month: string; totalSolvers: number }[];
-}> = ({ puzzles, puzzlesLoading, solversGrowth }) => (
-  <div className="charts-dashboard">
-    <YoYChart puzzles={puzzles} loading={puzzlesLoading} />
-    <FirstTimeSolversChart solversGrowth={solversGrowth} />
-  </div>
-);
-
-export default AdvancedCharts;
