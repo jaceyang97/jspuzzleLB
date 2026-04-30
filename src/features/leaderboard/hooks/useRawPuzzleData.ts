@@ -29,7 +29,7 @@ export const useRawPuzzleData = (enabled: boolean): UseRawPuzzleDataResult => {
     setLoading(true);
 
     if (!inflight) {
-      inflight = fetch('/data/data.json', { cache: 'no-cache' })
+      inflight = fetch('/data/data.json')
         .then((r) => {
           if (!r.ok) throw new Error(`Failed to load /data/data.json: ${r.status}`);
           return r.json() as Promise<Puzzle[]>;

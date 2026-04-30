@@ -10,12 +10,13 @@ import {
   StreaksTable,
   RisingStarsTable,
   SolverDistributionChart,
-  LoadingSpinner,
+  DashboardSkeleton,
   StatsCards,
   NewSolversBanner,
   SolverProfileModal,
 } from '../features/leaderboard/components';
 import { formatRelativeTime, formatExactTime } from '../utils/relativeTime';
+import TitleTooltip from './TitleTooltip';
 
 // Import charts lazily to improve initial load time
 const Charts = lazy(() => import('./charts/Charts'));
@@ -36,10 +37,28 @@ const MoonIcon = () => (
 const Leaderboard: React.FC = () => {
   const { data, loading, error } = useLeaderboardData();
   const { theme, toggleTheme } = useTheme();
-  const [showRisingStarsTooltip, setShowRisingStarsTooltip] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [topSolversSearch, setTopSolversSearch] = useState('');
-  const [selectedSolver, setSelectedSolver] = useState<string | null>(null);
+  const [selectedSolver, setSelectedSolver] = useState<string | null>(() =>
+    new URLSearchParams(window.location.search).get('solver')
+  );
+
+  // Push on open/close so the browser back button closes the modal.
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const current = url.searchParams.get('solver');
+    if (selectedSolver === current) return;
+    if (selectedSolver) url.searchParams.set('solver', selectedSolver);
+    else url.searchParams.delete('solver');
+    window.history.pushState(null, '', url.toString());
+  }, [selectedSolver]);
+
+  useEffect(() => {
+    const onPop = () =>
+      setSelectedSolver(new URLSearchParams(window.location.search).get('solver'));
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
   // Lazy-load raw puzzle data once a solver modal is opened or once the
   // YoY chart needs it. The hook caches at module scope so opening multiple
@@ -86,9 +105,8 @@ const Leaderboard: React.FC = () => {
     return '';
   }, [data]);
 
-  // Show loading spinner while data is being loaded
   if (loading) {
-    return <LoadingSpinner />;
+    return <DashboardSkeleton />;
   }
 
   if (error || !data) {
@@ -279,18 +297,12 @@ const Leaderboard: React.FC = () => {
         </div>
         
         <div className="dashboard-item rising-stars-column">
-          <h2 
-            style={{ position: 'relative', cursor: 'help' }}
-            onMouseEnter={() => setShowRisingStarsTooltip(true)}
-            onMouseLeave={() => setShowRisingStarsTooltip(false)}
+          <TitleTooltip
+            as="h2"
+            tooltip="Rising Stars are solvers who started within the past year and have demonstrated exceptional puzzle-solving ability. They are ranked based on their solve rate (puzzles solved per month since their first appearance)."
           >
             💫 Rising Stars
-            {showRisingStarsTooltip && (
-              <div className="chart-title-tooltip">
-                Rising Stars are solvers who started within the past year and have demonstrated exceptional puzzle-solving ability. They are ranked based on their solve rate (puzzles solved per month since their first appearance).
-              </div>
-            )}
-          </h2>
+          </TitleTooltip>
           <RisingStarsTable data={data.risingStars || []} onSolverClick={setSelectedSolver} />
         </div>
       </div>

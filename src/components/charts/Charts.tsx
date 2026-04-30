@@ -1,53 +1,13 @@
-import React, { memo, useState, useMemo, useEffect } from 'react';
+import React, { memo, useState, useMemo } from 'react';
 import {
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   AreaChart, Area
 } from 'recharts';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { Puzzle } from '../../features/leaderboard/types';
+import { useThemeColors } from '../../hooks/useThemeColors';
+import TitleTooltip from '../TitleTooltip';
 import { YoYChart, FirstTimeSolversChart } from './AdvancedCharts';
-
-// Hook to get current theme colors
-const useThemeColors = () => {
-  const [colors, setColors] = useState({
-    gridStroke: '#eee',
-    axisStroke: '#ccc',
-    textColor: '#666',
-    tooltipBg: 'rgba(255, 255, 255, 0.95)',
-    tooltipBorder: '#ddd',
-  });
-
-  useEffect(() => {
-    const updateColors = () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      setColors({
-        gridStroke: isDark ? '#30363d' : '#eee',
-        axisStroke: isDark ? '#484f58' : '#ccc',
-        textColor: isDark ? '#8b949e' : '#666',
-        tooltipBg: isDark ? 'rgba(22, 27, 34, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-        tooltipBorder: isDark ? '#30363d' : '#ddd',
-      });
-    };
-
-    // Initial update
-    updateColors();
-
-    // Watch for theme changes
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'data-theme') {
-          updateColors();
-        }
-      });
-    });
-
-    observer.observe(document.documentElement, { attributes: true });
-
-    return () => observer.disconnect();
-  }, []);
-
-  return colors;
-};
 
 // Chart data types
 interface SolversGrowthDataPoint {
@@ -323,7 +283,6 @@ const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
   puzzlesLoading,
 }) => {
   const [tab, setTab] = useState<GrowthTab>('growth');
-  const [showTitleTooltip, setShowTitleTooltip] = useState(false);
 
   return (
     <div
@@ -331,16 +290,9 @@ const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
       style={{ display: 'flex', flexDirection: 'column', padding: '8px 5px 0 5px' }}
     >
       <div className="growth-tabs-header">
-        <h3
-          onMouseEnter={() => setShowTitleTooltip(true)}
-          onMouseLeave={() => setShowTitleTooltip(false)}
-          style={{ position: 'relative', cursor: 'help' }}
-        >
+        <TitleTooltip tooltip={TAB_META[tab].tooltip}>
           🌱 Solvers Growth
-          {showTitleTooltip && (
-            <div className="chart-title-tooltip">{TAB_META[tab].tooltip}</div>
-          )}
-        </h3>
+        </TitleTooltip>
         <div className="growth-tabs-strip" role="tablist" aria-label="Growth chart view">
           {(['growth', 'yoy', 'first-time'] as GrowthTab[]).map((t) => (
             <button
@@ -379,8 +331,6 @@ const MostSolvedPuzzlesTable = memo(({ data }: { data: PuzzleData[] }) => {
       .slice(0, 10);
   }, [data]);
   
-  const [showTitleTooltip, setShowTitleTooltip] = useState(false);
-  
   const helpers = useMemo(() => ({
     getPuzzleUrl: (solutionUrl: string) => {
       return solutionUrl?.replace("-solution", "-index") || "#";
@@ -396,18 +346,9 @@ const MostSolvedPuzzlesTable = memo(({ data }: { data: PuzzleData[] }) => {
 
   return (
     <div className="chart-container mini" style={{ display: 'flex', flexDirection: 'column', padding: '8px 5px 0' }}>
-      <h3 
-        onMouseEnter={() => setShowTitleTooltip(true)}
-        onMouseLeave={() => setShowTitleTooltip(false)}
-        style={{ position: 'relative', cursor: 'help' }}
-      >
+      <TitleTooltip tooltip="The number of solvers can reflect the difficulty of the puzzle, but can also reflect the number of unique participants during that month.">
         🧩 Top 10 Most Solved Puzzles
-        {showTitleTooltip && (
-          <div className="chart-title-tooltip">
-            The number of solvers can reflect the difficulty of the puzzle, but can also reflect the number of unique participants during that month.
-          </div>
-        )}
-      </h3>
+      </TitleTooltip>
       <div className="puzzle-table-container" style={{ flex: '1', display: 'flex', flexDirection: 'column', marginBottom: '0' }}>
         <table className="puzzle-table" style={{ flex: '1', marginBottom: '0' }} aria-label="Top 10 most solved puzzles">
           <thead>

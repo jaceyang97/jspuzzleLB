@@ -19,7 +19,7 @@
 
 .dashboard-grid.four-column {
   display: grid;
-  grid-template-columns: 1fr 1.3fr 1fr 0.9fr;
+  grid-template-columns: 0.85fr 1.6fr 1fr 0.85fr;
   gap: 10px;
   padding: 10px;
   flex: 1;
