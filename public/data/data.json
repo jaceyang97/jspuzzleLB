@@ -1,8 +1,16 @@
 [
   {
+    "date_text": "May 2026",
+    "name": "Arch Madness",
+    "solution_url": "",
+    "solvers": [],
+    "solver_timestamps": {},
+    "puzzle_id": "2026-05-01-arch-madness"
+  },
+  {
     "date_text": "April 2026",
     "name": "Can U Dig It?",
-    "solution_url": "",
+    "solution_url": "https://www.janestreet.com/puzzles/can-u-dig-it-solution",
     "solvers": [
       "Rahid Z.",
       "Jeremy Yap",
@@ -90,7 +98,14 @@
       "sebgg",
       "Robert Berec",
       "Lucas Reymond",
-      "あおき ほうひ"
+      "あおき ほうひ",
+      "Hao-Yu Sun",
+      "Guozhen La",
+      "Mike Zamsky and Ian Forrester",
+      "Remon RF",
+      "Anisha Amin",
+      "Haskaj S.",
+      "Umair Hundekar"
     ],
     "solver_timestamps": {
       "Rahid Z.": "2026-04-03T12:14:57.209280+00:00",
@@ -180,9 +195,17 @@
       "sebgg": "2026-04-30T12:33:52.869896+00:00",
       "Robert Berec": "2026-04-30T12:33:52.869896+00:00",
       "Lucas Reymond": "2026-04-30T12:33:52.869896+00:00",
-      "あおき ほうひ": "2026-04-30T12:33:52.869896+00:00"
+      "あおき ほうひ": "2026-04-30T12:33:52.869896+00:00",
+      "Hao-Yu Sun": "2026-05-01T12:22:10.362853+00:00",
+      "Guozhen La": "2026-05-01T12:22:10.362853+00:00",
+      "Mike Zamsky and Ian Forrester": "2026-05-01T12:22:10.362853+00:00",
+      "Remon RF": "2026-05-01T12:22:10.362853+00:00",
+      "Anisha Amin": "2026-05-01T12:22:10.362853+00:00",
+      "Haskaj S.": "2026-05-01T12:22:10.362853+00:00",
+      "Umair Hundekar": "2026-05-01T12:22:10.362853+00:00"
     },
-    "puzzle_id": "2026-04-01-can-u-dig-it"
+    "puzzle_id": "2026-04-01-can-u-dig-it",
+    "archived_at": "2026-05-01T12:22:10.362883+00:00"
   },
   {
     "date_text": "March 2026",

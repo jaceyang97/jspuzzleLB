@@ -1,10 +1,10 @@
 {
-  "totalPuzzles": 146,
-  "uniqueSolvers": 13860,
+  "totalPuzzles": 147,
+  "uniqueSolvers": 13865,
   "solverDistribution": {
-    "onePuzzle": 10312,
-    "twoToNine": 3307,
-    "tenPlus": 241
+    "onePuzzle": 10317,
+    "twoToNine": 3306,
+    "tenPlus": 242
   },
   "topSolvers": [
     {
@@ -278,6 +278,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Hao-Yu Sun",
+      "puzzlesSolved": 20,
+      "firstAppearance": "July 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Dan Samuels",
       "puzzlesSolved": 20,
       "firstAppearance": "July 2022",
@@ -335,12 +341,6 @@
       "name": "Isaac Carruthers",
       "puzzlesSolved": 19,
       "firstAppearance": "January 2023",
-      "lastSolve": "March 2026"
-    },
-    {
-      "name": "Hao-Yu Sun",
-      "puzzlesSolved": 19,
-      "firstAppearance": "July 2024",
       "lastSolve": "March 2026"
     },
     {
@@ -1274,6 +1274,12 @@
       "lastSolve": "April 2026"
     },
     {
+      "name": "Remon RF",
+      "puzzlesSolved": 10,
+      "firstAppearance": "December 2024",
+      "lastSolve": "April 2026"
+    },
+    {
       "name": "Patrick Deumann",
       "puzzlesSolved": 10,
       "firstAppearance": "January 2025",
@@ -1493,12 +1499,6 @@
       "name": "Jared Filseth",
       "puzzlesSolved": 9,
       "firstAppearance": "January 2025",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Remon RF",
-      "puzzlesSolved": 9,
-      "firstAppearance": "December 2024",
       "lastSolve": "February 2026"
     },
     {
@@ -21489,6 +21489,36 @@
     },
     {
       "name": "Lucas Reymond",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Guozhen La",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Mike Zamsky and Ian Forrester",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Anisha Amin",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Haskaj S.",
+      "puzzlesSolved": 1,
+      "firstAppearance": "April 2026",
+      "lastSolve": "April 2026"
+    },
+    {
+      "name": "Umair Hundekar",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -83292,124 +83322,124 @@
   ],
   "risingStars": [
     {
+      "solver": "Kibria Awais",
+      "puzzlesSolved": 9,
+      "solveRate": 1.0,
+      "firstAppearance": "August 2025"
+    },
+    {
       "solver": "Daniel Shields",
       "puzzlesSolved": 3,
-      "solveRate": 1.5,
+      "solveRate": 1.0,
       "firstAppearance": "February 2026"
     },
     {
       "solver": "Marianna Sykopetritou",
       "puzzlesSolved": 3,
-      "solveRate": 1.5,
+      "solveRate": 1.0,
       "firstAppearance": "February 2026"
     },
     {
       "solver": "Joshua Kindler",
       "puzzlesSolved": 8,
-      "solveRate": 1.1428571428571428,
+      "solveRate": 1.0,
       "firstAppearance": "September 2025"
-    },
-    {
-      "solver": "Kibria Awais",
-      "puzzlesSolved": 9,
-      "solveRate": 1.125,
-      "firstAppearance": "August 2025"
     },
     {
       "solver": "Robert Berec",
       "puzzlesSolved": 12,
-      "solveRate": 1.0909090909090908,
-      "firstAppearance": "May 2025"
-    },
-    {
-      "solver": "Eric Chen USC27",
-      "puzzlesSolved": 3,
       "solveRate": 1.0,
-      "firstAppearance": "January 2026"
+      "firstAppearance": "May 2025"
     },
     {
       "solver": "Frederic Hamelink",
       "puzzlesSolved": 6,
-      "solveRate": 1.0,
+      "solveRate": 0.8571428571428571,
       "firstAppearance": "October 2025"
     },
     {
       "solver": "IMW",
       "puzzlesSolved": 8,
-      "solveRate": 0.8888888888888888,
+      "solveRate": 0.8,
       "firstAppearance": "July 2025"
     },
     {
       "solver": "Andrew Yoo",
       "puzzlesSolved": 7,
-      "solveRate": 0.875,
+      "solveRate": 0.7777777777777778,
       "firstAppearance": "August 2025"
+    },
+    {
+      "solver": "Eric Chen USC27",
+      "puzzlesSolved": 3,
+      "solveRate": 0.75,
+      "firstAppearance": "January 2026"
     },
     {
       "solver": "Joel Pulikkan",
       "puzzlesSolved": 6,
-      "solveRate": 0.8571428571428571,
+      "solveRate": 0.75,
       "firstAppearance": "September 2025"
     },
     {
       "solver": "PJS",
       "puzzlesSolved": 8,
-      "solveRate": 0.8,
+      "solveRate": 0.7272727272727273,
       "firstAppearance": "June 2025"
     },
     {
       "solver": "Susie Park",
       "puzzlesSolved": 4,
-      "solveRate": 0.8,
+      "solveRate": 0.6666666666666666,
       "firstAppearance": "November 2025"
-    },
-    {
-      "solver": "Carter Tran",
-      "puzzlesSolved": 3,
-      "solveRate": 0.75,
-      "firstAppearance": "December 2025"
-    },
-    {
-      "solver": "Andre Riva",
-      "puzzlesSolved": 9,
-      "solveRate": 0.75,
-      "firstAppearance": "April 2025"
-    },
-    {
-      "solver": "Kaustubh Rakhade",
-      "puzzlesSolved": 3,
-      "solveRate": 0.75,
-      "firstAppearance": "December 2025"
     },
     {
       "solver": "Francisco Rodr\u00edguez-Carretero Rold\u00e1n",
       "puzzlesSolved": 6,
-      "solveRate": 0.75,
+      "solveRate": 0.6666666666666666,
       "firstAppearance": "August 2025"
     },
     {
-      "solver": "Eren Yildiz",
-      "puzzlesSolved": 9,
-      "solveRate": 0.75,
-      "firstAppearance": "April 2025"
-    },
-    {
-      "solver": "Lukas Bergholz",
-      "puzzlesSolved": 9,
-      "solveRate": 0.75,
-      "firstAppearance": "April 2025"
-    },
-    {
-      "solver": "Achintya Paningapalli",
-      "puzzlesSolved": 3,
-      "solveRate": 0.75,
-      "firstAppearance": "December 2025"
+      "solver": "ekunazanu",
+      "puzzlesSolved": 7,
+      "solveRate": 0.6363636363636364,
+      "firstAppearance": "June 2025"
     },
     {
       "solver": "J\u00f8rgen Boganes",
       "puzzlesSolved": 5,
-      "solveRate": 0.7142857142857143,
+      "solveRate": 0.625,
       "firstAppearance": "September 2025"
+    },
+    {
+      "solver": "Sean Lowery",
+      "puzzlesSolved": 5,
+      "solveRate": 0.625,
+      "firstAppearance": "September 2025"
+    },
+    {
+      "solver": "Nick Nordlund",
+      "puzzlesSolved": 5,
+      "solveRate": 0.625,
+      "firstAppearance": "September 2025"
+    },
+    {
+      "solver": "Ruhi + Jeff",
+      "puzzlesSolved": 5,
+      "solveRate": 0.625,
+      "firstAppearance": "September 2025"
+    },
+    {
+      "solver": "Carter Tran",
+      "puzzlesSolved": 3,
+      "solveRate": 0.6,
+      "firstAppearance": "December 2025"
+    },
+    {
+      "solver": "Sebastian Stroppel",
+      "puzzlesSolved": 6,
+      "solveRate": 0.6,
+      "firstAppearance": "July 2025"
     }
   ],
   "monthlyParticipation": [
@@ -83610,8 +83640,8 @@
       "solvers": 94
     },
     {
-      "month": "Apr 2026",
-      "solvers": 87
+      "month": "May 2026",
+      "solvers": 0
     }
   ],
   "solversGrowth": [
@@ -84197,7 +84227,11 @@
     },
     {
       "month": "Apr 2026",
-      "totalSolvers": 13860
+      "totalSolvers": 13865
+    },
+    {
+      "month": "May 2026",
+      "totalSolvers": 13865
     }
   ],
   "mostSolvedPuzzles": [
@@ -84325,7 +84359,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Can U Dig It?",
     "puzzleDate": "April 2026",
-    "solverCount": 87,
+    "solverCount": 94,
     "timeline": [
       {
         "solver": "Rahid Z.",
@@ -84678,8 +84712,36 @@
       {
         "solver": "\u3042\u304a\u304d \u307b\u3046\u3072",
         "timestamp": "2026-04-30T12:33:52.869896+00:00"
+      },
+      {
+        "solver": "Hao-Yu Sun",
+        "timestamp": "2026-05-01T12:22:10.362853+00:00"
+      },
+      {
+        "solver": "Guozhen La",
+        "timestamp": "2026-05-01T12:22:10.362853+00:00"
+      },
+      {
+        "solver": "Mike Zamsky and Ian Forrester",
+        "timestamp": "2026-05-01T12:22:10.362853+00:00"
+      },
+      {
+        "solver": "Remon RF",
+        "timestamp": "2026-05-01T12:22:10.362853+00:00"
+      },
+      {
+        "solver": "Anisha Amin",
+        "timestamp": "2026-05-01T12:22:10.362853+00:00"
+      },
+      {
+        "solver": "Haskaj S.",
+        "timestamp": "2026-05-01T12:22:10.362853+00:00"
+      },
+      {
+        "solver": "Umair Hundekar",
+        "timestamp": "2026-05-01T12:22:10.362853+00:00"
       }
     ]
   },
-  "generatedAt": "2026-04-30T12:33:53.038962+00:00"
+  "generatedAt": "2026-05-01T12:22:10.658136+00:00"
 }
