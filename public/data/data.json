@@ -3,8 +3,32 @@
     "date_text": "May 2026",
     "name": "Arch Madness",
     "solution_url": "",
-    "solvers": [],
-    "solver_timestamps": {},
+    "solvers": [
+      "André W",
+      "cubic",
+      "NightC",
+      "Jackson La Vallee",
+      "Noah Butler",
+      "Lazar Ilic",
+      "Andrea Leake",
+      "Fred Vu",
+      "Lee Zhao Kai Damien",
+      "dp",
+      "Nandha Gopi Krishna"
+    ],
+    "solver_timestamps": {
+      "André W": "2026-05-02T12:19:53.222448+00:00",
+      "cubic": "2026-05-02T12:19:53.222448+00:00",
+      "NightC": "2026-05-02T12:19:53.222448+00:00",
+      "Jackson La Vallee": "2026-05-02T12:19:53.222448+00:00",
+      "Noah Butler": "2026-05-02T12:19:53.222448+00:00",
+      "Lazar Ilic": "2026-05-02T12:19:53.222448+00:00",
+      "Andrea Leake": "2026-05-02T12:19:53.222448+00:00",
+      "Fred Vu": "2026-05-02T12:19:53.222448+00:00",
+      "Lee Zhao Kai Damien": "2026-05-02T12:19:53.222448+00:00",
+      "dp": "2026-05-02T12:19:53.222448+00:00",
+      "Nandha Gopi Krishna": "2026-05-02T12:19:53.222448+00:00"
+    },
     "puzzle_id": "2026-05-01-arch-madness"
   },
   {
