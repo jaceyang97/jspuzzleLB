@@ -24,9 +24,9 @@
   --shadow-md: rgba(0, 0, 0, 0.1);
   --shadow-lg: rgba(0, 0, 0, 0.15);
   
-  --scrollbar-track: #f1f1f1;
-  --scrollbar-thumb: #ccc;
-  --scrollbar-thumb-hover: #aaa;
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: rgba(0, 0, 0, 0.25);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.45);
   
   --tooltip-bg: rgba(44, 62, 80, 0.95);
   --tooltip-text: white;
@@ -70,9 +70,9 @@
   --shadow-md: rgba(0, 0, 0, 0.3);
   --shadow-lg: rgba(0, 0, 0, 0.4);
   
-  --scrollbar-track: #21262d;
-  --scrollbar-thumb: #484f58;
-  --scrollbar-thumb-hover: #6e7681;
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.4);
   
   --tooltip-bg: rgba(22, 27, 34, 0.95);
   --tooltip-text: #e6edf3;
@@ -121,4 +121,39 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* ------------------------------------------------
+   GLOBAL SCROLLBARS (overlay-style, OverlayScrollbars-inspired)
+   - Firefox / standard: thin width, translucent thumb on transparent track
+   - WebKit: floating-thumb trick via transparent border + background-clip
+   ------------------------------------------------ */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
 }

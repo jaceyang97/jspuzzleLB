@@ -821,32 +821,6 @@
 .skeleton-name { height: 12px; flex: 1; }
 .skeleton-num  { height: 12px; width: 48px; flex-shrink: 0; }
 
-/* ------------------------------------------------
-   SCROLLBARS (WebKit)
-   ------------------------------------------------ */
-.dashboard-table::-webkit-scrollbar,
-.puzzle-table-container::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.dashboard-table::-webkit-scrollbar-track,
-.puzzle-table-container::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
-  border-radius: 4px;
-}
-
-.dashboard-table::-webkit-scrollbar-thumb,
-.puzzle-table-container::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: 4px;
-}
-
-.dashboard-table::-webkit-scrollbar-thumb:hover,
-.puzzle-table-container::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover);
-}
-
 /* ================================================
    RESPONSIVE COMPONENT OVERRIDES
    ================================================ */
