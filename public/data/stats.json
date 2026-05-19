@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 147,
-  "uniqueSolvers": 14066,
+  "uniqueSolvers": 14078,
   "solverDistribution": {
-    "onePuzzle": 10466,
-    "twoToNine": 3355,
+    "onePuzzle": 10476,
+    "twoToNine": 3357,
     "tenPlus": 245
   },
   "topSolvers": [
@@ -3668,6 +3668,12 @@
       "lastSolve": "May 2026"
     },
     {
+      "name": "JY",
+      "puzzlesSolved": 5,
+      "firstAppearance": "October 2025",
+      "lastSolve": "May 2026"
+    },
+    {
       "name": "Dave Monteiro",
       "puzzlesSolved": 5,
       "firstAppearance": "December 2024",
@@ -4934,6 +4940,12 @@
       "lastSolve": "May 2026"
     },
     {
+      "name": "Kevin Yu",
+      "puzzlesSolved": 4,
+      "firstAppearance": "October 2024",
+      "lastSolve": "May 2026"
+    },
+    {
       "name": "vich",
       "puzzlesSolved": 4,
       "firstAppearance": "March 2025",
@@ -5237,12 +5249,6 @@
       "name": "Yug Nakrani",
       "puzzlesSolved": 4,
       "firstAppearance": "September 2025",
-      "lastSolve": "December 2025"
-    },
-    {
-      "name": "JY",
-      "puzzlesSolved": 4,
-      "firstAppearance": "October 2025",
       "lastSolve": "December 2025"
     },
     {
@@ -7268,6 +7274,18 @@
       "lastSolve": "May 2026"
     },
     {
+      "name": "Charlie Brush",
+      "puzzlesSolved": 3,
+      "firstAppearance": "November 2025",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Dasny",
+      "puzzlesSolved": 3,
+      "firstAppearance": "November 2025",
+      "lastSolve": "May 2026"
+    },
+    {
       "name": "Philip Naveen",
       "puzzlesSolved": 3,
       "firstAppearance": "July 2025",
@@ -7565,12 +7583,6 @@
       "name": "Vincent Vansant",
       "puzzlesSolved": 3,
       "firstAppearance": "November 2025",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Kevin Yu",
-      "puzzlesSolved": 3,
-      "firstAppearance": "October 2024",
       "lastSolve": "February 2026"
     },
     {
@@ -11366,6 +11378,18 @@
       "lastSolve": "May 2026"
     },
     {
+      "name": "Piyali Mittal",
+      "puzzlesSolved": 2,
+      "firstAppearance": "April 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Adam C. Jones",
+      "puzzlesSolved": 2,
+      "firstAppearance": "April 2026",
+      "lastSolve": "May 2026"
+    },
+    {
       "name": "ZM",
       "puzzlesSolved": 2,
       "firstAppearance": "March 2026",
@@ -11522,12 +11546,6 @@
       "lastSolve": "February 2026"
     },
     {
-      "name": "Charlie Brush",
-      "puzzlesSolved": 2,
-      "firstAppearance": "November 2025",
-      "lastSolve": "February 2026"
-    },
-    {
       "name": "Eric Strawn",
       "puzzlesSolved": 2,
       "firstAppearance": "August 2025",
@@ -11625,12 +11643,6 @@
     },
     {
       "name": "alaud",
-      "puzzlesSolved": 2,
-      "firstAppearance": "November 2025",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Dasny",
       "puzzlesSolved": 2,
       "firstAppearance": "November 2025",
       "lastSolve": "February 2026"
@@ -22814,6 +22826,78 @@
       "lastSolve": "May 2026"
     },
     {
+      "name": "Alicia Tjokro",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Ryan Powser",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Duncan McDonald",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Chev Cortinez",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Andrew Thvedt",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "\u00c9l\u00e9onore Gopikian",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Ruairi Smart",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Emiyare Ikwut-Ukwa",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Lasmar Khalifa",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Yusong Zhang",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Nick Zuckerman",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Roger Xu",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
       "name": "Rahid Z.",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
@@ -22874,12 +22958,6 @@
       "lastSolve": "April 2026"
     },
     {
-      "name": "Adam C. Jones",
-      "puzzlesSolved": 1,
-      "firstAppearance": "April 2026",
-      "lastSolve": "April 2026"
-    },
-    {
       "name": "Taylor J. Anderson",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
@@ -22911,12 +22989,6 @@
     },
     {
       "name": "Hobart Doyle",
-      "puzzlesSolved": 1,
-      "firstAppearance": "April 2026",
-      "lastSolve": "April 2026"
-    },
-    {
-      "name": "Piyali Mittal",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
       "lastSolve": "April 2026"
@@ -84636,13 +84708,13 @@
       "firstAppearance": "June 2025"
     },
     {
-      "solver": "Cosmin-C.R",
-      "puzzlesSolved": 4,
-      "solveRate": 0.6666666666666666,
-      "firstAppearance": "November 2025"
+      "solver": "JY",
+      "puzzlesSolved": 5,
+      "solveRate": 0.7142857142857143,
+      "firstAppearance": "October 2025"
     },
     {
-      "solver": "Cl\u00e9ment Nicolle",
+      "solver": "Cosmin-C.R",
       "puzzlesSolved": 4,
       "solveRate": 0.6666666666666666,
       "firstAppearance": "November 2025"
@@ -84847,7 +84919,7 @@
     },
     {
       "month": "May 2026",
-      "solvers": 390
+      "solvers": 408
     }
   ],
   "solversGrowth": [
@@ -85437,7 +85509,7 @@
     },
     {
       "month": "May 2026",
-      "totalSolvers": 14066
+      "totalSolvers": 14078
     }
   ],
   "mostSolvedPuzzles": [
@@ -85552,7 +85624,7 @@
     {
       "id": "2026-5",
       "name": "Arch Madness",
-      "solvers": 390,
+      "solvers": 408,
       "solution_url": ""
     },
     {
@@ -85565,7 +85637,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Arch Madness",
     "puzzleDate": "May 2026",
-    "solverCount": 390,
+    "solverCount": 408,
     "timeline": [
       {
         "solver": "Andr\u00e9 W",
@@ -87126,8 +87198,80 @@
       {
         "solver": "Alexandros Louka Cyprus",
         "timestamp": "2026-05-18T13:15:36.596201+00:00"
+      },
+      {
+        "solver": "Piyali Mittal",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Charlie Brush",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Kevin Yu",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Alicia Tjokro",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Ryan Powser",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Duncan McDonald",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Adam C. Jones",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Chev Cortinez",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Andrew Thvedt",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "\u00c9l\u00e9onore Gopikian",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "JY",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Ruairi Smart",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Emiyare Ikwut-Ukwa",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Lasmar Khalifa",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Yusong Zhang",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Nick Zuckerman",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Roger Xu",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Dasny",
+        "timestamp": "2026-05-19T13:07:03.819083+00:00"
       }
     ]
   },
-  "generatedAt": "2026-05-18T13:15:36.771457+00:00"
+  "generatedAt": "2026-05-19T13:07:03.998321+00:00"
 }
