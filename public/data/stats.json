@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 147,
-  "uniqueSolvers": 14078,
+  "uniqueSolvers": 14081,
   "solverDistribution": {
-    "onePuzzle": 10476,
-    "twoToNine": 3357,
+    "onePuzzle": 10478,
+    "twoToNine": 3358,
     "tenPlus": 245
   },
   "topSolvers": [
@@ -11387,6 +11387,12 @@
       "name": "Adam C. Jones",
       "puzzlesSolved": 2,
       "firstAppearance": "April 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Ryan Fanchiotti",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
       "lastSolve": "May 2026"
     },
     {
@@ -22898,6 +22904,24 @@
       "lastSolve": "May 2026"
     },
     {
+      "name": "Adrian Lo",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Abdalrhman Azizi",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "LYZ",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
       "name": "Rahid Z.",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
@@ -26349,12 +26373,6 @@
     },
     {
       "name": "imidazoliumeow",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Ryan Fanchiotti",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -84919,7 +84937,7 @@
     },
     {
       "month": "May 2026",
-      "solvers": 408
+      "solvers": 412
     }
   ],
   "solversGrowth": [
@@ -85509,7 +85527,7 @@
     },
     {
       "month": "May 2026",
-      "totalSolvers": 14078
+      "totalSolvers": 14081
     }
   ],
   "mostSolvedPuzzles": [
@@ -85624,7 +85642,7 @@
     {
       "id": "2026-5",
       "name": "Arch Madness",
-      "solvers": 408,
+      "solvers": 412,
       "solution_url": ""
     },
     {
@@ -85637,7 +85655,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Arch Madness",
     "puzzleDate": "May 2026",
-    "solverCount": 408,
+    "solverCount": 412,
     "timeline": [
       {
         "solver": "Andr\u00e9 W",
@@ -87270,8 +87288,24 @@
       {
         "solver": "Dasny",
         "timestamp": "2026-05-19T13:07:03.819083+00:00"
+      },
+      {
+        "solver": "Adrian Lo",
+        "timestamp": "2026-05-20T12:53:51.727759+00:00"
+      },
+      {
+        "solver": "Abdalrhman Azizi",
+        "timestamp": "2026-05-20T12:53:51.727759+00:00"
+      },
+      {
+        "solver": "Ryan Fanchiotti",
+        "timestamp": "2026-05-20T12:53:51.727759+00:00"
+      },
+      {
+        "solver": "LYZ",
+        "timestamp": "2026-05-20T12:53:51.727759+00:00"
       }
     ]
   },
-  "generatedAt": "2026-05-19T13:07:03.998321+00:00"
+  "generatedAt": "2026-05-20T12:53:51.929087+00:00"
 }
