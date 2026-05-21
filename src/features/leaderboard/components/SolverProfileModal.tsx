@@ -140,9 +140,10 @@ const SolverProfileModal: React.FC<SolverProfileModalProps> = ({ solverName, onC
                   Avg percentile
                   <span
                     className="solver-stat-info"
-                    title={AVG_PERCENTILE_TOOLTIP}
+                    data-tooltip={AVG_PERCENTILE_TOOLTIP}
                     aria-label="How average percentile is calculated"
                     role="img"
+                    tabIndex={0}
                   >
                     i
                   </span>
