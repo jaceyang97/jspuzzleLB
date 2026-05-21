@@ -1127,11 +1127,24 @@
 .solver-modal-stats.three {
   grid-template-columns: 1fr 1fr 1fr;
 }
-.solver-stat-sample {
-  font-weight: 500;
-  letter-spacing: 0;
-  color: var(--text-muted);
-  text-transform: none;
+.solver-stat-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  color: var(--text-tertiary);
+  opacity: 0.7;
+  cursor: help;
+  vertical-align: middle;
+  position: relative;
+  top: -3px;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+.solver-stat-info:hover,
+.solver-stat-info:focus-visible {
+  opacity: 1;
+  color: var(--accent-primary);
+  outline: none;
 }
 .solver-stat {
   text-align: center;
@@ -1235,12 +1248,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 6px;
-  padding: 0 2px 4px;
+  padding: 0 2px 4px 0;
   flex-wrap: nowrap;
   min-width: 0;
 }
 .growth-chart-tabs h3 {
-  margin: 0;
+  margin: 0 0 0 -2px;
   font-size: 13px;
   color: var(--text-primary);
   font-weight: 600;

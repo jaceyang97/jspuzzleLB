@@ -1,10 +1,10 @@
 import React, { memo, useMemo, useState } from 'react';
 import {
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  LineChart, Line, BarChart, Bar, Legend,
+  LineChart, Line, BarChart, Bar, Legend, ReferenceLine,
 } from 'recharts';
 import { Puzzle } from '../../features/leaderboard/types';
-import { MONTH_CODES } from '../../utils/leaderboardUtils';
+import { MONTH_CODES, buildPercentileDistribution } from '../../utils/leaderboardUtils';
 import { useThemeColors } from '../../hooks/useThemeColors';
 
 // Year colors — cool→warm so recent years pop a bit.
@@ -221,3 +221,92 @@ export const FirstTimeSolversChart = memo(({ solversGrowth }: FirstTimeProps) =>
     </div>
   );
 });
+
+// Distribution of average percentile rank across solvers who solved at
+// least 2 puzzles (enthusiasts and above). Bins are 10-wide. We overlay a
+// median line so the eye can locate the community center quickly.
+interface PercentileDistProps {
+  puzzles: Puzzle[] | null;
+  loading: boolean;
+}
+
+export const PercentileDistributionChart = memo(
+  ({ puzzles, loading }: PercentileDistProps) => {
+    const colors = useThemeColors();
+
+    const { buckets, solverCount, median } = useMemo(() => {
+      if (!puzzles) return { buckets: [], solverCount: 0, median: null as number | null };
+      return buildPercentileDistribution(puzzles, 2);
+    }, [puzzles]);
+
+    if (loading && !puzzles) {
+      return (
+        <div className="growth-chart-body">
+          <div className="chart-loading">Loading percentile distribution…</div>
+        </div>
+      );
+    }
+
+    if (!buckets.length || solverCount === 0) {
+      return (
+        <div className="growth-chart-body">
+          <div className="chart-loading">No data available</div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="growth-chart-body">
+        <ResponsiveContainer width="100%" height="100%" minHeight={120}>
+          <BarChart data={buckets} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke={colors.gridStroke} />
+            <XAxis
+              dataKey="range"
+              tick={{ fontSize: 10, fill: colors.textColor }}
+              axisLine={{ stroke: colors.axisStroke }}
+              tickLine={{ stroke: colors.axisStroke }}
+              interval={0}
+            />
+            <YAxis
+              tick={{ fontSize: 11, fill: colors.textColor }}
+              width={35}
+              axisLine={{ stroke: colors.axisStroke }}
+              tickLine={{ stroke: colors.axisStroke }}
+              allowDecimals={false}
+              tickFormatter={(v) => (v >= 1000 ? `${(v / 1000).toFixed(0)}k` : `${v}`)}
+            />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: colors.tooltipBg,
+                border: `1px solid ${colors.tooltipBorder}`,
+                fontSize: 11,
+                borderRadius: 4,
+              }}
+              labelStyle={{ fontWeight: 600 }}
+              formatter={(value: number) => [value.toLocaleString(), 'Solvers']}
+              labelFormatter={(label: string) => `Percentile ${label}`}
+            />
+            {median !== null && (
+              <ReferenceLine
+                x={
+                  buckets[Math.min(9, Math.max(0, Math.floor(median / 10)))]
+                    .range
+                }
+                stroke="#A83232"
+                strokeDasharray="3 3"
+                ifOverflow="extendDomain"
+                label={{
+                  value: `median ${median.toFixed(1)}`,
+                  position: 'insideTopRight',
+                  fill: '#A83232',
+                  fontSize: 10,
+                }}
+              />
+            )}
+            <Bar dataKey="count" fill="#2E8B57" isAnimationActive={false} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    );
+  },
+);

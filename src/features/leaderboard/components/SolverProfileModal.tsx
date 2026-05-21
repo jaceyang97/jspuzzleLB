@@ -130,21 +130,30 @@ const SolverProfileModal: React.FC<SolverProfileModalProps> = ({ solverName, onC
                 <div className="solver-stat-value">{stats.lastSolve}</div>
                 <div className="solver-stat-label">Last solve</div>
               </div>
-              <div className="solver-stat" title={AVG_PERCENTILE_TOOLTIP}>
+              <div className="solver-stat">
                 <div className="solver-stat-value">
                   {stats.avgPercentile
                     ? stats.avgPercentile.value.toFixed(1)
                     : '—'}
+                  <span
+                    className="solver-stat-info"
+                    tabIndex={0}
+                    role="button"
+                    aria-label="How is the average percentile calculated?"
+                    title={AVG_PERCENTILE_TOOLTIP}
+                  >
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 5h2v2h-2V7zm0 4h2v6h-2v-6z" />
+                    </svg>
+                  </span>
                 </div>
-                <div className="solver-stat-label">
-                  Avg percentile
-                  {stats.avgPercentile && (
-                    <span className="solver-stat-sample">
-                      {' '}
-                      (n={stats.avgPercentile.sampleSize})
-                    </span>
-                  )}
-                </div>
+                <div className="solver-stat-label">Avg percentile</div>
               </div>
             </div>
 

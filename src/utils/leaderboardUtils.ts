@@ -62,6 +62,77 @@ export const computeAveragePercentile = (
   return { value: sum / usable.length, sampleSize: usable.length };
 };
 
+/**
+ * Histogram of average-percentile across solvers who have solved at least
+ * `minPuzzles` puzzles (enthusiasts and above use 2). Bins are 10-wide:
+ * [0,10), [10,20), …, [90,100]. The top edge is inclusive so a perfect
+ * 100 lands in the last bucket.
+ *
+ * Solvers with no rankable puzzles (every puzzle had only one solver) are
+ * skipped, since their percentile is undefined.
+ */
+export interface PercentileBucket {
+  range: string;
+  lower: number;
+  upper: number;
+  count: number;
+}
+
+export const buildPercentileDistribution = (
+  puzzles: Puzzle[],
+  minPuzzles: number = 2,
+): { buckets: PercentileBucket[]; solverCount: number; median: number | null } => {
+  const stats = new Map<string, { sum: number; n: number; solved: number }>();
+  for (const p of puzzles) {
+    const solvers = p.solvers;
+    if (!solvers || solvers.length === 0) continue;
+    const total = solvers.length;
+    for (let i = 0; i < solvers.length; i++) {
+      const name = solvers[i];
+      let s = stats.get(name);
+      if (!s) {
+        s = { sum: 0, n: 0, solved: 0 };
+        stats.set(name, s);
+      }
+      s.solved += 1;
+      if (total > 1) {
+        s.sum += 100 * (1 - i / (total - 1));
+        s.n += 1;
+      }
+    }
+  }
+
+  const averages: number[] = [];
+  stats.forEach((s) => {
+    if (s.solved >= minPuzzles && s.n > 0) averages.push(s.sum / s.n);
+  });
+
+  const buckets: PercentileBucket[] = Array.from({ length: 10 }, (_, i) => ({
+    range: i === 9 ? `${i * 10}-100` : `${i * 10}-${i * 10 + 10}`,
+    lower: i * 10,
+    upper: i === 9 ? 100 : i * 10 + 10,
+    count: 0,
+  }));
+  for (const v of averages) {
+    let idx = Math.floor(v / 10);
+    if (idx > 9) idx = 9;
+    if (idx < 0) idx = 0;
+    buckets[idx].count += 1;
+  }
+
+  let median: number | null = null;
+  if (averages.length) {
+    const sorted = [...averages].sort((a, b) => a - b);
+    const mid = sorted.length / 2;
+    median =
+      sorted.length % 2 === 1
+        ? sorted[Math.floor(mid)]
+        : (sorted[mid - 1] + sorted[mid]) / 2;
+  }
+
+  return { buckets, solverCount: averages.length, median };
+};
+
 /** Convert "January 2025" → "Jan 2025". Already-short dates pass through. */
 export const formatDate = (dateText: string): string => {
   if (!dateText) return 'N/A';

@@ -7,7 +7,7 @@ import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { Puzzle } from '../../features/leaderboard/types';
 import { useThemeColors } from '../../hooks/useThemeColors';
 import TitleTooltip from '../TitleTooltip';
-import { YoYChart, FirstTimeSolversChart } from './AdvancedCharts';
+import { YoYChart, FirstTimeSolversChart, PercentileDistributionChart } from './AdvancedCharts';
 
 // Chart data types
 interface SolversGrowthDataPoint {
@@ -251,7 +251,7 @@ const SolversGrowthBody = memo(({ data }: { data: SolversGrowthDataPoint[] }) =>
 // Tabbed wrapper that swaps between Solvers Growth, Year-over-Year, and
 // First-Time Solvers in the same chart panel. The panel header keeps a
 // static title so the layout doesn't reflow when the active tab changes.
-type GrowthTab = 'growth' | 'yoy' | 'first-time';
+type GrowthTab = 'growth' | 'yoy' | 'first-time' | 'percentile';
 
 interface GrowthChartTabsProps {
   solversGrowthData: SolversGrowthDataPoint[];
@@ -275,6 +275,11 @@ const TAB_META: Record<GrowthTab, { label: string; tooltip: string }> = {
     tooltip:
       'First-time solvers per month — newcomers who had never appeared in any prior puzzle.',
   },
+  percentile: {
+    label: 'Pctl',
+    tooltip:
+      'Distribution of average percentile rank across solvers who completed at least 2 puzzles (Enthusiasts and above). Percentile = 100 × (1 − (rank − 1) / (solvers − 1)), averaged per solver. Higher is better.',
+  },
 };
 
 const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
@@ -294,7 +299,7 @@ const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
           🌱 Solvers Growth
         </TitleTooltip>
         <div className="growth-tabs-strip" role="tablist" aria-label="Growth chart view">
-          {(['growth', 'yoy', 'first-time'] as GrowthTab[]).map((t) => (
+          {(['growth', 'yoy', 'first-time', 'percentile'] as GrowthTab[]).map((t) => (
             <button
               key={t}
               role="tab"
@@ -315,6 +320,12 @@ const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
           <YoYChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />
         )}
         {tab === 'first-time' && <FirstTimeSolversChart solversGrowth={solversGrowthData} />}
+        {tab === 'percentile' && (
+          <PercentileDistributionChart
+            puzzles={rawPuzzles ?? null}
+            loading={!!puzzlesLoading}
+          />
+        )}
       </div>
     </div>
   );

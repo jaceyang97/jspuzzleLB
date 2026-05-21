@@ -1,4 +1,5 @@
 import {
+  buildPercentileDistribution,
   computeAveragePercentile,
   findSolverPlacement,
   SolverPlacement,
@@ -147,6 +148,67 @@ describe('computeAveragePercentile', () => {
     // is field-size-invariant for ties at the top.
     const result = computeAveragePercentile([mk(1, 30), mk(1, 1000)]);
     expect(result!.value).toBeCloseTo(100, 6);
+  });
+});
+
+describe('buildPercentileDistribution', () => {
+  test('excludes solvers below the minimum puzzle count', () => {
+    // Alice solves 2 puzzles (qualifies), Bob solves 1 (does not).
+    const puzzles: Puzzle[] = [
+      puzzle('Jan 2025', 'A', ['Alice', 'Bob']),
+      puzzle('Feb 2025', 'B', ['Alice']),
+    ];
+    const { solverCount } = buildPercentileDistribution(puzzles, 2);
+    expect(solverCount).toBe(1);
+  });
+
+  test('bins use 10-wide buckets with 100 included in the top bucket', () => {
+    // Alice always finishes first ⇒ avg percentile = 100 ⇒ goes to 90-100.
+    const puzzles: Puzzle[] = [
+      puzzle('Jan 2025', 'A', ['Alice', 'Bob', 'Carol']),
+      puzzle('Feb 2025', 'B', ['Alice', 'Bob', 'Carol']),
+    ];
+    const { buckets } = buildPercentileDistribution(puzzles, 2);
+    expect(buckets[9].count).toBe(1); // Alice avg=100 → 90-100 bucket
+    expect(buckets[0].count).toBe(1); // Carol avg=0   → 0-10 bucket
+    expect(buckets[5].count).toBe(1); // Bob avg=50    → 50-60 bucket
+  });
+
+  test('skips puzzles where total<2 (no defined percentile) but still counts toward solved', () => {
+    // Alice has one solo puzzle (excluded from percentile mean) and one
+    // multi-solver puzzle. minPuzzles=2 includes her because she has 2
+    // solved puzzles; her percentile comes from the multi-solver one.
+    const puzzles: Puzzle[] = [
+      puzzle('Jan 2025', 'Solo', ['Alice']),
+      puzzle('Feb 2025', 'Multi', ['Alice', 'Bob']),
+    ];
+    const { solverCount, buckets } = buildPercentileDistribution(puzzles, 2);
+    expect(solverCount).toBe(1);
+    expect(buckets[9].count).toBe(1); // Alice avg = 100
+  });
+
+  test('drops solvers with zero rankable puzzles even if solved>=min', () => {
+    // Both Alice and Bob qualify on count (2 solos each) but neither has
+    // any multi-solver puzzle, so percentile is undefined → drop them.
+    const puzzles: Puzzle[] = [
+      puzzle('Jan 2025', 'A', ['Alice']),
+      puzzle('Feb 2025', 'B', ['Alice']),
+      puzzle('Mar 2025', 'C', ['Bob']),
+      puzzle('Apr 2025', 'D', ['Bob']),
+    ];
+    const { solverCount, buckets } = buildPercentileDistribution(puzzles, 2);
+    expect(solverCount).toBe(0);
+    expect(buckets.every((b) => b.count === 0)).toBe(true);
+  });
+
+  test('median is computed from per-solver averages, not raw percentiles', () => {
+    // Alice avg = 100, Bob avg = 50, Carol avg = 0 → median = 50.
+    const puzzles: Puzzle[] = [
+      puzzle('Jan 2025', 'A', ['Alice', 'Bob', 'Carol']),
+      puzzle('Feb 2025', 'B', ['Alice', 'Bob', 'Carol']),
+    ];
+    const { median } = buildPercentileDistribution(puzzles, 2);
+    expect(median).toBeCloseTo(50, 6);
   });
 });
 
