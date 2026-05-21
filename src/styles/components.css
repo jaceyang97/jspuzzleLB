@@ -706,11 +706,18 @@
   border-radius: 4px;
   font-size: 12px;
   font-weight: normal;
+  line-height: 1.45;
   white-space: normal;
   z-index: 100;
   box-shadow: 0 2px 8px var(--shadow-lg);
-  width: 220px;
+  width: max-content;
+  min-width: 200px;
+  max-width: min(320px, calc(100vw - 32px));
   text-align: center;
+  text-wrap: balance;
+  hyphens: auto;
+  word-break: normal;
+  overflow-wrap: break-word;
   margin-top: 5px;
 }
 
@@ -966,7 +973,12 @@
   /* Chart adjustments */
   .chart-container.mini { min-height: 140px; }
   .chart-container.mini h3 { font-size: 11px; }
-  .chart-title-tooltip { width: 180px; font-size: 11px; padding: 6px 10px; }
+  .chart-title-tooltip {
+    font-size: 11px;
+    padding: 6px 10px;
+    min-width: 180px;
+    max-width: min(260px, calc(100vw - 24px));
+  }
   
   /* Puzzle table - show ~5 rows with scroll */
   .puzzle-table-container {

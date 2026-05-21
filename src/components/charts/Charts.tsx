@@ -259,24 +259,28 @@ interface GrowthChartTabsProps {
   puzzlesLoading?: boolean;
 }
 
-const TAB_META: Record<GrowthTab, { label: string; tooltip: string }> = {
+const TAB_META: Record<GrowthTab, { label: string; title: string; tooltip: string }> = {
   growth: {
     label: 'Total',
+    title: '🌱 Solvers Growth',
     tooltip:
       'Cumulative unique solvers over time. Solver lists are publicly available from Nov 2015 onwards.',
   },
   yoy: {
     label: 'YoY',
+    title: '📈 Year-over-Year',
     tooltip:
       'Unique solvers per month, one line per year. Useful for comparing seasonal participation across years.',
   },
   'first-time': {
     label: 'New',
+    title: '✨ First-Time Solvers',
     tooltip:
       'First-time solvers per month — newcomers who had never appeared in any prior puzzle.',
   },
   percentiles: {
     label: 'Rank',
+    title: '🏅 Percentile Rank',
     tooltip:
       'Distribution of average percentile rank across solvers with 2 or more puzzles solved (Enthusiasts & Masters). Higher percentile = faster average finish.',
   },
@@ -296,7 +300,7 @@ const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
     >
       <div className="growth-tabs-header">
         <TitleTooltip tooltip={TAB_META[tab].tooltip}>
-          🌱 Solvers Growth
+          {TAB_META[tab].title}
         </TitleTooltip>
         <div className="growth-tabs-strip" role="tablist" aria-label="Growth chart view">
           {(['growth', 'yoy', 'first-time', 'percentiles'] as GrowthTab[]).map((t) => (
