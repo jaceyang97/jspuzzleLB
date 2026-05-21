@@ -1124,6 +1124,15 @@
   padding: 6px 20px 16px;
   border-bottom: 1px solid var(--border-secondary);
 }
+.solver-modal-stats.three {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.solver-stat-sample {
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--text-muted);
+  text-transform: none;
+}
 .solver-stat {
   text-align: center;
   padding: 8px 6px;
@@ -1180,6 +1189,14 @@
   white-space: nowrap;
   color: var(--text-tertiary);
   font-size: 12px;
+}
+.solver-modal-place {
+  width: 84px;
+  white-space: nowrap;
+  text-align: right;
+  color: var(--text-tertiary);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
 }
 .solver-modal-state {
   padding: 22px;

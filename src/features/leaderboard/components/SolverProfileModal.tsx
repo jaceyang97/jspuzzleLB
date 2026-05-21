@@ -1,7 +1,12 @@
 import React, { useEffect, useMemo } from 'react';
 import { useRawPuzzleData } from '../hooks/useRawPuzzleData';
 import { Puzzle } from '../types';
-import { formatDate } from '../../../utils/leaderboardUtils';
+import {
+  SolverPlacement,
+  computeAveragePercentile,
+  findSolverPlacement,
+  formatDate,
+} from '../../../utils/leaderboardUtils';
 import { HIDDEN_PALETTE, colorFromName } from './solverChipPalettes';
 
 interface SolverProfileModalProps {
@@ -9,25 +14,34 @@ interface SolverProfileModalProps {
   onClose: () => void;
 }
 
+const AVG_PERCENTILE_TOOLTIP =
+  'Average percentile rank across solved puzzles. 100 = always first, ' +
+  '0 = always last. Formula: 100 × (1 − (rank − 1) / (solvers − 1)), ' +
+  'averaged across puzzles. Puzzles with only one solver are excluded.';
+
 const computeSolverStats = (solverName: string, puzzles: Puzzle[]) => {
-  const solved: Puzzle[] = [];
+  const placements: SolverPlacement[] = [];
   for (const p of puzzles) {
-    if (p.solvers && p.solvers.includes(solverName)) {
-      solved.push(p);
-    }
+    const placement = findSolverPlacement(solverName, p);
+    if (placement) placements.push(placement);
   }
-  // Sort puzzles newest first
-  solved.sort((a, b) => {
-    const da = new Date(a.date_text).getTime();
-    const db = new Date(b.date_text).getTime();
+  // Sort newest first by puzzle date_text
+  placements.sort((a, b) => {
+    const da = new Date(a.puzzle.date_text).getTime();
+    const db = new Date(b.puzzle.date_text).getTime();
     return db - da;
   });
 
+  const avg = computeAveragePercentile(placements);
+
   return {
-    puzzles: solved,
-    totalSolved: solved.length,
-    firstAppearance: solved.length ? formatDate(solved[solved.length - 1].date_text) : 'N/A',
-    lastSolve: solved.length ? formatDate(solved[0].date_text) : 'N/A',
+    placements,
+    totalSolved: placements.length,
+    firstAppearance: placements.length
+      ? formatDate(placements[placements.length - 1].puzzle.date_text)
+      : 'N/A',
+    lastSolve: placements.length ? formatDate(placements[0].puzzle.date_text) : 'N/A',
+    avgPercentile: avg,
   };
 };
 
@@ -107,7 +121,7 @@ const SolverProfileModal: React.FC<SolverProfileModalProps> = ({ solverName, onC
 
         {stats && (
           <>
-            <div className="solver-modal-stats">
+            <div className="solver-modal-stats three">
               <div className="solver-stat">
                 <div className="solver-stat-value">{stats.totalSolved}</div>
                 <div className="solver-stat-label">Puzzles solved</div>
@@ -116,18 +130,35 @@ const SolverProfileModal: React.FC<SolverProfileModalProps> = ({ solverName, onC
                 <div className="solver-stat-value">{stats.lastSolve}</div>
                 <div className="solver-stat-label">Last solve</div>
               </div>
+              <div className="solver-stat" title={AVG_PERCENTILE_TOOLTIP}>
+                <div className="solver-stat-value">
+                  {stats.avgPercentile
+                    ? stats.avgPercentile.value.toFixed(1)
+                    : '—'}
+                </div>
+                <div className="solver-stat-label">
+                  Avg percentile
+                  {stats.avgPercentile && (
+                    <span className="solver-stat-sample">
+                      {' '}
+                      (n={stats.avgPercentile.sampleSize})
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
 
             <div className="solver-modal-section-label">
               Solved puzzles
             </div>
             <div className="solver-modal-list">
-              {stats.puzzles.length === 0 ? (
+              {stats.placements.length === 0 ? (
                 <div className="solver-modal-state">No puzzles found for this solver.</div>
               ) : (
                 <table className="solver-modal-table" aria-label="Puzzles solved by this solver">
                   <tbody>
-                    {stats.puzzles.map((p, i) => {
+                    {stats.placements.map((pl, i) => {
+                      const p = pl.puzzle;
                       const indexUrl = p.solution_url
                         ? p.solution_url.replace('-solution', '-index')
                         : '';
@@ -147,6 +178,9 @@ const SolverProfileModal: React.FC<SolverProfileModalProps> = ({ solverName, onC
                             ) : (
                               p.name
                             )}
+                          </td>
+                          <td className="solver-modal-place">
+                            {pl.rank} / {pl.total}
                           </td>
                         </tr>
                       );
