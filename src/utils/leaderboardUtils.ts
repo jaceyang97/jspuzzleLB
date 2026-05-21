@@ -12,6 +12,56 @@ const FULL_TO_SHORT = new Map(
     .map((full, i) => [full, MONTH_CODES[i]])
 );
 
+/**
+ * Per-puzzle placement for a solver. `rank` is the 1-based position in the
+ * source JSON `solvers[]` array, which Jane Street publishes in submission
+ * order. `percentile` is 100 × (1 − (rank − 1) / (total − 1)) — higher is
+ * better. It is `null` when total < 2, since a single-solver puzzle has
+ * no meaningful percentile.
+ */
+export interface SolverPlacement {
+  puzzle: Puzzle;
+  rank: number;
+  total: number;
+  percentile: number | null;
+}
+
+/**
+ * Find the solver's 1-based placement inside `puzzle.solvers`, or `null`
+ * if they are not in the list. Placement is derived solely from JSON
+ * order — never from name, date, or any other sort.
+ */
+export const findSolverPlacement = (
+  solverName: string,
+  puzzle: Puzzle,
+): SolverPlacement | null => {
+  const solvers = puzzle.solvers;
+  if (!solvers || solvers.length === 0) return null;
+  const idx = solvers.indexOf(solverName);
+  if (idx < 0) return null;
+  const total = solvers.length;
+  const rank = idx + 1;
+  const percentile = total > 1 ? 100 * (1 - (rank - 1) / (total - 1)) : null;
+  return { puzzle, rank, total, percentile };
+};
+
+/**
+ * Mean of percentile ranks across the solver's puzzles. Puzzles with
+ * total < 2 are excluded (no defined percentile). Returns `null` if no
+ * puzzle in the input qualifies.
+ *
+ * Formula: 100 × (1 − (rank − 1) / (total − 1)), averaged. Higher is
+ * better; 100 = always first, 0 = always last.
+ */
+export const computeAveragePercentile = (
+  placements: SolverPlacement[],
+): { value: number; sampleSize: number } | null => {
+  const usable = placements.filter((p) => p.percentile !== null);
+  if (usable.length === 0) return null;
+  const sum = usable.reduce((acc, p) => acc + (p.percentile as number), 0);
+  return { value: sum / usable.length, sampleSize: usable.length };
+};
+
 /** Convert "January 2025" → "Jan 2025". Already-short dates pass through. */
 export const formatDate = (dateText: string): string => {
   if (!dateText) return 'N/A';
