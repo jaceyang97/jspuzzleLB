@@ -310,7 +310,8 @@ const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
               aria-selected={tab === t}
               className={`growth-tab-btn ${tab === t ? 'active' : ''}`}
               onClick={() => setTab(t)}
-              title={TAB_META[t].tooltip}
+              data-tooltip={TAB_META[t].tooltip}
+              aria-label={TAB_META[t].tooltip}
             >
               {TAB_META[t].label}
             </button>
