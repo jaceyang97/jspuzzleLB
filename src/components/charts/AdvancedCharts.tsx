@@ -7,6 +7,11 @@ import { Puzzle } from '../../features/leaderboard/types';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { useThemeColors } from '../../hooks/useThemeColors';
 
+// Bin count for the percentile rank histogram. 10 bins of width 10 keeps the
+// X-axis readable in the compact chart panel while still showing shape.
+const PERCENTILE_BIN_COUNT = 10;
+const PERCENTILE_BIN_WIDTH = 100 / PERCENTILE_BIN_COUNT;
+
 // Year colors — cool→warm so recent years pop a bit.
 const YEAR_COLORS = [
   '#94a3b8', '#64748b', '#475569',
@@ -216,6 +221,116 @@ export const FirstTimeSolversChart = memo(({ solversGrowth }: FirstTimeProps) =>
             formatter={(value: number) => [value.toLocaleString(), 'New solvers']}
           />
           <Bar dataKey="newSolvers" fill="#2E8B57" isAnimationActive={false} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+});
+
+// Build a histogram of average percentile across solvers who have solved
+// at least 2 puzzles (Enthusiasts + Masters). Per-puzzle percentile uses the
+// same formula as the profile modal: 100 × (1 − (rank − 1) / (total − 1)).
+// Puzzles with fewer than 2 solvers contribute no percentile signal.
+const buildPercentileHistogram = (puzzles: Puzzle[]) => {
+  const sumByName = new Map<string, number>();
+  const countByName = new Map<string, number>();
+
+  for (const p of puzzles) {
+    const solvers = p.solvers;
+    if (!solvers) continue;
+    const total = solvers.length;
+    if (total < 2) continue;
+    for (let i = 0; i < total; i++) {
+      const name = solvers[i];
+      const percentile = 100 * (1 - i / (total - 1));
+      sumByName.set(name, (sumByName.get(name) || 0) + percentile);
+      countByName.set(name, (countByName.get(name) || 0) + 1);
+    }
+  }
+
+  const bins = Array.from({ length: PERCENTILE_BIN_COUNT }, (_, i) => ({
+    binStart: i * PERCENTILE_BIN_WIDTH,
+    binLabel: `${i * PERCENTILE_BIN_WIDTH}–${(i + 1) * PERCENTILE_BIN_WIDTH}`,
+    count: 0,
+  }));
+
+  let totalSolvers = 0;
+  sumByName.forEach((sum, name) => {
+    const count = countByName.get(name) || 0;
+    if (count < 2) return;
+    const avg = sum / count;
+    let idx = Math.floor(avg / PERCENTILE_BIN_WIDTH);
+    if (idx >= PERCENTILE_BIN_COUNT) idx = PERCENTILE_BIN_COUNT - 1;
+    if (idx < 0) idx = 0;
+    bins[idx].count += 1;
+    totalSolvers += 1;
+  });
+
+  return { bins, totalSolvers };
+};
+
+interface PercentileRankProps {
+  puzzles: Puzzle[] | null;
+  loading: boolean;
+}
+
+export const PercentileRankChart = memo(({ puzzles, loading }: PercentileRankProps) => {
+  const colors = useThemeColors();
+
+  const { bins, totalSolvers } = useMemo(() => {
+    if (!puzzles) return { bins: [], totalSolvers: 0 };
+    return buildPercentileHistogram(puzzles);
+  }, [puzzles]);
+
+  if (loading && !puzzles) {
+    return (
+      <div className="growth-chart-body">
+        <div className="chart-loading">Loading percentile distribution…</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="growth-chart-body">
+      <ResponsiveContainer width="100%" height="100%" minHeight={120}>
+        <BarChart data={bins} margin={{ top: 5, right: 8, left: 0, bottom: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke={colors.gridStroke} />
+          <XAxis
+            dataKey="binStart"
+            tick={{ fontSize: 11, fill: colors.textColor }}
+            axisLine={{ stroke: colors.axisStroke }}
+            tickLine={{ stroke: colors.axisStroke }}
+            tickFormatter={(v: number) => `${v}`}
+            interval={0}
+          />
+          <YAxis
+            tick={{ fontSize: 11, fill: colors.textColor }}
+            width={35}
+            tickFormatter={(value) =>
+              value >= 1000 ? `${(value / 1000).toFixed(0)}k` : value
+            }
+            axisLine={{ stroke: colors.axisStroke }}
+            tickLine={{ stroke: colors.axisStroke }}
+            allowDecimals={false}
+          />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: colors.tooltipBg,
+              border: `1px solid ${colors.tooltipBorder}`,
+              fontSize: 11,
+              borderRadius: 4,
+            }}
+            labelStyle={{ fontWeight: 600 }}
+            formatter={(value: number) => {
+              const pct = totalSolvers > 0 ? (value / totalSolvers) * 100 : 0;
+              return [`${value.toLocaleString()} (${pct.toFixed(1)}%)`, 'Solvers'];
+            }}
+            labelFormatter={(_label, payload) => {
+              const item = payload && payload[0]?.payload;
+              return item ? `Avg percentile ${item.binLabel}` : '';
+            }}
+          />
+          <Bar dataKey="count" fill="#2E8B57" isAnimationActive={false} />
         </BarChart>
       </ResponsiveContainer>
     </div>
