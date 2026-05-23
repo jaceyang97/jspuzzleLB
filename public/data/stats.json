@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 147,
-  "uniqueSolvers": 14101,
+  "uniqueSolvers": 14108,
   "solverDistribution": {
-    "onePuzzle": 10493,
-    "twoToNine": 3363,
+    "onePuzzle": 10499,
+    "twoToNine": 3364,
     "tenPlus": 245
   },
   "topSolvers": [
@@ -464,6 +464,12 @@
       "lastSolve": "May 2026"
     },
     {
+      "name": "Roberto Moura",
+      "puzzlesSolved": 17,
+      "firstAppearance": "February 2023",
+      "lastSolve": "May 2026"
+    },
+    {
       "name": "David Jennings",
       "puzzlesSolved": 17,
       "firstAppearance": "August 2023",
@@ -528,12 +534,6 @@
       "puzzlesSolved": 16,
       "firstAppearance": "December 2022",
       "lastSolve": "May 2026"
-    },
-    {
-      "name": "Roberto Moura",
-      "puzzlesSolved": 16,
-      "firstAppearance": "February 2023",
-      "lastSolve": "February 2026"
     },
     {
       "name": "James Press",
@@ -11433,6 +11433,12 @@
     },
     {
       "name": "Andras Fekete",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Dina Spiegel",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
       "lastSolve": "May 2026"
@@ -23072,6 +23078,48 @@
       "lastSolve": "May 2026"
     },
     {
+      "name": "Fogan",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Jack Humphries",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Teddy T",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Ryan Kueber",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Kartik Sinha",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Zihao Hu",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Suhan W.",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
       "name": "Rahid Z.",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
@@ -25587,12 +25635,6 @@
     },
     {
       "name": "Max Bublik",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Dina Spiegel",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -85057,7 +85099,7 @@
     },
     {
       "month": "May 2026",
-      "solvers": 445
+      "solvers": 454
     }
   ],
   "solversGrowth": [
@@ -85647,7 +85689,7 @@
     },
     {
       "month": "May 2026",
-      "totalSolvers": 14101
+      "totalSolvers": 14108
     }
   ],
   "mostSolvedPuzzles": [
@@ -85750,7 +85792,7 @@
     {
       "id": "2026-5",
       "name": "Arch Madness",
-      "solvers": 445,
+      "solvers": 454,
       "solution_url": ""
     },
     {
@@ -85775,7 +85817,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Arch Madness",
     "puzzleDate": "May 2026",
-    "solverCount": 445,
+    "solverCount": 454,
     "timeline": [
       {
         "solver": "Andr\u00e9 W",
@@ -87556,8 +87598,44 @@
       {
         "solver": "Andras Fekete",
         "timestamp": "2026-05-22T12:50:49.257645+00:00"
+      },
+      {
+        "solver": "Fogan",
+        "timestamp": "2026-05-23T12:22:24.948468+00:00"
+      },
+      {
+        "solver": "Jack Humphries",
+        "timestamp": "2026-05-23T12:22:24.948468+00:00"
+      },
+      {
+        "solver": "Teddy T",
+        "timestamp": "2026-05-23T12:22:24.948468+00:00"
+      },
+      {
+        "solver": "Ryan Kueber",
+        "timestamp": "2026-05-23T12:22:24.948468+00:00"
+      },
+      {
+        "solver": "Dina Spiegel",
+        "timestamp": "2026-05-23T12:22:24.948468+00:00"
+      },
+      {
+        "solver": "Kartik Sinha",
+        "timestamp": "2026-05-23T12:22:24.948468+00:00"
+      },
+      {
+        "solver": "Roberto Moura",
+        "timestamp": "2026-05-23T12:22:24.948468+00:00"
+      },
+      {
+        "solver": "Zihao Hu",
+        "timestamp": "2026-05-23T12:22:24.948468+00:00"
+      },
+      {
+        "solver": "Suhan W.",
+        "timestamp": "2026-05-23T12:22:24.948468+00:00"
       }
     ]
   },
-  "generatedAt": "2026-05-22T12:50:49.448043+00:00"
+  "generatedAt": "2026-05-23T12:22:25.124006+00:00"
 }
