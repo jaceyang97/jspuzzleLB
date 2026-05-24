@@ -1,10 +1,10 @@
 {
   "totalPuzzles": 147,
-  "uniqueSolvers": 14108,
+  "uniqueSolvers": 14114,
   "solverDistribution": {
-    "onePuzzle": 10499,
+    "onePuzzle": 10504,
     "twoToNine": 3364,
-    "tenPlus": 245
+    "tenPlus": 246
   },
   "topSolvers": [
     {
@@ -1334,6 +1334,12 @@
       "lastSolve": "May 2026"
     },
     {
+      "name": "Martin Thorne",
+      "puzzlesSolved": 10,
+      "firstAppearance": "October 2024",
+      "lastSolve": "May 2026"
+    },
+    {
       "name": "Nishant Bhakar",
       "puzzlesSolved": 10,
       "firstAppearance": "May 2024",
@@ -1506,12 +1512,6 @@
       "puzzlesSolved": 9,
       "firstAppearance": "May 2024",
       "lastSolve": "May 2026"
-    },
-    {
-      "name": "Martin Thorne",
-      "puzzlesSolved": 9,
-      "firstAppearance": "October 2024",
-      "lastSolve": "April 2026"
     },
     {
       "name": "Andre Riva",
@@ -11441,6 +11441,12 @@
       "name": "Dina Spiegel",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "yilei",
+      "puzzlesSolved": 2,
+      "firstAppearance": "October 2025",
       "lastSolve": "May 2026"
     },
     {
@@ -23120,6 +23126,42 @@
       "lastSolve": "May 2026"
     },
     {
+      "name": "fieldtm",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Pranjal Sharma",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Anmar Nasser",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Hoang Vu",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Josephine Jin",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
+      "name": "Yuanmen Zhu",
+      "puzzlesSolved": 1,
+      "firstAppearance": "May 2026",
+      "lastSolve": "May 2026"
+    },
+    {
       "name": "Rahid Z.",
       "puzzlesSolved": 1,
       "firstAppearance": "April 2026",
@@ -31989,12 +32031,6 @@
     },
     {
       "name": "kaikai du",
-      "puzzlesSolved": 1,
-      "firstAppearance": "October 2025",
-      "lastSolve": "October 2025"
-    },
-    {
-      "name": "yilei",
       "puzzlesSolved": 1,
       "firstAppearance": "October 2025",
       "lastSolve": "October 2025"
@@ -85099,7 +85135,7 @@
     },
     {
       "month": "May 2026",
-      "solvers": 454
+      "solvers": 462
     }
   ],
   "solversGrowth": [
@@ -85689,7 +85725,7 @@
     },
     {
       "month": "May 2026",
-      "totalSolvers": 14108
+      "totalSolvers": 14114
     }
   ],
   "mostSolvedPuzzles": [
@@ -85792,7 +85828,7 @@
     {
       "id": "2026-5",
       "name": "Arch Madness",
-      "solvers": 454,
+      "solvers": 462,
       "solution_url": ""
     },
     {
@@ -85817,7 +85853,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Arch Madness",
     "puzzleDate": "May 2026",
-    "solverCount": 454,
+    "solverCount": 462,
     "timeline": [
       {
         "solver": "Andr\u00e9 W",
@@ -87634,8 +87670,40 @@
       {
         "solver": "Suhan W.",
         "timestamp": "2026-05-23T12:22:24.948468+00:00"
+      },
+      {
+        "solver": "fieldtm",
+        "timestamp": "2026-05-24T12:25:16.278924+00:00"
+      },
+      {
+        "solver": "Martin Thorne",
+        "timestamp": "2026-05-24T12:25:16.278924+00:00"
+      },
+      {
+        "solver": "Pranjal Sharma",
+        "timestamp": "2026-05-24T12:25:16.278924+00:00"
+      },
+      {
+        "solver": "Anmar Nasser",
+        "timestamp": "2026-05-24T12:25:16.278924+00:00"
+      },
+      {
+        "solver": "Hoang Vu",
+        "timestamp": "2026-05-24T12:25:16.278924+00:00"
+      },
+      {
+        "solver": "Josephine Jin",
+        "timestamp": "2026-05-24T12:25:16.278924+00:00"
+      },
+      {
+        "solver": "Yuanmen Zhu",
+        "timestamp": "2026-05-24T12:25:16.278924+00:00"
+      },
+      {
+        "solver": "yilei",
+        "timestamp": "2026-05-24T12:25:16.278924+00:00"
       }
     ]
   },
-  "generatedAt": "2026-05-23T12:22:25.124006+00:00"
+  "generatedAt": "2026-05-24T12:25:16.506033+00:00"
 }
