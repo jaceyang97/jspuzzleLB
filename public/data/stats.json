@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 148,
-  "uniqueSolvers": 14315,
+  "uniqueSolvers": 14316,
   "solverDistribution": {
     "onePuzzle": 10638,
-    "twoToNine": 3423,
+    "twoToNine": 3424,
     "tenPlus": 254
   },
   "topSolvers": [
@@ -788,6 +788,12 @@
       "lastSolve": "June 2026"
     },
     {
+      "name": "Ronald_D_D",
+      "puzzlesSolved": 13,
+      "firstAppearance": "May 2023",
+      "lastSolve": "June 2026"
+    },
+    {
       "name": "Manuel R",
       "puzzlesSolved": 13,
       "firstAppearance": "May 2024",
@@ -965,12 +971,6 @@
       "name": "Josep Puig Ruiz",
       "puzzlesSolved": 12,
       "firstAppearance": "January 2024",
-      "lastSolve": "May 2026"
-    },
-    {
-      "name": "Ronald_D_D",
-      "puzzlesSolved": 12,
-      "firstAppearance": "May 2023",
       "lastSolve": "May 2026"
     },
     {
@@ -7358,6 +7358,12 @@
       "lastSolve": "June 2026"
     },
     {
+      "name": "Edgar Gonzalez-Gascou",
+      "puzzlesSolved": 3,
+      "firstAppearance": "March 2025",
+      "lastSolve": "June 2026"
+    },
+    {
       "name": "\u5f90\u745c\u9633",
       "puzzlesSolved": 3,
       "firstAppearance": "November 2025",
@@ -11600,6 +11606,12 @@
       "lastSolve": "June 2026"
     },
     {
+      "name": "Yusong Zhang",
+      "puzzlesSolved": 2,
+      "firstAppearance": "May 2026",
+      "lastSolve": "June 2026"
+    },
+    {
       "name": "Radu Prosie & \u0218U\u0218U Arthur",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
@@ -13983,12 +13995,6 @@
     },
     {
       "name": "Micah Sanders",
-      "puzzlesSolved": 2,
-      "firstAppearance": "March 2025",
-      "lastSolve": "April 2025"
-    },
-    {
-      "name": "Edgar Gonzalez-Gascou",
       "puzzlesSolved": 2,
       "firstAppearance": "March 2025",
       "lastSolve": "April 2025"
@@ -22814,6 +22820,12 @@
       "lastSolve": "June 2026"
     },
     {
+      "name": "Mendel Bonan",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
       "name": "Andr\u00e9 W",
       "puzzlesSolved": 1,
       "firstAppearance": "May 2026",
@@ -23925,12 +23937,6 @@
     },
     {
       "name": "Lasmar Khalifa",
-      "puzzlesSolved": 1,
-      "firstAppearance": "May 2026",
-      "lastSolve": "May 2026"
-    },
-    {
-      "name": "Yusong Zhang",
       "puzzlesSolved": 1,
       "firstAppearance": "May 2026",
       "lastSolve": "May 2026"
@@ -86341,7 +86347,7 @@
     },
     {
       "month": "Jun 2026",
-      "solvers": 282
+      "solvers": 286
     }
   ],
   "solversGrowth": [
@@ -86935,7 +86941,7 @@
     },
     {
       "month": "Jun 2026",
-      "totalSolvers": 14315
+      "totalSolvers": 14316
     }
   ],
   "mostSolvedPuzzles": [
@@ -87063,7 +87069,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Regional Artwork",
     "puzzleDate": "June 2026",
-    "solverCount": 282,
+    "solverCount": 286,
     "timeline": [
       {
         "solver": "vsh",
@@ -88192,8 +88198,24 @@
       {
         "solver": "Jacob Voss",
         "timestamp": "2026-06-05T13:02:09.615907+00:00"
+      },
+      {
+        "solver": "Mendel Bonan",
+        "timestamp": "2026-06-06T12:28:46.277760+00:00"
+      },
+      {
+        "solver": "Yusong Zhang",
+        "timestamp": "2026-06-06T12:28:46.277760+00:00"
+      },
+      {
+        "solver": "Ronald_D_D",
+        "timestamp": "2026-06-06T12:28:46.277760+00:00"
+      },
+      {
+        "solver": "Edgar Gonzalez-Gascou",
+        "timestamp": "2026-06-06T12:28:46.277760+00:00"
       }
     ]
   },
-  "generatedAt": "2026-06-05T13:02:09.861919+00:00"
+  "generatedAt": "2026-06-06T12:28:46.464421+00:00"
 }
