@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 148,
-  "uniqueSolvers": 14547,
+  "uniqueSolvers": 14553,
   "solverDistribution": {
-    "onePuzzle": 10813,
+    "onePuzzle": 10819,
     "twoToNine": 3479,
     "tenPlus": 255
   },
@@ -24543,6 +24543,42 @@
     },
     {
       "name": "Kornel Ipacs",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "lamm",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Sophia Alexandra",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Shakir Davis",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Entela Mirena",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Amit Sharma",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Pratyush Ranjan Maharana",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2026",
       "lastSolve": "June 2026"
@@ -87733,7 +87769,7 @@
     },
     {
       "month": "Jun 2026",
-      "solvers": 630
+      "solvers": 636
     }
   ],
   "solversGrowth": [
@@ -88327,7 +88363,7 @@
     },
     {
       "month": "Jun 2026",
-      "totalSolvers": 14547
+      "totalSolvers": 14553
     }
   ],
   "mostSolvedPuzzles": [
@@ -88382,7 +88418,7 @@
     {
       "id": "2026-6",
       "name": "Regional Artwork",
-      "solvers": 630,
+      "solvers": 636,
       "solution_url": ""
     },
     {
@@ -88455,7 +88491,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Regional Artwork",
     "puzzleDate": "June 2026",
-    "solverCount": 630,
+    "solverCount": 636,
     "timeline": [
       {
         "solver": "vsh",
@@ -90976,8 +91012,32 @@
       {
         "solver": "Kornel Ipacs",
         "timestamp": "2026-06-12T13:10:39.334154+00:00"
+      },
+      {
+        "solver": "lamm",
+        "timestamp": "2026-06-13T12:37:54.762694+00:00"
+      },
+      {
+        "solver": "Sophia Alexandra",
+        "timestamp": "2026-06-13T12:37:54.762694+00:00"
+      },
+      {
+        "solver": "Shakir Davis",
+        "timestamp": "2026-06-13T12:37:54.762694+00:00"
+      },
+      {
+        "solver": "Entela Mirena",
+        "timestamp": "2026-06-13T12:37:54.762694+00:00"
+      },
+      {
+        "solver": "Amit Sharma",
+        "timestamp": "2026-06-13T12:37:54.762694+00:00"
+      },
+      {
+        "solver": "Pratyush Ranjan Maharana",
+        "timestamp": "2026-06-13T12:37:54.762694+00:00"
       }
     ]
   },
-  "generatedAt": "2026-06-12T13:10:39.686092+00:00"
+  "generatedAt": "2026-06-13T12:37:54.965791+00:00"
 }
