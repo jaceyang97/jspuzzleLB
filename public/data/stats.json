@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 148,
-  "uniqueSolvers": 14654,
+  "uniqueSolvers": 14659,
   "solverDistribution": {
-    "onePuzzle": 10901,
+    "onePuzzle": 10906,
     "twoToNine": 3498,
     "tenPlus": 255
   },
@@ -25299,6 +25299,36 @@
     },
     {
       "name": "Rasheedat S.",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Noah B\u00f6hmler",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Inderjeet Singh",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Jash M",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Milla Duca",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Chirag Jain",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2026",
       "lastSolve": "June 2026"
@@ -88375,7 +88405,7 @@
     },
     {
       "month": "Jun 2026",
-      "solvers": 773
+      "solvers": 778
     }
   ],
   "solversGrowth": [
@@ -88969,7 +88999,7 @@
     },
     {
       "month": "Jun 2026",
-      "totalSolvers": 14654
+      "totalSolvers": 14659
     }
   ],
   "mostSolvedPuzzles": [
@@ -89004,16 +89034,16 @@
       "solution_url": "https://www.janestreet.com/puzzles/subtiles-2-solution"
     },
     {
+      "id": "2026-6",
+      "name": "Regional Artwork",
+      "solvers": 778,
+      "solution_url": ""
+    },
+    {
       "id": "2025-10",
       "name": "Robot Baseball",
       "solvers": 778,
       "solution_url": "https://www.janestreet.com/puzzles/robot-baseball-solution"
-    },
-    {
-      "id": "2026-6",
-      "name": "Regional Artwork",
-      "solvers": 773,
-      "solution_url": ""
     },
     {
       "id": "2022-12",
@@ -89097,7 +89127,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Regional Artwork",
     "puzzleDate": "June 2026",
-    "solverCount": 773,
+    "solverCount": 778,
     "timeline": [
       {
         "solver": "vsh",
@@ -92202,8 +92232,28 @@
       {
         "solver": "Rasheedat S.",
         "timestamp": "2026-06-17T13:17:11.000211+00:00"
+      },
+      {
+        "solver": "Noah B\u00f6hmler",
+        "timestamp": "2026-06-18T13:11:25.032929+00:00"
+      },
+      {
+        "solver": "Inderjeet Singh",
+        "timestamp": "2026-06-18T13:11:25.032929+00:00"
+      },
+      {
+        "solver": "Jash M",
+        "timestamp": "2026-06-18T13:11:25.032929+00:00"
+      },
+      {
+        "solver": "Milla Duca",
+        "timestamp": "2026-06-18T13:11:25.032929+00:00"
+      },
+      {
+        "solver": "Chirag Jain",
+        "timestamp": "2026-06-18T13:11:25.032929+00:00"
       }
     ]
   },
-  "generatedAt": "2026-06-17T13:17:11.209854+00:00"
+  "generatedAt": "2026-06-18T13:11:25.243851+00:00"
 }
