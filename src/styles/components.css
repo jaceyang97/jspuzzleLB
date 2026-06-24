@@ -721,6 +721,50 @@
   margin-top: 5px;
 }
 
+/* ------------------------------------------------
+   INFO TOOLTIPS — universal hover/focus tooltip for
+   explanatory text. Any element with [data-tooltip]
+   gets the same compact, balanced rectangle as the
+   chart-title tooltip above — so long sentences wrap
+   to a few short lines instead of stretching across
+   the screen as native title attributes do.
+   ------------------------------------------------ */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.45;
+  letter-spacing: normal;
+  text-transform: none;
+  text-align: center;
+  white-space: normal;
+  text-wrap: balance;
+  hyphens: auto;
+  word-break: normal;
+  overflow-wrap: break-word;
+  width: max-content;
+  min-width: 200px;
+  max-width: min(320px, calc(100vw - 32px));
+  box-shadow: 0 2px 8px var(--shadow-lg);
+  z-index: 1000;
+  pointer-events: none;
+}
+
 .chart-title-tooltip::before {
   content: '';
   position: absolute;
@@ -973,7 +1017,9 @@
   /* Chart adjustments */
   .chart-container.mini { min-height: 140px; }
   .chart-container.mini h3 { font-size: 11px; }
-  .chart-title-tooltip {
+  .chart-title-tooltip,
+  [data-tooltip]:hover::after,
+  [data-tooltip]:focus-visible::after {
     font-size: 11px;
     padding: 6px 10px;
     min-width: 180px;
