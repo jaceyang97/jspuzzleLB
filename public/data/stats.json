@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 148,
-  "uniqueSolvers": 14821,
+  "uniqueSolvers": 14833,
   "solverDistribution": {
-    "onePuzzle": 11045,
-    "twoToNine": 3520,
+    "onePuzzle": 11055,
+    "twoToNine": 3522,
     "tenPlus": 256
   },
   "topSolvers": [
@@ -1190,6 +1190,12 @@
       "lastSolve": "June 2026"
     },
     {
+      "name": "David Berardo",
+      "puzzlesSolved": 11,
+      "firstAppearance": "February 2023",
+      "lastSolve": "June 2026"
+    },
+    {
       "name": "Hsin-Yi Wang",
       "puzzlesSolved": 11,
       "firstAppearance": "May 2024",
@@ -1409,12 +1415,6 @@
       "name": "Nishant Bhakar",
       "puzzlesSolved": 10,
       "firstAppearance": "May 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "David Berardo",
-      "puzzlesSolved": 10,
-      "firstAppearance": "February 2023",
       "lastSolve": "February 2026"
     },
     {
@@ -12359,6 +12359,18 @@
       "name": "Prakhar Prasun",
       "puzzlesSolved": 2,
       "firstAppearance": "December 2025",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Jasper Halvorson",
+      "puzzlesSolved": 2,
+      "firstAppearance": "October 2025",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Ansh Gangapurkar",
+      "puzzlesSolved": 2,
+      "firstAppearance": "June 2024",
       "lastSolve": "June 2026"
     },
     {
@@ -26444,6 +26456,78 @@
       "lastSolve": "June 2026"
     },
     {
+      "name": "Qizheng Ye",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Zhicheng Sun",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Ryan Watach",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Niharika Thatiparthi",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Brad C",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Siddharth Rout",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Maanas Punuru",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "B. Yahu",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "acp",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "abhee",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Avinash Ashokkumar",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Ammar Asir Hasan",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
       "name": "Andr\u00e9 W",
       "puzzlesSolved": 1,
       "firstAppearance": "May 2026",
@@ -36747,12 +36831,6 @@
     },
     {
       "name": "gds",
-      "puzzlesSolved": 1,
-      "firstAppearance": "October 2025",
-      "lastSolve": "October 2025"
-    },
-    {
-      "name": "Jasper Halvorson",
       "puzzlesSolved": 1,
       "firstAppearance": "October 2025",
       "lastSolve": "October 2025"
@@ -59115,12 +59193,6 @@
     },
     {
       "name": "Ayush Adi",
-      "puzzlesSolved": 1,
-      "firstAppearance": "June 2024",
-      "lastSolve": "June 2024"
-    },
-    {
-      "name": "Ansh Gangapurkar",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2024",
       "lastSolve": "June 2024"
@@ -89377,7 +89449,7 @@
     },
     {
       "month": "Jun 2026",
-      "solvers": 988
+      "solvers": 1003
     }
   ],
   "solversGrowth": [
@@ -89971,7 +90043,7 @@
     },
     {
       "month": "Jun 2026",
-      "totalSolvers": 14821
+      "totalSolvers": 14833
     }
   ],
   "mostSolvedPuzzles": [
@@ -90002,7 +90074,7 @@
     {
       "id": "2026-6",
       "name": "Regional Artwork",
-      "solvers": 988,
+      "solvers": 1003,
       "solution_url": ""
     },
     {
@@ -90099,7 +90171,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Regional Artwork",
     "puzzleDate": "June 2026",
-    "solverCount": 988,
+    "solverCount": 1003,
     "timeline": [
       {
         "solver": "vsh",
@@ -94068,8 +94140,68 @@
       {
         "solver": "Harshit Arora IITD'27",
         "timestamp": "2026-06-25T12:49:28.413450+00:00"
+      },
+      {
+        "solver": "Qizheng Ye",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Zhicheng Sun",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Ryan Watach",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Niharika Thatiparthi",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Brad C",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Jasper Halvorson",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "David Berardo",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Siddharth Rout",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Maanas Punuru",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Ansh Gangapurkar",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "B. Yahu",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "acp",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "abhee",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Avinash Ashokkumar",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Ammar Asir Hasan",
+        "timestamp": "2026-06-26T12:45:22.430859+00:00"
       }
     ]
   },
-  "generatedAt": "2026-06-25T12:49:28.631797+00:00"
+  "generatedAt": "2026-06-26T12:45:22.613836+00:00"
 }
