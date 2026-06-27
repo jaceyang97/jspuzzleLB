@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 148,
-  "uniqueSolvers": 14833,
+  "uniqueSolvers": 14843,
   "solverDistribution": {
-    "onePuzzle": 11055,
-    "twoToNine": 3522,
+    "onePuzzle": 11062,
+    "twoToNine": 3525,
     "tenPlus": 256
   },
   "topSolvers": [
@@ -12371,6 +12371,24 @@
       "name": "Ansh Gangapurkar",
       "puzzlesSolved": 2,
       "firstAppearance": "June 2024",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Anshal Gupta",
+      "puzzlesSolved": 2,
+      "firstAppearance": "October 2025",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Arjun Raghavan",
+      "puzzlesSolved": 2,
+      "firstAppearance": "November 2024",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Nikita Naik",
+      "puzzlesSolved": 2,
+      "firstAppearance": "January 2026",
       "lastSolve": "June 2026"
     },
     {
@@ -26528,6 +26546,66 @@
       "lastSolve": "June 2026"
     },
     {
+      "name": "Harshank Matkar",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Popescu Silviu",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Soham Gugale",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Ramanpreet S. Sidhu",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Robert Poston",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Tian Yueh",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Abeen Bhattacharya",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Samuel Zhang",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Jasper McLennan",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
+      "name": "Ashley",
+      "puzzlesSolved": 1,
+      "firstAppearance": "June 2026",
+      "lastSolve": "June 2026"
+    },
+    {
       "name": "Andr\u00e9 W",
       "puzzlesSolved": 1,
       "firstAppearance": "May 2026",
@@ -31550,12 +31628,6 @@
       "lastSolve": "January 2026"
     },
     {
-      "name": "Nikita Naik",
-      "puzzlesSolved": 1,
-      "firstAppearance": "January 2026",
-      "lastSolve": "January 2026"
-    },
-    {
       "name": "Ben Laytin",
       "puzzlesSolved": 1,
       "firstAppearance": "December 2025",
@@ -35463,12 +35535,6 @@
     },
     {
       "name": "Akanksha Gomatam",
-      "puzzlesSolved": 1,
-      "firstAppearance": "October 2025",
-      "lastSolve": "October 2025"
-    },
-    {
-      "name": "Anshal Gupta",
       "puzzlesSolved": 1,
       "firstAppearance": "October 2025",
       "lastSolve": "October 2025"
@@ -52395,12 +52461,6 @@
     },
     {
       "name": "Barry and Rahul",
-      "puzzlesSolved": 1,
-      "firstAppearance": "November 2024",
-      "lastSolve": "November 2024"
-    },
-    {
-      "name": "Arjun Raghavan",
       "puzzlesSolved": 1,
       "firstAppearance": "November 2024",
       "lastSolve": "November 2024"
@@ -89449,7 +89509,7 @@
     },
     {
       "month": "Jun 2026",
-      "solvers": 1003
+      "solvers": 1016
     }
   ],
   "solversGrowth": [
@@ -90043,7 +90103,7 @@
     },
     {
       "month": "Jun 2026",
-      "totalSolvers": 14833
+      "totalSolvers": 14843
     }
   ],
   "mostSolvedPuzzles": [
@@ -90074,7 +90134,7 @@
     {
       "id": "2026-6",
       "name": "Regional Artwork",
-      "solvers": 1003,
+      "solvers": 1016,
       "solution_url": ""
     },
     {
@@ -90171,7 +90231,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "Regional Artwork",
     "puzzleDate": "June 2026",
-    "solverCount": 1003,
+    "solverCount": 1016,
     "timeline": [
       {
         "solver": "vsh",
@@ -94200,8 +94260,60 @@
       {
         "solver": "Ammar Asir Hasan",
         "timestamp": "2026-06-26T12:45:22.430859+00:00"
+      },
+      {
+        "solver": "Harshank Matkar",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Popescu Silviu",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Anshal Gupta",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Soham Gugale",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Ramanpreet S. Sidhu",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Robert Poston",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Arjun Raghavan",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Tian Yueh",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Abeen Bhattacharya",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Samuel Zhang",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Jasper McLennan",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Nikita Naik",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
+      },
+      {
+        "solver": "Ashley",
+        "timestamp": "2026-06-27T12:29:10.369582+00:00"
       }
     ]
   },
-  "generatedAt": "2026-06-26T12:45:22.613836+00:00"
+  "generatedAt": "2026-06-27T12:29:10.553753+00:00"
 }
