@@ -43,6 +43,12 @@ def fetch_json(session: requests.Session, url: str, timeout: int = DEFAULT_TIMEO
 def fetch_html(session: requests.Session, url: str, timeout: int = DEFAULT_TIMEOUT) -> str:
     response = session.get(url, timeout=timeout)
     response.raise_for_status()
+    # `requests` falls back to ISO-8859-1 when the server omits `charset` in the
+    # Content-Type header, which mojibakes UTF-8 curly quotes in puzzle titles
+    # (e.g. "Pent-Up" → "âPent-Upâ"). Prefer chardet's guess when the server
+    # is silent; the Jane Street pages are UTF-8.
+    if not response.encoding or response.encoding.lower() == "iso-8859-1":
+        response.encoding = response.apparent_encoding or "utf-8"
     return response.text
 
 
