@@ -31,3 +31,6 @@ yarn-error.log*
 .vscode/
 *.swp
 *.swo
+
+# Claude Code local config
+.claude/

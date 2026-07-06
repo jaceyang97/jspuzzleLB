@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { trackOnce } from '../utils/analytics';
 
 interface UseScrollPaginationOptions {
   totalItems: number;
   initialCount?: number;
   batchSize?: number;
   threshold?: number;
+  /** When set, reports the first scroll-triggered load-more as a `table_scroll` event. */
+  trackLabel?: string;
 }
 
 export const useScrollPagination = ({
@@ -12,6 +15,7 @@ export const useScrollPagination = ({
   initialCount = 20,
   batchSize = 10,
   threshold = 50,
+  trackLabel,
 }: UseScrollPaginationOptions) => {
   const [visibleItems, setVisibleItems] = useState(initialCount);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,10 +39,13 @@ export const useScrollPagination = ({
       const el = e.currentTarget;
       const bottom = el.scrollHeight - el.scrollTop <= el.clientHeight + threshold;
       if (bottom && visibleItems < totalItems) {
+        if (trackLabel) {
+          trackOnce(`table-scroll:${trackLabel}`, 'table_scroll', { table: trackLabel });
+        }
         setVisibleItems(prev => Math.min(prev + batchSize, totalItems));
       }
     },
-    [visibleItems, totalItems, batchSize, threshold],
+    [visibleItems, totalItems, batchSize, threshold, trackLabel],
   );
 
   return { visibleItems, containerRef, tableRef, handleScroll };

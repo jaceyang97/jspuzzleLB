@@ -6,6 +6,7 @@ import {
 import { Puzzle } from '../../features/leaderboard/types';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { useThemeColors } from '../../hooks/useThemeColors';
+import { trackEvent } from '../../utils/analytics';
 
 // Bin count for the percentile rank histogram. 10 bins of width 10 keeps the
 // X-axis readable in the compact chart panel while still showing shape.
@@ -81,13 +82,19 @@ export const YoYChart = memo(({ puzzles, loading }: YoYProps) => {
         <div className="chart-toggle">
           <button
             className={`chart-toggle-btn ${!showAllYears ? 'active' : ''}`}
-            onClick={() => setShowAllYears(false)}
+            onClick={() => {
+              if (showAllYears) trackEvent('yoy_range_change', { range: 'recent' });
+              setShowAllYears(false);
+            }}
           >
             Recent
           </button>
           <button
             className={`chart-toggle-btn ${showAllYears ? 'active' : ''}`}
-            onClick={() => setShowAllYears(true)}
+            onClick={() => {
+              if (!showAllYears) trackEvent('yoy_range_change', { range: 'all-years' });
+              setShowAllYears(true);
+            }}
           >
             All years
           </button>

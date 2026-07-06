@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef, lazy, Suspense } from 'react';
 import '../styles/layout.css';
 import '../styles/components.css';
 import Confetti from '@tholman/confetti';
+import { trackEvent, trackOnce } from '../utils/analytics';
 import { useLeaderboardData } from '../features/leaderboard/hooks/useLeaderboardData';
 import { useRawPuzzleData } from '../features/leaderboard/hooks/useRawPuzzleData';
 import { useTheme } from '../hooks/useTheme';
@@ -43,6 +44,35 @@ const Leaderboard: React.FC = () => {
     new URLSearchParams(window.location.search).get('solver')
   );
 
+  // Track profile opens with the table they came from, and closes with dwell time.
+  const openModalRef = useRef<{ name: string; openedAt: number } | null>(null);
+  const openSolver = useCallback((name: string, source: string) => {
+    trackEvent('solver_profile_open', { solver: name, source });
+    openModalRef.current = { name, openedAt: Date.now() };
+    setSelectedSolver(name);
+  }, []);
+  const openFromTopSolvers = useCallback((n: string) => openSolver(n, 'top-solvers'), [openSolver]);
+  const openFromStreaks = useCallback((n: string) => openSolver(n, 'streaks'), [openSolver]);
+  const openFromRisingStars = useCallback((n: string) => openSolver(n, 'rising-stars'), [openSolver]);
+
+  useEffect(() => {
+    if (selectedSolver) {
+      // Opens not routed through openSolver came from a ?solver= deep link
+      // or browser back/forward navigation.
+      if (openModalRef.current?.name !== selectedSolver) {
+        trackEvent('solver_profile_open', { solver: selectedSolver, source: 'url' });
+        openModalRef.current = { name: selectedSolver, openedAt: Date.now() };
+      }
+    } else if (openModalRef.current) {
+      const { name, openedAt } = openModalRef.current;
+      openModalRef.current = null;
+      trackEvent('solver_profile_close', {
+        solver: name,
+        seconds: Math.round((Date.now() - openedAt) / 1000),
+      });
+    }
+  }, [selectedSolver]);
+
   // Push on open/close so the browser back button closes the modal.
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -79,6 +109,14 @@ const Leaderboard: React.FC = () => {
     const timer = setTimeout(() => setShowConfetti(false), 5000);
     return () => clearTimeout(timer);
   }, [data]);
+
+  // Surface data-loading failures in analytics — a broken dashboard would
+  // otherwise look like a normal pageview.
+  useEffect(() => {
+    if (error) {
+      trackEvent('data_load_error', { message: error.message || 'unknown' });
+    }
+  }, [error]);
 
   const solversGrowthData = data?.solversGrowth || [];
 
@@ -148,7 +186,11 @@ const Leaderboard: React.FC = () => {
             <span className="title-separator"> | </span>
             <span className="title-regular">Puzzle Leaderboard</span>
           </h1>
-          <div className="intro-container">
+          <div
+            className="intro-container"
+            onMouseEnter={() => trackOnce('intro', 'intro_hover')}
+            onFocus={() => trackOnce('intro', 'intro_hover')}
+          >
             <span className="intro-button">INTRO</span>
             <div className="intro-tooltip">
               <table className="intro-leaderboard-table">
@@ -231,7 +273,10 @@ const Leaderboard: React.FC = () => {
           </a>
           <button
             className="theme-toggle"
-            onClick={toggleTheme}
+            onClick={() => {
+              trackEvent('theme_toggle', { to: theme === 'light' ? 'dark' : 'light' });
+              toggleTheme();
+            }}
             title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
@@ -287,13 +332,13 @@ const Leaderboard: React.FC = () => {
           <TopSolversTable
             data={data.topSolvers || []}
             searchTerm={topSolversSearch}
-            onSolverClick={setSelectedSolver}
+            onSolverClick={openFromTopSolvers}
           />
         </div>
         
         <div className="dashboard-item streaks-column">
           <h2>🔥 Longest Streaks</h2>
-          <StreaksTable data={data.longestStreaks || []} onSolverClick={setSelectedSolver} />
+          <StreaksTable data={data.longestStreaks || []} onSolverClick={openFromStreaks} />
         </div>
         
         <div className="dashboard-item rising-stars-column">
@@ -303,7 +348,7 @@ const Leaderboard: React.FC = () => {
           >
             💫 Rising Stars
           </TitleTooltip>
-          <RisingStarsTable data={data.risingStars || []} onSolverClick={setSelectedSolver} />
+          <RisingStarsTable data={data.risingStars || []} onSolverClick={openFromRisingStars} />
         </div>
       </div>
       <SolverProfileModal

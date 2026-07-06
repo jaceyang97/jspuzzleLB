@@ -18,6 +18,7 @@ python main.py             # Scrape & generate stats
 - **Frontend**: React, TypeScript, Recharts
 - **Scraper**: Python, BeautifulSoup
 - **Data**: Auto-updated monthly via GitHub Actions
+- **Analytics**: Vercel Web Analytics with custom behavioral events (see `src/utils/analytics.ts`) — sessions, engagement time, scroll depth, searches, profile opens, chart usage, outbound clicks, client errors
 
 ## Disclaimer
 

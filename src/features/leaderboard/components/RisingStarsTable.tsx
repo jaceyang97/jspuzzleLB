@@ -9,6 +9,7 @@ interface RisingStarsTableProps {
 const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data, onSolverClick }) => {
   const { visibleItems, containerRef, tableRef, handleScroll } = useScrollPagination({
     totalItems: data.length,
+    trackLabel: 'rising-stars',
   });
 
   return (

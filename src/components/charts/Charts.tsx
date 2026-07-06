@@ -8,6 +8,7 @@ import { Puzzle } from '../../features/leaderboard/types';
 import { useThemeColors } from '../../hooks/useThemeColors';
 import TitleTooltip from '../TitleTooltip';
 import { YoYChart, FirstTimeSolversChart, PercentileRankChart } from './AdvancedCharts';
+import { trackEvent } from '../../utils/analytics';
 
 // Chart data types
 interface SolversGrowthDataPoint {
@@ -309,7 +310,10 @@ const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
               role="tab"
               aria-selected={tab === t}
               className={`growth-tab-btn ${tab === t ? 'active' : ''}`}
-              onClick={() => setTab(t)}
+              onClick={() => {
+                if (t !== tab) trackEvent('chart_tab_change', { tab: t });
+                setTab(t);
+              }}
               title={TAB_META[t].tooltip}
             >
               {TAB_META[t].label}

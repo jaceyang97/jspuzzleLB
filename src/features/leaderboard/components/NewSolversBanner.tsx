@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import { LeaderboardData } from '../types';
+import { trackEvent } from '../../../utils/analytics';
 import {
   ChipColor,
   VISIBLE_PALETTE,
@@ -241,7 +242,10 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       <span className="banner-text">{content}</span>
       <button
         className="banner-dismiss"
-        onClick={() => setDismissed(true)}
+        onClick={() => {
+          trackEvent('banner_dismiss');
+          setDismissed(true);
+        }}
         aria-label="Dismiss banner"
       >
         ×

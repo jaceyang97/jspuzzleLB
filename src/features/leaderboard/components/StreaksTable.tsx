@@ -10,6 +10,7 @@ interface StreaksTableProps {
 const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data, onSolverClick }) => {
   const { visibleItems, containerRef, tableRef, handleScroll } = useScrollPagination({
     totalItems: data.length,
+    trackLabel: 'streaks',
   });
 
   return (

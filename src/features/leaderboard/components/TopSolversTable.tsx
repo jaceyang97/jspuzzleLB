@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useScrollPagination } from '../../../hooks/useScrollPagination';
 import RankBadge from './RankBadge';
+import { trackEvent } from '../../../utils/analytics';
 
 interface TopSolversTableProps {
   data: Array<{ name: string; puzzlesSolved: number; lastSolve: string }>;
@@ -28,7 +29,22 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(
 
     const { visibleItems, containerRef, tableRef, handleScroll } = useScrollPagination({
       totalItems: filteredData.length,
+      trackLabel: 'top-solvers',
     });
+
+    // Report searches once typing settles, with whether they found anyone.
+    useEffect(() => {
+      const query = searchTerm.trim();
+      if (!query) return;
+      const timer = setTimeout(() => {
+        trackEvent('solver_search', {
+          query: query.toLowerCase(),
+          results: filteredData.length,
+          hit: filteredData.length > 0,
+        });
+      }, 1200);
+      return () => clearTimeout(timer);
+    }, [searchTerm, filteredData.length]);
 
     return (
       <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
