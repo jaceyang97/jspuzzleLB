@@ -485,7 +485,13 @@
       "Kaushik Aryan",
       "Frederic Hamelink",
       "Akshay Joshi",
-      "SB"
+      "SB",
+      "Anton Hulikau",
+      "Parth Rana",
+      "Brendan Mick",
+      "Ali Ait Mahiddine",
+      "Jonas M. Arnold",
+      "Carlos Sainz Vázquez de Castro"
     ],
     "solver_timestamps": {
       "Fred Vu": "2026-07-03T13:54:47.652621+00:00",
@@ -969,7 +975,13 @@
       "Kaushik Aryan": "2026-07-10T14:14:23.338194+00:00",
       "Frederic Hamelink": "2026-07-10T14:14:23.338194+00:00",
       "Akshay Joshi": "2026-07-10T14:14:23.338194+00:00",
-      "SB": "2026-07-10T14:14:23.338194+00:00"
+      "SB": "2026-07-10T14:14:23.338194+00:00",
+      "Anton Hulikau": "2026-07-11T13:09:59.889742+00:00",
+      "Parth Rana": "2026-07-11T13:09:59.889742+00:00",
+      "Brendan Mick": "2026-07-11T13:09:59.889742+00:00",
+      "Ali Ait Mahiddine": "2026-07-11T13:09:59.889742+00:00",
+      "Jonas M. Arnold": "2026-07-11T13:09:59.889742+00:00",
+      "Carlos Sainz Vázquez de Castro": "2026-07-11T13:09:59.889742+00:00"
     },
     "puzzle_id": "2026-07-01-pent-up-frustration-3-knight-moves-7"
   },

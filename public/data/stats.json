@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 149,
-  "uniqueSolvers": 15116,
+  "uniqueSolvers": 15118,
   "solverDistribution": {
-    "onePuzzle": 11207,
-    "twoToNine": 3644,
+    "onePuzzle": 11208,
+    "twoToNine": 3645,
     "tenPlus": 265
   },
   "topSolvers": [
@@ -554,6 +554,12 @@
       "lastSolve": "February 2021"
     },
     {
+      "name": "Brendan Mick",
+      "puzzlesSolved": 16,
+      "firstAppearance": "October 2024",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Jon Ander",
       "puzzlesSolved": 16,
       "firstAppearance": "January 2025",
@@ -636,12 +642,6 @@
       "puzzlesSolved": 15,
       "firstAppearance": "May 2020",
       "lastSolve": "July 2026"
-    },
-    {
-      "name": "Brendan Mick",
-      "puzzlesSolved": 15,
-      "firstAppearance": "October 2024",
-      "lastSolve": "June 2026"
     },
     {
       "name": "Shea Greenberg",
@@ -3824,6 +3824,12 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Ali Ait Mahiddine",
+      "puzzlesSolved": 5,
+      "firstAppearance": "April 2025",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "awmlet",
       "puzzlesSolved": 5,
       "firstAppearance": "March 2025",
@@ -5144,6 +5150,12 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Anton Hulikau",
+      "puzzlesSolved": 4,
+      "firstAppearance": "January 2024",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Nathan Soedjak",
       "puzzlesSolved": 4,
       "firstAppearance": "February 2026",
@@ -5285,12 +5297,6 @@
       "name": "Gavin Corkery",
       "puzzlesSolved": 4,
       "firstAppearance": "July 2023",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Ali Ait Mahiddine",
-      "puzzlesSolved": 4,
-      "firstAppearance": "April 2025",
       "lastSolve": "June 2026"
     },
     {
@@ -10556,12 +10562,6 @@
       "lastSolve": "March 2024"
     },
     {
-      "name": "Anton Hulikau",
-      "puzzlesSolved": 3,
-      "firstAppearance": "January 2024",
-      "lastSolve": "March 2024"
-    },
-    {
       "name": "Jack Pittenger",
       "puzzlesSolved": 3,
       "firstAppearance": "January 2024",
@@ -12539,6 +12539,12 @@
       "name": "SB",
       "puzzlesSolved": 2,
       "firstAppearance": "February 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Jonas M. Arnold",
+      "puzzlesSolved": 2,
+      "firstAppearance": "June 2026",
       "lastSolve": "July 2026"
     },
     {
@@ -24632,6 +24638,18 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Parth Rana",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Carlos Sainz V\u00e1zquez de Castro",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Ali Al Sabbagh",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2026",
@@ -24693,12 +24711,6 @@
     },
     {
       "name": "kb",
-      "puzzlesSolved": 1,
-      "firstAppearance": "June 2026",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Jonas M. Arnold",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2026",
       "lastSolve": "June 2026"
@@ -91151,7 +91163,7 @@
     },
     {
       "month": "Jul 2026",
-      "solvers": 481
+      "solvers": 487
     }
   ],
   "solversGrowth": [
@@ -91749,7 +91761,7 @@
     },
     {
       "month": "Jul 2026",
-      "totalSolvers": 15116
+      "totalSolvers": 15118
     }
   ],
   "mostSolvedPuzzles": [
@@ -91864,7 +91876,7 @@
     {
       "id": "2026-7",
       "name": "\u2018Pent-Up\u2019 Frustration 3 / Knight Moves 7",
-      "solvers": 482,
+      "solvers": 488,
       "solution_url": ""
     },
     {
@@ -91877,7 +91889,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "\u2018Pent-Up\u2019 Frustration 3 / Knight Moves 7",
     "puzzleDate": "July 2026",
-    "solverCount": 482,
+    "solverCount": 488,
     "timeline": [
       {
         "solver": "Fred Vu",
@@ -93806,8 +93818,32 @@
       {
         "solver": "SB",
         "timestamp": "2026-07-10T14:14:23.338194+00:00"
+      },
+      {
+        "solver": "Anton Hulikau",
+        "timestamp": "2026-07-11T13:09:59.889742+00:00"
+      },
+      {
+        "solver": "Parth Rana",
+        "timestamp": "2026-07-11T13:09:59.889742+00:00"
+      },
+      {
+        "solver": "Brendan Mick",
+        "timestamp": "2026-07-11T13:09:59.889742+00:00"
+      },
+      {
+        "solver": "Ali Ait Mahiddine",
+        "timestamp": "2026-07-11T13:09:59.889742+00:00"
+      },
+      {
+        "solver": "Jonas M. Arnold",
+        "timestamp": "2026-07-11T13:09:59.889742+00:00"
+      },
+      {
+        "solver": "Carlos Sainz V\u00e1zquez de Castro",
+        "timestamp": "2026-07-11T13:09:59.889742+00:00"
       }
     ]
   },
-  "generatedAt": "2026-07-10T14:14:23.584095+00:00"
+  "generatedAt": "2026-07-11T13:10:00.153799+00:00"
 }
