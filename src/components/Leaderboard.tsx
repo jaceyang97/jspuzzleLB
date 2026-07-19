@@ -105,6 +105,8 @@ const Leaderboard: React.FC = () => {
 
   useEffect(() => {
     if (!data) return;
+    // Reduced motion means no celebratory particle storm.
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
     setShowConfetti(true);
     const timer = setTimeout(() => setShowConfetti(false), 5000);
     return () => clearTimeout(timer);

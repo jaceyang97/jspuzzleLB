@@ -1,89 +1,149 @@
-/* Theme CSS Custom Properties */
+/* ================================================
+   DESIGN TOKENS
+   Neutral surfaces, one confident accent, hairline
+   borders, soft layered shadows, spring-like easing.
+   ================================================ */
 :root {
+  color-scheme: light;
+
   /* Light theme (default) */
-  --bg-primary: #f0f2f5;
+  --bg-primary: #f5f5f7;
   --bg-secondary: #ffffff;
-  --bg-tertiary: #f5f7fa;
-  --bg-hover: #f9f9f9;
-  --bg-hover-strong: #f0f4f8;
-  
-  --text-primary: #2c3e50;
-  --text-secondary: #333;
-  --text-tertiary: #595959;
-  --text-muted: #57606a;
-  
-  --border-primary: #e0e4e9;
-  --border-secondary: #eee;
-  --border-light: #ddd;
-  
-  --accent-primary: #3498db;
-  --accent-primary-hover: #2980b9;
-  --accent-secondary: #0969da;
-  
+  --bg-tertiary: #f5f5f7;
+  --bg-hover: #f7f7f9;
+  --bg-hover-strong: #ececf0;
+
+  --text-primary: #1d1d1f;
+  --text-secondary: #333336;
+  --text-tertiary: #6e6e73;
+  --text-muted: #86868b;
+
+  --border-primary: rgba(0, 0, 0, 0.1);
+  --border-secondary: rgba(0, 0, 0, 0.06);
+  --border-light: rgba(0, 0, 0, 0.12);
+
+  --accent-primary: #0071e3;
+  --accent-primary-hover: #0077ed;
+  --accent-secondary: #0071e3;
+  --accent-tint: rgba(0, 113, 227, 0.12);
+
   --shadow-sm: rgba(0, 0, 0, 0.05);
   --shadow-md: rgba(0, 0, 0, 0.1);
   --shadow-lg: rgba(0, 0, 0, 0.15);
-  
+
+  /* Card / floating-surface shadows (ring + soft ambient) */
+  --shadow-card:
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 6px 18px rgba(0, 0, 0, 0.05);
+  --shadow-popover:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 16px 40px rgba(0, 0, 0, 0.12);
+  --shadow-modal:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 12px 32px rgba(0, 0, 0, 0.18),
+    0 32px 80px rgba(0, 0, 0, 0.25);
+  --shadow-segment: 0 1px 2px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.06);
+
+  /* Translucent chrome (header, sticky table heads) */
+  --material-chrome: rgba(255, 255, 255, 0.72);
+  --material-thin: rgba(255, 255, 255, 0.6);
+  --material-blur: saturate(180%) blur(20px);
+  --material-blur-thin: saturate(180%) blur(10px);
+
   --scrollbar-track: transparent;
   --scrollbar-thumb: rgba(0, 0, 0, 0.25);
   --scrollbar-thumb-hover: rgba(0, 0, 0, 0.45);
-  
-  --tooltip-bg: rgba(44, 62, 80, 0.95);
-  --tooltip-text: white;
-  
-  --chart-loading-bg: #f9f9f9;
-  
-  /* Distribution bar colors (same for both themes) */
-  --bar-one-puzzle: linear-gradient(135deg, #ff6b6b, #ee5a52);
-  --bar-two-nine: linear-gradient(135deg, #4ecdc4, #44a08d);
-  --bar-ten-plus: linear-gradient(135deg, #45b7d1, #96c93d);
-  
+
+  --tooltip-bg: rgba(29, 29, 31, 0.92);
+  --tooltip-text: #f5f5f7;
+
+  --chart-loading-bg: #f5f5f7;
+
+  /* Distribution bar tiers — ascending: orange → green → blue */
+  --bar-one-puzzle: linear-gradient(135deg, #ffb340, #ff9500);
+  --bar-two-nine: linear-gradient(135deg, #40c463, #2da44e);
+  --bar-ten-plus: linear-gradient(135deg, #409cff, #0071e3);
+
   /* Table row alternating */
-  --table-row-even: #f9fafb;
-  
+  --table-row-even: #fafafc;
+
   /* GitHub icon */
-  --github-fill: #2c3e50;
+  --github-fill: #1d1d1f;
+
+  /* Motion — spring-like ease-out for UI that settles,
+     symmetric ease for reversible transitions */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Radii scale */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 980px;
 }
 
 /* Dark theme */
 [data-theme="dark"] {
-  --bg-primary: #0d1117;
-  --bg-secondary: #161b22;
-  --bg-tertiary: #21262d;
-  --bg-hover: #1f2428;
-  --bg-hover-strong: #30363d;
-  
-  --text-primary: #e6edf3;
-  --text-secondary: #c9d1d9;
-  --text-tertiary: #8b949e;
-  --text-muted: #6e7681;
-  
-  --border-primary: #30363d;
-  --border-secondary: #21262d;
-  --border-light: #30363d;
-  
-  --accent-primary: #58a6ff;
-  --accent-primary-hover: #79b8ff;
-  --accent-secondary: #58a6ff;
-  
+  color-scheme: dark;
+
+  --bg-primary: #000000;
+  --bg-secondary: #1c1c1e;
+  --bg-tertiary: #2c2c2e;
+  --bg-hover: #26262a;
+  --bg-hover-strong: #3a3a3c;
+
+  --text-primary: #f5f5f7;
+  --text-secondary: #d1d1d6;
+  --text-tertiary: #98989d;
+  --text-muted: #7c7c81;
+
+  --border-primary: rgba(255, 255, 255, 0.14);
+  --border-secondary: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.16);
+
+  --accent-primary: #0a84ff;
+  --accent-primary-hover: #409cff;
+  --accent-secondary: #0a84ff;
+  --accent-tint: rgba(10, 132, 255, 0.16);
+
   --shadow-sm: rgba(0, 0, 0, 0.2);
   --shadow-md: rgba(0, 0, 0, 0.3);
   --shadow-lg: rgba(0, 0, 0, 0.4);
-  
+
+  --shadow-card:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 6px 18px rgba(0, 0, 0, 0.35);
+  --shadow-popover:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 16px 40px rgba(0, 0, 0, 0.5);
+  --shadow-modal:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 12px 32px rgba(0, 0, 0, 0.5),
+    0 32px 80px rgba(0, 0, 0, 0.6);
+  --shadow-segment: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+
+  --material-chrome: rgba(28, 28, 30, 0.72);
+  --material-thin: rgba(28, 28, 30, 0.6);
+
   --scrollbar-track: transparent;
   --scrollbar-thumb: rgba(255, 255, 255, 0.2);
   --scrollbar-thumb-hover: rgba(255, 255, 255, 0.4);
-  
-  --tooltip-bg: rgba(22, 27, 34, 0.95);
-  --tooltip-text: #e6edf3;
-  
-  --chart-loading-bg: #21262d;
-  
+
+  --tooltip-bg: rgba(44, 44, 46, 0.92);
+  --tooltip-text: #f5f5f7;
+
+  --chart-loading-bg: #2c2c2e;
+
   /* Table row alternating */
-  --table-row-even: #161b22;
-  
+  --table-row-even: #232325;
+
   /* GitHub icon */
-  --github-fill: #e6edf3;
+  --github-fill: #f5f5f7;
 }
 
 html, body {
@@ -109,8 +169,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
   background-color: var(--bg-primary);
   color: var(--text-secondary);
+}
+
+/* Ease dark↔light theme changes — no abrupt brightness jump */
+body,
+.dashboard-layout,
+.dashboard-header,
+.dashboard-item,
+.dashboard-footer,
+.new-solvers-banner,
+.stats-card,
+.dashboard-table,
+.solver-distribution,
+.chart-container.mini {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+}
+
+::selection {
+  background-color: var(--accent-tint);
 }
 
 #root {

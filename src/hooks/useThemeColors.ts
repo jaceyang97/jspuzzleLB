@@ -9,19 +9,19 @@ export interface ThemeColors {
 }
 
 const LIGHT: ThemeColors = {
-  gridStroke: '#eee',
-  axisStroke: '#ccc',
-  textColor: '#666',
+  gridStroke: '#ececf0',
+  axisStroke: '#d2d2d7',
+  textColor: '#86868b',
   tooltipBg: 'rgba(255, 255, 255, 0.95)',
-  tooltipBorder: '#ddd',
+  tooltipBorder: '#e5e5ea',
 };
 
 const DARK: ThemeColors = {
-  gridStroke: '#30363d',
-  axisStroke: '#484f58',
-  textColor: '#8b949e',
-  tooltipBg: 'rgba(22, 27, 34, 0.95)',
-  tooltipBorder: '#30363d',
+  gridStroke: '#2c2c2e',
+  axisStroke: '#48484a',
+  textColor: '#98989d',
+  tooltipBg: 'rgba(28, 28, 30, 0.95)',
+  tooltipBorder: '#3a3a3c',
 };
 
 const readColors = (): ThemeColors =>
