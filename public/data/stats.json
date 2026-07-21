@@ -1,9 +1,9 @@
 {
   "totalPuzzles": 149,
-  "uniqueSolvers": 15270,
+  "uniqueSolvers": 15280,
   "solverDistribution": {
-    "onePuzzle": 11318,
-    "twoToNine": 3683,
+    "onePuzzle": 11327,
+    "twoToNine": 3684,
     "tenPlus": 269
   },
   "topSolvers": [
@@ -5282,6 +5282,12 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Derek Wu",
+      "puzzlesSolved": 4,
+      "firstAppearance": "December 2024",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Nathan Soedjak",
       "puzzlesSolved": 4,
       "firstAppearance": "February 2026",
@@ -8723,12 +8729,6 @@
       "name": "Mohit Garg",
       "puzzlesSolved": 3,
       "firstAppearance": "March 2025",
-      "lastSolve": "December 2025"
-    },
-    {
-      "name": "Derek Wu",
-      "puzzlesSolved": 3,
-      "firstAppearance": "December 2024",
       "lastSolve": "December 2025"
     },
     {
@@ -12909,6 +12909,12 @@
     },
     {
       "name": "Qizheng Ye",
+      "puzzlesSolved": 2,
+      "firstAppearance": "June 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Ymir Egilson",
       "puzzlesSolved": 2,
       "firstAppearance": "June 2026",
       "lastSolve": "July 2026"
@@ -25808,6 +25814,66 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "\u3055\u3044\u3068\u3046\u3086\u3046\uff08\u3072\u3070\u308a\u5c0f '99\uff09",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Jacobo Guerrero",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Giles Holliday",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Varrun Satheeshkumar",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Matt Mitchell",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "lynzl",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Zach G.",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Daniel Ortega",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Matt Boyd",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Elena Ivosevic",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Ali Al Sabbagh",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2026",
@@ -27099,12 +27165,6 @@
     },
     {
       "name": "Baljodh Uppal",
-      "puzzlesSolved": 1,
-      "firstAppearance": "June 2026",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Ymir Egilson",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2026",
       "lastSolve": "June 2026"
@@ -92075,7 +92135,7 @@
     },
     {
       "month": "Jul 2026",
-      "solvers": 743
+      "solvers": 755
     }
   ],
   "solversGrowth": [
@@ -92673,7 +92733,7 @@
     },
     {
       "month": "Jul 2026",
-      "totalSolvers": 15270
+      "totalSolvers": 15280
     }
   ],
   "mostSolvedPuzzles": [
@@ -92720,16 +92780,16 @@
       "solution_url": "https://www.janestreet.com/puzzles/robot-baseball-solution"
     },
     {
+      "id": "2026-7",
+      "name": "\u2018Pent-Up\u2019 Frustration 3 / Knight Moves 7",
+      "solvers": 757,
+      "solution_url": ""
+    },
+    {
       "id": "2022-12",
       "name": "Die Agony",
       "solvers": 751,
       "solution_url": "https://www.janestreet.com/puzzles/die-agony-solution"
-    },
-    {
-      "id": "2026-7",
-      "name": "\u2018Pent-Up\u2019 Frustration 3 / Knight Moves 7",
-      "solvers": 745,
-      "solution_url": ""
     },
     {
       "id": "2025-12",
@@ -92801,7 +92861,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "\u2018Pent-Up\u2019 Frustration 3 / Knight Moves 7",
     "puzzleDate": "July 2026",
-    "solverCount": 745,
+    "solverCount": 757,
     "timeline": [
       {
         "solver": "Fred Vu",
@@ -95782,8 +95842,56 @@
       {
         "solver": "C. Hugh",
         "timestamp": "2026-07-20T13:57:45.377489+00:00"
+      },
+      {
+        "solver": "\u3055\u3044\u3068\u3046\u3086\u3046\uff08\u3072\u3070\u308a\u5c0f '99\uff09",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "Jacobo Guerrero",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "Giles Holliday",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "Derek Wu",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "Varrun Satheeshkumar",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "Matt Mitchell",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "lynzl",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "Zach G.",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "Daniel Ortega",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "Matt Boyd",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "Ymir Egilson",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
+      },
+      {
+        "solver": "Elena Ivosevic",
+        "timestamp": "2026-07-21T13:39:41.460153+00:00"
       }
     ]
   },
-  "generatedAt": "2026-07-20T13:57:45.563077+00:00"
+  "generatedAt": "2026-07-21T13:39:41.655139+00:00"
 }
