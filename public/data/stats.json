@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 149,
-  "uniqueSolvers": 15482,
+  "uniqueSolvers": 15503,
   "solverDistribution": {
-    "onePuzzle": 11492,
+    "onePuzzle": 11513,
     "twoToNine": 3719,
     "tenPlus": 271
   },
@@ -866,6 +866,12 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Phawin Prongpaophan",
+      "puzzlesSolved": 13,
+      "firstAppearance": "June 2022",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Gabriel Taylor",
       "puzzlesSolved": 13,
       "firstAppearance": "December 2022",
@@ -1016,6 +1022,12 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Andre Emery",
+      "puzzlesSolved": 12,
+      "firstAppearance": "June 2022",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Dan Heathcote",
       "puzzlesSolved": 12,
       "firstAppearance": "October 2022",
@@ -1055,12 +1067,6 @@
       "name": "Andrew Perrykkad",
       "puzzlesSolved": 12,
       "firstAppearance": "January 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Phawin Prongpaophan",
-      "puzzlesSolved": 12,
-      "firstAppearance": "June 2022",
       "lastSolve": "February 2026"
     },
     {
@@ -1266,12 +1272,6 @@
       "puzzlesSolved": 11,
       "firstAppearance": "August 2024",
       "lastSolve": "April 2026"
-    },
-    {
-      "name": "Andre Emery",
-      "puzzlesSolved": 11,
-      "firstAppearance": "June 2022",
-      "lastSolve": "March 2026"
     },
     {
       "name": "Kelvin Tse Chak Kwan",
@@ -1682,6 +1682,12 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Kirill Sandor",
+      "puzzlesSolved": 9,
+      "firstAppearance": "June 2024",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Nadav Issacof",
       "puzzlesSolved": 9,
       "firstAppearance": "March 2024",
@@ -1898,15 +1904,15 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Nathan Barnes",
+      "puzzlesSolved": 8,
+      "firstAppearance": "October 2024",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Samuel Thompson",
       "puzzlesSolved": 8,
       "firstAppearance": "March 2024",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Kirill Sandor",
-      "puzzlesSolved": 8,
-      "firstAppearance": "June 2024",
       "lastSolve": "June 2026"
     },
     {
@@ -2525,12 +2531,6 @@
       "name": "Andrew Shi",
       "puzzlesSolved": 7,
       "firstAppearance": "June 2024",
-      "lastSolve": "May 2026"
-    },
-    {
-      "name": "Nathan Barnes",
-      "puzzlesSolved": 7,
-      "firstAppearance": "October 2024",
       "lastSolve": "May 2026"
     },
     {
@@ -4010,6 +4010,18 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Edward Brilmyer Jr.",
+      "puzzlesSolved": 5,
+      "firstAppearance": "December 2024",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Ethan Wang",
+      "puzzlesSolved": 5,
+      "firstAppearance": "July 2025",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "awmlet",
       "puzzlesSolved": 5,
       "firstAppearance": "March 2025",
@@ -5384,6 +5396,12 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Benedikt Flierl",
+      "puzzlesSolved": 4,
+      "firstAppearance": "July 2023",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Nathan Soedjak",
       "puzzlesSolved": 4,
       "firstAppearance": "February 2026",
@@ -5438,12 +5456,6 @@
       "lastSolve": "June 2026"
     },
     {
-      "name": "Ethan Wang",
-      "puzzlesSolved": 4,
-      "firstAppearance": "July 2025",
-      "lastSolve": "June 2026"
-    },
-    {
       "name": "Marc-Antoine Willy",
       "puzzlesSolved": 4,
       "firstAppearance": "March 2024",
@@ -5495,12 +5507,6 @@
       "name": "Nikita Berezyuk",
       "puzzlesSolved": 4,
       "firstAppearance": "March 2024",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Edward Brilmyer Jr.",
-      "puzzlesSolved": 4,
-      "firstAppearance": "December 2024",
       "lastSolve": "June 2026"
     },
     {
@@ -8168,6 +8174,12 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "SeungSang Lee",
+      "puzzlesSolved": 3,
+      "firstAppearance": "May 2026",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Fred Vu & Griffin Pinney",
       "puzzlesSolved": 3,
       "firstAppearance": "August 2025",
@@ -10289,12 +10301,6 @@
       "name": "Letian W",
       "puzzlesSolved": 3,
       "firstAppearance": "September 2024",
-      "lastSolve": "November 2024"
-    },
-    {
-      "name": "Benedikt Flierl",
-      "puzzlesSolved": 3,
-      "firstAppearance": "July 2023",
       "lastSolve": "November 2024"
     },
     {
@@ -13541,12 +13547,6 @@
       "name": "Terrez Wells",
       "puzzlesSolved": 2,
       "firstAppearance": "October 2025",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "SeungSang Lee",
-      "puzzlesSolved": 2,
-      "firstAppearance": "May 2026",
       "lastSolve": "June 2026"
     },
     {
@@ -27309,6 +27309,132 @@
     },
     {
       "name": "Raghav Bhagi",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Alexandre Symeonidis-Herzig",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Vishal Brahma",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Daniel Shveytser",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Tamearon Mullings",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Timoon",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Trevor Mansfield & Mark Faingold",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Aryan M",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Octavian",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Maciej Zwierzynski",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Daquavious Jamel Von",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Carlos Cortez Lemos",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Alberto Toia",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "jemmons",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Keith Edgar-Watson",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Zzron",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "James Stluka",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Riccardo",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "NestorXX-XX",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Felix Godfree",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Riccardo Bertollo",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Jiahui",
       "puzzlesSolved": 1,
       "firstAppearance": "July 2026",
       "lastSolve": "July 2026"
@@ -93347,7 +93473,7 @@
     },
     {
       "month": "Jul 2026",
-      "solvers": 1047
+      "solvers": 1076
     }
   ],
   "solversGrowth": [
@@ -93945,7 +94071,7 @@
     },
     {
       "month": "Jul 2026",
-      "totalSolvers": 15482
+      "totalSolvers": 15503
     }
   ],
   "mostSolvedPuzzles": [
@@ -93976,7 +94102,7 @@
     {
       "id": "2026-7",
       "name": "\u2018Pent-Up\u2019 Frustration 3 / Knight Moves 7",
-      "solvers": 1049,
+      "solvers": 1078,
       "solution_url": ""
     },
     {
@@ -94073,7 +94199,7 @@
   "currentPuzzleProgress": {
     "puzzleName": "\u2018Pent-Up\u2019 Frustration 3 / Knight Moves 7",
     "puzzleDate": "July 2026",
-    "solverCount": 1049,
+    "solverCount": 1078,
     "timeline": [
       {
         "solver": "Fred Vu",
@@ -98286,8 +98412,124 @@
       {
         "solver": "I-Iias",
         "timestamp": "2026-07-30T13:50:14.280948+00:00"
+      },
+      {
+        "solver": "Alexandre Symeonidis-Herzig",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Vishal Brahma",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Benedikt Flierl",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Daniel Shveytser",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Tamearon Mullings",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Timoon",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Trevor Mansfield & Mark Faingold",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Andre Emery",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Aryan M",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Octavian",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Maciej Zwierzynski",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Kirill Sandor",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Edward Brilmyer Jr.",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Nathan Barnes",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Daquavious Jamel Von",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Carlos Cortez Lemos",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Alberto Toia",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "jemmons",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Ethan Wang",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Keith Edgar-Watson",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Phawin Prongpaophan",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Zzron",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "James Stluka",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Riccardo",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "SeungSang Lee",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "NestorXX-XX",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Felix Godfree",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Riccardo Bertollo",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
+      },
+      {
+        "solver": "Jiahui",
+        "timestamp": "2026-07-31T13:55:56.074938+00:00"
       }
     ]
   },
-  "generatedAt": "2026-07-30T13:50:14.550398+00:00"
+  "generatedAt": "2026-07-31T13:55:56.322607+00:00"
 }
