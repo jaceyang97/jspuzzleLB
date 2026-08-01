@@ -1081,7 +1081,12 @@
       "NestorXX-XX",
       "Felix Godfree",
       "Riccardo Bertollo",
-      "Jiahui"
+      "Jiahui",
+      "Brice Chapman",
+      "Fakih Karademir",
+      "Hao-Yu Sun",
+      "Kritagya Paudel",
+      "Achyuth Jayadevan"
     ],
     "solver_timestamps": {
       "Fred Vu": "2026-07-03T13:54:47.652621+00:00",
@@ -2165,7 +2170,12 @@
       "NestorXX-XX": "2026-07-31T13:55:56.074938+00:00",
       "Felix Godfree": "2026-07-31T13:55:56.074938+00:00",
       "Riccardo Bertollo": "2026-07-31T13:55:56.074938+00:00",
-      "Jiahui": "2026-07-31T13:55:56.074938+00:00"
+      "Jiahui": "2026-07-31T13:55:56.074938+00:00",
+      "Brice Chapman": "2026-08-01T13:10:56.417280+00:00",
+      "Fakih Karademir": "2026-08-01T13:10:56.417280+00:00",
+      "Hao-Yu Sun": "2026-08-01T13:10:56.417280+00:00",
+      "Kritagya Paudel": "2026-08-01T13:10:56.417280+00:00",
+      "Achyuth Jayadevan": "2026-08-01T13:10:56.417280+00:00"
     },
     "puzzle_id": "2026-07-01-pent-up-frustration-3-knight-moves-7"
   },
