@@ -1,10 +1,10 @@
 {
-  "totalPuzzles": 149,
-  "uniqueSolvers": 15505,
+  "totalPuzzles": 150,
+  "uniqueSolvers": 15531,
   "solverDistribution": {
-    "onePuzzle": 11514,
-    "twoToNine": 3720,
-    "tenPlus": 271
+    "onePuzzle": 11532,
+    "twoToNine": 3727,
+    "tenPlus": 272
   },
   "topSolvers": [
     {
@@ -33,9 +33,9 @@
     },
     {
       "name": "Lazar Ilic",
-      "puzzlesSolved": 60,
+      "puzzlesSolved": 61,
       "firstAppearance": "October 2020",
-      "lastSolve": "July 2026"
+      "lastSolve": "August 2026"
     },
     {
       "name": "Gareth Owen",
@@ -236,6 +236,12 @@
       "lastSolve": "August 2018"
     },
     {
+      "name": "Jackson La Vallee",
+      "puzzlesSolved": 22,
+      "firstAppearance": "November 2024",
+      "lastSolve": "August 2026"
+    },
+    {
       "name": "Fred Vu",
       "puzzlesSolved": 22,
       "firstAppearance": "February 2024",
@@ -282,12 +288,6 @@
       "puzzlesSolved": 22,
       "firstAppearance": "November 2015",
       "lastSolve": "June 2018"
-    },
-    {
-      "name": "Jackson La Vallee",
-      "puzzlesSolved": 21,
-      "firstAppearance": "November 2024",
-      "lastSolve": "July 2026"
     },
     {
       "name": "Rub\u00e9n M.I",
@@ -392,6 +392,12 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "James Press",
+      "puzzlesSolved": 19,
+      "firstAppearance": "September 2024",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Griffin Pinney",
       "puzzlesSolved": 19,
       "firstAppearance": "February 2024",
@@ -452,12 +458,6 @@
       "lastSolve": "July 2026"
     },
     {
-      "name": "James Press",
-      "puzzlesSolved": 18,
-      "firstAppearance": "September 2024",
-      "lastSolve": "June 2026"
-    },
-    {
       "name": "Josh Silverman",
       "puzzlesSolved": 18,
       "firstAppearance": "June 2021",
@@ -509,6 +509,12 @@
       "name": "Jon Ander",
       "puzzlesSolved": 17,
       "firstAppearance": "January 2025",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "\u3042\u304a\u304d \u307b\u3046\u3072",
+      "puzzlesSolved": 17,
+      "firstAppearance": "November 2024",
       "lastSolve": "July 2026"
     },
     {
@@ -570,12 +576,6 @@
       "puzzlesSolved": 16,
       "firstAppearance": "October 2024",
       "lastSolve": "July 2026"
-    },
-    {
-      "name": "\u3042\u304a\u304d \u307b\u3046\u3072",
-      "puzzlesSolved": 16,
-      "firstAppearance": "November 2024",
-      "lastSolve": "June 2026"
     },
     {
       "name": "Mike Gilbert",
@@ -728,6 +728,12 @@
       "lastSolve": "September 2019"
     },
     {
+      "name": "vsh",
+      "puzzlesSolved": 14,
+      "firstAppearance": "November 2024",
+      "lastSolve": "August 2026"
+    },
+    {
       "name": "Jake Mallen",
       "puzzlesSolved": 14,
       "firstAppearance": "February 2024",
@@ -824,12 +830,6 @@
       "lastSolve": "May 2023"
     },
     {
-      "name": "vsh",
-      "puzzlesSolved": 13,
-      "firstAppearance": "November 2024",
-      "lastSolve": "July 2026"
-    },
-    {
       "name": "Ryan Cassar",
       "puzzlesSolved": 13,
       "firstAppearance": "September 2024",
@@ -869,6 +869,12 @@
       "name": "Phawin Prongpaophan",
       "puzzlesSolved": 13,
       "firstAppearance": "June 2022",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Andrew Perrykkad",
+      "puzzlesSolved": 13,
+      "firstAppearance": "January 2024",
       "lastSolve": "July 2026"
     },
     {
@@ -1028,6 +1034,12 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Patrick Deumann",
+      "puzzlesSolved": 12,
+      "firstAppearance": "January 2025",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Dan Heathcote",
       "puzzlesSolved": 12,
       "firstAppearance": "October 2022",
@@ -1061,12 +1073,6 @@
       "name": "Logan Seaburg",
       "puzzlesSolved": 12,
       "firstAppearance": "December 2024",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Andrew Perrykkad",
-      "puzzlesSolved": 12,
-      "firstAppearance": "January 2024",
       "lastSolve": "February 2026"
     },
     {
@@ -1259,12 +1265,6 @@
       "name": "Noam Amozeg",
       "puzzlesSolved": 11,
       "firstAppearance": "April 2023",
-      "lastSolve": "May 2026"
-    },
-    {
-      "name": "Patrick Deumann",
-      "puzzlesSolved": 11,
-      "firstAppearance": "January 2025",
       "lastSolve": "May 2026"
     },
     {
@@ -1469,6 +1469,12 @@
       "name": "Xiaowei Zhu",
       "puzzlesSolved": 10,
       "firstAppearance": "May 2024",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Ritwik Kumar",
+      "puzzlesSolved": 10,
+      "firstAppearance": "August 2023",
       "lastSolve": "July 2026"
     },
     {
@@ -1688,6 +1694,18 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Chinmayi Gajula",
+      "puzzlesSolved": 9,
+      "firstAppearance": "July 2021",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Srirag Tatavarti",
+      "puzzlesSolved": 9,
+      "firstAppearance": "October 2024",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Nadav Issacof",
       "puzzlesSolved": 9,
       "firstAppearance": "March 2024",
@@ -1770,12 +1788,6 @@
       "puzzlesSolved": 9,
       "firstAppearance": "June 2022",
       "lastSolve": "December 2024"
-    },
-    {
-      "name": "Ritwik Kumar",
-      "puzzlesSolved": 9,
-      "firstAppearance": "August 2023",
-      "lastSolve": "November 2024"
     },
     {
       "name": "Louis Prosser",
@@ -1866,6 +1878,12 @@
       "puzzlesSolved": 9,
       "firstAppearance": "February 2017",
       "lastSolve": "November 2017"
+    },
+    {
+      "name": "Francisco Rodr\u00edguez-Carretero Rold\u00e1n",
+      "puzzlesSolved": 8,
+      "firstAppearance": "August 2025",
+      "lastSolve": "August 2026"
     },
     {
       "name": "Scott Campbell",
@@ -1962,18 +1980,6 @@
       "puzzlesSolved": 8,
       "firstAppearance": "November 2024",
       "lastSolve": "March 2026"
-    },
-    {
-      "name": "Chinmayi Gajula",
-      "puzzlesSolved": 8,
-      "firstAppearance": "July 2021",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Srirag Tatavarti",
-      "puzzlesSolved": 8,
-      "firstAppearance": "October 2024",
-      "lastSolve": "February 2026"
     },
     {
       "name": "Guy Davis",
@@ -2378,12 +2384,6 @@
       "lastSolve": "June 2018"
     },
     {
-      "name": "Francisco Rodr\u00edguez-Carretero Rold\u00e1n",
-      "puzzlesSolved": 7,
-      "firstAppearance": "August 2025",
-      "lastSolve": "July 2026"
-    },
-    {
       "name": "JY",
       "puzzlesSolved": 7,
       "firstAppearance": "October 2025",
@@ -2483,6 +2483,18 @@
       "name": "Priyanshu Agarwal",
       "puzzlesSolved": 7,
       "firstAppearance": "November 2023",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Martin Hesse",
+      "puzzlesSolved": 7,
+      "firstAppearance": "May 2025",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Oliver K\u00fcsel",
+      "puzzlesSolved": 7,
+      "firstAppearance": "June 2025",
       "lastSolve": "July 2026"
     },
     {
@@ -3098,15 +3110,15 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Matthijs Geertjes",
+      "puzzlesSolved": 6,
+      "firstAppearance": "October 2024",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Shaun Kohli",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2024",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Oliver K\u00fcsel",
-      "puzzlesSolved": 6,
-      "firstAppearance": "June 2025",
       "lastSolve": "June 2026"
     },
     {
@@ -3179,12 +3191,6 @@
       "name": "Milad Heidari-Koochi",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2022",
-      "lastSolve": "May 2026"
-    },
-    {
-      "name": "Martin Hesse",
-      "puzzlesSolved": 6,
-      "firstAppearance": "May 2025",
       "lastSolve": "May 2026"
     },
     {
@@ -4028,6 +4034,24 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Leo",
+      "puzzlesSolved": 5,
+      "firstAppearance": "February 2023",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Aviral Aggarwal",
+      "puzzlesSolved": 5,
+      "firstAppearance": "September 2025",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "John Joseph",
+      "puzzlesSolved": 5,
+      "firstAppearance": "April 2025",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "awmlet",
       "puzzlesSolved": 5,
       "firstAppearance": "March 2025",
@@ -4193,12 +4217,6 @@
       "name": "Quentin Fortier",
       "puzzlesSolved": 5,
       "firstAppearance": "February 2022",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Matthijs Geertjes",
-      "puzzlesSolved": 5,
-      "firstAppearance": "October 2024",
       "lastSolve": "February 2026"
     },
     {
@@ -5408,6 +5426,42 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Christopher Wade",
+      "puzzlesSolved": 4,
+      "firstAppearance": "November 2025",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Aditya Ajmera",
+      "puzzlesSolved": 4,
+      "firstAppearance": "July 2023",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Changrong Xue",
+      "puzzlesSolved": 4,
+      "firstAppearance": "March 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Andrey Shiryaev",
+      "puzzlesSolved": 4,
+      "firstAppearance": "December 2025",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Erik Loken",
+      "puzzlesSolved": 4,
+      "firstAppearance": "February 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Sharujan Muthu",
+      "puzzlesSolved": 4,
+      "firstAppearance": "July 2023",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Nathan Soedjak",
       "puzzlesSolved": 4,
       "firstAppearance": "February 2026",
@@ -5453,12 +5507,6 @@
       "name": "Jack Puccini",
       "puzzlesSolved": 4,
       "firstAppearance": "November 2024",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Leo",
-      "puzzlesSolved": 4,
-      "firstAppearance": "February 2023",
       "lastSolve": "June 2026"
     },
     {
@@ -5531,12 +5579,6 @@
       "name": "wow",
       "puzzlesSolved": 4,
       "firstAppearance": "July 2025",
-      "lastSolve": "May 2026"
-    },
-    {
-      "name": "Aviral Aggarwal",
-      "puzzlesSolved": 4,
-      "firstAppearance": "September 2025",
       "lastSolve": "May 2026"
     },
     {
@@ -5801,12 +5843,6 @@
       "name": "Adam Jelinsky",
       "puzzlesSolved": 4,
       "firstAppearance": "December 2022",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "John Joseph",
-      "puzzlesSolved": 4,
-      "firstAppearance": "April 2025",
       "lastSolve": "February 2026"
     },
     {
@@ -8180,6 +8216,30 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Taylor J. Anderson",
+      "puzzlesSolved": 3,
+      "firstAppearance": "April 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "rryanliu",
+      "puzzlesSolved": 3,
+      "firstAppearance": "May 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Thomas Kennedy",
+      "puzzlesSolved": 3,
+      "firstAppearance": "May 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Emma Xing",
+      "puzzlesSolved": 3,
+      "firstAppearance": "May 2026",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Fred Vu & Griffin Pinney",
       "puzzlesSolved": 3,
       "firstAppearance": "August 2025",
@@ -8228,12 +8288,6 @@
       "lastSolve": "June 2026"
     },
     {
-      "name": "Christopher Wade",
-      "puzzlesSolved": 3,
-      "firstAppearance": "November 2025",
-      "lastSolve": "June 2026"
-    },
-    {
       "name": "Matthieu Meunier",
       "puzzlesSolved": 3,
       "firstAppearance": "March 2024",
@@ -8249,12 +8303,6 @@
       "name": "Krishnendu Das",
       "puzzlesSolved": 3,
       "firstAppearance": "December 2025",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Changrong Xue",
-      "puzzlesSolved": 3,
-      "firstAppearance": "March 2026",
       "lastSolve": "June 2026"
     },
     {
@@ -8303,12 +8351,6 @@
       "name": "H\u00e9ctor Melchor Alaiz",
       "puzzlesSolved": 3,
       "firstAppearance": "September 2024",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Erik Loken",
-      "puzzlesSolved": 3,
-      "firstAppearance": "February 2026",
       "lastSolve": "June 2026"
     },
     {
@@ -8363,12 +8405,6 @@
       "name": "Justin Turko",
       "puzzlesSolved": 3,
       "firstAppearance": "March 2025",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Andrey Shiryaev",
-      "puzzlesSolved": 3,
-      "firstAppearance": "December 2025",
       "lastSolve": "June 2026"
     },
     {
@@ -8465,12 +8501,6 @@
       "name": "Dhruvit Pindoria",
       "puzzlesSolved": 3,
       "firstAppearance": "September 2024",
-      "lastSolve": "May 2026"
-    },
-    {
-      "name": "Aditya Ajmera",
-      "puzzlesSolved": 3,
-      "firstAppearance": "July 2023",
       "lastSolve": "May 2026"
     },
     {
@@ -10595,12 +10625,6 @@
       "name": "snugchoo",
       "puzzlesSolved": 3,
       "firstAppearance": "August 2022",
-      "lastSolve": "June 2024"
-    },
-    {
-      "name": "Sharujan Muthu",
-      "puzzlesSolved": 3,
-      "firstAppearance": "July 2023",
       "lastSolve": "June 2024"
     },
     {
@@ -13208,6 +13232,54 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Derek Yang",
+      "puzzlesSolved": 2,
+      "firstAppearance": "March 2025",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "\uc124\uc2b9\uace4",
+      "puzzlesSolved": 2,
+      "firstAppearance": "June 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Guillaume Foure",
+      "puzzlesSolved": 2,
+      "firstAppearance": "May 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Nicholas P Clarke",
+      "puzzlesSolved": 2,
+      "firstAppearance": "February 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Volodymyr Floreskul",
+      "puzzlesSolved": 2,
+      "firstAppearance": "October 2025",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Kilian Rue\u00df",
+      "puzzlesSolved": 2,
+      "firstAppearance": "June 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Deepon Halder",
+      "puzzlesSolved": 2,
+      "firstAppearance": "June 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Tom Roper",
+      "puzzlesSolved": 2,
+      "firstAppearance": "March 2024",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Rahid Z.",
       "puzzlesSolved": 2,
       "firstAppearance": "April 2026",
@@ -13235,12 +13307,6 @@
       "name": "KV",
       "puzzlesSolved": 2,
       "firstAppearance": "August 2024",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Thomas Kennedy",
-      "puzzlesSolved": 2,
-      "firstAppearance": "May 2026",
       "lastSolve": "June 2026"
     },
     {
@@ -13319,12 +13385,6 @@
       "name": "RR",
       "puzzlesSolved": 2,
       "firstAppearance": "January 2023",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "rryanliu",
-      "puzzlesSolved": 2,
-      "firstAppearance": "May 2026",
       "lastSolve": "June 2026"
     },
     {
@@ -13586,12 +13646,6 @@
       "lastSolve": "June 2026"
     },
     {
-      "name": "Emma Xing",
-      "puzzlesSolved": 2,
-      "firstAppearance": "May 2026",
-      "lastSolve": "June 2026"
-    },
-    {
       "name": "Nihar Maheshwari",
       "puzzlesSolved": 2,
       "firstAppearance": "August 2022",
@@ -13685,12 +13739,6 @@
       "name": "Vlady",
       "puzzlesSolved": 2,
       "firstAppearance": "April 2025",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Taylor J. Anderson",
-      "puzzlesSolved": 2,
-      "firstAppearance": "April 2026",
       "lastSolve": "June 2026"
     },
     {
@@ -23954,6 +24002,12 @@
       "lastSolve": "December 2015"
     },
     {
+      "name": "Tim U",
+      "puzzlesSolved": 1,
+      "firstAppearance": "August 2026",
+      "lastSolve": "August 2026"
+    },
+    {
       "name": "\u6ca1\u5934\u8111",
       "puzzlesSolved": 1,
       "firstAppearance": "July 2026",
@@ -27458,6 +27512,156 @@
       "lastSolve": "July 2026"
     },
     {
+      "name": "Manav Jethani",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Nick Gatien",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Reiner Martin",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Jonah Honsberger",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Vivek Nadimpalli",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Yashvardhan Sharma",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Marwan Luay",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Nian Kim",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Shawn Thomas Koshy",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Kristoffer",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Jannes Romano",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Hugo",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Alejo Restrepo",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Aryan Seth",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Pranjal Animesh",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Saurabh Pandey",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Brian Kuo",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Ali Suleman",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Amogh D",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Jackson Fraser",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Elias Hillman",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Cooper Terrill",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Charlie Karstan",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Berjo Eldemir",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
+      "name": "Trevor Super",
+      "puzzlesSolved": 1,
+      "firstAppearance": "July 2026",
+      "lastSolve": "July 2026"
+    },
+    {
       "name": "Ali Al Sabbagh",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2026",
@@ -27651,12 +27855,6 @@
     },
     {
       "name": "Orange",
-      "puzzlesSolved": 1,
-      "firstAppearance": "June 2026",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Kilian Rue\u00df",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2026",
       "lastSolve": "June 2026"
@@ -28617,12 +28815,6 @@
     },
     {
       "name": "Charlie Faler",
-      "puzzlesSolved": 1,
-      "firstAppearance": "June 2026",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "\uc124\uc2b9\uace4",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2026",
       "lastSolve": "June 2026"
@@ -30243,12 +30435,6 @@
     },
     {
       "name": "Khondaker Shaian",
-      "puzzlesSolved": 1,
-      "firstAppearance": "June 2026",
-      "lastSolve": "June 2026"
-    },
-    {
-      "name": "Deepon Halder",
       "puzzlesSolved": 1,
       "firstAppearance": "June 2026",
       "lastSolve": "June 2026"
@@ -32031,12 +32217,6 @@
     },
     {
       "name": "John Widerhouse",
-      "puzzlesSolved": 1,
-      "firstAppearance": "May 2026",
-      "lastSolve": "May 2026"
-    },
-    {
-      "name": "Guillaume Foure",
       "puzzlesSolved": 1,
       "firstAppearance": "May 2026",
       "lastSolve": "May 2026"
@@ -34275,12 +34455,6 @@
     },
     {
       "name": "Ivan Bartsevich",
-      "puzzlesSolved": 1,
-      "firstAppearance": "February 2026",
-      "lastSolve": "February 2026"
-    },
-    {
-      "name": "Nicholas P Clarke",
       "puzzlesSolved": 1,
       "firstAppearance": "February 2026",
       "lastSolve": "February 2026"
@@ -40917,12 +41091,6 @@
     },
     {
       "name": "David Kim",
-      "puzzlesSolved": 1,
-      "firstAppearance": "October 2025",
-      "lastSolve": "October 2025"
-    },
-    {
-      "name": "Volodymyr Floreskul",
       "puzzlesSolved": 1,
       "firstAppearance": "October 2025",
       "lastSolve": "October 2025"
@@ -50283,12 +50451,6 @@
     },
     {
       "name": "mortid",
-      "puzzlesSolved": 1,
-      "firstAppearance": "March 2025",
-      "lastSolve": "March 2025"
-    },
-    {
-      "name": "Derek Yang",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2025",
       "lastSolve": "March 2025"
@@ -65703,12 +65865,6 @@
     },
     {
       "name": "Oscar Felgueiras",
-      "puzzlesSolved": 1,
-      "firstAppearance": "March 2024",
-      "lastSolve": "March 2024"
-    },
-    {
-      "name": "Tom Roper",
       "puzzlesSolved": 1,
       "firstAppearance": "March 2024",
       "lastSolve": "March 2024"
@@ -93064,16 +93220,16 @@
       "length": 50
     },
     {
+      "solver": "Lazar Ilic",
+      "start": "Jan 2024",
+      "end": "Aug 2026",
+      "length": 32
+    },
+    {
       "solver": "Danica Xiong",
       "start": "Dec 2023",
       "end": "Jul 2026",
       "length": 32
-    },
-    {
-      "solver": "Lazar Ilic",
-      "start": "Jan 2024",
-      "end": "Jul 2026",
-      "length": 31
     },
     {
       "solver": "Moritz Kunze & Hai-Yen Van",
@@ -93096,8 +93252,8 @@
     {
       "solver": "Jackson La Vallee",
       "start": "Nov 2024",
-      "end": "Jul 2026",
-      "length": 21
+      "end": "Aug 2026",
+      "length": 22
     },
     {
       "solver": "Gareth Owen",
@@ -93484,8 +93640,8 @@
       "solvers": 1134
     },
     {
-      "month": "Jul 2026",
-      "solvers": 1081
+      "month": "Aug 2026",
+      "solvers": 5
     }
   ],
   "solversGrowth": [
@@ -94083,7 +94239,11 @@
     },
     {
       "month": "Jul 2026",
-      "totalSolvers": 15505
+      "totalSolvers": 15530
+    },
+    {
+      "month": "Aug 2026",
+      "totalSolvers": 15531
     }
   ],
   "mostSolvedPuzzles": [
@@ -94106,16 +94266,16 @@
       "solution_url": "https://www.janestreet.com/puzzles/sum-one-somewhere-solution"
     },
     {
+      "id": "2026-7",
+      "name": "\u2018Pent-Up\u2019 Frustration 3 / Knight Moves 7",
+      "solvers": 1139,
+      "solution_url": "https://www.janestreet.com/puzzles/pent-up-frustration-3-knight-moves-7-solution"
+    },
+    {
       "id": "2026-6",
       "name": "Regional Artwork",
       "solvers": 1135,
       "solution_url": "https://www.janestreet.com/puzzles/regional-artwork-solution"
-    },
-    {
-      "id": "2026-7",
-      "name": "\u2018Pent-Up\u2019 Frustration 3 / Knight Moves 7",
-      "solvers": 1083,
-      "solution_url": ""
     },
     {
       "id": "2024-10",
@@ -94209,4359 +94369,31 @@
     }
   ],
   "currentPuzzleProgress": {
-    "puzzleName": "\u2018Pent-Up\u2019 Frustration 3 / Knight Moves 7",
-    "puzzleDate": "July 2026",
-    "solverCount": 1083,
+    "puzzleName": "Andy's Afternoon Amble",
+    "puzzleDate": "August 2026",
+    "solverCount": 5,
     "timeline": [
       {
-        "solver": "Fred Vu",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
+        "solver": "Jackson La Vallee",
+        "timestamp": "2026-08-03T14:30:28.104052+00:00"
       },
       {
-        "solver": "Aditya Kapoor",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "\u6ca1\u5934\u8111",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Danica Xiong",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Coe Decks",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Carter Tran",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Patricia Ji",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Dawson Yao",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
+        "solver": "Tim U",
+        "timestamp": "2026-08-03T14:30:28.104052+00:00"
       },
       {
         "solver": "Lazar Ilic",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Daniel Shields",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Jackson La Vallee",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Ryan Lueder",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "elale",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Francisco Rodr\u00edguez-Carretero Rold\u00e1n",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Krish Gondaliya",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Sean Burton",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Jake Mallen",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Joshua Lall",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Bojun Jia",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Evan Tian",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Evan Semet",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Ryan",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Patrick Youssef",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Raghav Joshi",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "paribus",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "T\u00f3u Ma",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Abraham Joshua",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Josh Richman",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Ben Zhou",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Vid Eler\u0161ek",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "John S.",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Lasmar Khalifa",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Iliass Sijelmassi",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Lucius Carr",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Mert Can Bakirtas",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Tim Sels",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Griffin Pinney & Kelly Su",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Zia Baig",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "JY",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Aleksandar Dubljevic",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Alexander Lipatov",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Elias Botsford",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Kuo Wang NTU RF)",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Jens Cancio",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Daniel Huang",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Vibhuv Sharma",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Joel Pulikkan",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Charlie King",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Arpit Shrivastava",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Andrea Cavagna",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "k",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Adeland Luo",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Speagle Yao",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Andrea Poli",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Jacob Rowlands",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Sitesh Shrivastava",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Enhan Zhao",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Edward Hu",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Kyle Chen",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Luca Alvisini",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Sam Redmond",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Andrea Comand",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Petel",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Taras Zablotskyi",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Dappy",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
+        "timestamp": "2026-08-03T14:30:28.104052+00:00"
       },
       {
         "solver": "vsh",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
+        "timestamp": "2026-08-03T14:30:28.104052+00:00"
       },
       {
-        "solver": "John Kraits",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Spencer Hurst",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Yahia Hammami",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Jacob Voss",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Hyeongsik Hwang",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Nikolaos Papadopoulos",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Jyunke",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Shuyang Wang",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Cosmin-C.R",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Luke Pipito",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Sicheng Zhou",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Daniel Joo",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Ryan Cassar",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Charvik Reddy Mukku",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Henry Jagger",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "\u5f90\u745c\u9633",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "TJ Ascherl",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Kristjan Solmann",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Nik Lebedenko",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Ruf",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Noah Butler",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Simon R\u00fcba",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Shotiko Abramishvili",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Kibria Awais",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Joshua Kindler",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Rafic Abdallah",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "James Karlsson",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Zequn Yang",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Rasmus Foyer",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Benjamin Nasse",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Fred Hope",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Alvan Chow",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Cameron Jeffery",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Tanay Gondil",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Baocheng Jiao",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Carl Dorfman",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Abeen Bhattacharya",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Felix Chir",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Ori Bahat-Petel",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Aidan Lai",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Arkadiusz Balata",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Dolev Goldberg",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Lara C.",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Mateo Bodon",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Shakir Davis",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Shuai Huang",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Gray Bondeise",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Farhad Omid",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Nathan Chiu",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Xinruo Wang",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "DWP",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Lukas Bergholz",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Eren Yildiz",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Felipe Leal",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Kinger",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Oliver Middleton",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Pasan Undugodage",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Saihaj Law",
-        "timestamp": "2026-07-03T13:54:47.652621+00:00"
-      },
-      {
-        "solver": "Jonah Goldstein",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Olivia Helen Scharfman",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Hunter Gould",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Pat Feng",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Jeremy Yap",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Andrew Slattery",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Ronald_D_D",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Stephen Ebert",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Joe Clancy",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Thomas Bale",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Conrad Fehrke",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Iosif Zimbidis",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "borek",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Matt Abate",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Joe Quinn",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Amine D",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Chattelion Luo \u6c86",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Eitan Linhart",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Joey Allcock",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Ivan Katanic",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Matthew Young",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "JP Broz",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Cesar Daniel Garcia Ortega",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Krish Yadav",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Hassan Khan Mines '25",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Micah Day-O'Connell",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Cheong Yi Wei",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Kevin Graney",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Tomonari Feehan - GT '19",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Colsyn Hornsey",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Advay Chandorkar",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Andrew Yoo",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Kyle L",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Abdessamed Zetroni",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "David Nachuan Chen",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Finn Thompson",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Ilian Hadna",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Giulio Tonielli",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Woje",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "pankace",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "d. jack",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Parsa Nematollahe",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Boris Launois",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Hangyu Liang",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Florian Schuchardt",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Hsin-Yi Wang",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Harsh Patil",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Julia Alonso-Wu",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Rub\u00e9n M.I",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Avneesh Goyal",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Iheb Ben Yakhlef",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Henry",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Maciej W",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "\u6bb7\u8c6a",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Jie Yin",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "\u738b\u6893\u95fb",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Sourabh Raj Jaiswal",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Maksim Silchenko",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Marc Chouraqui",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Tara Kemp",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Abhishek Sekar",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Nikola Nesovic",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "\u5c0f\u51ef",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Hoang Vu",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Charles Guilbault",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Jayden Connaughton",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Maxime Reynouard",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Maxim Olivier",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Nathan Thurber",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Sophia Alexandra",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Pablo Hendrix",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Rasheed Khoshnaw",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Shyam Padmanabhan",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Bavala Sharma",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "KT",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Anshul Agarwal",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Evan Cornuelle",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Varada Pavan Sai",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Mike Aboody",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Jason ZJ Li",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Yash Darak",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Benedict Davies",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Leonardo Z.",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Aditya Verma",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "\u5f20\u7426",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Dasny",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Laurentiu-Georgian Vasilescu",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Niharika Thatiparthi",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Tim Valicenti",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Cosmic",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Rory Creagh",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Scott Campbell",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Zishang Li",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "fieldtm",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Ethan Zhao",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Eduard Gonzalvo Gelabert",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Ryan Mukherjee",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Annie L & Ryan C",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Jun Yin",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Andy Morro",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Moritz Dittmann",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Cynwell",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Joy",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "souf",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Nikhil Sudan",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Ethan Ossowski",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Ryan Fanchiotti",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Daoyuan Chen",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "fvhoo",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Martin Thorne",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Jason Ye",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Aryann Khokha",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Allan Zhang",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Cormac St John",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Godfred Antwi Koduah",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Luca Miniati",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Miquel Ricart",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Samuil Petkov",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "elianaive",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Dhruv Sharma",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Alexandre Buis",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Ravan Chan",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Mateusz Tyc",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Tatsuru Miyamoto",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Will Richards",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Jacob Matten",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Andrew Ely",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Sanandan Swaminathan",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Andrew Luo",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Andrew Barlow",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Devom Brahmbhatt",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Jad Assaf",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "pazqo",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Poetic",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Kim Dong Hyun",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Vanessa Zabel",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "\u9ec4\u68cb\u709c",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Chenxiao Dai",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Malina",
-        "timestamp": "2026-07-05T13:23:18.609043+00:00"
-      },
-      {
-        "solver": "Piotr Kley",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Ayush Verma",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Aaron Jeng",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Amit Arnold Levy",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Gliese",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Niklas Eriksson",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Tian Yueh",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Boyan Zhou",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Andrei Botocan",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Riccardo Girgenti",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Garvit",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Nicholas Tarsis",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Asif Roland",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Kornel Ipacs",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Jericho",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Nedim",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Dawid Sieradzki",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Jake Rance",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "AP",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Alexander Klasen",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Anirudh Sunil + Krish Yadav",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Mohammad Islam",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Torrakkak",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Todd Hartman",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Molly Stow",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "David Roessler",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "John Kelliher",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Aidarkhan D. Zhubatkan",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Anthony Nguyen",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Owen Strength",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Cyne Jarvis J. Zarceno",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Barney Hong",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Kushagra Bharti",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "David Jennings",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Alx",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Ali Kastan",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Wisdom 0",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Brenton Bostick",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Yamaguchi Toshiki",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Yash Chheda",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Sacha F",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Cl\u00e9ment Nicolle",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Amit Sharma",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Donald Cherry",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Robert Poston",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Ved Lad",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Lucio Starosta",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Tomodovodoo",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Abhishek Pratap Singh",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Angus Scroggie",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Shlok Gupta",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Tomas Schmieder",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Bryant Har",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Qi Zibin",
-        "timestamp": "2026-07-06T15:23:38.007273+00:00"
-      },
-      {
-        "solver": "Isaac Kaimfa",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Vimal Venkat",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Selcuk Emir Avci",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Noah Marano",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Nickita Khylkouski",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Lynn Hughes",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Arhaan Keshwani",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Ramchand Kumaresan",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Sam Doane",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Alex Diaz de Mendibil Dosaiguas",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Roos Urquhart",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "James Ly",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Elizabeth W",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Sulayman Bowles",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Nayan",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Arjun",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Scott Morgan",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Ryan Spears",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Eric Sohel",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Dylan Myers",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Colin Z",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Harshith Mulakala",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Shashwat Gokhe",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Jeet Vyas",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Rowan Woor",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Adam C. Jones",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Amit & Sharma",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Simon Chen",
-        "timestamp": "2026-07-07T14:23:59.073797+00:00"
-      },
-      {
-        "solver": "Maddie D. Reese",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Orlin Kuchumbov",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Kyle Lukaszek",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Vikram Joshi",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Yizun Gu",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Geethan Ramesh",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Chi",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Yahya Masri",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Sousha",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Calgary",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Arav Agarwal",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Aarian Shah",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Luca Cairns",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "V D S Aastik",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Aaron Yang",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "\u8607\u6211\u5e74",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Mohammad Arjamand Ali",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Langqi Zhao",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Anirudh Sunil",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Ahmed Wez",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Yuma Furuya \u4f51\u9ebb",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Max Coulter",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Jason Huang",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "\u90ed\u6b63\u5c27",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Vikram Srikanth",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Bhaskar Bhardwaj",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Max Froomkin",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Caissa",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Marcus ACA",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Dean Van Der Velden",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Josh Adler",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Timro-Nai Maya Lagdacha",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Raphael Ehrmaier",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Lucas Reymond",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Dave Cox",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "S\u00e9bastien Meyer",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Ryan Chi",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "James Weatherhead",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Aga G",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "\u5f90\u7b20\u70c8",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Trevor Nerbas",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Elias Leal Spohr",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Nandan",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Nemil Shah",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Shrishti Dalal",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "On King For",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Erik Vander Laan",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "James Joshua Koshy",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Daniel Li",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Ferdinand Defregger",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Aidan Crawford",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Karl Mahlburg",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Abhinav Kota",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Janith Petangoda",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Arthur Bright",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Jie Wen",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Josephine Jin",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Deven Parekh",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Adi Parekh",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Brennan Davenport",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Gareth Owen",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Benedict Herrnleben",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Seanan Riley",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Joe Wishman",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Garrett",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Khaled Alomar",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Artem Brezhnev",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Christian Fischer TU Darmstadt",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Andria Alex Thomas",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "SK Arceus Group",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Frank Sun",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Nick Dunets",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Zden\u011bk Mi\u010dke",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Johnny Tanskanen",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "csamoila",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Yimeng Zeng \u66fe\u4ee5\u8499",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "YB",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Behrooz Khalil Loo",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Aadit Nair",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Er Xuan Zhuo",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Aditya Chandrasekhar",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Meghamsh Balantrapu",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Garrett M.",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Alvaro RH",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Rayhaan EK'25",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Tully & Geoff Ferris Wayne",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Benjamin Lin",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Vihaan Narvekar",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Clint Caudle",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Trevor Judice",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Grant Gallun",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Kausik Amancherla",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Alexander Lee",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Achintya Paningapalli",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Baglan",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Aaditya Raghavan",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Eliot Faure",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Anika Vijay",
-        "timestamp": "2026-07-09T14:49:39.362331+00:00"
-      },
-      {
-        "solver": "Jud",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Vamshi Jandhyala",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Yun Han",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Athina Avrantini",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Leopold Filliatre",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Emile Andrieu",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Benny",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Mikhail Grushko",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Ali Batmaz",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Ilan K",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Alex Lazorenko",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Jaime Ubieta",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Paul Kawalkowski",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Anqinator",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Harry Zhang",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Kashmir Parmar",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Anton 3 Terekhov",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Lucas Dolesh",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Ryan D",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Dylan Bago",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Sean Lee",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Manas Goel",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Andrew Sung",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "William O'Connell",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "James Xiao",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Fernando Arruda de Faria",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Deionus Bauer",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Arkan Fadhil Kautsar",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Ved Mistry",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Oliver West",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Chrisler",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Aljo\u0161a \u0160uba\u0161i\u0107",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Andrii Drok",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Jovi Karchan",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Aryan Sehrawat",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Kaushik Aryan",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Frederic Hamelink",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Akshay Joshi",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "SB",
-        "timestamp": "2026-07-10T14:14:23.338194+00:00"
-      },
-      {
-        "solver": "Anton Hulikau",
-        "timestamp": "2026-07-11T13:09:59.889742+00:00"
-      },
-      {
-        "solver": "Parth Rana",
-        "timestamp": "2026-07-11T13:09:59.889742+00:00"
-      },
-      {
-        "solver": "Brendan Mick",
-        "timestamp": "2026-07-11T13:09:59.889742+00:00"
-      },
-      {
-        "solver": "Ali Ait Mahiddine",
-        "timestamp": "2026-07-11T13:09:59.889742+00:00"
-      },
-      {
-        "solver": "Jonas M. Arnold",
-        "timestamp": "2026-07-11T13:09:59.889742+00:00"
-      },
-      {
-        "solver": "Carlos Sainz V\u00e1zquez de Castro",
-        "timestamp": "2026-07-11T13:09:59.889742+00:00"
-      },
-      {
-        "solver": "Jack",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Kade Autaubo",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Vivek Kumar",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Michael O'Leary",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Vejas Nickus",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Tianle Tyler He",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Dean Menezes",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Josh Morrell",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Tyler Meadows",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Jatin Bhojwani",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Akhil Korra",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Sean Hayden IV",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Matthijs Wiggers",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Horton Zhu",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Hoang Phuc Nguyen",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Kevin Funchal",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Albert Wu",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Samridh",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Isaac Sun",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Bole Ying",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Todd McKnight VT28",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Sarvadhnya Choudhari",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Sam Bateman",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Alexander Menchtchikov",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Anthony Chen",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Sudeep Senivarapu",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Shankhi",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Maxime Ferbus",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Vandit Jain",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Henk Wa\u00dfmann",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Steven So",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Kanad Markandeywar",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Amin Cheipournejad",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Moritz Ehlert",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Kaustubh Rakhade",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "John Paul Schoonover",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Steve Chance",
-        "timestamp": "2026-07-12T13:11:36.601376+00:00"
-      },
-      {
-        "solver": "Brandon",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Kuzey Tutkan",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Jovi Kaarchan",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Lance Nathan",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Reyansh Verma",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Aditya Patil",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Dever",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Alexis Leclercq",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Pierce Brookins",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Leo Tervit",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Miguel Vasconcelos",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Pragyan Manadhata",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "arshith Ghanta",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Paul Koomey",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Jimmy Brito",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Jason Cao",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Hung Le",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Vedant Kothari",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Nicolas Kress",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "amryn Pershall",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Yoshihiko_ICKW",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "AndreasMH",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "icol\u00f2 Angileri",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "\u5c0f\u798f\u9752",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "aniel Colombo",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Charley Tan",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Vincent",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Amogh Kale",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Aaron Anderson",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "TYF",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Ashvin",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "ivyansh Gupta",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Leah Horvat",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Hannah & Chuck Burton",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Roshan Saxena",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Denis Abuti",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Rakesh Gundogdu Kumar",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Hobie Doyle",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Felix Riedl",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Arvid Rydberg",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Samuel Eddy",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "arol Musieli\u0144ski",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Samanvay",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Casey Lunkley",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Tongyang Song",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Gavin Wang",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Todd Funderburg",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Faisal Baig",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Jason Lee",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Evan Johan Tobias",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "garvikaa",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "\u4ed3\u9f20",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Akhoury Shauryam",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Kyrill Kolosov",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Francois Barge",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Nadav Gropper",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Hayler Osborn",
-        "timestamp": "2026-07-13T14:27:47.627641+00:00"
-      },
-      {
-        "solver": "Karol Musieli\u0144ski",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Jeremy Michael Stone",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Divyansh Gupta",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Nivar Anwer",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Parv Kothari",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Elektra Ballas",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Marien Chenaud",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Cal Craven",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "hbar",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Aditya Bhoj",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Kabir Maske",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Paul Kress",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Valentino Janda",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Vikram Nadathur",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Jishan Kurane",
-        "timestamp": "2026-07-14T13:27:06.849094+00:00"
-      },
-      {
-        "solver": "Borowik",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Ecrade",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Wiktoria Borkowska MDW Wien",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Kainoa Wagatsuma",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Hlib Zakrevskyi",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Misha",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Aditya Shah",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Colson Roberts",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Rougee",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "simgmu",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Tony Han",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "William Zhang",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Dong Tran",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Brendan L",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Christopher Moon",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "CKV",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Ben Mills",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Guilherme Mertens",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Beau Doggen",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Leonardo Pedroso",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Thomas Tortorici",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Chengyu Xiong",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Hugh Goatcher",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Luciano Raineri Marchina",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "DLR",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Akanksha Gomatam",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Jake Olin",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Isaac Carruthers",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "RJ Tokarski",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "noobey",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Jacob",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Manasa & Imran",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Andre Riva",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "William de Abreu Pinho",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Alexis Kim",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Kushal Putti",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Kit Murray-Pyle",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Kaily Mermelstein and Leah Hersh",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Alex Daley",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Dewey Kang",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Hugo Garcia",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Haden Wasserbaech",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Christos Panayi",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Kevin Yip",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Luke ESC",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Kai Q",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Valmir Krasniqi",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Zayd Bashir",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Ewan CS-ESSEC",
-        "timestamp": "2026-07-15T13:28:21.931228+00:00"
-      },
-      {
-        "solver": "Davide Farassino ETHZ",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Jonas Angelsen",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Georgy Bulgakov",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Ahmed Bootaan",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Sourodeep Deb",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Ethan Mader",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Junaid Malik",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Rishi Bidarkota",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Tejas Modi",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Joshua Hizgiaev",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Declan Marshall",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "William Forsberg",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Caleb Jackson",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Nirvair Sandhu",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Pedro Stein Pierre",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Michael Kim",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Donald Bindner",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Jeffrey Hu",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Matthew Giegerl",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Yip Fung Ming, Kelvin",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Chris Yi TW",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Liu Zeyu",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Quang Tran",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Arnav Mittal",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "samuelpk",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Sergiu Popa",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Lukas Kedzia",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Chengen Yan",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Leo Nguyen",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Eline Samama-Brault",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Eli Bridge and Harley Walker",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Aharon Ahdoot",
-        "timestamp": "2026-07-16T13:41:42.214037+00:00"
-      },
-      {
-        "solver": "Utsav Sharma",
-        "timestamp": "2026-07-17T13:19:41.534263+00:00"
-      },
-      {
-        "solver": "Matthias Stadlinger",
-        "timestamp": "2026-07-17T13:19:41.534263+00:00"
-      },
-      {
-        "solver": "Florian Dinant",
-        "timestamp": "2026-07-17T13:19:41.534263+00:00"
-      },
-      {
-        "solver": "Kenneth Zhang",
-        "timestamp": "2026-07-17T13:19:41.534263+00:00"
-      },
-      {
-        "solver": "Roberto Moura",
-        "timestamp": "2026-07-17T13:19:41.534263+00:00"
-      },
-      {
-        "solver": "Jasper de Jong",
-        "timestamp": "2026-07-17T13:19:41.534263+00:00"
-      },
-      {
-        "solver": "Seif Al-Qatarneh NYU Tandon '30",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Matt Michnik",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Jack Reichert",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Michael Xiang",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Chuyi Wang",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Yash Prajapati",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Tristan Jolly",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Sahil Menon",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Vraj Shah",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Ben",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Clemens B.",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Matteo Dagos + Matteo Giri",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Don Bon",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "Aleksandr Reznichenko",
-        "timestamp": "2026-07-18T13:05:42.441012+00:00"
-      },
-      {
-        "solver": "jf",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Joshua Kauling",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Siddharth Pendyala",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Luka Kirigin",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Finn Kirigin",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Benjamin Hadad IV",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Christopher Schwarz",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Shuo Huang",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Kevn",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Iyed Mokline",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Alison Chen",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Brandon Lee",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Nikolai Przybylski",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Karan Singh Mertiya",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Archie-Ray Thompson",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Giorgio Panizzutti",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Daniel Bae",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Prabhav Patil",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "Shaun Heng",
-        "timestamp": "2026-07-19T13:09:04.277155+00:00"
-      },
-      {
-        "solver": "YYY",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Krystian Wojcicki",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Neel Prashant Dhapare",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Vighnesh N Ganesh",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Victor Michel",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "David McMillan",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Teg Dag",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Solal Baudoin",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Mathias Kandil",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Vishal Vinjamuri",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "\u738b\u5fe0\u7ff0",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Neil Gilani",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Harrison and Audrey",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Alex Rachel Zhang",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Aadeesh Garg",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "George Li",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Zachary Batten",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Ivan Kirigin",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Fogan",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Nikita Sirons",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "rahulsamant",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Armen Petrosyan",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Ihor Dobrovolskyi",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Adrian Law",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Gaurav Purushothaman",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Qizheng Ye",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "Davi Hasuda",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "C. Hugh",
-        "timestamp": "2026-07-20T13:57:45.377489+00:00"
-      },
-      {
-        "solver": "\u3055\u3044\u3068\u3046\u3086\u3046\uff08\u3072\u3070\u308a\u5c0f '99\uff09",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Jacobo Guerrero",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Giles Holliday",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Derek Wu",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Varrun Satheeshkumar",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Matt Mitchell",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "lynzl",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Zach G.",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Daniel Ortega",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Matt Boyd",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Ymir Egilson",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Elena Ivosevic",
-        "timestamp": "2026-07-21T13:39:41.460153+00:00"
-      },
-      {
-        "solver": "Aslan Buluthan G\u00f6kbulut",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "TMH",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Manuel R",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Eiko Reisz",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Dylan Zheng",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Noah Ruderman",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Jack Humphries",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Max Soja",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Jin Xing",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Giordan Masen",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Matthew Ritch",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Justin Murphy",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Nils R\u00f6rup",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Akshat Agarwal",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Ioannis Koutsouris",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Clifton Beech and Brandon Beauregard",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Alexander B. Wang",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Magnus \u00d6nnheim",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Max Michielsen",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Pierre Bonhomme",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Niklas Koessel",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Nicol\u00f2 Angileri",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Jatin Bishla",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Hanwei Wu",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Casey Harris",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Wander M.",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "QB",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Michael Ma",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Ryan McComb",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Yuhao Lei",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Jacob Moss",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Alexis W",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "John Chan",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Siamak Alimirzazadeh",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Clint Howard",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Conor Grant",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Alejandro Soto Franco",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Jon Ander",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Bobby-Aiden Sadhu",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Edip Salihi",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Luca Marrucci",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Mayurdhvajsinh Jadeja",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Tommaso Marrucci",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Patrick Scicolone",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Yash Goon",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Temuto",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Benjamin Zhao",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Adam Zettel",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Benoit Savoini",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Bhumin",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Ethan T Brown",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Sreehari Vijaybhaskar",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Anthony Ceponis",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Conan Chen",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Nolan Yee",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Andrei Taropa",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Matthew Schmale",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Imran Abdul Rahman",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Lazer Strand",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Robin Gonidec",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Khizar Qureshi",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Ayush Adi",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Joey L",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Jahnavi Koppala",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Mijs van Kollenburg",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Arthur Leslie",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "\u6881",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "William L Wang",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Rikhil Kokal",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Viktor S.",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Bangle Wei",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Eaman Hussain",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Ahsan Hussain",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Trever McBride",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "You Wu",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "April Kidd",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Advai Srinivasan",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "\u8cf4\u7fd4\u5fb7",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Joshua Barker",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Felix Tappe",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "",
-        "timestamp": "2026-07-23T13:48:44.437495+00:00"
-      },
-      {
-        "solver": "Matteo Picco",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Nick Wong",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "W Fang",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Matt R",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "bilo",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Thomas Palmer",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Abhirve Munipalle",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Flanner Hall",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Declan Finerty",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Easton Leisure",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Markus Str\u00f8mme",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Raffael Insam",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Ryan Gordon",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Rohit Garje",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Noah Donovan",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Eric C Bohmert",
-        "timestamp": "2026-07-24T13:28:08.520660+00:00"
-      },
-      {
-        "solver": "Dan Dougherty",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Sanjay Subramanian",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Kui-Wang Choi",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Zylen",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Sam Russell",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Yanzhen Chen",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Jesse Adekoya",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "RS",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Niels",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "lb",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "JJ Krasnick",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Inseop Youn",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Lydia N Jarvis",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Sam Panoulias",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Vincent Chen",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Hong Wang",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Ryze Morning",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Brandon Ko",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Andrei M",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Marianna Sykopetritou",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Aditya Manipatti Payanadan",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Govind Ramanan",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Charles Thompson",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Louis-Ray Lister",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Alexia Dobjanschi",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Sammy Alkhrdaji",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "\u5929\u92b3\u80d6\u80d6",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Christos Gavriel",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "\u00cdcaro Fr\u00f3es",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Albert Calmus",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Shinla Kaneko",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Joel Rautavaara",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "hoydea",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Lewis Jones",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Yu Deng",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Asad S. Hussain",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Mattia Tombolini",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Andrew Epstein",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Tim Murson",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "James Lu",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Sofiya Kolokolnikova",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Harry Jenkins",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Sharan R",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Vidit Aggarwal",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Simon Sang",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Jason Walke",
-        "timestamp": "2026-07-25T13:16:41.468148+00:00"
-      },
-      {
-        "solver": "Petr Babi\u010d",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Theodore Arapoglou",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Caleb Norton",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Matthew E",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Raunak Mondal",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Alden",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Joshua Karat",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Adi Oak",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Solomon Graf",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Kunal & Utkarsh",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Illia Popov",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Lasse Braun",
-        "timestamp": "2026-07-26T13:12:11.164685+00:00"
-      },
-      {
-        "solver": "Edgar Gonzalez Gascou",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Dmitri Lvovich",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Remon RF",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Fellah Mohamed Amine",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Mason Chan",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Swap and Mana",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Lawrence H",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Dinku Sarmah",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Srija",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Aziz Derbel",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Greg Hartmann",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Braden E. White",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Umair Hundekar",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Nguyen Quoc Bao",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "DaSiMo",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Rowan Rick Kumar",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Derek Yeh",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Zike Huang",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Sai Bhushan",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Teodoro Freund",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Mantra Sharma",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Charles Joseph Ferguson",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Brandon Cage",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Senthil Rajasekaran",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "\ubc15\uc2dc\ud604",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Kay Kaulhausen",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Jonathan Asplund",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Konstantinos Baktalias",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Frederik Kockisch",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Min Soo Kang",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Leo and SC",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Karol Szychulski",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Simon Foley",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Shruti Swaminathan",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "poppe",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Corbin Smith",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Duarte Abra\u00e7os",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Ramin Karbalaie",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Logan Richan",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Leo Semmelmann",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Sam Yao",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Joshua Watson",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Jonatan Falk",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Kira Casto",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Andrej Kolar Pozun",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Vrishak Vemuri",
-        "timestamp": "2026-07-27T14:24:20.643327+00:00"
-      },
-      {
-        "solver": "Daniel Colombo",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Kevin Yu",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "ddav",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Melker Bondjers",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Raja Nabeel",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Matt Zecca",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Jacob Thomas-Hegarty",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Alex Kalashnikov Soules",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Denis Borisov",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Aayushkumar Patel",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Simon-O Poulin",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "synergistic",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Adrian Sejersted",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Joshua Durham",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Damjan Crnkovic",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Cooper Salts",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Jackson McConnachy",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "vladrumy",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Luis Martinez Puchol",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "lesys",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Jo-Adam Mizra",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Jason Fan",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Abhijay Pandey",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Satya J",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Rayan Khoury",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "fbrv",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Mrinalini B",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Charbel Younan",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "D. Kern",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Xiaowei Zhu",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Lavya",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Elena Leonova",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Zipee",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "SungJB",
-        "timestamp": "2026-07-28T13:56:32.832992+00:00"
-      },
-      {
-        "solver": "Andrei D",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Michael Orland",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Calvin Pozderac",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Alexander Wichern",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "FS Math and Stats Initiative",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Olivia Laufer",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Sachin Peterson",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Jack Saleeby",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "sdrtnm",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Josh Wu",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "AOB",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Louise Warhurst",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Chen Shen",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Noa Itokiana Lolona Haro",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Robert Berec",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Salil Chandra and Dimitri Petrakis",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Maksat Omorov",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Azat Madimarov",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Ujas Shah",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Ian and Dylan Cheng",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Donte Truong",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Kira",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Timael",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Christopher Chandra Reyy",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Fred Priggs",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Melvin Raju",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Jarray Eyadh",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Derek Woo",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Aman Goyal",
-        "timestamp": "2026-07-29T14:01:10.154991+00:00"
-      },
-      {
-        "solver": "Aditya Dube",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Hamish Lawson",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Stef Klaassen",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Jacobo",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Adam Charane",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Tonio Hasler",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Thomas Berry",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Maxence Gabillon",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Hussain Yoosuf",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Priyanshu Agarwal",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Amar",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Andrew Hardt",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Nizar",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Andrei Levin",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Larry",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Arthur Nakano",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Thodoris Eleftheriou",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Yuri de Wit",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Rohan Kannan",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Weiber",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Luca Frade",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "JakOB",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Beni Mulyana",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Sullivan Hart",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Ming Chan",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Anthony Safonov",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Vedant",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Anaisha Nagar",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Devid Ferri",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Ripendra",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Raghav Bhagi",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "I-Iias",
-        "timestamp": "2026-07-30T13:50:14.280948+00:00"
-      },
-      {
-        "solver": "Alexandre Symeonidis-Herzig",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Vishal Brahma",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Benedikt Flierl",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Daniel Shveytser",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Tamearon Mullings",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Timoon",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Trevor Mansfield & Mark Faingold",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Andre Emery",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Aryan M",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Octavian",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Maciej Zwierzynski",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Kirill Sandor",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Edward Brilmyer Jr.",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Nathan Barnes",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Daquavious Jamel Von",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Carlos Cortez Lemos",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Alberto Toia",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "jemmons",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Ethan Wang",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Keith Edgar-Watson",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Phawin Prongpaophan",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Zzron",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "James Stluka",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Riccardo",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "SeungSang Lee",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "NestorXX-XX",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Felix Godfree",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Riccardo Bertollo",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Jiahui",
-        "timestamp": "2026-07-31T13:55:56.074938+00:00"
-      },
-      {
-        "solver": "Brice Chapman",
-        "timestamp": "2026-08-01T13:10:56.417280+00:00"
-      },
-      {
-        "solver": "Fakih Karademir",
-        "timestamp": "2026-08-01T13:10:56.417280+00:00"
-      },
-      {
-        "solver": "Hao-Yu Sun",
-        "timestamp": "2026-08-01T13:10:56.417280+00:00"
-      },
-      {
-        "solver": "Kritagya Paudel",
-        "timestamp": "2026-08-01T13:10:56.417280+00:00"
-      },
-      {
-        "solver": "Achyuth Jayadevan",
-        "timestamp": "2026-08-01T13:10:56.417280+00:00"
+        "solver": "Francisco Rodr\u00edguez-Carretero Rold\u00e1n",
+        "timestamp": "2026-08-03T14:30:28.104052+00:00"
       }
     ]
   },
-  "generatedAt": "2026-08-02T13:12:24.808523+00:00"
+  "generatedAt": "2026-08-03T14:30:28.330364+00:00"
 }
