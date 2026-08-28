@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { SolverDistribution } from '../types';
+import Tooltip from '../../../components/Tooltip';
 
 interface SolverDistributionChartProps {
   data: SolverDistribution | undefined;
@@ -84,18 +85,18 @@ const SolverDistributionChart: React.FC<SolverDistributionChartProps> = React.me
         </div>
       </div>
       <div className="distribution-legend">
-        <div className="legend-item" title="Solvers who completed exactly 1 puzzle">
+        <Tooltip as="div" className="legend-item" content="Solvers who completed exactly 1 puzzle">
           <span className="legend-color one-puzzle"></span>
           <span className="legend-text">One-Timers</span>
-        </div>
-        <div className="legend-item" title="Solvers who completed 2–9 puzzles">
+        </Tooltip>
+        <Tooltip as="div" className="legend-item" content="Solvers who completed 2–9 puzzles">
           <span className="legend-color two-nine"></span>
           <span className="legend-text">Enthusiasts</span>
-        </div>
-        <div className="legend-item" title="Solvers who completed 10 or more puzzles">
+        </Tooltip>
+        <Tooltip as="div" className="legend-item" content="Solvers who completed 10 or more puzzles">
           <span className="legend-color ten-plus"></span>
           <span className="legend-text">Masters</span>
-        </div>
+        </Tooltip>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRawPuzzleData } from '../hooks/useRawPuzzleData';
 import { Puzzle } from '../types';
 import {
@@ -8,6 +8,7 @@ import {
   formatDate,
 } from '../../../utils/leaderboardUtils';
 import { HIDDEN_PALETTE, colorFromName } from './solverChipPalettes';
+import Tooltip from '../../../components/Tooltip';
 
 interface SolverProfileModalProps {
   solverName: string | null;
@@ -18,6 +19,17 @@ const AVG_PERCENTILE_TOOLTIP =
   'Average percentile rank across solved puzzles. 100 = always first, ' +
   '0 = always last. Formula: 100 × (1 − (rank − 1) / (solvers − 1)), ' +
   'averaged across puzzles. Puzzles with only one solver are excluded.';
+
+// How long the exit transition runs before unmount (matches the CSS).
+const EXIT_MS = 220;
+
+// A downward flick faster than this dismisses the sheet regardless of
+// how far it traveled (momentum beats distance).
+const FLICK_VELOCITY = 0.11; // px per ms
+
+const isSheetMode = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(max-width: 640px)').matches;
 
 const computeSolverStats = (solverName: string, puzzles: Puzzle[]) => {
   const placements: SolverPlacement[] = [];
@@ -46,7 +58,32 @@ const computeSolverStats = (solverName: string, puzzles: Puzzle[]) => {
 };
 
 const SolverProfileModal: React.FC<SolverProfileModalProps> = ({ solverName, onClose }) => {
-  const open = !!solverName;
+  // displayName outlives solverName during the exit transition so the card
+  // can animate back out along its entry path before unmounting.
+  const [displayName, setDisplayName] = useState<string | null>(null);
+  const [visible, setVisible] = useState(false);
+  const open = !!displayName;
+
+  const modalRef = useRef<HTMLDivElement>(null);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (solverName) {
+      setDisplayName(solverName);
+      // Two frames so the hidden starting styles paint before transitioning;
+      // a reopen mid-close simply retargets from the current position.
+      const raf = requestAnimationFrame(() =>
+        requestAnimationFrame(() => setVisible(true))
+      );
+      return () => cancelAnimationFrame(raf);
+    }
+    if (displayName) {
+      setVisible(false);
+      const t = window.setTimeout(() => setDisplayName(null), EXIT_MS);
+      return () => window.clearTimeout(t);
+    }
+  }, [solverName, displayName]);
+
   const { puzzles, loading, error } = useRawPuzzleData(open);
 
   // Close on Escape; lock body scroll while modal is open.
@@ -64,50 +101,180 @@ const SolverProfileModal: React.FC<SolverProfileModalProps> = ({ solverName, onC
     };
   }, [open, onClose]);
 
+  // Move focus into the dialog on open, return it on close.
+  useEffect(() => {
+    if (!open) return;
+    restoreFocusRef.current = document.activeElement as HTMLElement | null;
+    modalRef.current?.focus();
+    return () => {
+      restoreFocusRef.current?.focus?.();
+      restoreFocusRef.current = null;
+    };
+  }, [open]);
+
+  // Simple focus trap: Tab cycles inside the dialog.
+  const onTrapKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== 'Tab') return;
+    const root = modalRef.current;
+    if (!root) return;
+    const focusables = root.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement;
+    if (e.shiftKey) {
+      if (active === first || active === root) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else if (active === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }, []);
+
+  // ---- Bottom-sheet drag-to-dismiss (small screens) ----
+  // 1:1 tracking while the finger is down, rubber-banding above the resting
+  // point, and a velocity check on release so a quick flick dismisses.
+  const dragRef = useRef<{
+    id: number;
+    startY: number;
+    lastY: number;
+    lastT: number;
+    velocity: number;
+  } | null>(null);
+
+  const onDragStart = useCallback((e: React.PointerEvent) => {
+    if (!isSheetMode()) return;
+    if (dragRef.current) return; // ignore extra touch points mid-drag
+    const el = modalRef.current;
+    if (!el) return;
+    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+    dragRef.current = {
+      id: e.pointerId,
+      startY: e.clientY,
+      lastY: e.clientY,
+      lastT: performance.now(),
+      velocity: 0,
+    };
+    el.style.transition = 'none'; // the sheet is in the hand, not animating
+  }, []);
+
+  const onDragMove = useCallback((e: React.PointerEvent) => {
+    const st = dragRef.current;
+    if (!st || e.pointerId !== st.id) return;
+    const el = modalRef.current;
+    if (!el) return;
+    const now = performance.now();
+    const dt = now - st.lastT;
+    if (dt > 0) st.velocity = (e.clientY - st.lastY) / dt;
+    st.lastY = e.clientY;
+    st.lastT = now;
+
+    let dy = e.clientY - st.startY;
+    if (dy < 0) {
+      // Rubber-band upward over-drag: resistance, not a wall.
+      const dim = el.offsetHeight || 1;
+      const c = 0.55;
+      dy = (dy * dim * c) / (dim + c * Math.abs(dy));
+    }
+    el.style.transform = `translateY(${dy}px)`;
+  }, []);
+
+  const onDragEnd = useCallback(
+    (e: React.PointerEvent) => {
+      const st = dragRef.current;
+      if (!st || e.pointerId !== st.id) return;
+      dragRef.current = null;
+      const el = modalRef.current;
+      if (!el) return;
+      el.style.transition = ''; // hand back to the stylesheet transitions
+      const dy = st.lastY - st.startY;
+      const h = el.offsetHeight || 1;
+      const cancelled = e.type === 'pointercancel';
+      if (!cancelled && (st.velocity > FLICK_VELOCITY || dy > h * 0.4)) {
+        // Continue from the current position down and out, then unmount.
+        el.style.transform = 'translateY(100%)';
+        onClose();
+      } else {
+        // Snap back to rest.
+        el.style.transform = '';
+      }
+    },
+    [onClose]
+  );
+
+  // Clear any leftover inline drag styles when fully closed.
+  useEffect(() => {
+    if (!open && modalRef.current) {
+      modalRef.current.style.transform = '';
+      modalRef.current.style.transition = '';
+    }
+  }, [open]);
+
   const stats = useMemo(() => {
-    if (!solverName || !puzzles) return null;
-    return computeSolverStats(solverName, puzzles);
-  }, [solverName, puzzles]);
+    if (!displayName || !puzzles) return null;
+    return computeSolverStats(displayName, puzzles);
+  }, [displayName, puzzles]);
 
-  if (!open || !solverName) return null;
+  if (!open || !displayName) return null;
 
-  // Determinstic per-name avatar color, same palette as banner tooltip.
-  const avatarColors = colorFromName(solverName, HIDDEN_PALETTE);
-  const initial = solverName.trim().charAt(0).toUpperCase() || '?';
+  // Deterministic per-name avatar color, same palette as banner tooltip.
+  const avatarColors = colorFromName(displayName, HIDDEN_PALETTE);
+  const initial = displayName.trim().charAt(0).toUpperCase() || '?';
 
   return (
     <div
       className="solver-modal-backdrop"
+      data-state={visible ? 'open' : 'closing'}
       onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label={`Profile for ${solverName}`}
     >
-      <div className="solver-modal" onClick={(e) => e.stopPropagation()}>
-        <button
-          className="solver-modal-close"
-          onClick={onClose}
-          aria-label="Close profile"
-          title="Close (Esc)"
-        >
-          ×
-        </button>
-
-        <header className="solver-modal-identity">
-          <div
-            className="solver-modal-avatar"
-            style={{ backgroundColor: avatarColors.bg, color: avatarColors.text }}
-            aria-hidden="true"
+      <div
+        className="solver-modal"
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Profile for ${displayName}`}
+        tabIndex={-1}
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={onTrapKeyDown}
+      >
+        <Tooltip content="Close (Esc)" className="solver-modal-close-wrap">
+          <button
+            className="solver-modal-close"
+            onClick={onClose}
+            aria-label="Close profile"
           >
-            {initial}
-          </div>
-          <h2 className="solver-modal-title">{solverName}</h2>
-          {stats && (
-            <div className="solver-modal-eyebrow">
-              Since {stats.firstAppearance}
+            ×
+          </button>
+        </Tooltip>
+
+        <div
+          className="solver-modal-drag-zone"
+          onPointerDown={onDragStart}
+          onPointerMove={onDragMove}
+          onPointerUp={onDragEnd}
+          onPointerCancel={onDragEnd}
+        >
+          <div className="sheet-handle" aria-hidden="true" />
+          <header className="solver-modal-identity">
+            <div
+              className="solver-modal-avatar"
+              style={{ backgroundColor: avatarColors.bg, color: avatarColors.text }}
+              aria-hidden="true"
+            >
+              {initial}
             </div>
-          )}
-        </header>
+            <h2 className="solver-modal-title">{displayName}</h2>
+            {stats && (
+              <div className="solver-modal-eyebrow">
+                Since {stats.firstAppearance}
+              </div>
+            )}
+          </header>
+        </div>
 
         {loading && (
           <div className="solver-modal-state">Loading puzzle history…</div>
@@ -138,14 +305,14 @@ const SolverProfileModal: React.FC<SolverProfileModalProps> = ({ solverName, onC
                 </div>
                 <div className="solver-stat-label">
                   Avg percentile
-                  <span
+                  <Tooltip
                     className="solver-stat-info"
-                    title={AVG_PERCENTILE_TOOLTIP}
+                    rich
+                    content={AVG_PERCENTILE_TOOLTIP}
                     aria-label="How average percentile is calculated"
-                    role="img"
                   >
                     i
-                  </span>
+                  </Tooltip>
                 </div>
               </div>
             </div>

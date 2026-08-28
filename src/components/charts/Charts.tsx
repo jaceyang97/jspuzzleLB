@@ -7,6 +7,7 @@ import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { Puzzle } from '../../features/leaderboard/types';
 import { useThemeColors } from '../../hooks/useThemeColors';
 import TitleTooltip from '../TitleTooltip';
+import SegmentedControl from '../SegmentedControl';
 import { YoYChart, FirstTimeSolversChart, PercentileRankChart } from './AdvancedCharts';
 import { trackEvent } from '../../utils/analytics';
 
@@ -303,23 +304,19 @@ const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
         <TitleTooltip tooltip={TAB_META[tab].tooltip}>
           {TAB_META[tab].title}
         </TitleTooltip>
-        <div className="growth-tabs-strip" role="tablist" aria-label="Growth chart view">
-          {(['growth', 'yoy', 'first-time', 'percentiles'] as GrowthTab[]).map((t) => (
-            <button
-              key={t}
-              role="tab"
-              aria-selected={tab === t}
-              className={`growth-tab-btn ${tab === t ? 'active' : ''}`}
-              onClick={() => {
-                if (t !== tab) trackEvent('chart_tab_change', { tab: t });
-                setTab(t);
-              }}
-              title={TAB_META[t].tooltip}
-            >
-              {TAB_META[t].label}
-            </button>
-          ))}
-        </div>
+        <SegmentedControl<GrowthTab>
+          className="growth-tabs-strip"
+          tabs
+          ariaLabel="Growth chart view"
+          options={(['growth', 'yoy', 'first-time', 'percentiles'] as GrowthTab[]).map(
+            (t) => ({ value: t, label: TAB_META[t].label })
+          )}
+          value={tab}
+          onChange={(t) => {
+            if (t !== tab) trackEvent('chart_tab_change', { tab: t });
+            setTab(t);
+          }}
+        />
       </div>
 
       <div className="growth-tab-panel">

@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import { LeaderboardData } from '../types';
+import Tooltip from '../../../components/Tooltip';
 import { trackEvent } from '../../../utils/analytics';
 import {
   ChipColor,
@@ -162,15 +163,16 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
     );
 
     const puzzleLink = (
-      <a
-        href="https://www.janestreet.com/puzzles/current-puzzle/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="banner-puzzle-link"
-        title={`Open "${currentPuzzleProgress.puzzleName}" on janestreet.com`}
-      >
-        {currentPuzzleProgress.puzzleName}
-      </a>
+      <Tooltip content={`Open "${currentPuzzleProgress.puzzleName}" on janestreet.com`}>
+        <a
+          href="https://www.janestreet.com/puzzles/current-puzzle/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="banner-puzzle-link"
+        >
+          {currentPuzzleProgress.puzzleName}
+        </a>
+      </Tooltip>
     );
 
     if (todaysSolvers.length > 0) {

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useScrollPagination } from '../../../hooks/useScrollPagination';
 import RankBadge from './RankBadge';
+import Tooltip from '../../../components/Tooltip';
 import { trackEvent } from '../../../utils/analytics';
 
 interface TopSolversTableProps {
@@ -91,12 +92,11 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(
               <th scope="col" style={{ width: '43%' }}>Solver</th>
               <th
                 scope="col"
-                className="center"
+                className="center th-has-tooltip"
                 style={{ width: '12%' }}
-                title="Rank change vs. last month"
                 aria-label="Rank change vs. last month"
               >
-                ±
+                <Tooltip content="Rank change vs. last month">±</Tooltip>
               </th>
               <th scope="col" className="center" style={{ width: '15%' }}>Puzzles</th>
               <th scope="col" className="center" style={{ width: '20%' }}>Most Recent</th>

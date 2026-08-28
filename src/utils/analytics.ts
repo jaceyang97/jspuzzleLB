@@ -281,7 +281,7 @@ const installOutboundClickTracking = (): void => {
  * table rows, links) are excluded to avoid double counting.
  */
 const installUiClickTracking = (): void => {
-  const EXCLUDED = '.theme-toggle, .growth-tab-btn, .banner-dismiss, tr, a';
+  const EXCLUDED = '.theme-toggle, .segmented-btn, .banner-dismiss, tr, a';
   let uiClicksSent = 0;
 
   document.addEventListener(

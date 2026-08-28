@@ -6,6 +6,7 @@ import {
 import { Puzzle } from '../../features/leaderboard/types';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { useThemeColors } from '../../hooks/useThemeColors';
+import SegmentedControl from '../SegmentedControl';
 import { trackEvent } from '../../utils/analytics';
 
 // Bin count for the percentile rank histogram. 10 bins of width 10 keeps the
@@ -79,26 +80,21 @@ export const YoYChart = memo(({ puzzles, loading }: YoYProps) => {
   return (
     <div className="growth-chart-body">
       <div className="growth-chart-toolbar">
-        <div className="chart-toggle">
-          <button
-            className={`chart-toggle-btn ${!showAllYears ? 'active' : ''}`}
-            onClick={() => {
-              if (showAllYears) trackEvent('yoy_range_change', { range: 'recent' });
-              setShowAllYears(false);
-            }}
-          >
-            Recent
-          </button>
-          <button
-            className={`chart-toggle-btn ${showAllYears ? 'active' : ''}`}
-            onClick={() => {
-              if (!showAllYears) trackEvent('yoy_range_change', { range: 'all-years' });
-              setShowAllYears(true);
-            }}
-          >
-            All years
-          </button>
-        </div>
+        <SegmentedControl<'recent' | 'all'>
+          ariaLabel="Year range"
+          options={[
+            { value: 'recent', label: 'Recent' },
+            { value: 'all', label: 'All years' },
+          ]}
+          value={showAllYears ? 'all' : 'recent'}
+          onChange={(v) => {
+            const all = v === 'all';
+            if (all !== showAllYears) {
+              trackEvent('yoy_range_change', { range: all ? 'all-years' : 'recent' });
+            }
+            setShowAllYears(all);
+          }}
+        />
       </div>
       {loading && !puzzles ? (
         <div className="chart-loading">Loading year-over-year data…</div>

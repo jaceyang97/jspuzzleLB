@@ -87,8 +87,10 @@
   transition: transform 0.3s var(--ease-out);
 }
 
-.logo-link:hover {
-  transform: scale(1.04);
+@media (hover: hover) and (pointer: fine) {
+  .logo-link:hover {
+    transform: scale(1.04);
+  }
 }
 
 .logo-link:active {
@@ -189,11 +191,17 @@
   transition: background-size 0.25s ease, color 0.2s ease;
 }
 
-.banner-puzzle-link:hover,
 .banner-puzzle-link:focus-visible {
   color: var(--accent-primary);
   background-size: 100% 1px;
   outline: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .banner-puzzle-link:hover {
+    color: var(--accent-primary);
+    background-size: 100% 1px;
+  }
 }
 
 /* ------------------------------------------------
@@ -224,9 +232,11 @@
   font-weight: 500;
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
-.solver-chip:hover {
-  background-color: var(--bg-hover-strong);
-  border-color: var(--border-primary);
+@media (hover: hover) and (pointer: fine) {
+  .solver-chip:hover {
+    background-color: var(--bg-hover-strong);
+    border-color: var(--border-primary);
+  }
 }
 .solver-chip-name {
   display: inline-block;
@@ -270,11 +280,18 @@
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   white-space: nowrap;
 }
-.banner-more:hover .banner-more-trigger,
 .banner-more:focus-within .banner-more-trigger {
   background-color: var(--accent-primary);
   border-color: var(--accent-primary);
   color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .banner-more:hover .banner-more-trigger {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: #fff;
+  }
 }
 .banner-more:focus-within {
   outline: none;
@@ -298,11 +315,18 @@
   transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
   text-align: left;
 }
-.banner-more:hover .banner-more-tooltip,
 .banner-more:focus-within .banner-more-tooltip {
   opacity: 1;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0) scale(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .banner-more:hover .banner-more-tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
 }
 .banner-more-tooltip::before {
   content: '';
@@ -369,9 +393,11 @@
   border-radius: 50%;
 }
 
-.banner-dismiss:hover {
-  color: var(--text-primary);
-  background-color: var(--bg-hover-strong);
+@media (hover: hover) and (pointer: fine) {
+  .banner-dismiss:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-hover-strong);
+  }
 }
 
 .banner-dismiss:active {
@@ -409,9 +435,11 @@
   transition: color 0.2s ease;
 }
 
-.author-link:hover {
-  color: var(--accent-primary-hover);
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .author-link:hover {
+    color: var(--accent-primary-hover);
+    text-decoration: underline;
+  }
 }
 
 /* ================================================
