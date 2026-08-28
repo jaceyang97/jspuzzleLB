@@ -1,4 +1,4 @@
-import { format, parse, compareAsc, differenceInMonths, addMonths } from 'date-fns';
+import { format, parse, compareAsc, differenceInMonths } from 'date-fns';
 import { LeaderboardData, Puzzle, SolverStats } from '../features/leaderboard/types';
 
 export const MONTH_CODES = [
@@ -105,7 +105,7 @@ export const computeRankChanges = (
   const previousCounts = new Map<string, number>();
   puzzles.forEach((p) => {
     const isLatestMonth = monthKey(p) === latestMonth;
-    (p.solvers || []).forEach((name) => {
+    Array.from(new Set(p.solvers || [])).forEach((name) => {
       currentCounts.set(name, (currentCounts.get(name) || 0) + 1);
       if (!isLatestMonth) {
         previousCounts.set(name, (previousCounts.get(name) || 0) + 1);
@@ -173,8 +173,10 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
     
     // Skip empty solver arrays to improve performance
     if (!puzzle.solvers || puzzle.solvers.length === 0) return;
-    
-    puzzle.solvers.forEach(solverName => {
+
+    // A name listed more than once on one puzzle (e.g. double puzzles)
+    // still counts as one solve of that puzzle.
+    Array.from(new Set(puzzle.solvers)).forEach(solverName => {
       if (!solverMap.has(solverName)) {
         solverMap.set(solverName, {
           name: solverName,
@@ -273,18 +275,23 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
     .sort((a, b) => b.streakLength - a.streakLength)
     .slice(0, 20);
   
-  // Calculate rising stars (started in the last year with high solve rate)
+  // Rising stars: first appearance within the past 12 months (current
+  // month included) AND at least 3 puzzles solved.
   const currentDate = new Date();
-  const oneYearAgo = addMonths(currentDate, -12);
-  
+  const nowMonthIdx = currentDate.getFullYear() * 12 + currentDate.getMonth();
+  const monthIdxOf = (dateText: string): number => {
+    const date = parseDate(dateText);
+    return date.getFullYear() * 12 + date.getMonth();
+  };
+
   const risingStars = Array.from(solverMap.values())
-    .filter(solver => {
-      const firstDate = parseDate(solver.firstAppearance);
-      return compareAsc(firstDate, oneYearAgo) >= 0 && solver.puzzlesSolved >= 3;
-    })
+    .filter(solver =>
+      nowMonthIdx - monthIdxOf(solver.firstAppearance) <= 11 &&
+      solver.puzzlesSolved >= 3
+    )
     .map(solver => {
       const firstDate = parseDate(solver.firstAppearance);
-      const monthsSinceStart = Math.max(1, differenceInMonths(currentDate, firstDate));
+      const monthsSinceStart = Math.max(1, nowMonthIdx - monthIdxOf(solver.firstAppearance));
       return {
         name: solver.name,
         puzzlesSolved: solver.puzzlesSolved,
@@ -349,7 +356,7 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
       return {
         id: `${year}-${month}`,
         name: puzzle.name,
-        solvers: puzzle.solvers ? puzzle.solvers.length : 0,
+        solvers: new Set(puzzle.solvers || []).size,
         solution_url: puzzle.solution_url
       };
     })

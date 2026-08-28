@@ -58,7 +58,7 @@ def _compute_rank_changes(
         date = _parse_date(puzzle.get("date_text", ""))
         if (date.year, date.month) == latest_month:
             continue
-        for name in puzzle.get("solvers") or []:
+        for name in dict.fromkeys(puzzle.get("solvers") or []):
             previous_counts[name] = previous_counts.get(name, 0) + 1
 
     current_ranks = _competition_ranks(current_counts)
@@ -87,7 +87,10 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
         if not solvers:
             continue
 
-        for solver_name in solvers:
+        # A name listed more than once on one puzzle (e.g. double puzzles
+        # like "'Pent-Up' Frustration 3 / Knight Moves 7") still counts as
+        # one solve of that puzzle.
+        for solver_name in dict.fromkeys(solvers):
             if solver_name not in solver_map:
                 solver_map[solver_name] = {
                     "name": solver_name,
@@ -149,15 +152,17 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
     )
     longest_streaks = sorted(longest_streaks, key=lambda s: s["length"], reverse=True)[:20]
 
-    # Rising stars
+    # Rising stars: first appearance within the past 12 months (current
+    # month included) AND at least 3 puzzles solved.
     now = datetime.now(timezone.utc)
-    one_year_ago = datetime(now.year, now.month, 1).replace(year=now.year - 1)
+    now_month_idx = now.year * 12 + now.month
 
     rising_stars = []
     for solver in solver_map.values():
         first_date = _parse_date(solver["firstAppearance"])
-        months_since = max(1, (now.year - first_date.year) * 12 + (now.month - first_date.month))
-        if first_date >= one_year_ago and solver["puzzlesSolved"] >= 3:
+        first_month_idx = first_date.year * 12 + first_date.month
+        months_since = max(1, now_month_idx - first_month_idx)
+        if now_month_idx - first_month_idx <= 11 and solver["puzzlesSolved"] >= 3:
             rising_stars.append(
                 {
                     "solver": solver["name"],
@@ -200,7 +205,7 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
                 {
                     "id": f"{_parse_date(p.get('date_text', '')).year}-{_parse_date(p.get('date_text', '')).month}",
                     "name": p.get("name", "Unknown"),
-                    "solvers": len(p.get("solvers") or []),
+                    "solvers": len(set(p.get("solvers") or [])),
                     "solution_url": p.get("solution_url", ""),
                 }
                 for p in sorted_puzzles
@@ -257,7 +262,7 @@ def _build_current_puzzle_progress(
             return {
                 "puzzleName": puzzle.get("name", ""),
                 "puzzleDate": puzzle.get("date_text", ""),
-                "solverCount": len(puzzle.get("solvers", [])),
+                "solverCount": len(set(puzzle.get("solvers") or [])),
                 "timeline": [
                     {"solver": name, "timestamp": ts}
                     for name, ts in entries
