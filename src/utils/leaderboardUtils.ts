@@ -62,6 +62,66 @@ export const computeAveragePercentile = (
   return { value: sum / usable.length, sampleSize: usable.length };
 };
 
+/**
+ * 1224-style ranks by solve count: tied counts share a rank, so a
+ * solver's rank only moves when the set of solvers above them changes.
+ */
+export const competitionRanks = (
+  counts: Map<string, number>,
+): Map<string, number> => {
+  const ranks = new Map<string, number>();
+  const ordered = Array.from(counts.entries()).sort((a, b) => b[1] - a[1]);
+  let rank = 0;
+  let prevCount: number | null = null;
+  ordered.forEach(([name, count], index) => {
+    if (count !== prevCount) {
+      rank = index + 1;
+      prevCount = count;
+    }
+    ranks.set(name, rank);
+  });
+  return ranks;
+};
+
+/**
+ * Rank movement vs. the standings before the newest puzzle month.
+ * Positive = moved up, negative = moved down, `null` = not ranked last
+ * month (first solve happened this month). Competition ranks are used on
+ * both snapshots so ties never produce noise from arbitrary ordering.
+ */
+export const computeRankChanges = (
+  puzzles: Puzzle[],
+): Map<string, number | null> => {
+  const changes = new Map<string, number | null>();
+  if (!puzzles || puzzles.length === 0) return changes;
+
+  const monthKey = (p: Puzzle): number => {
+    const date = parseDate(p.date_text);
+    return date.getFullYear() * 12 + date.getMonth();
+  };
+  const latestMonth = Math.max(...puzzles.map(monthKey));
+
+  const currentCounts = new Map<string, number>();
+  const previousCounts = new Map<string, number>();
+  puzzles.forEach((p) => {
+    const isLatestMonth = monthKey(p) === latestMonth;
+    (p.solvers || []).forEach((name) => {
+      currentCounts.set(name, (currentCounts.get(name) || 0) + 1);
+      if (!isLatestMonth) {
+        previousCounts.set(name, (previousCounts.get(name) || 0) + 1);
+      }
+    });
+  });
+
+  const currentRanks = competitionRanks(currentCounts);
+  const previousRanks = competitionRanks(previousCounts);
+  currentRanks.forEach((currRank, name) => {
+    const prevRank = previousRanks.get(name);
+    changes.set(name, prevRank === undefined ? null : prevRank - currRank);
+  });
+  return changes;
+};
+
 /** Convert "January 2025" → "Jan 2025". Already-short dates pass through. */
 export const formatDate = (dateText: string): string => {
   if (!dateText) return 'N/A';
@@ -192,11 +252,13 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
   });
   
   // Get all solvers by puzzles solved, mapped to output shape
+  const rankChanges = computeRankChanges(puzzles);
   const topSolvers = topSolversByCount.map(s => ({
     name: s.name,
     puzzlesSolved: s.puzzlesSolved,
     firstAppearance: formatMonthYear(parseDate(s.firstAppearance)),
     lastSolve: formatMonthYear(parseDate(s.lastSolve)),
+    rankChange: rankChanges.get(s.name) ?? null,
   }));
   
   // Get solvers with longest streaks

@@ -471,6 +471,26 @@
   vertical-align: middle;
 }
 
+/* Rank movement vs. last month (Top Solvers "Change" column) */
+.rank-change {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.rank-change.up { color: var(--rank-up); }
+.rank-change.down { color: var(--rank-down); }
+.rank-change.same { color: var(--text-muted); font-weight: 400; }
+
+.rank-change.new {
+  color: var(--accent-primary);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
 /* Column widths */
 .leaderboard-table.mini th:first-child,
 .leaderboard-table.mini td:first-child { width: 10%; }

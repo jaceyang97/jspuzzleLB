@@ -30,6 +30,8 @@ export interface LeaderboardData {
     puzzlesSolved: number;
     firstAppearance: string;
     lastSolve: string;
+    /** Rank movement vs. last month: positive = up, null = new this month. */
+    rankChange?: number | null;
   }>;
   longestStreaks: Array<{
     name: string;

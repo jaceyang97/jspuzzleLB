@@ -22,6 +22,55 @@ def _format_month_year(dt: datetime) -> str:
     return dt.strftime("%b %Y")
 
 
+def _competition_ranks(counts: Dict[str, int]) -> Dict[str, int]:
+    """1224-style ranks by solve count: tied counts share a rank."""
+    ranks: Dict[str, int] = {}
+    rank = 0
+    prev_count: Optional[int] = None
+    ordered = sorted(counts.items(), key=lambda kv: kv[1], reverse=True)
+    for idx, (name, count) in enumerate(ordered):
+        if count != prev_count:
+            rank = idx + 1
+            prev_count = count
+        ranks[name] = rank
+    return ranks
+
+
+def _compute_rank_changes(
+    sorted_puzzles: List[Dict[str, Any]],
+    current_counts: Dict[str, int],
+) -> Dict[str, Optional[int]]:
+    """Rank movement vs. the standings before the newest puzzle month.
+
+    Positive = moved up, negative = moved down, None = not ranked last
+    month (first solve happened this month). Uses competition ranks on
+    both snapshots so solvers tied on solve count never show noise from
+    arbitrary tie ordering.
+    """
+    if not sorted_puzzles:
+        return {}
+
+    latest = _parse_date(sorted_puzzles[0].get("date_text", ""))
+    latest_month = (latest.year, latest.month)
+
+    previous_counts: Dict[str, int] = {}
+    for puzzle in sorted_puzzles:
+        date = _parse_date(puzzle.get("date_text", ""))
+        if (date.year, date.month) == latest_month:
+            continue
+        for name in puzzle.get("solvers") or []:
+            previous_counts[name] = previous_counts.get(name, 0) + 1
+
+    current_ranks = _competition_ranks(current_counts)
+    previous_ranks = _competition_ranks(previous_counts)
+
+    changes: Dict[str, Optional[int]] = {}
+    for name, curr_rank in current_ranks.items():
+        prev_rank = previous_ranks.get(name)
+        changes[name] = None if prev_rank is None else prev_rank - curr_rank
+    return changes
+
+
 def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
     solver_map: Dict[str, Dict[str, Any]] = {}
     all_months = set()
@@ -60,6 +109,12 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
 
     # Top solvers by solve count
     top_solvers = sorted(solver_map.values(), key=lambda s: s["puzzlesSolved"], reverse=True)
+
+    # Rank movement vs. last month's standings
+    rank_changes = _compute_rank_changes(
+        sorted_puzzles,
+        {s["name"]: s["puzzlesSolved"] for s in top_solvers},
+    )
 
     # Streaks
     for solver in top_solvers:
@@ -177,6 +232,7 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
                 "puzzlesSolved": solver["puzzlesSolved"],
                 "firstAppearance": solver["firstAppearance"],
                 "lastSolve": solver["lastSolve"],
+                "rankChange": rank_changes.get(solver["name"]),
             }
             for solver in top_solvers
         ],

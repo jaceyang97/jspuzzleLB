@@ -1,5 +1,7 @@
 import {
+  competitionRanks,
   computeAveragePercentile,
+  computeRankChanges,
   findSolverPlacement,
   SolverPlacement,
 } from '../leaderboardUtils';
@@ -147,6 +149,79 @@ describe('computeAveragePercentile', () => {
     // is field-size-invariant for ties at the top.
     const result = computeAveragePercentile([mk(1, 30), mk(1, 1000)]);
     expect(result!.value).toBeCloseTo(100, 6);
+  });
+});
+
+describe('competitionRanks', () => {
+  test('tied counts share a rank; next distinct count skips past the tie group', () => {
+    const ranks = competitionRanks(
+      new Map([
+        ['A', 5],
+        ['B', 3],
+        ['C', 3],
+        ['D', 1],
+      ]),
+    );
+    expect(ranks.get('A')).toBe(1);
+    expect(ranks.get('B')).toBe(2);
+    expect(ranks.get('C')).toBe(2);
+    expect(ranks.get('D')).toBe(4);
+  });
+
+  test('empty input yields empty ranks', () => {
+    expect(competitionRanks(new Map()).size).toBe(0);
+  });
+});
+
+describe('computeRankChanges', () => {
+  test('overtaking in the latest month shows up as +/- movement', () => {
+    // Before June: Alice 2 solves (rank 1), Bob 1 solve (rank 2).
+    // Bob solves June's puzzle, Alice does not → both at 2, tied rank 1.
+    const puzzles = [
+      puzzle('April 2026', 'P1', ['Alice', 'Bob']),
+      puzzle('May 2026', 'P2', ['Alice']),
+      puzzle('June 2026', 'P3', ['Bob']),
+    ];
+    const changes = computeRankChanges(puzzles);
+    expect(changes.get('Alice')).toBe(0); // rank 1 → 1
+    expect(changes.get('Bob')).toBe(1); // rank 2 → 1
+  });
+
+  test('solver whose first solve is the latest month is flagged as new (null)', () => {
+    const puzzles = [
+      puzzle('May 2026', 'P1', ['Alice']),
+      puzzle('June 2026', 'P2', ['Alice', 'Newcomer']),
+    ];
+    const changes = computeRankChanges(puzzles);
+    expect(changes.get('Newcomer')).toBeNull();
+    expect(changes.get('Alice')).toBe(0);
+  });
+
+  test('being passed by others shows a negative change', () => {
+    // Before June: Alice and Bob tied at 2 solves, both rank 1.
+    // June: only Bob solves → Bob 3 (sole rank 1), Alice 2 (rank 2).
+    const puzzles = [
+      puzzle('April 2026', 'P1', ['Alice', 'Bob']),
+      puzzle('May 2026', 'P2', ['Alice', 'Bob']),
+      puzzle('June 2026', 'P3', ['Bob']),
+    ];
+    const changes = computeRankChanges(puzzles);
+    expect(changes.get('Bob')).toBe(0); // tied rank 1 → sole rank 1
+    expect(changes.get('Alice')).toBe(-1); // tied rank 1 → rank 2
+  });
+
+  test('latest month with no solvers yet means no movement for anyone', () => {
+    const puzzles = [
+      puzzle('May 2026', 'P1', ['Alice', 'Bob']),
+      puzzle('June 2026', 'P2', []),
+    ];
+    const changes = computeRankChanges(puzzles);
+    expect(changes.get('Alice')).toBe(0);
+    expect(changes.get('Bob')).toBe(0);
+  });
+
+  test('empty input yields an empty map', () => {
+    expect(computeRankChanges([]).size).toBe(0);
   });
 });
 

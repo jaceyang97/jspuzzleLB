@@ -4,10 +4,42 @@ import RankBadge from './RankBadge';
 import { trackEvent } from '../../../utils/analytics';
 
 interface TopSolversTableProps {
-  data: Array<{ name: string; puzzlesSolved: number; lastSolve: string }>;
+  data: Array<{
+    name: string;
+    puzzlesSolved: number;
+    lastSolve: string;
+    rankChange?: number | null;
+  }>;
   searchTerm: string;
   onSolverClick?: (name: string) => void;
 }
+
+const RankChange: React.FC<{ change: number | null | undefined }> = ({ change }) => {
+  if (change === null) {
+    return (
+      <span className="rank-change new" aria-label="Not ranked last month">
+        NEW
+      </span>
+    );
+  }
+  if (change === undefined || change === 0) {
+    return (
+      <span className="rank-change same" aria-label="No rank change since last month">
+        –
+      </span>
+    );
+  }
+  const up = change > 0;
+  return (
+    <span
+      className={`rank-change ${up ? 'up' : 'down'}`}
+      aria-label={`${up ? 'Up' : 'Down'} ${Math.abs(change)} since last month`}
+    >
+      {up ? '▲' : '▼'}
+      {Math.abs(change)}
+    </span>
+  );
+};
 
 const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(
   ({ data, searchTerm, onSolverClick }) => {
@@ -56,7 +88,16 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(
           <thead>
             <tr>
               <th scope="col" style={{ width: '10%' }}>Rank</th>
-              <th scope="col" style={{ width: '55%' }}>Solver</th>
+              <th scope="col" style={{ width: '43%' }}>Solver</th>
+              <th
+                scope="col"
+                className="center"
+                style={{ width: '12%' }}
+                title="Rank change vs. last month"
+                aria-label="Rank change vs. last month"
+              >
+                ±
+              </th>
               <th scope="col" className="center" style={{ width: '15%' }}>Puzzles</th>
               <th scope="col" className="center" style={{ width: '20%' }}>Most Recent</th>
             </tr>
@@ -85,6 +126,7 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(
                     <td title={solver.name}>
                       <span className="solver-name">{solver.name}</span>
                     </td>
+                    <td className="center"><RankChange change={solver.rankChange} /></td>
                     <td className="center">{solver.puzzlesSolved}</td>
                     <td className="center">{solver.lastSolve || 'N/A'}</td>
                   </tr>
@@ -92,12 +134,12 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(
               })
             ) : (
               <tr>
-                <td colSpan={4}>No data available</td>
+                <td colSpan={5}>No data available</td>
               </tr>
             )}
             {visibleItems < filteredData.length && (
               <tr className="loading-row">
-                <td colSpan={4}>Loading more...</td>
+                <td colSpan={5}>Loading more...</td>
               </tr>
             )}
           </tbody>

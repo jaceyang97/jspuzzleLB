@@ -69,6 +69,10 @@
   /* Table row alternating */
   --table-row-even: #fafafc;
 
+  /* Rank movement indicators */
+  --rank-up: #2da44e;
+  --rank-down: #d70015;
+
   /* GitHub icon */
   --github-fill: #1d1d1f;
 
@@ -141,6 +145,10 @@
 
   /* Table row alternating */
   --table-row-even: #232325;
+
+  /* Rank movement indicators */
+  --rank-up: #40c463;
+  --rank-down: #ff453a;
 
   /* GitHub icon */
   --github-fill: #f5f5f7;

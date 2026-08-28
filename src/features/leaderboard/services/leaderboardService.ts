@@ -27,6 +27,7 @@ export const loadLeaderboardData = async (): Promise<LeaderboardData> => {
         puzzlesSolved: s.puzzlesSolved,
         firstAppearance: formatDate(s.firstAppearance),
         lastSolve: formatDate(s.lastSolve),
+        rankChange: s.rankChange,
       })),
       longestStreaks: (raw.longestStreaks ?? []).map((s: any) => ({
         name: s.solver,
