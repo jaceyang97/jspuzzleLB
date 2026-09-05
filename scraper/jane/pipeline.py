@@ -8,7 +8,7 @@ from loguru import logger
 
 from .client import fetch_html, fetch_json, build_session, DEFAULT_TIMEOUT
 from .models import Puzzle, PuzzleMeta
-from .parsers import parse_archive_page, parse_solution_page, clean_solver_name
+from .parsers import parse_archive_page, parse_solution_page, clean_solver_names
 from .storage import load_existing, save_puzzles, load_puzzles_list, save_puzzles_raw
 
 CURRENT_PUZZLE_URL = "https://www.janestreet.com/puzzles/current-puzzle/"
@@ -25,7 +25,7 @@ def get_leaderboard_names(session, puzzle_id: str, timeout: int = DEFAULT_TIMEOU
     try:
         data = fetch_json(session, json_url, timeout=timeout)
         solvers = data.get("leaders", [])
-        return [clean_solver_name(solver) for solver in solvers]
+        return clean_solver_names(solvers)
     except Exception as exc:  # pragma: no cover - network/HTML errors
         logger.warning(f"Failed to fetch leaderboard {puzzle_id}: {exc}")
         return []

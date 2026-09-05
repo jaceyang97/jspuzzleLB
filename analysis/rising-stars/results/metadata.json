@@ -1,0 +1,121 @@
+{
+  "generated_at_utc": "2026-09-05T22:30:22.318793+00:00",
+  "input_path": "A:\\Projects\\jspuzzleLB\\public\\data\\data.json",
+  "input_sha256": "bb4438c67cd513a9276bf9c3876d6b4b73b17155d75028a7ae01a8bcb8d9ee33",
+  "script_sha256": "02321ea539ee4e99bc16c918b9f69234dd68795350a3c8c33d7d1a03bc279fbf",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "input_puzzle_count": 151,
+  "published_closed_puzzle_count": 128,
+  "published_closed_solver_count": 16314,
+  "first_closed_month": "2015-11",
+  "last_closed_month": "2026-08",
+  "unknown_months_inside_closed_range": [
+    "2020-03",
+    "2020-11"
+  ],
+  "published_filter": "Nonempty solution_url AND nonempty solver list; nonblank names preserved exactly and deduplicated inside each puzzle. Blank entries excluded as invalid identities.",
+  "unknown_months": "Absent/unpublished/empty-list months are unknown, excluded from exposure and future opportunity counts.",
+  "debut_definition": "First appearance in the closed, published archive; first 2015-11 cohort excluded as left-censored.",
+  "opportunity_definition": "Closed published puzzles from debut month through origin, both inclusive. Current archive asserts one puzzle per month.",
+  "grid": {
+    "window_months": [
+      6,
+      9,
+      12,
+      18
+    ],
+    "min_solves": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "min_opportunities": [
+      1,
+      3,
+      6
+    ],
+    "ranking": [
+      "raw",
+      "count",
+      "wilson",
+      "beta"
+    ],
+    "configuration_count": 240
+  },
+  "window_rule": "origin_month - debut_month + 1 <= W (calendar months)",
+  "periods": {
+    "train": [
+      "2018-01",
+      "2022-06"
+    ],
+    "validation": [
+      "2023-01",
+      "2024-06"
+    ],
+    "holdout": [
+      "2025-01",
+      "2026-02"
+    ]
+  },
+  "top_k": 20,
+  "future_horizon_puzzles": 6,
+  "future_quality": "Sum of inclusion probability times next-six-puzzle solve fraction / sum of inclusion probabilities across all origins.",
+  "macro_quality_alternative": "Mean origin-level weighted future quality; empty lists score zero in this secondary diagnostic.",
+  "exposure_objective": "Inclusion-weighted mean E-1, minimized. This is age of displayed records, NOT time-to-first-detection.",
+  "reach_objective": "Sum_i(1-product_t(1-w_it)), annualized over inclusive calendar months in the evaluation period.",
+  "reach_assumption": "Boundary ties independently draw a uniformly random subset at each origin. Reach is expected exposure under that hypothetical policy, not deterministic UI reach.",
+  "tie_rule": "Rank by score (rounded to 12 decimals), then observed solve count. Fractional weights split top-K boundary ties; names do not select winners.",
+  "pareto": "Maximize future_quality and annualized_unique_reach; minimize average_post_debut_exposure; require mean list_fill >= 0.95.",
+  "equivalence": "Same per-origin name inclusion probabilities across the entire period; within-list order is not compared.",
+  "scores": {
+    "raw": "S/E, inclusive published opportunities",
+    "count": "S; identical ranking to S/W for a fixed cohort window W",
+    "wilson": "Wilson lower bound, z=1.64, post-debut successes S-1 / opportunities E-1; zero if E-1=0",
+    "beta": "(S-1+alpha)/(E-1+alpha+beta); guaranteed debut success excluded"
+  },
+  "beta_prior_fit": "Fixed-n=6 beta-binomial method of moments on first six post-debut outcomes; sample variance ddof=1; rho numerically clipped to [1e-6,1-1e-6] if needed.",
+  "beta_prior_cohorts": "Debut Jan2016-Jun2022, all six subsequent published outcomes complete by Dec2022; first month success excluded.",
+  "training_prior_policy": "Refit at every training origin using only qualifying six-outcome records complete by that origin.",
+  "validation_holdout_prior_policy": "Fixed Dec2022 prior, unchanged during validation/holdout/current comparison.",
+  "frozen_beta_prior": {
+    "alpha": 0.18096652570658803,
+    "beta": 2.305798203946863,
+    "mean": 0.07277187244480784,
+    "concentration": 2.4867647296534514,
+    "rate_sample_variance_ddof1": 0.02737274901596773,
+    "raw_intraclass_correlation": 0.2867988171084287,
+    "used_intraclass_correlation": 0.2867988171084287,
+    "numerical_clip_applied": false,
+    "solver_count": 3669,
+    "outcomes_per_solver": 6,
+    "debut_min": "2016-01",
+    "debut_max": "2022-06",
+    "latest_outcome_month": "2022-12",
+    "fit_cutoff": "2022-12"
+  },
+  "holdout_evaluated": false,
+  "limitations": [
+    "Retrospective event-month reconstruction; solver lists may contain later publication-time revisions.",
+    "Absence from a published list measures no recorded solve, not observed failed attempts or intrinsic ability.",
+    "Exact public names may merge distinct people or split one person; no inferred identity matching.",
+    "Outcomes overlap across origins and solvers recur, so observations are dependent; point estimates have no independent-observation confidence claim.",
+    "Future quality, reach and record age are explicit proxies, not ground truth for strong newcomers or a unique optimum."
+  ],
+  "audits": {
+    "multi_puzzle_months": {},
+    "multi_puzzle_month_count": 0,
+    "duplicate_names_within_puzzles_removed": 54,
+    "blank_solver_entries_removed": 0,
+    "left_censored_first_cohort": "2015-11",
+    "left_censored_solver_count": 34,
+    "raw_rate_max": 1.0,
+    "all_success_counts_le_opportunities": true,
+    "all_feature_months_le_origin": true,
+    "all_future_months_gt_origin": true,
+    "all_training_prior_outcomes_available_by_origin": true,
+    "all_validation_prior_outcomes_available_before_period": true
+  }
+}

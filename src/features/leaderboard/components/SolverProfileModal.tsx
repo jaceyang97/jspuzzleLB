@@ -10,6 +10,7 @@ import {
 import { HIDDEN_PALETTE, colorFromName } from './solverChipPalettes';
 import Tooltip from '../../../components/Tooltip';
 import InfoTooltip from '../../../components/InfoTooltip';
+import { solverInitial } from '../../../utils/solverInitial';
 
 interface SolverProfileModalProps {
   solverName: string | null;
@@ -224,7 +225,7 @@ const SolverProfileModal: React.FC<SolverProfileModalProps> = ({ solverName, onC
 
   // Deterministic per-name avatar color, same palette as banner tooltip.
   const avatarColors = colorFromName(displayName, HIDDEN_PALETTE);
-  const initial = displayName.trim().charAt(0).toUpperCase() || '?';
+  const initial = solverInitial(displayName);
 
   return (
     <div

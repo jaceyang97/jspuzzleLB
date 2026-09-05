@@ -273,7 +273,7 @@ def _build_current_puzzle_progress(
 
 def save_stats(file_path: str, stats: Dict[str, Any]) -> None:
     os.makedirs(os.path.dirname(file_path) or ".", exist_ok=True)
-    with open(file_path, "w", encoding="utf-8") as f:
+    with open(file_path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(stats, f, indent=2)
 
 

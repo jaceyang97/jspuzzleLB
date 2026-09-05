@@ -1,0 +1,1172 @@
+{
+  "as_of_closed_month": "2026-08",
+  "future_outcomes_evaluated": false,
+  "configurations": [
+    {
+      "config_id": "W12-S3-E1-raw",
+      "window_months": 12,
+      "min_solves": 3,
+      "min_opportunities": 1,
+      "ranking": "raw",
+      "eligible_count": 309,
+      "groups": [
+        {
+          "score": 1.0,
+          "solves": 12,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Joshua Kindler",
+              "debut": "2025-09",
+              "opportunities": 12,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 1,
+          "tie_size": 1,
+          "expected_slots": 1.0
+        },
+        {
+          "score": 1.0,
+          "solves": 7,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Daniel Shields",
+              "debut": "2026-02",
+              "opportunities": 7,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Marianna Sykopetritou",
+              "debut": "2026-02",
+              "opportunities": 7,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 2,
+          "tie_size": 2,
+          "expected_slots": 2.0
+        },
+        {
+          "score": 1.0,
+          "solves": 5,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Dawson Yao",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Denis Abuti",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Lucas Reymond",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Umair Hundekar",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 4,
+          "tie_size": 4,
+          "expected_slots": 4.0
+        },
+        {
+          "score": 1.0,
+          "solves": 4,
+          "inclusion_probability": 0.4482758620689655,
+          "members": [
+            {
+              "name": "Abhishek Sekar",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aditya Patil",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aidan Crawford",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aidan Lai",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Alexander Klasen",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Alexander Lipatov",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Andrew Hardt",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Bojun Jia",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Boyan Zhou",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Charley Tan",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Elias Botsford",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Emma Xing",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Enhan Zhao",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Farhad Omid",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Hangyu Liang",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Hoang Vu",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Jack Humphries",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "James Karlsson",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Lasmar Khalifa",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Leonardo Pedroso",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Leonardo Z.",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Nickita Khylkouski",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Oliver Middleton",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Rasmus Foyer",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Tatsuru Miyamoto",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Thomas Kennedy",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Tim Sels",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "YYY",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Yizun Gu",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 8,
+          "tie_size": 29,
+          "expected_slots": 13.0
+        }
+      ]
+    },
+    {
+      "config_id": "W12-S4-E1-raw",
+      "window_months": 12,
+      "min_solves": 4,
+      "min_opportunities": 1,
+      "ranking": "raw",
+      "eligible_count": 139,
+      "groups": [
+        {
+          "score": 1.0,
+          "solves": 12,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Joshua Kindler",
+              "debut": "2025-09",
+              "opportunities": 12,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 1,
+          "tie_size": 1,
+          "expected_slots": 1.0
+        },
+        {
+          "score": 1.0,
+          "solves": 7,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Daniel Shields",
+              "debut": "2026-02",
+              "opportunities": 7,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Marianna Sykopetritou",
+              "debut": "2026-02",
+              "opportunities": 7,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 2,
+          "tie_size": 2,
+          "expected_slots": 2.0
+        },
+        {
+          "score": 1.0,
+          "solves": 5,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Dawson Yao",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Denis Abuti",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Lucas Reymond",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Umair Hundekar",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 4,
+          "tie_size": 4,
+          "expected_slots": 4.0
+        },
+        {
+          "score": 1.0,
+          "solves": 4,
+          "inclusion_probability": 0.4482758620689655,
+          "members": [
+            {
+              "name": "Abhishek Sekar",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aditya Patil",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aidan Crawford",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aidan Lai",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Alexander Klasen",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Alexander Lipatov",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Andrew Hardt",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Bojun Jia",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Boyan Zhou",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Charley Tan",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Elias Botsford",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Emma Xing",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Enhan Zhao",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Farhad Omid",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Hangyu Liang",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Hoang Vu",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Jack Humphries",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "James Karlsson",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Lasmar Khalifa",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Leonardo Pedroso",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Leonardo Z.",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Nickita Khylkouski",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Oliver Middleton",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Rasmus Foyer",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Tatsuru Miyamoto",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Thomas Kennedy",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Tim Sels",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "YYY",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Yizun Gu",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 8,
+          "tie_size": 29,
+          "expected_slots": 13.0
+        }
+      ]
+    },
+    {
+      "config_id": "W12-S3-E1-wilson",
+      "window_months": 12,
+      "min_solves": 3,
+      "min_opportunities": 1,
+      "ranking": "wilson",
+      "eligible_count": 309,
+      "groups": [
+        {
+          "score": 0.80352968677,
+          "solves": 12,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Joshua Kindler",
+              "debut": "2025-09",
+              "opportunities": 12,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 1,
+          "tie_size": 1,
+          "expected_slots": 1.0
+        },
+        {
+          "score": 0.69048057448,
+          "solves": 7,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Daniel Shields",
+              "debut": "2026-02",
+              "opportunities": 7,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Marianna Sykopetritou",
+              "debut": "2026-02",
+              "opportunities": 7,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 2,
+          "tie_size": 2,
+          "expected_slots": 2.0
+        },
+        {
+          "score": 0.653158165322,
+          "solves": 10,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Frederic Hamelink",
+              "debut": "2025-10",
+              "opportunities": 11,
+              "raw_rate": 0.9090909090909091
+            }
+          ],
+          "rank_start": 4,
+          "tie_size": 1,
+          "expected_slots": 1.0
+        },
+        {
+          "score": 0.597943075819,
+          "solves": 5,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Dawson Yao",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Denis Abuti",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Lucas Reymond",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Umair Hundekar",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 5,
+          "tie_size": 4,
+          "expected_slots": 4.0
+        },
+        {
+          "score": 0.573638596561,
+          "solves": 10,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Joel Pulikkan",
+              "debut": "2025-09",
+              "opportunities": 12,
+              "raw_rate": 0.8333333333333334
+            }
+          ],
+          "rank_start": 9,
+          "tie_size": 1,
+          "expected_slots": 1.0
+        },
+        {
+          "score": 0.52727784027,
+          "solves": 4,
+          "inclusion_probability": 0.3793103448275862,
+          "members": [
+            {
+              "name": "Abhishek Sekar",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aditya Patil",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aidan Crawford",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aidan Lai",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Alexander Klasen",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Alexander Lipatov",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Andrew Hardt",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Bojun Jia",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Boyan Zhou",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Charley Tan",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Elias Botsford",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Emma Xing",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Enhan Zhao",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Farhad Omid",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Hangyu Liang",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Hoang Vu",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Jack Humphries",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "James Karlsson",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Lasmar Khalifa",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Leonardo Pedroso",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Leonardo Z.",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Nickita Khylkouski",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Oliver Middleton",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Rasmus Foyer",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Tatsuru Miyamoto",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Thomas Kennedy",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Tim Sels",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "YYY",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Yizun Gu",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 10,
+          "tie_size": 29,
+          "expected_slots": 11.0
+        }
+      ]
+    },
+    {
+      "config_id": "W12-S3-E1-beta",
+      "window_months": 12,
+      "min_solves": 3,
+      "min_opportunities": 1,
+      "ranking": "beta",
+      "eligible_count": 309,
+      "groups": [
+        {
+          "score": 0.829032518164,
+          "solves": 12,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Joshua Kindler",
+              "debut": "2025-09",
+              "opportunities": 12,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 1,
+          "tie_size": 1,
+          "expected_slots": 1.0
+        },
+        {
+          "score": 0.735255826828,
+          "solves": 10,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Frederic Hamelink",
+              "debut": "2025-10",
+              "opportunities": 11,
+              "raw_rate": 0.9090909090909091
+            }
+          ],
+          "rank_start": 2,
+          "tie_size": 1,
+          "expected_slots": 1.0
+        },
+        {
+          "score": 0.728306571774,
+          "solves": 7,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Daniel Shields",
+              "debut": "2026-02",
+              "opportunities": 7,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Marianna Sykopetritou",
+              "debut": "2026-02",
+              "opportunities": 7,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 3,
+          "tie_size": 2,
+          "expected_slots": 2.0
+        },
+        {
+          "score": 0.680738984459,
+          "solves": 10,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Joel Pulikkan",
+              "debut": "2025-09",
+              "opportunities": 12,
+              "raw_rate": 0.8333333333333334
+            }
+          ],
+          "rank_start": 5,
+          "tie_size": 1,
+          "expected_slots": 1.0
+        },
+        {
+          "score": 0.644538024725,
+          "solves": 5,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Dawson Yao",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Denis Abuti",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Lucas Reymond",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Umair Hundekar",
+              "debut": "2026-04",
+              "opportunities": 5,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 6,
+          "tie_size": 4,
+          "expected_slots": 4.0
+        },
+        {
+          "score": 0.610476040134,
+          "solves": 6,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Andrei Levin",
+              "debut": "2026-02",
+              "opportunities": 7,
+              "raw_rate": 0.8571428571428571
+            },
+            {
+              "name": "Nathan Chiu",
+              "debut": "2026-02",
+              "opportunities": 7,
+              "raw_rate": 0.8571428571428571
+            }
+          ],
+          "rank_start": 10,
+          "tie_size": 2,
+          "expected_slots": 2.0
+        },
+        {
+          "score": 0.589406426582,
+          "solves": 7,
+          "inclusion_probability": 1.0,
+          "members": [
+            {
+              "name": "Carter Tran",
+              "debut": "2025-12",
+              "opportunities": 9,
+              "raw_rate": 0.7777777777777778
+            }
+          ],
+          "rank_start": 12,
+          "tie_size": 1,
+          "expected_slots": 1.0
+        },
+        {
+          "score": 0.579752674379,
+          "solves": 4,
+          "inclusion_probability": 0.27586206896551724,
+          "members": [
+            {
+              "name": "Abhishek Sekar",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aditya Patil",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aidan Crawford",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Aidan Lai",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Alexander Klasen",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Alexander Lipatov",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Andrew Hardt",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Bojun Jia",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Boyan Zhou",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Charley Tan",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Elias Botsford",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Emma Xing",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Enhan Zhao",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Farhad Omid",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Hangyu Liang",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Hoang Vu",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Jack Humphries",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "James Karlsson",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Lasmar Khalifa",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Leonardo Pedroso",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Leonardo Z.",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Nickita Khylkouski",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Oliver Middleton",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Rasmus Foyer",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Tatsuru Miyamoto",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Thomas Kennedy",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Tim Sels",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "YYY",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            },
+            {
+              "name": "Yizun Gu",
+              "debut": "2026-05",
+              "opportunities": 4,
+              "raw_rate": 1.0
+            }
+          ],
+          "rank_start": 13,
+          "tie_size": 29,
+          "expected_slots": 8.0
+        }
+      ]
+    }
+  ]
+}

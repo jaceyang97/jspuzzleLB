@@ -34,7 +34,7 @@ def load_existing(file_path: str) -> Dict[str, Dict[str, Any]]:
 
 def save_puzzles(file_path: str, puzzles: List[Puzzle]) -> None:
     os.makedirs(os.path.dirname(file_path) or ".", exist_ok=True)
-    with open(file_path, "w", encoding="utf-8") as f:
+    with open(file_path, "w", encoding="utf-8", newline="\n") as f:
         json.dump([p.to_dict() for p in puzzles], f, indent=2, default=str)
     logger.info(f"Saved {len(puzzles)} puzzles to {file_path}")
 
@@ -54,7 +54,7 @@ def load_puzzles_list(file_path: str) -> List[Dict[str, Any]]:
 def save_puzzles_raw(file_path: str, puzzles: List[Dict[str, Any]]) -> None:
     """Save a list of raw puzzle dicts to disk."""
     os.makedirs(os.path.dirname(file_path) or ".", exist_ok=True)
-    with open(file_path, "w", encoding="utf-8") as f:
+    with open(file_path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(puzzles, f, indent=2, ensure_ascii=False)
     logger.info(f"Saved {len(puzzles)} puzzles to {file_path}")
 

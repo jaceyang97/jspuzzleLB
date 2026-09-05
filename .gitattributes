@@ -1,0 +1,4 @@
+# Keep published Unicode data and research hashes identical across platforms.
+/public/data/*.json text eol=lf
+/analysis/** text eol=lf
+/analysis/**/*.png binary

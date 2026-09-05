@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useId, useLayoutEffect, useMemo, useRef, u
 import { LeaderboardData } from '../types';
 import Tooltip from '../../../components/Tooltip';
 import { trackEvent } from '../../../utils/analytics';
+import { solverInitial } from '../../../utils/solverInitial';
 import {
   ChipColor,
   VISIBLE_PALETTE,
@@ -25,19 +26,13 @@ function daysAgoText(days: number): string {
   return `${days}d ago`;
 }
 
-function firstInitial(name: string): string {
-  const trimmed = name.trim();
-  if (!trimmed) return '?';
-  return trimmed.charAt(0).toUpperCase();
-}
-
 const SolverChip: React.FC<{ name: string; colors: ChipColor; onClick?: () => void }> = ({ name, colors, onClick }) => {
   const content = <>
     <span
       className="solver-chip-initial"
       style={{ backgroundColor: colors.bg, color: colors.text }}
     >
-      {firstInitial(name)}
+      {solverInitial(name)}
     </span>
     <span className="solver-chip-name">{name}</span>
   </>;

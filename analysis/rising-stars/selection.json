@@ -1,0 +1,23 @@
+{
+  "selected_config_ids": [
+    "W12-S3-E1-raw",
+    "W12-S2-E1-raw",
+    "W12-S4-E1-raw",
+    "W12-S3-E1-wilson",
+    "W12-S3-E1-beta",
+    "W12-S3-E1-count",
+    "W18-S2-E1-wilson",
+    "W6-S2-E1-raw"
+  ],
+  "recommended_config_id": "W12-S3-E1-raw",
+  "frozen_date": "2026-09-06",
+  "selection_reason": "Frozen after inspecting training/validation only, before holdout scoring or current ranking inspection. The raw 12-month, 3-solve rule is on the validation Pareto frontier and matches the requested meaning of newcomer. Compared with 4 solves, it has slightly higher future participation, younger displayed records, and greater reach. Wilson and empirical Bayes improve validation participation only modestly while displaying older records and fewer names; the fixed-window denominator is equivalent to count ordering and performs worse. The recommendation favors a transparent bounded rate with sufficient evidence over a more complex score. The shortlist retains looser/stricter thresholds, all ordering alternatives, and two frontier endpoints to show tradeoffs.",
+  "data_correction_policy": "The recommendation is frozen before a final independently verified cleanup of structural headings and a leading BOM in source names. Rerun development and validation on that corrected snapshot for consistent reporting; do not retune based on holdout outcomes.",
+  "sensitivity_plan": [
+    "Use the same frozen configurations for every sensitivity check; do not select again.",
+    "Compare persistent seeded tie priorities with the primary fractional independent-redraw convention.",
+    "Evaluate paired differences using calendar-origin block resampling with lengths 3 and 6; acknowledge that only 14 holdout origins are available.",
+    "Repeat the holdout comparison without its final February 2026 origin because August 2026 solver lists may still receive additions.",
+    "Compare three- and six-puzzle future horizons on identical holdout origins."
+  ]
+}

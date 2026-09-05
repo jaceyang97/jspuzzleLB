@@ -9,11 +9,61 @@ from bs4 import BeautifulSoup
 from .models import PuzzleMeta
 
 
+# Jane Street's archived JSON mixes these exact presentation rows into its
+# leaders arrays. Do not strip arbitrary HTML or symbols from real aliases.
+_NON_SOLVER_ROWS = frozenset({
+    "<b>Best trips from:</b><br>",
+    "<b>Best grids from:</b><br>",
+    "<br><b>Other perfectly cromulent entries from:</b><br>",
+    "Exact answers from:",
+    "Correct to 10 decimals from:",
+    "<br/><br/>",
+    "<b>Top-scoring entries:</b><br>",
+    "<br><b>Other perfectly cromulent entries:</b><br>",
+    "<b>Lowest scores:</b><br>",
+    "<b>Maximum scores:</b><br>",
+    "<br><b>Other high-scoring entries:</b><br>",
+    "<br><i>*second-highest solution</i>",
+    "<i>ordered from least expensive to most expensive</i><br>",
+})
+
+
 def clean_solver_name(name: str) -> str:
     """
     Remove parenthetical notes from solver names to normalize entries.
     """
+    # A leading byte-order mark is an encoding artifact, not part of a name.
+    name = name.strip().lstrip("\ufeff")
     return re.sub(r"\s*\([^)]*\)", "", name).strip()
+
+
+def clean_solver_names(names: List[str]) -> List[str]:
+    """Repair misdecoded names only when this roster also publishes the original.
+
+    Some upstream lists contain both a correct name and its UTF-8 bytes decoded
+    as Latin-1 or Windows-1252. Require that exact published counterpart before
+    repairing anything. Discard blank entries and known presentation rows;
+    preserve the order and duplicate named rows used for solve percentiles.
+    """
+    cleaned = []
+    for name in names:
+        name = clean_solver_name(name)
+        if name and name not in _NON_SOLVER_ROWS:
+            cleaned.append(name)
+    published = set(cleaned)
+    replacements = {}
+    for name in published:
+        if name.isascii():
+            continue
+        for encoding in ("latin-1", "cp1252"):
+            try:
+                candidate = name.encode(encoding).decode("utf-8")
+            except UnicodeError:
+                continue
+            if candidate != name and candidate in published:
+                replacements[name] = candidate
+                break
+    return [replacements.get(name, name) for name in cleaned]
 
 
 def parse_archive_page(html: str) -> List[PuzzleMeta]:

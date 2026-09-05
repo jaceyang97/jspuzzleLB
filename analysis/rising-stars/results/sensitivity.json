@@ -1,0 +1,620 @@
+{
+  "metadata": {
+    "generated_at_utc": "2026-09-05T22:31:28.509392+00:00",
+    "input_sha256": "bb4438c67cd513a9276bf9c3876d6b4b73b17155d75028a7ae01a8bcb8d9ee33",
+    "selection_sha256": "eee6a8a6a6ddcd0a8b84b01794f7de7758eb7627a9ab749ffe0649b4b1c01e66",
+    "study_script_sha256": "02321ea539ee4e99bc16c918b9f69234dd68795350a3c8c33d7d1a03bc279fbf",
+    "sensitivity_script_sha256": "4633bf399986ba0f8862973e0a5cf6f39ea64d3f9e87b1b96521db78e188fef8",
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "selected_config_ids": [
+      "W12-S3-E1-raw",
+      "W12-S2-E1-raw",
+      "W12-S4-E1-raw",
+      "W12-S3-E1-wilson",
+      "W12-S3-E1-beta",
+      "W12-S3-E1-count",
+      "W18-S2-E1-wilson",
+      "W6-S2-E1-raw"
+    ],
+    "recommended_config_id_frozen": "W12-S3-E1-raw",
+    "selection_unchanged": true,
+    "base_seed": 20260906,
+    "persistent_tie_seeds": 100,
+    "origin_months": [
+      "2025-01",
+      "2025-02",
+      "2025-03",
+      "2025-04",
+      "2025-05",
+      "2025-06",
+      "2025-07",
+      "2025-08",
+      "2025-09",
+      "2025-10",
+      "2025-11",
+      "2025-12",
+      "2026-01",
+      "2026-02"
+    ],
+    "frozen_beta_prior": {
+      "alpha": 0.18096652570658803,
+      "beta": 2.305798203946863,
+      "mean": 0.07277187244480784,
+      "concentration": 2.4867647296534514,
+      "rate_sample_variance_ddof1": 0.02737274901596773,
+      "raw_intraclass_correlation": 0.2867988171084287,
+      "used_intraclass_correlation": 0.2867988171084287,
+      "numerical_clip_applied": false,
+      "solver_count": 3669,
+      "outcomes_per_solver": 6,
+      "debut_min": "2016-01",
+      "debut_max": "2022-06",
+      "latest_outcome_month": "2022-12",
+      "fit_cutoff": "2022-12"
+    },
+    "quality_definition": "Inclusion-weighted future solved fraction, pooled over displayed slots across origins.",
+    "persistent_tie_rule": "Score rounded to 12 decimals, then solve count, then a fixed independent uniform priority per name. Priorities persist across origins and are shared across configurations within each seed.",
+    "seed_range_meaning": "Monte Carlo variation in persistent tie resolution on this fixed dataset, not sampling uncertainty or a population confidence interval.",
+    "bootstrap_rule": "Paired circular moving blocks of consecutive calendar origins, with replacement; concatenate blocks and truncate to 14 origins. Recompute each pooled ratio on the same sampled origins before subtracting the frozen reference.",
+    "bootstrap_interval_meaning": "Exploratory 2.5th–97.5th resampling percentiles, not a claim of rigorous population coverage or a significance test.",
+    "limitations": [
+      "Only 14 monthly origins; overlapping six-puzzle horizons and recurring identities create dependence, and few effective blocks remain at length 6.",
+      "Circular resampling connects the final origin to the first and assumes local stability; trends and cross-solver dependencies are not fully modeled.",
+      "Stable identity tie priorities are a hypothetical production policy; the primary reach convention independently redraws tied identities each origin.",
+      "All checks use retrospective lists; unpublished late additions and identity ambiguity remain unobserved.",
+      "Dropping the final origin addresses the least mature August 2026 outcome list, not all retrospective revision bias.",
+      "These supplementary test results do not select, reorder, or retune the frozen shortlist/recommendation."
+    ]
+  },
+  "fractional_independent_baseline": [
+    {
+      "config_id": "W12-S3-E1-raw",
+      "origin_count": 14,
+      "future_quality_h6": 0.4113944645840792,
+      "future_quality_h3": 0.4932989094760711,
+      "average_post_debut_exposure": 4.9714285714285715,
+      "list_fill": 1.0,
+      "expected_display_slots": 280.0,
+      "expected_unique_reach": 97.72634711779449,
+      "annualized_unique_reach": 83.765440386681,
+      "annualization_calendar_months": 14
+    },
+    {
+      "config_id": "W12-S2-E1-raw",
+      "origin_count": 14,
+      "future_quality_h6": 0.4065507897404044,
+      "future_quality_h3": 0.49074960692676856,
+      "average_post_debut_exposure": 4.385714285714286,
+      "list_fill": 1.0,
+      "expected_display_slots": 280.0,
+      "expected_unique_reach": 106.83345769727349,
+      "annualized_unique_reach": 91.57153516909156,
+      "annualization_calendar_months": 14
+    },
+    {
+      "config_id": "W12-S4-E1-raw",
+      "origin_count": 14,
+      "future_quality_h6": 0.4146754535147392,
+      "future_quality_h3": 0.49509637188208616,
+      "average_post_debut_exposure": 5.732142857142857,
+      "list_fill": 1.0,
+      "expected_display_slots": 280.0,
+      "expected_unique_reach": 86.96428571428571,
+      "annualized_unique_reach": 74.5408163265306,
+      "annualization_calendar_months": 14
+    },
+    {
+      "config_id": "W12-S3-E1-wilson",
+      "origin_count": 14,
+      "future_quality_h6": 0.4444573487289653,
+      "future_quality_h3": 0.5131523003938417,
+      "average_post_debut_exposure": 6.632142857142857,
+      "list_fill": 1.0,
+      "expected_display_slots": 280.0,
+      "expected_unique_reach": 84.55451127819548,
+      "annualized_unique_reach": 72.4752953813104,
+      "annualization_calendar_months": 14
+    },
+    {
+      "config_id": "W12-S3-E1-beta",
+      "origin_count": 14,
+      "future_quality_h6": 0.4435548941798942,
+      "future_quality_h3": 0.505787037037037,
+      "average_post_debut_exposure": 7.064285714285714,
+      "list_fill": 1.0,
+      "expected_display_slots": 280.0,
+      "expected_unique_reach": 80.16666666666666,
+      "annualized_unique_reach": 68.71428571428571,
+      "annualization_calendar_months": 14
+    },
+    {
+      "config_id": "W12-S3-E1-count",
+      "origin_count": 14,
+      "future_quality_h6": 0.38912515294425953,
+      "future_quality_h3": 0.4392652256584144,
+      "average_post_debut_exposure": 9.086293468436326,
+      "list_fill": 1.0,
+      "expected_display_slots": 280.0,
+      "expected_unique_reach": 97.09913546816553,
+      "annualized_unique_reach": 83.22783040128475,
+      "annualization_calendar_months": 14
+    },
+    {
+      "config_id": "W18-S2-E1-wilson",
+      "origin_count": 14,
+      "future_quality_h6": 0.524401455026455,
+      "future_quality_h3": 0.5804431216931216,
+      "average_post_debut_exposure": 9.360714285714286,
+      "list_fill": 1.0,
+      "expected_display_slots": 280.0,
+      "expected_unique_reach": 62.17777777777778,
+      "annualized_unique_reach": 53.2952380952381,
+      "annualization_calendar_months": 14
+    },
+    {
+      "config_id": "W6-S2-E1-raw",
+      "origin_count": 14,
+      "future_quality_h6": 0.3333378449731833,
+      "future_quality_h3": 0.4296904689573862,
+      "average_post_debut_exposure": 3.0535714285714284,
+      "list_fill": 1.0,
+      "expected_display_slots": 280.0,
+      "expected_unique_reach": 140.2217209690894,
+      "annualized_unique_reach": 120.19004654493378,
+      "annualization_calendar_months": 14
+    }
+  ],
+  "persistent_seeded_ties": [
+    {
+      "config_id": "W12-S3-E1-raw",
+      "future_quality_h6": {
+        "mean": 0.41122619047619047,
+        "minimum": 0.40059523809523806,
+        "maximum": 0.4196428571428571
+      },
+      "distinct_names_reached": {
+        "mean": 97.77,
+        "minimum": 92.0,
+        "maximum": 103.0
+      },
+      "annualized_unique_reach": {
+        "mean": 83.80285714285715,
+        "minimum": 78.85714285714286,
+        "maximum": 88.28571428571429
+      }
+    },
+    {
+      "config_id": "W12-S2-E1-raw",
+      "future_quality_h6": {
+        "mean": 0.4056607142857143,
+        "minimum": 0.39404761904761904,
+        "maximum": 0.4196428571428571
+      },
+      "distinct_names_reached": {
+        "mean": 105.58,
+        "minimum": 99.0,
+        "maximum": 111.0
+      },
+      "annualized_unique_reach": {
+        "mean": 90.49714285714285,
+        "minimum": 84.85714285714286,
+        "maximum": 95.14285714285714
+      }
+    },
+    {
+      "config_id": "W12-S4-E1-raw",
+      "future_quality_h6": {
+        "mean": 0.41426190476190483,
+        "minimum": 0.4089285714285714,
+        "maximum": 0.4184523809523809
+      },
+      "distinct_names_reached": {
+        "mean": 87.12,
+        "minimum": 85.0,
+        "maximum": 89.0
+      },
+      "annualized_unique_reach": {
+        "mean": 74.6742857142857,
+        "minimum": 72.85714285714286,
+        "maximum": 76.28571428571429
+      }
+    },
+    {
+      "config_id": "W12-S3-E1-wilson",
+      "future_quality_h6": {
+        "mean": 0.44409523809523804,
+        "minimum": 0.43749999999999994,
+        "maximum": 0.450595238095238
+      },
+      "distinct_names_reached": {
+        "mean": 84.72,
+        "minimum": 82.0,
+        "maximum": 87.0
+      },
+      "annualized_unique_reach": {
+        "mean": 72.61714285714285,
+        "minimum": 70.28571428571429,
+        "maximum": 74.57142857142857
+      }
+    },
+    {
+      "config_id": "W12-S3-E1-beta",
+      "future_quality_h6": {
+        "mean": 0.4436071428571428,
+        "minimum": 0.4369047619047619,
+        "maximum": 0.4511904761904762
+      },
+      "distinct_names_reached": {
+        "mean": 79.71,
+        "minimum": 78.0,
+        "maximum": 81.0
+      },
+      "annualized_unique_reach": {
+        "mean": 68.32285714285713,
+        "minimum": 66.85714285714286,
+        "maximum": 69.42857142857143
+      }
+    },
+    {
+      "config_id": "W12-S3-E1-count",
+      "future_quality_h6": {
+        "mean": 0.3885892857142857,
+        "minimum": 0.3666666666666667,
+        "maximum": 0.4130952380952382
+      },
+      "distinct_names_reached": {
+        "mean": 93.53,
+        "minimum": 89.0,
+        "maximum": 99.0
+      },
+      "annualized_unique_reach": {
+        "mean": 80.16857142857143,
+        "minimum": 76.28571428571429,
+        "maximum": 84.85714285714286
+      }
+    },
+    {
+      "config_id": "W18-S2-E1-wilson",
+      "future_quality_h6": {
+        "mean": 0.5241904761904762,
+        "minimum": 0.5166666666666666,
+        "maximum": 0.531547619047619
+      },
+      "distinct_names_reached": {
+        "mean": 62.21,
+        "minimum": 60.0,
+        "maximum": 64.0
+      },
+      "annualized_unique_reach": {
+        "mean": 53.32285714285714,
+        "minimum": 51.42857142857143,
+        "maximum": 54.857142857142854
+      }
+    },
+    {
+      "config_id": "W6-S2-E1-raw",
+      "future_quality_h6": {
+        "mean": 0.3326309523809524,
+        "minimum": 0.3196428571428571,
+        "maximum": 0.3458333333333333
+      },
+      "distinct_names_reached": {
+        "mean": 138.36,
+        "minimum": 133.0,
+        "maximum": 145.0
+      },
+      "annualized_unique_reach": {
+        "mean": 118.59428571428572,
+        "minimum": 114.0,
+        "maximum": 124.28571428571429
+      }
+    }
+  ],
+  "paired_calendar_block_bootstrap": [
+    {
+      "block_length_calendar_months": 3,
+      "resamples": 4000,
+      "comparisons": [
+        {
+          "config_id": "W12-S3-E1-raw",
+          "difference_vs_recommended_percentage_points": 0.0,
+          "resampling_mean_difference_percentage_points": 0.0,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "config_id": "W12-S2-E1-raw",
+          "difference_vs_recommended_percentage_points": -0.48436748436748167,
+          "resampling_mean_difference_percentage_points": -0.4808262987012965,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            -1.1546536796536722,
+            0.0
+          ]
+        },
+        {
+          "config_id": "W12-S4-E1-raw",
+          "difference_vs_recommended_percentage_points": 0.3280988930659978,
+          "resampling_mean_difference_percentage_points": 0.32172229075292696,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            -1.1910113826232185,
+            2.314183897243105
+          ]
+        },
+        {
+          "config_id": "W12-S3-E1-wilson",
+          "difference_vs_recommended_percentage_points": 3.306288414488617,
+          "resampling_mean_difference_percentage_points": 3.301086799495024,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            0.9211197636949497,
+            5.824210824680753
+          ]
+        },
+        {
+          "config_id": "W12-S3-E1-beta",
+          "difference_vs_recommended_percentage_points": 3.216042959581494,
+          "resampling_mean_difference_percentage_points": 3.203024385896538,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            0.5483389929436766,
+            5.872013941724344
+          ]
+        },
+        {
+          "config_id": "W12-S3-E1-count",
+          "difference_vs_recommended_percentage_points": -2.226931163981971,
+          "resampling_mean_difference_percentage_points": -2.2944025199729587,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            -6.080764426522668,
+            1.5945345006523308
+          ]
+        },
+        {
+          "config_id": "W18-S2-E1-wilson",
+          "difference_vs_recommended_percentage_points": 11.300699044237566,
+          "resampling_mean_difference_percentage_points": 11.340668069758973,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            5.1237244897959275,
+            18.72161026325736
+          ]
+        },
+        {
+          "config_id": "W6-S2-E1-raw",
+          "difference_vs_recommended_percentage_points": -7.805661961089588,
+          "resampling_mean_difference_percentage_points": -7.793980507910398,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            -11.71317023619656,
+            -4.006199734263049
+          ]
+        }
+      ]
+    },
+    {
+      "block_length_calendar_months": 6,
+      "resamples": 4000,
+      "comparisons": [
+        {
+          "config_id": "W12-S3-E1-raw",
+          "difference_vs_recommended_percentage_points": 0.0,
+          "resampling_mean_difference_percentage_points": 0.0,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "config_id": "W12-S2-E1-raw",
+          "difference_vs_recommended_percentage_points": -0.48436748436748167,
+          "resampling_mean_difference_percentage_points": -0.49011291486291236,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            -1.1301106301106203,
+            0.0
+          ]
+        },
+        {
+          "config_id": "W12-S4-E1-raw",
+          "difference_vs_recommended_percentage_points": 0.3280988930659978,
+          "resampling_mean_difference_percentage_points": 0.33444682670217574,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            -1.1314745196324083,
+            2.0351660401002505
+          ]
+        },
+        {
+          "config_id": "W12-S3-E1-wilson",
+          "difference_vs_recommended_percentage_points": 3.306288414488617,
+          "resampling_mean_difference_percentage_points": 3.3121078803780364,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            1.2407525510204103,
+            5.136669799498749
+          ]
+        },
+        {
+          "config_id": "W12-S3-E1-beta",
+          "difference_vs_recommended_percentage_points": 3.216042959581494,
+          "resampling_mean_difference_percentage_points": 3.221943685167782,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            1.584067637471671,
+            4.661122672753298
+          ]
+        },
+        {
+          "config_id": "W12-S3-E1-count",
+          "difference_vs_recommended_percentage_points": -2.226931163981971,
+          "resampling_mean_difference_percentage_points": -2.2198420055618118,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            -4.717043038844793,
+            0.9445879059359048
+          ]
+        },
+        {
+          "config_id": "W18-S2-E1-wilson",
+          "difference_vs_recommended_percentage_points": 11.300699044237566,
+          "resampling_mean_difference_percentage_points": 11.293242626966725,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            5.120748299319716,
+            18.4573377733769
+          ]
+        },
+        {
+          "config_id": "W6-S2-E1-raw",
+          "difference_vs_recommended_percentage_points": -7.805661961089588,
+          "resampling_mean_difference_percentage_points": -7.808520640498022,
+          "exploratory_2_5_to_97_5_percentile_range_pp": [
+            -11.441798941798936,
+            -4.625245691960327
+          ]
+        }
+      ]
+    }
+  ],
+  "drop_last_origin": {
+    "excluded_origin": 24313,
+    "excluded_origin_month": "2026-02",
+    "excluded_origin_future_end": "2026-08",
+    "rows": [
+      {
+        "config_id": "W12-S3-E1-raw",
+        "origin_count": 13,
+        "future_quality_h6": 0.4148350644238802,
+        "future_quality_h3": 0.5120142102049996,
+        "average_post_debut_exposure": 4.923076923076923,
+        "list_fill": 1.0,
+        "expected_display_slots": 260.0,
+        "expected_unique_reach": 94.35134711779449,
+        "annualized_unique_reach": 87.09355118565645,
+        "annualization_calendar_months": 13
+      },
+      {
+        "config_id": "W12-S2-E1-raw",
+        "origin_count": 13,
+        "future_quality_h6": 0.409618799207615,
+        "future_quality_h3": 0.5079867561775456,
+        "average_post_debut_exposure": 4.315384615384615,
+        "list_fill": 1.0,
+        "expected_display_slots": 260.0,
+        "expected_unique_reach": 102.58345769727349,
+        "annualized_unique_reach": 94.69242248979091,
+        "annualization_calendar_months": 13
+      },
+      {
+        "config_id": "W12-S4-E1-raw",
+        "origin_count": 13,
+        "future_quality_h6": 0.4183684371184371,
+        "future_quality_h3": 0.5139499389499389,
+        "average_post_debut_exposure": 5.742307692307692,
+        "list_fill": 1.0,
+        "expected_display_slots": 260.0,
+        "expected_unique_reach": 80.96428571428571,
+        "annualized_unique_reach": 74.73626373626372,
+        "annualization_calendar_months": 13
+      },
+      {
+        "config_id": "W12-S3-E1-wilson",
+        "origin_count": 13,
+        "future_quality_h6": 0.44627458068247544,
+        "future_quality_h3": 0.5308306824754193,
+        "average_post_debut_exposure": 6.592307692307692,
+        "list_fill": 1.0,
+        "expected_display_slots": 260.0,
+        "expected_unique_reach": 83.10714285714286,
+        "annualized_unique_reach": 76.71428571428572,
+        "annualization_calendar_months": 13
+      },
+      {
+        "config_id": "W12-S3-E1-beta",
+        "origin_count": 13,
+        "future_quality_h6": 0.4449821937321937,
+        "future_quality_h3": 0.5228988603988604,
+        "average_post_debut_exposure": 7.0346153846153845,
+        "list_fill": 1.0,
+        "expected_display_slots": 260.0,
+        "expected_unique_reach": 78.41666666666666,
+        "annualized_unique_reach": 72.38461538461537,
+        "annualization_calendar_months": 13
+      },
+      {
+        "config_id": "W12-S3-E1-count",
+        "origin_count": 13,
+        "future_quality_h6": 0.3911091390681769,
+        "future_quality_h3": 0.45613178147829253,
+        "average_post_debut_exposure": 9.068316042931428,
+        "list_fill": 1.0,
+        "expected_display_slots": 260.0,
+        "expected_unique_reach": 93.12018809974447,
+        "annualized_unique_reach": 85.95709670745643,
+        "annualization_calendar_months": 13
+      },
+      {
+        "config_id": "W18-S2-E1-wilson",
+        "origin_count": 13,
+        "future_quality_h6": 0.5160220797720798,
+        "future_quality_h3": 0.5872720797720797,
+        "average_post_debut_exposure": 9.223076923076922,
+        "list_fill": 1.0,
+        "expected_display_slots": 260.0,
+        "expected_unique_reach": 60.67777777777778,
+        "annualized_unique_reach": 56.01025641025641,
+        "annualization_calendar_months": 13
+      },
+      {
+        "config_id": "W6-S2-E1-raw",
+        "origin_count": 13,
+        "future_quality_h6": 0.34272047640468695,
+        "future_quality_h3": 0.4520209712314975,
+        "average_post_debut_exposure": 3.0,
+        "list_fill": 1.0,
+        "expected_display_slots": 260.0,
+        "expected_unique_reach": 131.4217209690894,
+        "annualized_unique_reach": 121.31235781762098,
+        "annualization_calendar_months": 13
+      }
+    ]
+  },
+  "horizon_comparison": {
+    "same_origins_and_selection": true,
+    "rows": [
+      {
+        "config_id": "W12-S3-E1-raw",
+        "future_quality_h3": 0.4932989094760711,
+        "future_quality_h6": 0.4113944645840792
+      },
+      {
+        "config_id": "W12-S2-E1-raw",
+        "future_quality_h3": 0.49074960692676856,
+        "future_quality_h6": 0.4065507897404044
+      },
+      {
+        "config_id": "W12-S4-E1-raw",
+        "future_quality_h3": 0.49509637188208616,
+        "future_quality_h6": 0.4146754535147392
+      },
+      {
+        "config_id": "W12-S3-E1-wilson",
+        "future_quality_h3": 0.5131523003938417,
+        "future_quality_h6": 0.4444573487289653
+      },
+      {
+        "config_id": "W12-S3-E1-beta",
+        "future_quality_h3": 0.505787037037037,
+        "future_quality_h6": 0.4435548941798942
+      },
+      {
+        "config_id": "W12-S3-E1-count",
+        "future_quality_h3": 0.4392652256584144,
+        "future_quality_h6": 0.38912515294425953
+      },
+      {
+        "config_id": "W18-S2-E1-wilson",
+        "future_quality_h3": 0.5804431216931216,
+        "future_quality_h6": 0.524401455026455
+      },
+      {
+        "config_id": "W6-S2-E1-raw",
+        "future_quality_h3": 0.4296904689573862,
+        "future_quality_h6": 0.3333378449731833
+      }
+    ]
+  }
+}

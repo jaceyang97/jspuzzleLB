@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -37,18 +38,16 @@ def build_session(retries: int = 3, user_agent: Optional[str] = None) -> request
 def fetch_json(session: requests.Session, url: str, timeout: int = DEFAULT_TIMEOUT):
     response = session.get(url, timeout=timeout)
     response.raise_for_status()
-    return response.json()
+    # Decode JSON bytes according to the JSON standard, independently of an
+    # HTTP charset default. Invalid encoded bytes fail instead of being replaced.
+    return json.loads(response.content)
 
 
 def fetch_html(session: requests.Session, url: str, timeout: int = DEFAULT_TIMEOUT) -> str:
     response = session.get(url, timeout=timeout)
     response.raise_for_status()
-    # `requests` falls back to ISO-8859-1 when the server omits `charset` in the
-    # Content-Type header, which mojibakes UTF-8 curly quotes in puzzle titles
-    # (e.g. "Pent-Up" → "âPent-Upâ"). Prefer chardet's guess when the server
-    # is silent; the Jane Street pages are UTF-8.
-    if not response.encoding or response.encoding.lower() == "iso-8859-1":
-        response.encoding = response.apparent_encoding or "utf-8"
-    return response.text
+    # Jane Street declares UTF-8 in its HTML, but its HTTP Content-Type can omit
+    # the charset. Avoid requests' Latin-1 default and lossy encoding guesses.
+    return response.content.decode("utf-8-sig")
 
 
