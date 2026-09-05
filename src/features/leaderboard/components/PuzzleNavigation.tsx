@@ -15,8 +15,8 @@ const PuzzleNavigation: React.FC = () => {
   const introRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const currentLinkRef = useRef<HTMLAnchorElement>(null);
+  const focusPopoverOnOpen = useRef(false);
   const closeTimer = useRef<number | null>(null);
   const suppressAutomaticOpen = useRef(false);
   const pinned = useRef(false);
@@ -135,6 +135,13 @@ const PuzzleNavigation: React.FC = () => {
     };
   }, [open]);
 
+  useLayoutEffect(() => {
+    if (open && position && focusPopoverOnOpen.current) {
+      focusPopoverOnOpen.current = false;
+      popoverRef.current?.focus();
+    }
+  }, [open, position]);
+
   const introduction = open ? createPortal(
     <div ref={popoverRef} id={popoverId} className="intro-tooltip puzzle-intro-tooltip" data-open=""
       role="dialog" aria-label="Introduction" tabIndex={-1}
@@ -146,14 +153,10 @@ const PuzzleNavigation: React.FC = () => {
       onMouseEnter={cancelClose} onMouseLeave={handleMouseLeave} onBlur={handleBlur}
       onFocus={cancelClose}
       onKeyDown={(event) => {
-        if (event.key !== 'Tab') return;
-        if (event.shiftKey && (event.target === popoverRef.current || event.target === closeButtonRef.current)) {
-          event.preventDefault();
-          buttonRef.current?.focus();
-        } else if (!event.shiftKey && event.target === closeButtonRef.current) {
-          event.preventDefault();
-          currentLinkRef.current?.focus();
-        }
+        if (event.key !== 'Tab' || event.target !== popoverRef.current) return;
+        event.preventDefault();
+        if (event.shiftKey) buttonRef.current?.focus();
+        else currentLinkRef.current?.focus();
       }}>
       <table className="intro-leaderboard-table">
         <thead><tr><th scope="col">Rank</th><th scope="col">Description</th></tr></thead>
@@ -163,11 +166,9 @@ const PuzzleNavigation: React.FC = () => {
           <tr><td>2</td><td>Some names appeared once. Others kept returning. I wanted to see the whole record.</td></tr>
           <tr><td>3</td><td>The puzzles are theirs. The urge to put everything in order is mine.</td></tr>
           <tr><td>4</td><td>This seemed like a reasonable use of code.</td></tr>
-          <tr><td>5</td><td><strong>Naturally, I ranked the introduction.</strong></td></tr>
+          <tr><td>5</td><td><strong>So, I ranked the introduction.</strong></td></tr>
         </tbody>
       </table>
-      <button ref={closeButtonRef} type="button" className="intro-close-button intro-close"
-        onClick={() => dismiss(true)}>Close introduction</button>
     </div>, document.body,
   ) : null;
 
@@ -175,7 +176,7 @@ const PuzzleNavigation: React.FC = () => {
     <nav className="puzzle-navigation" aria-label="Puzzle navigation">
       <div ref={introRef} className="intro-container" onMouseEnter={() => show()} onMouseLeave={handleMouseLeave}>
         <button ref={buttonRef} type="button" className="intro-button"
-          aria-current="page" aria-haspopup="dialog" aria-expanded={open} aria-controls={popoverId}
+          aria-label="INTRO" aria-current="page" aria-haspopup="dialog" aria-expanded={open} aria-controls={popoverId}
           onFocus={() => show()} onBlur={handleBlur}
           onClick={() => {
             if (pinned.current) dismiss();
@@ -186,9 +187,18 @@ const PuzzleNavigation: React.FC = () => {
               event.preventDefault();
               popoverRef.current?.focus();
             }
-          }}>INTRO</button>
+          }}>INTRO <span className="panel-info-marker intro-info-marker" aria-hidden="true">i</span></button>
       </div>
       <a ref={currentLinkRef} className="js-nav-link"
+        onKeyDown={(event) => {
+          if (event.key !== 'Tab' || !event.shiftKey) return;
+          event.preventDefault();
+          if (popoverRef.current) popoverRef.current.focus();
+          else {
+            focusPopoverOnOpen.current = true;
+            show(true);
+          }
+        }}
         href="https://www.janestreet.com/puzzles/current-puzzle/" target="_blank" rel="noopener noreferrer">CURRENT PUZZLE</a>
       <a className="js-nav-link" href="https://www.janestreet.com/puzzles/archive/"
         target="_blank" rel="noopener noreferrer">ARCHIVE</a>

@@ -16,6 +16,7 @@ interface NewSolversBannerProps {
   compact?: boolean;
   inline?: boolean;
   announcementIcon?: ReactNode;
+  onSolverClick?: (name: string) => void;
 }
 
 function daysAgoText(days: number): string {
@@ -30,8 +31,8 @@ function firstInitial(name: string): string {
   return trimmed.charAt(0).toUpperCase();
 }
 
-const SolverChip: React.FC<{ name: string; colors: ChipColor }> = ({ name, colors }) => (
-  <span className="solver-chip">
+const SolverChip: React.FC<{ name: string; colors: ChipColor; onClick?: () => void }> = ({ name, colors, onClick }) => {
+  const content = <>
     <span
       className="solver-chip-initial"
       style={{ backgroundColor: colors.bg, color: colors.text }}
@@ -39,8 +40,11 @@ const SolverChip: React.FC<{ name: string; colors: ChipColor }> = ({ name, color
       {firstInitial(name)}
     </span>
     <span className="solver-chip-name">{name}</span>
-  </span>
-);
+  </>;
+  return onClick
+    ? <button type="button" className="solver-chip solver-chip-button" aria-label={`Open profile for ${name}`} onClick={onClick}>{content}</button>
+    : <span className="solver-chip">{content}</span>;
+};
 
 type NewTodayTemplate = (names: ReactNode, puzzle: ReactNode) => ReactNode;
 type StatsTemplate = (puzzle: ReactNode, count: number, daysAgo: string) => ReactNode;
@@ -154,11 +158,13 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
   compact = false,
   inline = false,
   announcementIcon,
+  onSolverClick,
 }) => {
   const [dismissed, setDismissed] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [inlineVisibleCount, setInlineVisibleCount] = useState(1);
   const activityRef = useRef<HTMLDivElement>(null);
+  const rowRef = useRef<HTMLDivElement>(null);
   const measurementRef = useRef<HTMLSpanElement>(null);
   const moreButtonRef = useRef<HTMLButtonElement>(null);
   const morePopoverRef = useRef<HTMLSpanElement>(null);
@@ -173,30 +179,34 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
     return crawlDate ? currentPuzzleProgress?.timeline.filter((entry) => entry.timestamp.slice(0, 10) === crawlDate) ?? [] : [];
   }, [currentPuzzleProgress, generatedAt]);
   const inlineNames = useMemo(() => todaysSolvers.map((entry) => entry.solver), [todaysSolvers]);
+  const selectInlineSolver = (name: string) => {
+    setMoreOpen(false);
+    onSolverClick?.(name);
+  };
 
   useLayoutEffect(() => {
     if (!inline || dismissed || !inlineNames.length) return;
     const container = activityRef.current;
-    const button = moreButtonRef.current;
+    const row = rowRef.current;
     const measurement = measurementRef.current;
-    if (!container || !button || !measurement) return;
+    if (!container || !row || !measurement) return;
     let active = true;
     const fitNames = () => {
       if (!active) return;
       const width = container.getBoundingClientRect().width;
       if (width <= 0) return;
-      const buttonStyle = window.getComputedStyle(button);
-      const preview = button.querySelector<HTMLElement>('.header-activity-preview:not(.header-activity-measure)');
+      const rowStyle = window.getComputedStyle(row);
+      const preview = row.querySelector<HTMLElement>('.header-activity-preview');
       if (!preview) return;
       const previewStyle = window.getComputedStyle(preview);
       const px = (value: string) => Number.parseFloat(value) || 0;
-      const buttonGap = px(buttonStyle.columnGap || buttonStyle.gap);
+      const rowGap = px(rowStyle.columnGap || rowStyle.gap);
       const chipGap = px(previewStyle.columnGap || previewStyle.gap);
-      const fixed = Array.from(button.querySelectorAll<HTMLElement>('[data-activity-fixed]'))
+      const fixed = Array.from(row.querySelectorAll<HTMLElement>('[data-activity-fixed]'))
         .filter((element) => window.getComputedStyle(element).display !== 'none');
-      const available = width - px(buttonStyle.paddingLeft) - px(buttonStyle.paddingRight)
+      const available = width - px(rowStyle.paddingLeft) - px(rowStyle.paddingRight)
         - fixed.reduce((sum, element) => sum + element.getBoundingClientRect().width, 0)
-        - fixed.length * buttonGap;
+        - fixed.length * rowGap;
       const chips = Array.from(measurement.querySelectorAll<HTMLElement>('.solver-chip'));
       let count = 0;
       for (let candidate = Math.min(4, inlineNames.length); candidate > 0; candidate -= 1) {
@@ -224,6 +234,10 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       window.removeEventListener('resize', fitNames);
     };
   }, [inline, dismissed, inlineNames, announcementIcon]);
+
+  useEffect(() => {
+    if (inline && inlineVisibleCount >= inlineNames.length) setMoreOpen(false);
+  }, [inline, inlineVisibleCount, inlineNames.length]);
 
   useEffect(() => {
     if (!inline || !moreOpen) return;
@@ -282,7 +296,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       window.visualViewport?.removeEventListener('resize', position);
       window.visualViewport?.removeEventListener('scroll', position);
     };
-  }, [compact, inline, moreOpen, dismissed]);
+  }, [compact, inline, moreOpen, dismissed, inlineVisibleCount]);
 
   if (dismissed) return null;
 
@@ -319,20 +333,20 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
                 moreButtonRef.current?.focus();
               }
             }}>
-            <button ref={moreButtonRef} type="button" className="header-activity-trigger"
-              aria-label={`${names.length} solvers added today. View activity`}
-              aria-expanded={moreOpen} aria-controls={moreId}
-              onClick={() => setMoreOpen((open) => !open)}>
+            <div ref={rowRef} className="header-activity-row">
               <span className="banner-tag" data-activity-fixed>NEW TODAY</span>
               {announcementIcon && <span className="header-activity-icon" data-activity-fixed aria-hidden="true">{announcementIcon}</span>}
               <span className="header-activity-preview">
                 {names.slice(0, inlineVisibleCount).map((name, index) => (
-                  <SolverChip key={`${name}-${index}`} name={name} colors={VISIBLE_PALETTE[index % VISIBLE_PALETTE.length]} />
+                  <SolverChip key={`${name}-${index}`} name={name} colors={VISIBLE_PALETTE[index % VISIBLE_PALETTE.length]}
+                    onClick={() => selectInlineSolver(name)} />
                 ))}
-                {names.length > inlineVisibleCount && <span className="header-activity-more">+{names.length - inlineVisibleCount}</span>}
+                {names.length > inlineVisibleCount && <button ref={moreButtonRef} type="button" className="header-activity-more"
+                  aria-label={`${names.length - inlineVisibleCount} more solvers added today`}
+                  aria-expanded={moreOpen} aria-controls={moreId}
+                  onClick={() => setMoreOpen((open) => !open)}>+{names.length - inlineVisibleCount}</button>}
               </span>
-              <span className="header-activity-chevron" data-activity-fixed aria-hidden="true">⌄</span>
-            </button>
+            </div>
             <span className="header-activity-measure" aria-hidden="true"
               style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none', width: 0, height: 0, overflow: 'hidden' }}>
               <span ref={measurementRef} className="header-activity-preview"
@@ -348,7 +362,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
             </span>
             <span ref={morePopoverRef} id={moreId}
               className="banner-more-tooltip banner-more-popover header-activity-popover"
-              role="region" aria-label="Solvers added today" hidden={!moreOpen}
+              role="region" aria-label="More solvers added today" hidden={!moreOpen || names.length <= inlineVisibleCount}
               style={popoverPosition ? {
                 position: 'fixed', left: popoverPosition.left, top: popoverPosition.top,
                 minWidth: 0, maxWidth: popoverPosition.maxWidth, maxHeight: popoverPosition.maxHeight,
@@ -357,8 +371,8 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
               <span className="banner-more-tooltip-label">Added today · <a className="banner-puzzle-link" href="https://www.janestreet.com/puzzles/current-puzzle/" target="_blank" rel="noopener noreferrer">{currentPuzzleProgress.puzzleName}</a></span>
               <ul ref={moreListRef} className="banner-more-list" tabIndex={0}
                 style={popoverPosition ? { maxHeight: popoverPosition.listMaxHeight } : undefined}>
-                {names.map((name, index) => <li key={`${name}-${index}`}>
-                  <SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} />
+                {names.slice(inlineVisibleCount).map((name, index) => <li key={`${name}-${index}`}>
+                  <SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} onClick={() => selectInlineSolver(name)} />
                 </li>)}
               </ul>
             </span>

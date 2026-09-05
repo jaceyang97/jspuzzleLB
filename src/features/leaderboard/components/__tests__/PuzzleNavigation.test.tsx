@@ -42,6 +42,7 @@ describe('PuzzleNavigation', () => {
     render(<PuzzleNavigation />);
     const navigation = screen.getByRole('navigation', { name: 'Puzzle navigation' });
     const intro = within(navigation).getByRole('button', { name: 'INTRO' });
+    expect(within(intro).getByText('i')).toHaveAttribute('aria-hidden', 'true');
     expect(intro).toHaveAttribute('aria-expanded', 'false');
     expect(within(navigation).getByRole('link', { name: 'CURRENT PUZZLE' })).toHaveAttribute(
       'href', 'https://www.janestreet.com/puzzles/current-puzzle/'
@@ -56,7 +57,8 @@ describe('PuzzleNavigation', () => {
     const descriptions = within(dialog).getAllByRole('row').slice(1)
       .map((row) => within(row).getAllByRole('cell')[1].textContent || '');
     expect(descriptions.map((text) => text.trim().split(/\s+/).length)).toEqual([19, 14, 13, 8, 5]);
-    expect(within(dialog).getByText('Naturally, I ranked the introduction.')).toBeVisible();
+    expect(within(dialog).getByText('So, I ranked the introduction.')).toBeVisible();
+    expect(within(dialog).queryByRole('button')).not.toBeInTheDocument();
     expect(trackOnce).toHaveBeenCalledWith('intro', 'intro_hover');
   });
 
@@ -79,22 +81,29 @@ describe('PuzzleNavigation', () => {
     expect(screen.getByRole('dialog', { name: 'Introduction' })).toBeVisible();
   });
 
-  test('keyboard navigation returns from the popover to the adjacent navigation links', () => {
+  test('Tab and Shift+Tab follow INTRO, the dialog, and CURRENT PUZZLE in both directions', () => {
+    const focus = HTMLElement.prototype.focus;
+    jest.spyOn(HTMLElement.prototype, 'focus').mockImplementation(function (this: HTMLElement) {
+      // Browsers cannot focus the portal while its first measurement is hidden.
+      if (this.style.visibility !== 'hidden') focus.call(this);
+    });
     render(<PuzzleNavigation />);
     const intro = screen.getByRole('button', { name: 'INTRO' });
     act(() => intro.focus());
-    const close = screen.getByRole('button', { name: 'Close introduction' });
-    act(() => close.focus());
-    fireEvent.keyDown(close, { key: 'Tab', shiftKey: true });
+    fireEvent.keyDown(intro, { key: 'Tab' });
+    expect(screen.getByRole('dialog')).toHaveFocus();
+    fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Tab' });
+    const currentPuzzle = screen.getByRole('link', { name: 'CURRENT PUZZLE' });
+    expect(currentPuzzle).toHaveFocus();
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    fireEvent.keyDown(currentPuzzle, { key: 'Tab', shiftKey: true });
+    expect(screen.getByRole('dialog')).toHaveFocus();
+    fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Tab', shiftKey: true });
     expect(intro).toHaveFocus();
     expect(screen.getByRole('dialog')).toBeVisible();
-    act(() => close.focus());
-    fireEvent.keyDown(close, { key: 'Tab' });
-    expect(screen.getByRole('link', { name: 'CURRENT PUZZLE' })).toHaveFocus();
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  test('supports tap, explicit close, and outside-pointer dismissal', () => {
+  test('supports trigger toggle and outside-pointer dismissal without a close button', () => {
     render(<PuzzleNavigation />);
     const intro = screen.getByRole('button', { name: 'INTRO' });
     fireEvent.click(intro);
@@ -105,9 +114,10 @@ describe('PuzzleNavigation', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
     fireEvent.click(intro);
-    fireEvent.click(screen.getByRole('button', { name: 'Close introduction' }));
-    expect(intro).toHaveFocus();
+    expect(screen.getByRole('dialog')).toBeVisible();
+    fireEvent.click(intro);
     expect(intro).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     fireEvent.click(intro);
     expect(screen.getByRole('dialog')).toBeVisible();
     fireEvent.click(intro);
@@ -147,6 +157,6 @@ describe('PuzzleNavigation', () => {
     anchor = rect(760, 235, 60, 28);
     fireEvent(window, new Event('resize'));
     expect(dialog).toHaveStyle({ left: '392px', top: '12px', width: '440px', maxHeight: '276px' });
-    expect(within(dialog).getByRole('button', { name: 'Close introduction' })).toBeVisible();
+    expect(within(dialog).getByText('So, I ranked the introduction.')).toBeVisible();
   });
 });

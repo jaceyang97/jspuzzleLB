@@ -1,15 +1,14 @@
 import React from 'react';
-import Tooltip from '../../../components/Tooltip';
+import InfoTooltip from '../../../components/InfoTooltip';
 
 const HINT = 'Select a solver to view their record';
 
 export default function SolverColumnHeader() {
   return (
     <span className="solver-column-title">
-      <Tooltip content={HINT} rich>
-        <span className="solver-column-label" tabIndex={0}>Solver</span>
-      </Tooltip>
+      <span className="solver-column-label">Solver</span>
       <span className="solver-column-hint">{HINT}</span>
+      <InfoTooltip content={HINT} label="About solver profiles" className="solver-column-info" />
     </span>
   );
 }

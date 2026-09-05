@@ -57,9 +57,11 @@ describe('LeaderboardWorkspace', () => {
       const solverHeader = within(panel).getByRole('columnheader', { name: /^Solver / });
       expect(within(solverHeader).getByText('Select a solver to view their record', { selector: '.solver-column-hint' })).toBeVisible();
       const solverLabel = within(solverHeader).getByText('Solver', { selector: '.solver-column-label' });
-      fireEvent.focus(solverLabel);
+      expect(solverLabel).not.toHaveAttribute('tabindex');
+      const solverInfo = within(solverHeader).getByRole('button', { name: 'About solver profiles' });
+      fireEvent.focus(solverInfo);
       expect(screen.getByRole('tooltip')).toHaveTextContent('Select a solver to view their record');
-      fireEvent.blur(solverLabel);
+      fireEvent.blur(solverInfo);
       const description = document.getElementById(panel.getAttribute('aria-describedby')!);
       expect(description).toHaveClass('sr-only');
       const help = screen.getByRole('button', { name: 'How this ranking works' });
@@ -127,12 +129,12 @@ describe('LeaderboardWorkspace', () => {
     expect(results).toHaveAttribute('aria-atomic', 'true');
     expect(results).toHaveTextContent('1 of 3 solvers');
     expect(screen.getByRole('button', { name: 'Open profile for Lin' })).toBeVisible();
-    expect(within(screen.getByRole('table')).getAllByRole('button')).toHaveLength(1);
+    expect(within(screen.getByRole('table')).getAllByRole('button', { name: /^Open profile for/ })).toHaveLength(1);
 
     fireEvent.click(screen.getByRole('tab', { name: 'Longest streaks' }));
     expect(search).toHaveValue('  lIN  ');
     expect(screen.getByRole('button', { name: 'Open profile for Lin' })).toBeVisible();
-    expect(within(screen.getByRole('table')).getAllByRole('button')).toHaveLength(1);
+    expect(within(screen.getByRole('table')).getAllByRole('button', { name: /^Open profile for/ })).toHaveLength(1);
 
     fireEvent.click(screen.getByRole('tab', { name: 'Rising stars' }));
     expect(search).toHaveValue('  lIN  ');
@@ -146,13 +148,13 @@ describe('LeaderboardWorkspace', () => {
     fireEvent.click(screen.getByRole('tab', { name: 'Rising stars' }));
     fireEvent.click(screen.getByRole('button', { name: 'Clear solver search' }));
     expect(search).toHaveValue('');
-    expect(within(screen.getByRole('table')).getAllByRole('button')).toHaveLength(2);
+    expect(within(screen.getByRole('table')).getAllByRole('button', { name: /^Open profile for/ })).toHaveLength(2);
     expect(within(screen.getByRole('table')).queryByRole('status')).not.toBeInTheDocument();
     expect(results).toHaveTextContent('2 solvers');
 
     fireEvent.click(screen.getByRole('tab', { name: 'Top solvers' }));
     expect(search).toHaveValue('');
-    expect(within(screen.getByRole('table')).getAllByRole('button')).toHaveLength(3);
+    expect(within(screen.getByRole('table')).getAllByRole('button', { name: /^Open profile for/ })).toHaveLength(3);
   });
 
   test.each(views)('$label keeps the original rank after filtering and opens the profile with the correct source', (view) => {
@@ -165,7 +167,7 @@ describe('LeaderboardWorkspace', () => {
 
     const table = within(screen.getByRole('table'));
     expect(table.getByLabelText(`Rank ${view.morganRank}`)).toBeVisible();
-    expect(table.getAllByRole('button')).toHaveLength(1);
+    expect(table.getAllByRole('button', { name: /^Open profile for/ })).toHaveLength(1);
     fireEvent.click(table.getByRole('button', { name: 'Open profile for Morgan' }));
     expect(onSolverClick).toHaveBeenCalledTimes(1);
     expect(onSolverClick).toHaveBeenLastCalledWith('Morgan', view.source);

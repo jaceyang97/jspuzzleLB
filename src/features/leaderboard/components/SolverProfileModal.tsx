@@ -9,6 +9,7 @@ import {
 } from '../../../utils/leaderboardUtils';
 import { HIDDEN_PALETTE, colorFromName } from './solverChipPalettes';
 import Tooltip from '../../../components/Tooltip';
+import InfoTooltip from '../../../components/InfoTooltip';
 
 interface SolverProfileModalProps {
   solverName: string | null;
@@ -305,14 +306,11 @@ const SolverProfileModal: React.FC<SolverProfileModalProps> = ({ solverName, onC
                 </div>
                 <div className="solver-stat-label">
                   Avg percentile
-                  <Tooltip
-                    className="solver-stat-info"
-                    rich
+                  <InfoTooltip
+                    className="solver-stat-info-tooltip"
                     content={AVG_PERCENTILE_TOOLTIP}
-                    aria-label="How average percentile is calculated"
-                  >
-                    i
-                  </Tooltip>
+                    label="How average percentile is calculated"
+                  />
                 </div>
               </div>
             </div>

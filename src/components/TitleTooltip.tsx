@@ -7,9 +7,8 @@ interface TitleTooltipProps {
   children: React.ReactNode;
 }
 
-// Section/chart title with an explanatory tooltip underneath. The title text
-// lives in an inner span so a heading can still ellipsize without clipping
-// the absolutely-positioned tooltip.
+// The heading can ellipsize independently; its tooltip escapes the card
+// through the shared body portal and is keyboard/touch accessible.
 const TitleTooltip: React.FC<TitleTooltipProps> = ({
   as = 'h3',
   tooltip,

@@ -133,7 +133,7 @@ describe('DashboardStage', () => {
       expect(search).toHaveValue('  mORGAN  ');
       const ranking = within(screen.getByRole('region', { name: 'Puzzle rankings' }));
       expect(ranking.getByRole('button', { name: 'Open profile for Morgan' })).toBeVisible();
-      expect(within(ranking.getByRole('table')).getAllByRole('button')).toHaveLength(1);
+      expect(within(ranking.getByRole('table')).getAllByRole('button', { name: /^Open profile for/ })).toHaveLength(1);
     }
   });
 

@@ -1,5 +1,6 @@
 import React, { memo, useMemo, useState } from 'react';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, BarChart, Bar } from 'recharts';
+import ChartTooltipContent from './ChartTooltipContent';
 import { Puzzle } from '../../features/leaderboard/types';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { useThemeColors } from '../../hooks/useThemeColors';
@@ -56,13 +57,13 @@ export const MonthlyParticipationChart = memo(({ puzzles, loading }: PuzzleChart
       <ChartSummary value={latest.solvers} label="monthly solvers" context={latestMonthLabel(latest.month)} />
       <div className="chart-canvas">
         <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-          <LineChart data={visible} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
+          <LineChart accessibilityLayer data={visible} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
             <CartesianGrid vertical={false} stroke={colors.gridStroke} strokeDasharray="3 3" />
             <XAxis dataKey="month" tick={{ fontSize: 10, fill: colors.textColor }} height={22}
               tickFormatter={shortMonth} interval="preserveStartEnd" minTickGap={30} axisLine={false} tickLine={false} />
             <YAxis width={34} tickCount={3} tickFormatter={compactNumber} allowDecimals={false}
               tick={{ fontSize: 10, fill: colors.textColor }} axisLine={false} tickLine={false} />
-            <Tooltip contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
+            <Tooltip content={<ChartTooltipContent />} isAnimationActive={false} wrapperStyle={{ visibility: 'hidden', pointerEvents: 'none' }} contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
               border: `1px solid ${colors.tooltipBorder}`, fontSize: 12, borderRadius: 6 }}
               labelFormatter={(label) => latestMonthLabel(String(label))}
               formatter={(value: number) => [value.toLocaleString(), 'Unique solvers']} />
@@ -100,13 +101,13 @@ export const FirstTimeSolversChart = memo(({ solversGrowth }: { solversGrowth: {
       <ChartSummary value={latest.newSolvers} label="first-time solvers" context={latestMonthLabel(latest.month)} />
       <div className="chart-canvas">
         <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-          <BarChart data={visible} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
+          <BarChart accessibilityLayer data={visible} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
             <CartesianGrid vertical={false} strokeDasharray="3 3" stroke={colors.gridStroke} />
             <XAxis dataKey="month" tick={{ fontSize: 10, fill: colors.textColor }} height={22}
               tickFormatter={shortMonth} interval="preserveStartEnd" minTickGap={30} axisLine={false} tickLine={false} />
             <YAxis width={34} tickCount={3} tickFormatter={compactNumber} allowDecimals={false}
               tick={{ fontSize: 10, fill: colors.textColor }} axisLine={false} tickLine={false} />
-            <Tooltip contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
+            <Tooltip content={<ChartTooltipContent />} isAnimationActive={false} wrapperStyle={{ visibility: 'hidden', pointerEvents: 'none' }} contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
               border: `1px solid ${colors.tooltipBorder}`, fontSize: 12, borderRadius: 6 }}
               labelFormatter={(label) => latestMonthLabel(String(label))}
               formatter={(value: number) => [value.toLocaleString(), 'First-time solvers']} />
@@ -158,13 +159,13 @@ export const PercentileRankChart = memo(({ puzzles, loading }: PuzzleChartProps)
       <ChartSummary value={totalSolvers} label="repeat solvers" context="At least 2 recorded puzzles" />
       <div className="chart-canvas">
         <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-          <BarChart data={bins} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
+          <BarChart accessibilityLayer data={bins} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
             <CartesianGrid vertical={false} strokeDasharray="3 3" stroke={colors.gridStroke} />
             <XAxis dataKey="binStart" tick={{ fontSize: 10, fill: colors.textColor }} height={22}
               axisLine={false} tickLine={false} interval={1} />
             <YAxis width={34} tickCount={3} tickFormatter={compactNumber} allowDecimals={false}
               tick={{ fontSize: 10, fill: colors.textColor }} axisLine={false} tickLine={false} />
-            <Tooltip contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
+            <Tooltip content={<ChartTooltipContent />} isAnimationActive={false} wrapperStyle={{ visibility: 'hidden', pointerEvents: 'none' }} contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
               border: `1px solid ${colors.tooltipBorder}`, fontSize: 12, borderRadius: 6 }}
               formatter={(value: number) => [`${value.toLocaleString()} (${totalSolvers ? (value / totalSolvers * 100).toFixed(1) : 0}%)`, 'Solvers']}
               labelFormatter={(_label, payload) => payload?.[0]?.payload ? `Average percentile ${payload[0].payload.binLabel}` : ''} />

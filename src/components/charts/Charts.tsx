@@ -3,7 +3,8 @@ import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, A
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { Puzzle } from '../../features/leaderboard/types';
 import { useThemeColors } from '../../hooks/useThemeColors';
-import TitleTooltip from '../TitleTooltip';
+import InfoTooltip from '../InfoTooltip';
+import ChartTooltipContent from './ChartTooltipContent';
 import HelpTooltip from '../Tooltip';
 import { MonthlyParticipationChart, FirstTimeSolversChart, PercentileRankChart, ChartSummary, chartMonthIndex, latestMonthLabel } from './AdvancedCharts';
 import { trackEvent } from '../../utils/analytics';
@@ -29,7 +30,7 @@ const SolversGrowthBody = memo(({ data }: { data: SolversGrowthDataPoint[] }) =>
       <ChartSummary value={latest.totalSolvers} label="unique solvers" context={`Recorded through ${latest.month}`} />
       <div className="chart-canvas">
         <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-          <AreaChart data={recorded} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
+          <AreaChart data={recorded} accessibilityLayer margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
             <CartesianGrid vertical={false} strokeDasharray="3 3" stroke={colors.gridStroke} />
             <XAxis dataKey="month" tick={{ fontSize: 10, fill: colors.textColor }} height={22}
               tickFormatter={(value: string) => value.slice(-4)}
@@ -38,7 +39,8 @@ const SolversGrowthBody = memo(({ data }: { data: SolversGrowthDataPoint[] }) =>
             <YAxis width={34} tickCount={3} tick={{ fontSize: 10, fill: colors.textColor }}
               tickFormatter={(value: number) => value >= 1000 ? `${(value / 1000).toFixed(0)}k` : `${value}`}
               axisLine={false} tickLine={false} />
-            <Tooltip contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
+            <Tooltip content={<ChartTooltipContent />} isAnimationActive={false} wrapperStyle={{ visibility: 'hidden', pointerEvents: 'none' }}
+              contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
               border: `1px solid ${colors.tooltipBorder}`, fontSize: 12, borderRadius: 6 }}
               labelFormatter={(label) => latestMonthLabel(String(label))}
               formatter={(value: number) => [value.toLocaleString(), 'Unique solvers']} />
@@ -73,14 +75,12 @@ export const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({ solversGrowthD
       <div className="trend-header">
         <div className="trend-title">
           <h3>Trends</h3>
-          <HelpTooltip content={activeView.tooltip} rich>
-            <button type="button" className="trend-help" aria-label={`About ${activeView.label.toLowerCase()}`}>i</button>
-          </HelpTooltip>
         </div>
         <select className="trend-view-select" aria-label="Trend view" value={tab}
           onChange={(event) => { const next = event.target.value as GrowthTab; setTab(next); trackEvent('chart_tab_change', { tab: next }); }}>
           {VIEWS.map((view) => <option key={view.id} value={view.id}>{view.label}</option>)}
         </select>
+        <InfoTooltip content={activeView.tooltip} label={`About ${activeView.label.toLowerCase()}`} />
       </div>
       <div className="growth-tab-panel">
         {tab === 'monthly' && <MonthlyParticipationChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />}
@@ -109,9 +109,10 @@ export const MostSolvedPuzzlesTable = memo(({ data }: { data: PuzzleData[] }) =>
   };
   return (
     <div className="chart-container mini most-solved-panel">
-      <TitleTooltip tooltip="All available puzzles, ordered by published solver count. N/A means the solver list has not been published. Participation affects these counts as well as puzzle difficulty.">
-        Most solved puzzles
-      </TitleTooltip>
+      <div className="puzzle-panel-header">
+        <h3>Most solved puzzles</h3>
+        <InfoTooltip label="About most solved puzzles" content="All available puzzles, ordered by published solver count. N/A means the solver list has not been published. Participation affects these counts as well as puzzle difficulty." />
+      </div>
       <div className="puzzle-table-container">
         <table className="puzzle-table" aria-label="Puzzles ranked by number of solvers">
           <thead><tr>

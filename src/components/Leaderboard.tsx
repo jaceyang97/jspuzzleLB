@@ -188,6 +188,7 @@ const Leaderboard: React.FC = () => {
           monthlyParticipation={data.monthlyParticipation}
           inline
           announcementIcon={<AnnouncementIcon variant="ink-cutout" />}
+          onSolverClick={(name) => openSolver(name, 'new_today')}
         />
         <div className="header-right">
           <Tooltip
