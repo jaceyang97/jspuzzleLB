@@ -1,5 +1,6 @@
 import React from 'react';
 import PuzzleNavigation from './PuzzleNavigation';
+import HeaderTitle from '../../../components/HeaderTitle';
 
 const TableSkeleton = ({ rows = 12 }: { rows?: number }) => (
   <div className="skeleton-table">
@@ -22,13 +23,8 @@ const DashboardSkeleton = () => (
   <div className="dashboard-layout dashboard-skeleton" aria-busy="true" aria-live="polite">
     <header className="dashboard-header">
       <div className="header-title-container">
-        <img src="/js_puzzle_solver_logo.svg" alt="Jane Street Puzzle" className="header-logo" />
-        <h1 className="header-title" aria-label="Jane Street Puzzle Leaderboard">
-          <span className="title-bold title-full" aria-hidden="true">Jane Street</span>
-            <span className="title-bold title-short" aria-hidden="true">JS</span>
-            <span className="title-separator" aria-hidden="true">|</span>
-          <span className="title-regular">Puzzle Leaderboard</span>
-        </h1>
+        <img src="/js_puzzle_solver_logo.svg" alt="" className="header-logo" />
+        <HeaderTitle />
       </div>
       <PuzzleNavigation />
     </header>

@@ -14,6 +14,7 @@ import {
 import { formatRelativeTime, formatExactTime } from '../utils/relativeTime';
 import Tooltip from './Tooltip';
 import ThemeToggle from './ThemeToggle';
+import HeaderTitle from './HeaderTitle';
 import { AnnouncementIcon } from './icons/AnnouncementIcon';
 import DashboardStage from '../features/leaderboard/components/DashboardStage';
 import PuzzleNavigation from '../features/leaderboard/components/PuzzleNavigation';
@@ -144,12 +145,7 @@ const Leaderboard: React.FC = () => {
       <div className="dashboard-layout">
         <header className="dashboard-header">
           <div className="header-title-container">
-            <h1 className="header-title" aria-label="Jane Street Puzzle Leaderboard">
-              <span className="title-bold title-full" aria-hidden="true">Jane Street</span>
-            <span className="title-bold title-short" aria-hidden="true">JS</span>
-            <span className="title-separator" aria-hidden="true">|</span>
-                <span className="title-regular">Puzzle Leaderboard</span>
-            </h1>
+            <HeaderTitle />
           </div>
         </header>
         <div className="dashboard-error" role="alert" style={{ padding: '32px', textAlign: 'center' }}>
@@ -170,16 +166,12 @@ const Leaderboard: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="logo-link"
+              aria-label="View the logo artwork in p5.js"
             >
-              <img src="/js_puzzle_solver_logo.svg" alt="Jane Street Puzzle" className="header-logo" />
+              <img src="/js_puzzle_solver_logo.svg" alt="" className="header-logo" />
             </a>
           </Tooltip>
-          <h1 className="header-title" aria-label="Jane Street Puzzle Leaderboard">
-            <span className="title-bold title-full" aria-hidden="true">Jane Street</span>
-            <span className="title-bold title-short" aria-hidden="true">JS</span>
-            <span className="title-separator" aria-hidden="true">|</span>
-            <span className="title-regular">Puzzle Leaderboard</span>
-          </h1>
+          <HeaderTitle />
         </div>
         <PuzzleNavigation />
         <NewSolversBanner

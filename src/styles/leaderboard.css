@@ -81,12 +81,12 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
 .leaderboard-search input::-webkit-search-cancel-button { display: none; }
 .leaderboard-search button { min-width: 30px; height: 38px; padding: 0; color: var(--text-tertiary); background: none; border: 0; cursor: pointer; }
 .leaderboard-tabs { display: flex; flex: none; gap: 20px; padding: 0 18px; border-bottom: 1px solid var(--border-primary); }
-.leaderboard-tabs button { position: relative; min-height: 44px; padding: 0 2px; font-size: 14px; font-weight: 550; color: var(--text-tertiary); border: 0; background: none; cursor: pointer; white-space: nowrap; transition: color 150ms ease; }
-.leaderboard-tabs button::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--accent-secondary); opacity: 0; transition: opacity 150ms ease; }
-.leaderboard-tabs button[aria-selected="true"] { color: var(--text-primary); font-weight: 650; }
-.leaderboard-tabs button[aria-selected="true"]::after { opacity: 1; }
-.leaderboard-tabs button:hover { color: var(--accent-secondary); }
-.leaderboard-tabs button:focus-visible { outline-offset: -4px; }
+.leaderboard-tabs [role="tab"] { position: relative; min-height: 44px; padding: 0 2px; font-size: 14px; font-weight: 550; color: var(--text-tertiary); border: 0; background: none; cursor: pointer; white-space: nowrap; transition: color 150ms ease; }
+.leaderboard-tabs [role="tab"]::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--accent-secondary); opacity: 0; transition: opacity 150ms ease; }
+.leaderboard-tabs [role="tab"][aria-selected="true"] { color: var(--text-primary); font-weight: 650; }
+.leaderboard-tabs [role="tab"][aria-selected="true"]::after { opacity: 1; }
+.leaderboard-tabs [role="tab"]:hover { color: var(--accent-secondary); }
+.leaderboard-tabs [role="tab"]:focus-visible { outline-offset: -4px; }
 .ranking-description { flex: none; min-height: 34px; max-height: 54px; margin: 0; padding: 9px 18px; font-size: 12px; line-height: 1.4; color: var(--text-tertiary); }
 .leaderboard-panel { flex: 1; min-height: 0; overflow: hidden; }
 .leaderboard-panel[hidden] { display: none; }
@@ -177,7 +177,7 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
   .leaderboard-heading h2 { font-size: 17px; }
   .leaderboard-search { width: 160px; }
   .leaderboard-tabs { gap: 12px; padding: 0 12px; justify-content: space-between; }
-  .leaderboard-tabs button { font-size: 13px; }
+  .leaderboard-tabs [role="tab"] { font-size: 13px; }
   .ranking-description { position: absolute; width: 1px; height: 1px; min-height: 0; overflow: hidden; clip-path: inset(50%); padding: 0; white-space: nowrap; }
   .leaderboard-workspace .leaderboard-table.mini th:first-child { width: 16% !important; }
   #leaderboard-panel-top-solvers th:nth-child(2) { width: 46% !important; }
@@ -213,7 +213,7 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
   .leaderboard-search { width: 170px; max-width: 53%; }
   .leaderboard-search input { font-size: 13px; height: 36px; }
   .leaderboard-tabs { padding: 0 12px; }
-  .leaderboard-tabs button { min-height: 40px; }
+  .leaderboard-tabs [role="tab"] { min-height: 40px; }
   .leaderboard-workspace .leaderboard-table.mini th, .leaderboard-workspace .leaderboard-table.mini td { height: 44px; padding: 2px 8px; }
   .leaderboard-workspace .leaderboard-table.mini th { height: 30px; font-size: 10px; }
   .leaderboard-bottomline { min-height: 28px; padding: 5px 10px; font-size: 10px; }
@@ -256,7 +256,7 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
   .dashboard-layout > .new-solvers-banner { min-height: 36px; padding-top: 1px; padding-bottom: 1px; }
   .dashboard-stage { padding-top: 6px; padding-bottom: 6px; }
   .leaderboard-toolbar { padding-top: 4px; padding-bottom: 2px; }
-  .leaderboard-tabs button { min-height: 36px; }
+  .leaderboard-tabs [role="tab"] { min-height: 36px; }
   .leaderboard-bottomline { min-height: 24px; padding-top: 3px; padding-bottom: 3px; }
   .dashboard-footer { height: 18px; min-height: 18px; padding-top: 0; padding-bottom: 0; }
 }
@@ -266,7 +266,7 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
   .header-logo { width: 26px; height: 26px; }
   .leaderboard-heading h2 { font-size: 15px; }
   .ranking-help { width: 26px; }
-  .leaderboard-tabs button { font-size: 12px; }
+  .leaderboard-tabs [role="tab"] { font-size: 12px; }
   .leaderboard-workspace .leaderboard-table.mini .rank-cell { font-size: 11px; }
   .leaderboard-bottomline > span:last-child { font-size: 9px; }
 }
@@ -274,7 +274,7 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
   .header-title-container .js-nav-link { display: none; }
   .leaderboard-search { max-width: 45%; }
   .leaderboard-tabs { gap: 6px; padding: 0 8px; }
-  .leaderboard-tabs button { font-size: 11px; }
+  .leaderboard-tabs [role="tab"] { font-size: 11px; }
   .leaderboard-bottomline > span:last-child { display: none; }
 }
 @media (max-height: 650px) and (min-width: 701px) {
@@ -410,9 +410,8 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
   .dashboard-stage--compact .side-panel { grid-area: support; }
 }
 
-.leaderboard-tab-tooltip { display: inline-flex; min-width: 0; }
-.leaderboard-tab-tooltip > button { width: 100%; }
-.leaderboard-tab-tooltip .ui-tooltip { text-transform: none; font-weight: 400; letter-spacing: 0; }
+.leaderboard-tab-group { display: inline-flex; align-items: center; flex: none; min-width: 0; }
+.leaderboard-tab-group > [role="tab"] { align-self: stretch; }
 .leaderboard-workspace .leaderboard-table.mini th:nth-child(2) { overflow: visible; white-space: normal; }
 .solver-column-title { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .solver-column-label { cursor: default; }
@@ -424,7 +423,6 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
 .puzzle-table td:last-child .ui-tooltip::after { display: none; }
 .side-panel .puzzle-table-container { overflow-x: hidden; }
 @media (max-width: 950px) {
-  .leaderboard-tab-tooltip { flex: 1; }
   .solver-column-title { gap: 6px; }
   .solver-column-hint { font-size: 9px; }
 }
@@ -435,10 +433,9 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
 .leaderboard-workspace { container: rankings / inline-size; }
 .leaderboard-header { display: flex; flex: none; flex-wrap: wrap; align-items: center; gap: 0 12px; padding: 0 14px; border-bottom: 1px solid var(--border-primary); }
 .leaderboard-header .leaderboard-tabs { flex: 0 0 auto; align-self: stretch; gap: 18px; padding: 0; border: 0; }
-.leaderboard-header .leaderboard-tabs button { min-height: 52px; font-size: 13px; }
-.leaderboard-header .leaderboard-tab-tooltip { flex: 0 0 auto; }
+.leaderboard-header .leaderboard-tabs [role="tab"] { min-height: 52px; font-size: 13px; }
 .leaderboard-tab-label-short { display: none; }
-.leaderboard-header .leaderboard-controls { flex: 1 1 190px; min-width: 140px; max-width: 250px; margin-left: auto; padding: 4px 0; gap: 6px; }
+.leaderboard-header .leaderboard-controls { flex: 1 1 150px; min-width: 100px; max-width: 210px; margin-left: auto; padding: 4px 0; }
 .leaderboard-header .leaderboard-controls .leaderboard-search { flex: 1; width: auto; min-width: 80px; max-width: none; gap: 6px; padding-left: 8px; }
 .leaderboard-header .leaderboard-search input { height: 32px; font-size: 12px; }
 .leaderboard-header .leaderboard-search button { height: 32px; min-width: 28px; }
@@ -446,12 +443,12 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
 .solver-column-title .solver-column-info { display: none; }
 
 @container rankings (max-width: 520px) {
-  .leaderboard-header { gap: 0 8px; padding: 0 10px; }
+  .leaderboard-header { flex-wrap: nowrap; gap: 0 8px; padding: 0 10px; }
   .leaderboard-header .leaderboard-tabs { gap: 10px; }
-  .leaderboard-header .leaderboard-tabs button { min-height: 48px; font-size: 12px; }
+  .leaderboard-header .leaderboard-tabs [role="tab"] { min-height: 48px; font-size: 12px; }
   .leaderboard-tab-label-full { display: none; }
   .leaderboard-tab-label-short { display: inline; }
-  .leaderboard-header .leaderboard-controls { flex-basis: 150px; min-width: 120px; max-width: 200px; gap: 4px; }
+  .leaderboard-header .leaderboard-controls { flex-basis: 0; min-width: 80px; max-width: 160px; }
   .leaderboard-header .leaderboard-controls .leaderboard-search { min-width: 70px; gap: 4px; }
   .leaderboard-header .leaderboard-search svg { width: 14px; height: 14px; }
   .solver-column-hint { display: none; }
@@ -462,8 +459,8 @@ html, body, #root { width: 100%; height: 100%; overflow: hidden; }
 @container rankings (max-width: 340px) {
   .leaderboard-header { gap: 0 6px; padding: 0 8px; }
   .leaderboard-header .leaderboard-tabs { gap: 6px; }
-  .leaderboard-header .leaderboard-tabs button { min-height: 44px; font-size: 11px; }
-  .leaderboard-header .leaderboard-controls { flex-basis: 120px; min-width: 112px; max-width: 160px; }
+  .leaderboard-header .leaderboard-tabs [role="tab"] { min-height: 44px; font-size: 11px; }
+  .leaderboard-header .leaderboard-controls { min-width: 72px; max-width: 120px; }
   .leaderboard-header .leaderboard-search svg { display: none; }
   .leaderboard-header .leaderboard-search input { font-size: 11px; }
 }

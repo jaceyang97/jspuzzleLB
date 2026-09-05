@@ -75,12 +75,12 @@ export const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({ solversGrowthD
       <div className="trend-header">
         <div className="trend-title">
           <h3>Trends</h3>
+          <InfoTooltip content={activeView.tooltip} label={`About ${activeView.label.toLowerCase()}`} />
         </div>
         <select className="trend-view-select" aria-label="Trend view" value={tab}
           onChange={(event) => { const next = event.target.value as GrowthTab; setTab(next); trackEvent('chart_tab_change', { tab: next }); }}>
           {VIEWS.map((view) => <option key={view.id} value={view.id}>{view.label}</option>)}
         </select>
-        <InfoTooltip content={activeView.tooltip} label={`About ${activeView.label.toLowerCase()}`} />
       </div>
       <div className="growth-tab-panel">
         {tab === 'monthly' && <MonthlyParticipationChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />}

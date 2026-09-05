@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Caveat Unofficial';
+  src: url('../assets/fonts/Caveat.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
 /* The mark, name and divider use the horizontal proportions of the puzzle site. */
 .dashboard-layout .dashboard-header {
   display: grid;
@@ -27,6 +35,11 @@
   white-space: nowrap;
 }
 .dashboard-header .header-title .title-bold { display: inline; font-size: 32px; font-weight: 750; letter-spacing: -0.8px; }
+.dashboard-header .header-brand-name { position: relative; flex: none; }
+.dashboard-header .unofficial-mark { position: absolute; top: calc(100% - .4375em); right: -1.40625em; display: block; width: 2.75em; height: auto; overflow: visible; color: #bb282d; pointer-events: none; }
+.dashboard-header .unofficial-mark text { fill: currentColor; font-family: 'Caveat Unofficial', cursive; font-size: 40px; font-weight: 600; letter-spacing: 0; }
+.dashboard-header .unofficial-mark path { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+[data-theme='dark'] .dashboard-header .unofficial-mark { color: #f2747b; }
 .dashboard-header .header-title .title-short { display: none; }
 .dashboard-header .header-title .title-regular { display: inline; font-size: 32px; font-weight: 300; letter-spacing: -0.7px; color: var(--text-primary); }
 .dashboard-header .header-title .title-separator { display: block; width: 1px; height: 43px; margin: 0 18px; overflow: hidden; background: currentColor; color: var(--text-primary); font-size: 0; }
@@ -140,6 +153,9 @@
   .dashboard-header .header-activity-row { min-height: 44px; padding: 2px 0; gap: 8px; }
   .dashboard-header .header-activity .banner-tag { font-size: 10px; }
   .dashboard-header .header-right { justify-self: end; }
+}
+@media (max-width: 999px) {
+  .dashboard-header .unofficial-mark { display: none; }
 }
 @media (min-width: 701px) and (max-width: 999px) {
   .dashboard-layout .dashboard-header { grid-template-rows: 48px 44px; height: 108px; min-height: 108px; padding: 8px 16px; column-gap: 16px; }

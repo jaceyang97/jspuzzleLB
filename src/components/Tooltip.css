@@ -56,7 +56,7 @@
 }
 .ui-tooltip-anchor:focus-visible { outline: 2px solid var(--accent-secondary); outline-offset: 3px; }
 .info-tooltip { display: inline-flex; flex: none; align-items: center; }
-.info-tooltip-button { display: inline-flex; align-items: center; justify-content: center; flex: none; min-width: 40px; min-height: 40px; padding: 7px; border: 0; background: transparent; color: var(--text-tertiary); cursor: help; border-radius: 6px; }
+.info-tooltip-button { display: inline-flex; align-items: center; justify-content: flex-start; flex: none; min-width: 40px; min-height: 40px; padding: 7px 4px; border: 0; background: transparent; color: var(--text-tertiary); cursor: help; border-radius: 6px; }
 .panel-info-marker { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 12px; height: 14px; box-sizing: border-box; border: 0; border-radius: 0; color: var(--text-tertiary); font-size: 11px; font-weight: 500; line-height: 1; letter-spacing: 0; text-transform: none; }
 .info-tooltip-button:hover .panel-info-marker, .info-tooltip-button:focus-visible .panel-info-marker { color: var(--text-primary); }
 .info-tooltip-button:focus-visible { outline: 2px solid var(--accent-secondary); outline-offset: 1px; }
@@ -66,11 +66,9 @@
 .ui-tooltip.ui-chart-tooltip::before { display: none; }
 .ui-chart-tooltip .recharts-default-tooltip { color: inherit; }
 .ui-chart-tooltip .recharts-tooltip-item { white-space: normal; overflow-wrap: anywhere; }
-.puzzle-panel-header { display: flex; flex: none; align-items: center; justify-content: space-between; gap: 8px; }
+.puzzle-panel-header { display: flex; flex: none; align-items: center; justify-content: flex-start; gap: 2px; }
 .dashboard-layout .puzzle-panel-header h3 { margin: 0; min-width: 0; font-size: 14px; text-align: left; }
 .growth-chart-tabs .trend-header .trend-title { margin-right: auto; min-width: 0; }
-.growth-chart-tabs .trend-header .info-tooltip { margin-right: -7px; }
-.puzzle-panel-header .info-tooltip { margin-right: -7px; }
 @media (prefers-reduced-motion: reduce) {
   .ui-tooltip.ui-tooltip-portal, .ui-tooltip.ui-tooltip-portal[data-open] { transform: none; transition: none; animation: none; }
 }

@@ -72,22 +72,39 @@ describe('LeaderboardWorkspace', () => {
     }
   });
 
-  test('explains Rising stars on tab hover and keyboard focus without selecting it', () => {
+  test('shows one separate help button beside only the selected view', () => {
+    render(<LeaderboardWorkspace data={data} onSolverClick={jest.fn()} />);
+    const tablist = screen.getByRole('tablist', { name: 'Leaderboard view' });
+
+    for (const view of views) {
+      const selectedTab = screen.getByRole('tab', { name: view.label });
+      fireEvent.click(selectedTab);
+      const help = within(tablist).getByRole('button', { name: 'How this ranking works' });
+      expect(screen.getAllByRole('button', { name: 'How this ranking works' })).toHaveLength(1);
+      expect(selectedTab.parentElement).toContainElement(help);
+      expect(selectedTab).not.toContainElement(help);
+      for (const tab of within(tablist).getAllByRole('tab', { selected: false })) {
+        expect(tab.parentElement).not.toContainElement(help);
+      }
+      fireEvent.focus(help);
+      expect(screen.getByRole('tooltip')).toHaveTextContent(document.getElementById('ranking-description')!.textContent!);
+      fireEvent.blur(help);
+    }
+  });
+
+  test('tab-title hover and focus never show duplicate ranking explanations', () => {
     jest.useFakeTimers();
     render(<LeaderboardWorkspace data={data} onSolverClick={jest.fn()} />);
-    const tab = screen.getByRole('tab', { name: 'Rising stars' });
-    const anchor = tab.closest('.leaderboard-tab-tooltip')!;
-
-    fireEvent.mouseEnter(anchor);
-    act(() => { jest.advanceTimersByTime(400); });
-    expect(screen.getByRole('tooltip')).toHaveTextContent(/First recorded solve within the last 12 calendar months, with at least 3 solves/);
-    expect(tab).toHaveAttribute('aria-selected', 'false');
-    fireEvent.mouseLeave(anchor);
-
-    fireEvent.focus(tab);
-    expect(screen.getByRole('tooltip')).toHaveTextContent(/total solves divided by elapsed months since the first solve/);
-    expect(tab).toHaveAttribute('aria-selected', 'false');
-    fireEvent.blur(tab);
+    for (const tab of screen.getAllByRole('tab')) {
+      fireEvent.mouseEnter(tab);
+      act(() => { jest.advanceTimersByTime(500); });
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+      fireEvent.mouseLeave(tab);
+      fireEvent.focus(tab);
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+      fireEvent.blur(tab);
+    }
+    expect(screen.getByRole('tab', { name: 'Top solvers', selected: true })).toBeVisible();
     jest.useRealTimers();
   });
 

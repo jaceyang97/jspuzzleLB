@@ -4,7 +4,6 @@ import TopSolversTable from './TopSolversTable';
 import StreaksTable from './StreaksTable';
 import RisingStarsTable from './RisingStarsTable';
 import { trackEvent } from '../../../utils/analytics';
-import Tooltip from '../../../components/Tooltip';
 import InfoTooltip from '../../../components/InfoTooltip';
 
 const VIEWS = [
@@ -49,7 +48,7 @@ export default function LeaderboardWorkspace({ data, onSolverClick }: Props) {
       <div className="leaderboard-header">
         <div className="leaderboard-tabs" role="tablist" aria-label="Leaderboard view">
           {VIEWS.map((item, index) => (
-            <Tooltip key={item.id} className="leaderboard-tab-tooltip" content={item.description} rich>
+            <div key={item.id} className="leaderboard-tab-group">
               <button
                 id={`leaderboard-tab-${item.id}`}
                 type="button"
@@ -64,7 +63,11 @@ export default function LeaderboardWorkspace({ data, onSolverClick }: Props) {
                 <span className="leaderboard-tab-label-full" aria-hidden="true">{item.label}</span>
                 <span className="leaderboard-tab-label-short" aria-hidden="true">{item.shortLabel}</span>
               </button>
-            </Tooltip>
+              {view === item.id && (
+                <InfoTooltip content={item.description} label="How this ranking works"
+                  className="ranking-help" describedBy="ranking-description" />
+              )}
+            </div>
           ))}
         </div>
 
@@ -77,8 +80,6 @@ export default function LeaderboardWorkspace({ data, onSolverClick }: Props) {
               placeholder="Find a solver…" value={search} onChange={(event) => setSearch(event.target.value)} />
             {search && <button type="button" onClick={() => setSearch('')} aria-label="Clear solver search">×</button>}
           </div>
-          <InfoTooltip content={activeView.description} label="How this ranking works"
-            className="ranking-help" describedBy="ranking-description" />
         </div>
       </div>
 
