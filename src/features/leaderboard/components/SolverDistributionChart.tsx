@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { SolverDistribution } from '../types';
-import Tooltip from '../../../components/Tooltip';
 
 interface SolverDistributionChartProps {
   data: SolverDistribution | undefined;
@@ -84,20 +83,23 @@ const SolverDistributionChart: React.FC<SolverDistributionChartProps> = React.me
           </div>
         </div>
       </div>
-      <div className="distribution-legend">
-        <Tooltip as="div" className="legend-item" content="Solvers who completed exactly 1 puzzle">
-          <span className="legend-color one-puzzle"></span>
-          <span className="legend-text">One-Timers</span>
-        </Tooltip>
-        <Tooltip as="div" className="legend-item" content="Solvers who completed 2–9 puzzles">
-          <span className="legend-color two-nine"></span>
-          <span className="legend-text">Enthusiasts</span>
-        </Tooltip>
-        <Tooltip as="div" className="legend-item" content="Solvers who completed 10 or more puzzles">
-          <span className="legend-color ten-plus"></span>
-          <span className="legend-text">Masters</span>
-        </Tooltip>
-      </div>
+      <ul className="distribution-key" aria-label="Solver groups">
+        <li className="distribution-key-item">
+          <span className="legend-color one-puzzle" aria-hidden="true" />
+          <span className="distribution-key-label">One-timers{' '}<span className="distribution-key-range">1 puzzle</span></span>
+          <span className="distribution-key-count">{distribution.onePuzzle.count.toLocaleString()}</span>
+        </li>
+        <li className="distribution-key-item">
+          <span className="legend-color two-nine" aria-hidden="true" />
+          <span className="distribution-key-label">Enthusiasts{' '}<span className="distribution-key-range">2–9 puzzles</span></span>
+          <span className="distribution-key-count">{distribution.twoToNine.count.toLocaleString()}</span>
+        </li>
+        <li className="distribution-key-item">
+          <span className="legend-color ten-plus" aria-hidden="true" />
+          <span className="distribution-key-label">Masters{' '}<span className="distribution-key-range">10+ puzzles</span></span>
+          <span className="distribution-key-count">{distribution.tenPlus.count.toLocaleString()}</span>
+        </li>
+      </ul>
     </div>
   );
 });

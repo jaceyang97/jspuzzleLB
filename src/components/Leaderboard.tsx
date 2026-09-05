@@ -1,46 +1,39 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import '../styles/layout.css';
 import '../styles/components.css';
 import Confetti from '@tholman/confetti';
-import { trackEvent, trackOnce } from '../utils/analytics';
+import { trackEvent } from '../utils/analytics';
 import { useLeaderboardData } from '../features/leaderboard/hooks/useLeaderboardData';
 import { useRawPuzzleData } from '../features/leaderboard/hooks/useRawPuzzleData';
 import { useTheme } from '../hooks/useTheme';
 import {
-  TopSolversTable,
-  StreaksTable,
-  RisingStarsTable,
-  SolverDistributionChart,
   DashboardSkeleton,
-  StatsCards,
   NewSolversBanner,
   SolverProfileModal,
 } from '../features/leaderboard/components';
 import { formatRelativeTime, formatExactTime } from '../utils/relativeTime';
-import TitleTooltip from './TitleTooltip';
 import Tooltip from './Tooltip';
-
-// Import charts lazily to improve initial load time
-const Charts = lazy(() => import('./charts/Charts'));
-
-// Theme icons
-const SunIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
-  </svg>
-);
-
-const MoonIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-    <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clipRule="evenodd" />
-  </svg>
-);
+import ThemeToggle from './ThemeToggle';
+import { AnnouncementIcon } from './icons/AnnouncementIcon';
+import DashboardStage from '../features/leaderboard/components/DashboardStage';
+import PuzzleNavigation from '../features/leaderboard/components/PuzzleNavigation';
+import '../styles/leaderboard.css';
+import '../styles/header.css';
 
 const Leaderboard: React.FC = () => {
   const { data, loading, error } = useLeaderboardData();
   const { theme, toggleTheme } = useTheme();
   const [showConfetti, setShowConfetti] = useState(false);
-  const [topSolversSearch, setTopSolversSearch] = useState('');
+  const [compactLayout, setCompactLayout] = useState(() => window.matchMedia('(max-width: 700px), (max-height: 500px), (max-width: 1179px) and (max-height: 949px)').matches);
+  const [shortLayout, setShortLayout] = useState(() => window.matchMedia('(max-width: 700px) and (max-height: 620px)').matches);
+  useEffect(() => {
+    const compact = window.matchMedia('(max-width: 700px), (max-height: 500px), (max-width: 1179px) and (max-height: 949px)');
+    const short = window.matchMedia('(max-width: 700px) and (max-height: 620px)');
+    const update = () => { setCompactLayout(compact.matches); setShortLayout(short.matches); };
+    compact.addEventListener('change', update);
+    short.addEventListener('change', update);
+    return () => { compact.removeEventListener('change', update); short.removeEventListener('change', update); };
+  }, []);
   const [selectedSolver, setSelectedSolver] = useState<string | null>(() =>
     new URLSearchParams(window.location.search).get('solver')
   );
@@ -52,9 +45,6 @@ const Leaderboard: React.FC = () => {
     openModalRef.current = { name, openedAt: Date.now() };
     setSelectedSolver(name);
   }, []);
-  const openFromTopSolvers = useCallback((n: string) => openSolver(n, 'top-solvers'), [openSolver]);
-  const openFromStreaks = useCallback((n: string) => openSolver(n, 'streaks'), [openSolver]);
-  const openFromRisingStars = useCallback((n: string) => openSolver(n, 'rising-stars'), [openSolver]);
 
   useEffect(() => {
     if (selectedSolver) {
@@ -92,7 +82,7 @@ const Leaderboard: React.FC = () => {
   }, []);
 
   // Lazy-load raw puzzle data once a solver modal is opened or once the
-  // YoY chart needs it. The hook caches at module scope so opening multiple
+  // activity charts need it. The hook caches at module scope so opening multiple
   // modals only fetches once.
   const needPuzzles = !!selectedSolver || !!data;
   const { puzzles: rawPuzzles, loading: puzzlesLoading } = useRawPuzzleData(needPuzzles);
@@ -129,18 +119,9 @@ const Leaderboard: React.FC = () => {
     }
   }, [error]);
 
-  const solversGrowthData = data?.solversGrowth || [];
-
-  const mostSolvedPuzzlesData = useMemo(() =>
-    data?.mostSolvedPuzzles?.slice(0, 10) || [], [data]);
 
   // Relative + exact "data updated" strings, derived from generatedAt.
-  const updatedRelative = useMemo(
-    () => (data?.generatedAt ? formatRelativeTime(data.generatedAt) : ''),
-    // Re-eval each minute via the setNow tick above
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data?.generatedAt]
-  );
+  const updatedRelative = data?.generatedAt ? formatRelativeTime(data.generatedAt) : '';
   const updatedExact = useMemo(
     () => (data?.generatedAt ? formatExactTime(data.generatedAt) : ''),
     [data?.generatedAt]
@@ -163,14 +144,15 @@ const Leaderboard: React.FC = () => {
       <div className="dashboard-layout">
         <header className="dashboard-header">
           <div className="header-title-container">
-            <h1 className="header-title">
-              <span className="title-bold">Jane Street</span>
-              <span className="title-separator"> | </span>
-              <span className="title-regular">Puzzle Leaderboard</span>
+            <h1 className="header-title" aria-label="Jane Street Puzzle Leaderboard">
+              <span className="title-bold title-full" aria-hidden="true">Jane Street</span>
+            <span className="title-bold title-short" aria-hidden="true">JS</span>
+            <span className="title-separator" aria-hidden="true">|</span>
+                <span className="title-regular">Puzzle Leaderboard</span>
             </h1>
           </div>
         </header>
-        <div className="dashboard-grid" style={{ padding: '32px', textAlign: 'center' }}>
+        <div className="dashboard-error" role="alert" style={{ padding: '32px', textAlign: 'center' }}>
           Unable to load leaderboard data. Please try again later.
         </div>
       </div>
@@ -192,60 +174,21 @@ const Leaderboard: React.FC = () => {
               <img src="/js_puzzle_solver_logo.svg" alt="Jane Street Puzzle" className="header-logo" />
             </a>
           </Tooltip>
-          <h1 className="header-title">
-            <span className="title-bold title-full">Jane Street</span>
-            <span className="title-bold title-short">JS</span>
-            <span className="title-separator"> | </span>
+          <h1 className="header-title" aria-label="Jane Street Puzzle Leaderboard">
+            <span className="title-bold title-full" aria-hidden="true">Jane Street</span>
+            <span className="title-bold title-short" aria-hidden="true">JS</span>
+            <span className="title-separator" aria-hidden="true">|</span>
             <span className="title-regular">Puzzle Leaderboard</span>
           </h1>
-          <div
-            className="intro-container"
-            onMouseEnter={() => trackOnce('intro', 'intro_hover')}
-            onFocus={() => trackOnce('intro', 'intro_hover')}
-          >
-            <span className="intro-button">INTRO</span>
-            <div className="intro-tooltip">
-              <table className="intro-leaderboard-table">
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td><strong>Why Leaderboards?</strong></td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>What's a programmer like me doing building a leaderboard for Jane Street puzzles? Good question—it's mostly an excuse to procrastinate while feeling productive.</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Jane Street thrives on turning brain teasers into financial wizardry. While they puzzle out market strategies, I puzzle out how to scrape puzzle data without getting banned. It's a delicate dance.</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Tracking solvers isn't about glory (okay, <i>maybe a little</i>). It's about justifying hours spent staring at spreadsheets as "research." Plus, if you squint, React components and Python scrapers almost feel like <i>real work</i>.</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Oh, and <strong>this is a leaderboard</strong>.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <a 
-            href="https://www.janestreet.com/puzzles/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="js-nav-link"
-          >
-            PUZZLES
-          </a>
         </div>
+        <PuzzleNavigation />
+        <NewSolversBanner
+          currentPuzzleProgress={data.currentPuzzleProgress}
+          generatedAt={data.generatedAt}
+          monthlyParticipation={data.monthlyParticipation}
+          inline
+          announcementIcon={<AnnouncementIcon variant="ink-cutout" />}
+        />
         <div className="header-right">
           <Tooltip
             as="div"
@@ -263,9 +206,6 @@ const Leaderboard: React.FC = () => {
               {updatedRelative || latestMonth || 'Unknown'}
             </span>
           </Tooltip>
-          <span className="creator-text">
-            Created by <a href="https://www.jaceyang.com/" target="_blank" rel="noopener noreferrer" className="author-link">Jace Yang</a>
-          </span>
           <Tooltip content="View on GitHub">
           <a
             href="https://github.com/jaceyang97/jspuzzleLB"
@@ -287,98 +227,30 @@ const Leaderboard: React.FC = () => {
           </a>
           </Tooltip>
           <Tooltip content={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}>
-          <button
-            className="theme-toggle"
-            onClick={() => {
-              trackEvent('theme_toggle', { to: theme === 'light' ? 'dark' : 'light' });
-              toggleTheme();
-            }}
-            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-          >
-            <span className="theme-icon-wrapper">
-              <span className={`theme-icon ${theme === 'light' ? 'active' : 'inactive'}`}>
-                <MoonIcon />
-              </span>
-              <span className={`theme-icon ${theme === 'dark' ? 'active' : 'inactive'}`}>
-                <SunIcon />
-              </span>
-            </span>
-          </button>
+          <ThemeToggle theme={theme} onToggle={() => {
+            trackEvent('theme_toggle', { to: theme === 'light' ? 'dark' : 'light' });
+            toggleTheme();
+          }} />
           </Tooltip>
         </div>
       </header>
 
-      <NewSolversBanner
-        currentPuzzleProgress={data.currentPuzzleProgress}
-        generatedAt={data.generatedAt}
-        monthlyParticipation={data.monthlyParticipation}
-      />
-
-      <div className="dashboard-grid four-column">
-        <div className="dashboard-item stats-charts-column">
-          <StatsCards totalPuzzles={data.totalPuzzles} uniqueSolvers={data.uniqueSolvers} />
-          
-          <SolverDistributionChart data={data.solverDistribution} />
-          
-          <div className="charts-container">
-            <Suspense fallback={<div className="chart-loading">Loading charts...</div>}>
-              <Charts
-                solversGrowthData={solversGrowthData}
-                mostSolvedPuzzlesData={mostSolvedPuzzlesData}
-                rawPuzzles={rawPuzzles}
-                puzzlesLoading={puzzlesLoading}
-              />
-            </Suspense>
-          </div>
-        </div>
-        
-        <div className="dashboard-item top-solvers-column">
-          <div className="section-header">
-            <h2>🏆 Top Solvers</h2>
-            <div className="search-container">
-              <input
-                type="text"
-                placeholder="Search solvers..."
-                value={topSolversSearch}
-                onChange={(e) => setTopSolversSearch(e.target.value)}
-                className="search-input"
-              />
-            </div>
-          </div>
-          <TopSolversTable
-            data={data.topSolvers || []}
-            searchTerm={topSolversSearch}
-            onSolverClick={openFromTopSolvers}
-          />
-        </div>
-        
-        <div className="dashboard-item streaks-column">
-          <h2>🔥 Longest Streaks</h2>
-          <StreaksTable data={data.longestStreaks || []} onSolverClick={openFromStreaks} />
-        </div>
-        
-        <div className="dashboard-item rising-stars-column">
-          <TitleTooltip
-            as="h2"
-            tooltip="Rising Stars are solvers who started within the past year and have demonstrated exceptional puzzle-solving ability. They are ranked based on their solve rate (puzzles solved per month since their first appearance)."
-          >
-            💫 Rising Stars
-          </TitleTooltip>
-          <RisingStarsTable data={data.risingStars || []} onSolverClick={openFromRisingStars} />
-        </div>
-      </div>
+      <DashboardStage data={data} rawPuzzles={rawPuzzles} puzzlesLoading={puzzlesLoading}
+        compact={compactLayout} short={shortLayout} onSolverClick={openSolver} />
       <SolverProfileModal
         solverName={selectedSolver}
         onClose={() => setSelectedSolver(null)}
       />
 
       <footer className="dashboard-footer">
-        <div className="disclaimer">
-          This site is not affiliated with, endorsed by, or sponsored by Jane Street. All puzzle data is compiled from publicly available information.
-        </div>
+        <span className="footer-credit">Created by <a href="https://www.jaceyang.com/" target="_blank" rel="noopener noreferrer" className="author-link">Jace Yang</a></span>
+        <Tooltip as="div" className="disclaimer" rich content="This site is not affiliated with, endorsed by, or sponsored by Jane Street. All puzzle data is compiled from publicly available information.">
+          <span className="disclaimer-full">Not affiliated with Jane Street. All puzzle data is compiled from publicly available information.</span>
+          <span className="disclaimer-short" tabIndex={0}>Independent project · Public puzzle data</span>
+        </Tooltip>
       </footer>
     </div>
   );
 };
 
-export default Leaderboard; 
+export default Leaderboard;

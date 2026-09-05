@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useScrollPagination } from '../../../hooks/useScrollPagination';
 import RankBadge from './RankBadge';
+import SolverColumnHeader from './SolverColumnHeader';
 
 interface StreaksTableProps {
   data: Array<{ name: string; streakLength: number }>;
+  searchTerm?: string;
   onSolverClick?: (name: string) => void;
 }
 
-const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data, onSolverClick }) => {
+const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data, searchTerm = '', onSolverClick }) => {
+  const filteredData = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+    return data.map((streak, index) => ({ ...streak, rank: index + 1 })).filter((streak) =>
+      streak.name.toLowerCase().includes(query)
+    );
+  }, [data, searchTerm]);
+
   const { visibleItems, containerRef, tableRef, handleScroll } = useScrollPagination({
-    totalItems: data.length,
+    totalItems: filteredData.length,
     trackLabel: 'streaks',
   });
 
@@ -22,44 +31,49 @@ const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data, onSolverCl
       >
         <thead>
           <tr>
-            <th scope="col">Rank</th>
-            <th scope="col">Solver</th>
-            <th scope="col" className="center">Streak</th>
+            <th scope="col" style={{ width: '10%' }}>Rank</th>
+            <th scope="col" style={{ width: '70%' }}><SolverColumnHeader /></th>
+            <th scope="col" className="center" style={{ width: '20%' }}>Streak</th>
           </tr>
         </thead>
         <tbody>
-          {data && data.length > 0 ? (
-            data.slice(0, visibleItems).map((streak, index) => {
+          {filteredData.length > 0 ? (
+            filteredData.slice(0, visibleItems).map((streak) => {
               const clickable = !!onSolverClick;
               return (
                 <tr
-                  key={`streak-${index}`}
+                  key={`streak-${streak.rank}`}
                   className={clickable ? 'clickable-row' : undefined}
                   onClick={clickable ? () => onSolverClick!(streak.name) : undefined}
-                  role={clickable ? 'button' : undefined}
-                  tabIndex={clickable ? 0 : undefined}
-                  aria-label={clickable ? `Open profile for ${streak.name}` : undefined}
-                  onKeyDown={clickable ? (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      onSolverClick!(streak.name);
-                    }
-                  } : undefined}
                 >
-                  <td><RankBadge rank={index + 1} /></td>
+                  <td className="rank-cell"><span aria-label={`Rank ${streak.rank}`}><RankBadge rank={streak.rank} /></span></td>
                   <td title={streak.name}>
-                    <span className="solver-name">{streak.name}</span>
+                    {onSolverClick ? (
+                      <button
+                        type="button"
+                        className="solver-name-button"
+                        aria-label={`Open profile for ${streak.name}`}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          onSolverClick(streak.name);
+                        }}
+                      >
+                        {streak.name}
+                      </button>
+                    ) : <span className="solver-name">{streak.name}</span>}
                   </td>
-                  <td className="center">{streak.streakLength || 0}m</td>
+                  <td className="center leaderboard-score">{streak.streakLength || 0}<span className="leaderboard-secondary"> months</span></td>
                 </tr>
               );
             })
           ) : (
             <tr>
-              <td colSpan={3}>No data available</td>
+              <td colSpan={3} className="leaderboard-empty">
+                <p role="status">{searchTerm.trim() ? `No solvers match “${searchTerm.trim()}”. Try another name.` : 'No streak rankings available yet.'}</p>
+              </td>
             </tr>
           )}
-          {visibleItems < data.length && (
+          {visibleItems < filteredData.length && (
             <tr className="loading-row">
               <td colSpan={3}>Loading more...</td>
             </tr>

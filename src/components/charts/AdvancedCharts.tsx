@@ -1,341 +1,178 @@
 import React, { memo, useMemo, useState } from 'react';
-import {
-  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  LineChart, Line, BarChart, Bar, Legend,
-} from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, BarChart, Bar } from 'recharts';
 import { Puzzle } from '../../features/leaderboard/types';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { useThemeColors } from '../../hooks/useThemeColors';
-import SegmentedControl from '../SegmentedControl';
 import { trackEvent } from '../../utils/analytics';
 
-// Bin count for the percentile rank histogram. 10 bins of width 10 keeps the
-// X-axis readable in the compact chart panel while still showing shape.
-const PERCENTILE_BIN_COUNT = 10;
-const PERCENTILE_BIN_WIDTH = 100 / PERCENTILE_BIN_COUNT;
-
-// Year colors — cool→warm so recent years pop a bit.
-const YEAR_COLORS = [
-  '#94a3b8', '#64748b', '#475569',
-  '#0ea5e9', '#06b6d4', '#10b981', '#22c55e',
-  '#eab308', '#f97316', '#ef4444', '#a855f7', '#ec4899',
-];
-const colorForYear = (year: number, allYears: number[]): string => {
-  const sorted = [...allYears].sort((a, b) => a - b);
-  const idx = sorted.indexOf(year);
-  if (idx < 0) return '#888';
-  return YEAR_COLORS[idx % YEAR_COLORS.length];
+const ACCENT = '#2E8B57';
+export const chartMonthIndex = (month: string): number => {
+  const date = new Date(month);
+  return Number.isNaN(date.getTime()) ? NaN : date.getFullYear() * 12 + date.getMonth();
 };
+export const latestMonthLabel = (month: string): string => {
+  const now = new Date();
+  return `${month}${chartMonthIndex(month) === now.getFullYear() * 12 + now.getMonth() ? ' · in progress' : ''}`;
+};
+const compactNumber = (value: number) => value >= 1000 ? `${(value / 1000).toFixed(value >= 10000 ? 0 : 1)}k` : `${value}`;
+const shortMonth = (value: string) => value.replace(/ (\d{2})(\d{2})$/, " '$2");
 
-// Build {month: 'Jan'..'Dec', "yyyy": uniqueSolverCount} rows from raw puzzles.
-const buildYoYData = (puzzles: Puzzle[]) => {
-  const buckets = new Map<string, Set<string>>();
-  for (const p of puzzles) {
-    const d = new Date(p.date_text);
-    if (isNaN(d.getTime())) continue;
-    const year = d.getFullYear();
-    const month = d.getMonth();
-    const key = `${year}-${month}`;
-    if (!buckets.has(key)) buckets.set(key, new Set<string>());
-    const set = buckets.get(key)!;
-    (p.solvers || []).forEach((s) => set.add(s));
+export const ChartSummary = ({ value, label, context }: { value: number; label: string; context: string }) => (
+  <div className="trend-summary">
+    <div className="trend-summary-value"><strong>{value.toLocaleString()}</strong><span>{label}</span></div>
+    <span className="trend-summary-context">{context}</span>
+  </div>
+);
+
+// Precomputed participation is sampled. Raw lists preserve every recorded month
+// and count each name once even when a month contains multiple puzzles.
+export const buildMonthlyParticipation = (puzzles: Puzzle[]) => {
+  const months = new Map<number, Set<string>>();
+  for (const puzzle of puzzles) {
+    const index = chartMonthIndex(puzzle.date_text);
+    if (!Number.isFinite(index) || index < 2015 * 12 + 10) continue;
+    const solvers = months.get(index) ?? new Set<string>();
+    puzzle.solvers.forEach((name) => solvers.add(name));
+    months.set(index, solvers);
   }
-
-  const yearsSet = new Set<number>();
-  buckets.forEach((_v, k) => yearsSet.add(parseInt(k.split('-')[0], 10)));
-  const years = Array.from(yearsSet).filter((y) => !isNaN(y)).sort((a, b) => a - b);
-
-  const rows = MONTH_CODES.map((m, monthIdx) => {
-    const row: Record<string, number | string> = { month: m };
-    years.forEach((y) => {
-      const set = buckets.get(`${y}-${monthIdx}`);
-      if (set && set.size > 0) row[String(y)] = set.size;
-    });
-    return row;
-  });
-
-  return { rows, years };
+  return Array.from(months).sort(([a], [b]) => a - b).map(([index, solvers]) => ({
+    month: `${MONTH_CODES[index % 12]} ${Math.floor(index / 12)}`,
+    monthIndex: index,
+    solvers: solvers.size,
+  }));
 };
+interface PuzzleChartProps { puzzles: Puzzle[] | null; loading: boolean; }
 
-interface YoYProps {
-  puzzles: Puzzle[] | null;
-  loading: boolean;
-}
-
-export const YoYChart = memo(({ puzzles, loading }: YoYProps) => {
+export const MonthlyParticipationChart = memo(({ puzzles, loading }: PuzzleChartProps) => {
   const colors = useThemeColors();
-  const [showAllYears, setShowAllYears] = useState(false);
-
-  const { rows, years } = useMemo(() => {
-    if (!puzzles) return { rows: [], years: [] };
-    return buildYoYData(puzzles);
-  }, [puzzles]);
-
-  const currentYear = new Date().getFullYear();
-  const visibleYears = useMemo(() => {
-    if (showAllYears) return years;
-    return years.slice(-4);
-  }, [years, showAllYears]);
-
+  const [allTime, setAllTime] = useState(false);
+  const data = useMemo(() => puzzles ? buildMonthlyParticipation(puzzles) : [], [puzzles]);
+  const latest = data[data.length - 1];
+  const visible = useMemo(() => allTime || !latest ? data : data.filter((row) => row.monthIndex >= latest.monthIndex - 23), [data, latest, allTime]);
+  if (loading && !puzzles) return <div className="chart-loading">Loading monthly activity…</div>;
+  if (!latest) return <div className="chart-loading">Monthly activity is unavailable.</div>;
   return (
     <div className="growth-chart-body">
-      <div className="growth-chart-toolbar">
-        <SegmentedControl<'recent' | 'all'>
-          ariaLabel="Year range"
-          options={[
-            { value: 'recent', label: 'Recent' },
-            { value: 'all', label: 'All years' },
-          ]}
-          value={showAllYears ? 'all' : 'recent'}
-          onChange={(v) => {
-            const all = v === 'all';
-            if (all !== showAllYears) {
-              trackEvent('yoy_range_change', { range: all ? 'all-years' : 'recent' });
-            }
-            setShowAllYears(all);
-          }}
-        />
-      </div>
-      {loading && !puzzles ? (
-        <div className="chart-loading">Loading year-over-year data…</div>
-      ) : (
-        <ResponsiveContainer width="100%" height="100%" minHeight={120}>
-          <LineChart data={rows} margin={{ top: 5, right: 8, left: 0, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke={colors.gridStroke} />
-            <XAxis
-              dataKey="month"
-              tick={{ fontSize: 11, fill: colors.textColor }}
-              axisLine={{ stroke: colors.axisStroke }}
-              tickLine={{ stroke: colors.axisStroke }}
-            />
-            <YAxis
-              tick={{ fontSize: 11, fill: colors.textColor }}
-              width={35}
-              axisLine={{ stroke: colors.axisStroke }}
-              tickLine={{ stroke: colors.axisStroke }}
-              allowDecimals={false}
-            />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: colors.tooltipBg,
-                border: `1px solid ${colors.tooltipBorder}`,
-                fontSize: 11,
-                borderRadius: 4,
-              }}
-              labelStyle={{ fontWeight: 600 }}
-            />
-            <Legend
-              wrapperStyle={{ fontSize: 10, paddingTop: 2 }}
-              iconType="line"
-              iconSize={8}
-            />
-            {visibleYears.map((y) => (
-              <Line
-                key={y}
-                type="monotone"
-                dataKey={String(y)}
-                stroke={colorForYear(y, years)}
-                strokeWidth={y === currentYear ? 2.2 : 1.4}
-                dot={false}
-                activeDot={{ r: 3 }}
-                connectNulls={false}
-                isAnimationActive={false}
-                name={String(y)}
-              />
-            ))}
+      <ChartSummary value={latest.solvers} label="monthly solvers" context={latestMonthLabel(latest.month)} />
+      <div className="chart-canvas">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
+          <LineChart data={visible} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
+            <CartesianGrid vertical={false} stroke={colors.gridStroke} strokeDasharray="3 3" />
+            <XAxis dataKey="month" tick={{ fontSize: 10, fill: colors.textColor }} height={22}
+              tickFormatter={shortMonth} interval="preserveStartEnd" minTickGap={30} axisLine={false} tickLine={false} />
+            <YAxis width={34} tickCount={3} tickFormatter={compactNumber} allowDecimals={false}
+              tick={{ fontSize: 10, fill: colors.textColor }} axisLine={false} tickLine={false} />
+            <Tooltip contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
+              border: `1px solid ${colors.tooltipBorder}`, fontSize: 12, borderRadius: 6 }}
+              labelFormatter={(label) => latestMonthLabel(String(label))}
+              formatter={(value: number) => [value.toLocaleString(), 'Unique solvers']} />
+            <Line type="monotone" dataKey="solvers" stroke={ACCENT} strokeWidth={2}
+              dot={false} activeDot={{ r: 3 }} isAnimationActive={false} />
           </LineChart>
         </ResponsiveContainer>
-      )}
+      </div>
+      <div className="trend-caption">
+        <span>{visible[0]?.month} – {latest.month}</span>
+        {data.length > 24 && <button type="button" aria-pressed={allTime}
+          aria-label={allTime ? 'Show the last 24 months' : 'Show all recorded months'}
+          onClick={() => { setAllTime(!allTime); trackEvent('activity_range_change', { range: allTime ? '24-months' : 'all-time' }); }}>
+          {allTime ? 'Last 24 months' : 'All time'}
+        </button>}
+      </div>
     </div>
   );
 });
 
-// Compute newcomers per month from cumulative solversGrowth deltas.
-const buildFirstTimeData = (solversGrowth: { month: string; totalSolvers: number }[]) => {
-  if (!solversGrowth.length) return [];
-  const out: { month: string; newSolvers: number }[] = [];
-  for (let i = 0; i < solversGrowth.length; i++) {
-    const prev = i === 0 ? 0 : solversGrowth[i - 1].totalSolvers;
-    const delta = Math.max(0, solversGrowth[i].totalSolvers - prev);
-    out.push({ month: solversGrowth[i].month, newSolvers: delta });
-  }
-  const firstNonZero = out.findIndex((p) => p.newSolvers > 0);
-  return firstNonZero === -1 ? out : out.slice(firstNonZero);
+export const buildFirstTimeData = (growth: { month: string; totalSolvers: number }[]) => {
+  const sorted = [...growth].filter((row) => Number.isFinite(chartMonthIndex(row.month)))
+    .sort((a, b) => chartMonthIndex(a.month) - chartMonthIndex(b.month));
+  return sorted.map((row, index) => ({ month: row.month,
+    newSolvers: Math.max(0, row.totalSolvers - (index ? sorted[index - 1].totalSolvers : 0)) }));
 };
-
-const formatXAxisYearTick = (value: string) => {
-  const m = value.match(/\d{4}$/);
-  return m ? m[0] : value;
-};
-
-interface FirstTimeProps {
-  solversGrowth: { month: string; totalSolvers: number }[];
-}
-
-export const FirstTimeSolversChart = memo(({ solversGrowth }: FirstTimeProps) => {
+export const FirstTimeSolversChart = memo(({ solversGrowth }: { solversGrowth: { month: string; totalSolvers: number }[] }) => {
   const colors = useThemeColors();
-
   const data = useMemo(() => buildFirstTimeData(solversGrowth), [solversGrowth]);
-
-  const customTicks = useMemo(() => {
-    const seen = new Set<string>();
-    const ticks: string[] = [];
-    for (const d of data) {
-      const m = d.month.match(/^([A-Za-z]{3}) (\d{4})$/);
-      if (!m) continue;
-      const [, mon, year] = m;
-      if (mon === 'Jan' && !seen.has(year)) {
-        seen.add(year);
-        ticks.push(d.month);
-      }
-    }
-    return ticks;
-  }, [data]);
-
+  const latest = data[data.length - 1];
+  const visible = latest ? data.filter((row) => chartMonthIndex(row.month) >= chartMonthIndex(latest.month) - 23) : [];
+  if (!latest) return <div className="chart-loading">New solver history is unavailable.</div>;
   return (
     <div className="growth-chart-body">
-      <ResponsiveContainer width="100%" height="100%" minHeight={120}>
-        <BarChart data={data} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke={colors.gridStroke} />
-          <XAxis
-            dataKey="month"
-            tick={{ fontSize: 11, fill: colors.textColor }}
-            ticks={customTicks}
-            tickFormatter={formatXAxisYearTick}
-            axisLine={{ stroke: colors.axisStroke }}
-            tickLine={{ stroke: colors.axisStroke }}
-            interval={0}
-          />
-          <YAxis
-            tick={{ fontSize: 11, fill: colors.textColor }}
-            width={35}
-            axisLine={{ stroke: colors.axisStroke }}
-            tickLine={{ stroke: colors.axisStroke }}
-            allowDecimals={false}
-          />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: colors.tooltipBg,
-              border: `1px solid ${colors.tooltipBorder}`,
-              fontSize: 11,
-              borderRadius: 4,
-            }}
-            labelStyle={{ fontWeight: 600 }}
-            formatter={(value: number) => [value.toLocaleString(), 'New solvers']}
-          />
-          <Bar dataKey="newSolvers" fill="#2E8B57" isAnimationActive={false} />
-        </BarChart>
-      </ResponsiveContainer>
+      <ChartSummary value={latest.newSolvers} label="first-time solvers" context={latestMonthLabel(latest.month)} />
+      <div className="chart-canvas">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
+          <BarChart data={visible} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
+            <CartesianGrid vertical={false} strokeDasharray="3 3" stroke={colors.gridStroke} />
+            <XAxis dataKey="month" tick={{ fontSize: 10, fill: colors.textColor }} height={22}
+              tickFormatter={shortMonth} interval="preserveStartEnd" minTickGap={30} axisLine={false} tickLine={false} />
+            <YAxis width={34} tickCount={3} tickFormatter={compactNumber} allowDecimals={false}
+              tick={{ fontSize: 10, fill: colors.textColor }} axisLine={false} tickLine={false} />
+            <Tooltip contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
+              border: `1px solid ${colors.tooltipBorder}`, fontSize: 12, borderRadius: 6 }}
+              labelFormatter={(label) => latestMonthLabel(String(label))}
+              formatter={(value: number) => [value.toLocaleString(), 'First-time solvers']} />
+            <Bar dataKey="newSolvers" fill={ACCENT} radius={[2, 2, 0, 0]} isAnimationActive={false} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="trend-caption"><span>First recorded solves · last 24 months</span></div>
     </div>
   );
 });
 
-// Build a histogram of average percentile across solvers who have solved
-// at least 2 puzzles (Enthusiasts + Masters). Per-puzzle percentile uses the
-// same formula as the profile modal: 100 × (1 − (rank − 1) / (total − 1)).
-// Puzzles with fewer than 2 solvers contribute no percentile signal.
-const buildPercentileHistogram = (puzzles: Puzzle[]) => {
-  const sumByName = new Map<string, number>();
-  const countByName = new Map<string, number>();
-
-  for (const p of puzzles) {
-    const solvers = p.solvers;
-    if (!solvers) continue;
-    const total = solvers.length;
-    if (total < 2) continue;
-    for (let i = 0; i < total; i++) {
-      const name = solvers[i];
-      const percentile = 100 * (1 - i / (total - 1));
-      sumByName.set(name, (sumByName.get(name) || 0) + percentile);
-      countByName.set(name, (countByName.get(name) || 0) + 1);
-    }
+// Preserve the existing mean-finish percentile calculation for repeat solvers.
+export const buildPercentileHistogram = (puzzles: Puzzle[]) => {
+  const sums = new Map<string, number>();
+  const counts = new Map<string, number>();
+  for (const puzzle of puzzles) {
+    const solvers = puzzle.solvers;
+    if (solvers.length < 2) continue;
+    const seen = new Set<string>();
+    solvers.forEach((name, index) => {
+      // A repeated name is still one solved puzzle. Keep the first published
+      // position and original list size, matching the solver profile metric.
+      if (seen.has(name)) return;
+      seen.add(name);
+      sums.set(name, (sums.get(name) ?? 0) + 100 * (1 - index / (solvers.length - 1)));
+      counts.set(name, (counts.get(name) ?? 0) + 1);
+    });
   }
-
-  const bins = Array.from({ length: PERCENTILE_BIN_COUNT }, (_, i) => ({
-    binStart: i * PERCENTILE_BIN_WIDTH,
-    binLabel: `${i * PERCENTILE_BIN_WIDTH}–${(i + 1) * PERCENTILE_BIN_WIDTH}`,
-    count: 0,
+  const bins = Array.from({ length: 10 }, (_, index) => ({
+    binStart: index * 10, binLabel: `${index * 10}–${(index + 1) * 10}`, count: 0,
   }));
-
   let totalSolvers = 0;
-  sumByName.forEach((sum, name) => {
-    const count = countByName.get(name) || 0;
+  sums.forEach((sum, name) => {
+    const count = counts.get(name) ?? 0;
     if (count < 2) return;
-    const avg = sum / count;
-    let idx = Math.floor(avg / PERCENTILE_BIN_WIDTH);
-    if (idx >= PERCENTILE_BIN_COUNT) idx = PERCENTILE_BIN_COUNT - 1;
-    if (idx < 0) idx = 0;
-    bins[idx].count += 1;
+    bins[Math.min(9, Math.max(0, Math.floor(sum / count / 10)))].count += 1;
     totalSolvers += 1;
   });
-
   return { bins, totalSolvers };
 };
-
-interface PercentileRankProps {
-  puzzles: Puzzle[] | null;
-  loading: boolean;
-}
-
-export const PercentileRankChart = memo(({ puzzles, loading }: PercentileRankProps) => {
+export const PercentileRankChart = memo(({ puzzles, loading }: PuzzleChartProps) => {
   const colors = useThemeColors();
-
-  const { bins, totalSolvers } = useMemo(() => {
-    if (!puzzles) return { bins: [], totalSolvers: 0 };
-    return buildPercentileHistogram(puzzles);
-  }, [puzzles]);
-
-  if (loading && !puzzles) {
-    return (
-      <div className="growth-chart-body">
-        <div className="chart-loading">Loading percentile distribution…</div>
-      </div>
-    );
-  }
-
+  const { bins, totalSolvers } = useMemo(() => puzzles ? buildPercentileHistogram(puzzles) : { bins: [], totalSolvers: 0 }, [puzzles]);
+  if (loading && !puzzles) return <div className="chart-loading">Loading rank distribution…</div>;
+  if (!puzzles) return <div className="chart-loading">Rank distribution is unavailable.</div>;
   return (
     <div className="growth-chart-body">
-      <ResponsiveContainer width="100%" height="100%" minHeight={120}>
-        <BarChart data={bins} margin={{ top: 5, right: 8, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke={colors.gridStroke} />
-          <XAxis
-            dataKey="binStart"
-            tick={{ fontSize: 11, fill: colors.textColor }}
-            axisLine={{ stroke: colors.axisStroke }}
-            tickLine={{ stroke: colors.axisStroke }}
-            tickFormatter={(v: number) => `${v}`}
-            interval={0}
-          />
-          <YAxis
-            tick={{ fontSize: 11, fill: colors.textColor }}
-            width={35}
-            tickFormatter={(value) =>
-              value >= 1000 ? `${(value / 1000).toFixed(0)}k` : value
-            }
-            axisLine={{ stroke: colors.axisStroke }}
-            tickLine={{ stroke: colors.axisStroke }}
-            allowDecimals={false}
-          />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: colors.tooltipBg,
-              border: `1px solid ${colors.tooltipBorder}`,
-              fontSize: 11,
-              borderRadius: 4,
-            }}
-            labelStyle={{ fontWeight: 600 }}
-            formatter={(value: number) => {
-              const pct = totalSolvers > 0 ? (value / totalSolvers) * 100 : 0;
-              return [`${value.toLocaleString()} (${pct.toFixed(1)}%)`, 'Solvers'];
-            }}
-            labelFormatter={(_label, payload) => {
-              const item = payload && payload[0]?.payload;
-              return item ? `Avg percentile ${item.binLabel}` : '';
-            }}
-          />
-          <Bar dataKey="count" fill="#2E8B57" isAnimationActive={false} />
-        </BarChart>
-      </ResponsiveContainer>
+      <ChartSummary value={totalSolvers} label="repeat solvers" context="At least 2 recorded puzzles" />
+      <div className="chart-canvas">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
+          <BarChart data={bins} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
+            <CartesianGrid vertical={false} strokeDasharray="3 3" stroke={colors.gridStroke} />
+            <XAxis dataKey="binStart" tick={{ fontSize: 10, fill: colors.textColor }} height={22}
+              axisLine={false} tickLine={false} interval={1} />
+            <YAxis width={34} tickCount={3} tickFormatter={compactNumber} allowDecimals={false}
+              tick={{ fontSize: 10, fill: colors.textColor }} axisLine={false} tickLine={false} />
+            <Tooltip contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
+              border: `1px solid ${colors.tooltipBorder}`, fontSize: 12, borderRadius: 6 }}
+              formatter={(value: number) => [`${value.toLocaleString()} (${totalSolvers ? (value / totalSolvers * 100).toFixed(1) : 0}%)`, 'Solvers']}
+              labelFormatter={(_label, payload) => payload?.[0]?.payload ? `Average percentile ${payload[0].payload.binLabel}` : ''} />
+            <Bar dataKey="count" fill={ACCENT} radius={[2, 2, 0, 0]} isAnimationActive={false} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="trend-caption"><span>Average finish percentile · higher is faster</span></div>
     </div>
   );
 });

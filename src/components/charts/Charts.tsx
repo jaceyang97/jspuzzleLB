@@ -1,30 +1,16 @@
 import React, { memo, useState, useMemo } from 'react';
-import {
-  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  AreaChart, Area
-} from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { Puzzle } from '../../features/leaderboard/types';
 import { useThemeColors } from '../../hooks/useThemeColors';
 import TitleTooltip from '../TitleTooltip';
-import SegmentedControl from '../SegmentedControl';
-import { YoYChart, FirstTimeSolversChart, PercentileRankChart } from './AdvancedCharts';
+import HelpTooltip from '../Tooltip';
+import { MonthlyParticipationChart, FirstTimeSolversChart, PercentileRankChart, ChartSummary, chartMonthIndex, latestMonthLabel } from './AdvancedCharts';
 import { trackEvent } from '../../utils/analytics';
+import './trend-panel.css';
 
-// Chart data types
-interface SolversGrowthDataPoint {
-  month: string;
-  totalSolvers: number;
-  isCurrentMonth?: boolean;
-}
-
-interface PuzzleData {
-  id: string;
-  name: string;
-  solvers: number;
-  solution_url: string;
-}
-
+interface SolversGrowthDataPoint { month: string; totalSolvers: number; }
+interface PuzzleData { id: string; name: string; solvers: number; solution_url: string; }
 interface ChartsProps {
   solversGrowthData: SolversGrowthDataPoint[];
   mostSolvedPuzzlesData?: PuzzleData[];
@@ -32,374 +18,126 @@ interface ChartsProps {
   puzzlesLoading?: boolean;
 }
 
-
-// Format x-axis ticks to show only years
-const formatXAxisTick = (value: string) => {
-  // Extract year from date string (assuming format like "Jan 2014")
-  const yearMatch = value.match(/\d{4}$/);
-  return yearMatch ? yearMatch[0] : value;
-};
-
-// Custom tick formatter to only show years
-const yearTickFormatter = (value: string | number) => {
-  if (typeof value === 'string') {
-    return formatXAxisTick(value);
-  }
-  return '';
-};
-
-// Body of the Solvers Growth area chart, without its container or title.
-// The title + container are rendered by GrowthChartTabs so the same outer
-// frame can host the YoY and First-Time charts as alternate tabs.
 const SolversGrowthBody = memo(({ data }: { data: SolversGrowthDataPoint[] }) => {
-  const themeColors = useThemeColors();
-  // Filter data to start from Nov 2015 (first occurrence of solvers)
-  const filteredData = data.filter(item => {
-    const dateMatch = item.month.match(/^([A-Za-z]{3})\s(\d{4})$/);
-    if (!dateMatch) return false;
-    
-    const [, month, yearStr] = dateMatch;
-    const year = parseInt(yearStr, 10);
-    
-    // Include data from Nov 2015 onwards
-    return (year > 2015) || (year === 2015 && (month === "Nov" || month === "Dec"));
-  });
-  
-  // Extract all years from the filtered data
-  const years = Array.from(new Set(
-    filteredData.map(item => {
-      const yearMatch = item.month.match(/\d{4}$/);
-      return yearMatch ? yearMatch[0] : null;
-    }).filter((year): year is string => year !== null)
-  )).sort();
-  
-  // Create custom ticks for years
-  const customTicks = years
-    .filter(year => year !== '2015') // Remove 2015 from the displayed years
-    .map(year => {
-      // Find a data point for this year, preferably January
-      const janEntry = filteredData.find(item => item.month.includes(`Jan ${year}`));
-      if (janEntry) return janEntry.month;
-      
-      // If no January, find any month for this year
-      const anyEntry = filteredData.find(item => item.month.endsWith(year));
-      return anyEntry ? anyEntry.month : null;
-    }).filter((tick): tick is string => tick !== null);
-  
-  // Determine if we need to adjust font size based on number of years
-  const fontSize = years.length > 8 ? 11 : 13;
-
-  // Get current month string
-  const now = new Date();
-  const currentMonthStr = `${MONTH_CODES[now.getMonth()]} ${now.getFullYear()}`;
-  
-  // Check if current month exists in data
-  const currentMonthExists = filteredData.some(item => item.month === currentMonthStr);
-  
-  // If current month doesn't exist in data, add it with the latest solver count
-  let dataWithCurrentMonth = [...filteredData];
-  if (!currentMonthExists && filteredData.length > 0) {
-    const lastItem = filteredData[filteredData.length - 1];
-    dataWithCurrentMonth.push({
-      ...lastItem,
-      month: currentMonthStr,
-      isCurrentMonth: true // Flag to identify current month
-    });
-  }
-  
-  // Custom tooltip component that shows "Ongoing" for the current month
-  interface TooltipPayloadEntry {
-    color: string;
-    name: string;
-    value: number;
-  }
-  
-  interface CustomTooltipProps {
-    active?: boolean;
-    payload?: TooltipPayloadEntry[];
-    label?: string;
-  }
-  
-  const CustomSolversTooltip = ({ active, payload, label }: CustomTooltipProps) => {
-    if (active && payload && payload.length) {
-      // Check if this is the current month
-      const isCurrentMonth = label === currentMonthStr;
-      
-      return (
-        <div className="custom-tooltip" style={{ 
-          backgroundColor: themeColors.tooltipBg,
-          border: `1px solid ${themeColors.tooltipBorder}`
-        }}>
-          <p className="label">{label}</p>
-          {payload.map((entry, index) => (
-            <p key={`item-${index}`} className="value" style={{ color: entry.color }}>
-              {`${entry.name}: ${isCurrentMonth ? 'Ongoing' : entry.value.toLocaleString()}`}
-            </p>
-          ))}
-        </div>
-      );
-    }
-    return null;
-  };
-  
-  // Custom dot component that flashes for the current month
-  interface CustomDotProps {
-    cx?: number;
-    cy?: number;
-    r?: number;
-    payload?: SolversGrowthDataPoint & { isCurrentMonth?: boolean };
-  }
-  
-  const CustomDot = (props: CustomDotProps) => {
-    const { cx, cy, payload, r } = props;
-    
-    if (cx === undefined || cy === undefined || !payload) return null;
-    
-    // Check if this is the current month
-    const isCurrentMonth = payload.month === currentMonthStr;
-    
-    if (isCurrentMonth) {
-      return (
-        <g>
-          <circle 
-            cx={cx} 
-            cy={cy} 
-            r={3} 
-            fill="#A83232" 
-            stroke="#fff"
-            strokeWidth={1}
-            className="pulsing-dot"
-          />
-          <text 
-            x={cx} 
-            y={cy - 10} 
-            textAnchor="middle" 
-            fill="#A83232" 
-            fontSize={9}
-            fontWeight={500}
-            className="pulsing-text"
-          >
-            Ongoing
-          </text>
-        </g>
-      );
-    }
-    
-    // For non-current months, return a small dot or nothing
-    return r !== undefined && r > 0 ? (
-      <circle 
-        cx={cx} 
-        cy={cy} 
-        r={0.5} 
-        fill="#2E8B57" 
-      />
-    ) : null;
-  };
-  
+  const colors = useThemeColors();
+  const recorded = useMemo(() => data.filter((row) => chartMonthIndex(row.month) >= 2015 * 12 + 10)
+    .sort((a, b) => chartMonthIndex(a.month) - chartMonthIndex(b.month)), [data]);
+  const latest = recorded[recorded.length - 1];
+  if (!latest) return <div className="chart-loading">Solver history is unavailable.</div>;
   return (
     <div className="growth-chart-body">
-      <ResponsiveContainer width="100%" height="100%" minHeight={120}>
-        <AreaChart 
-          data={dataWithCurrentMonth} 
-          margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
-        >
-          <defs>
-            <linearGradient id="colorSolvers" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#2E8B57" stopOpacity={0.8}/>
-              <stop offset="95%" stopColor="#2E8B57" stopOpacity={0.1}/>
-            </linearGradient>
-          </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke={themeColors.gridStroke} />
-          <XAxis 
-            dataKey="month" 
-            tick={{ fontSize, fontWeight: 500, fill: themeColors.textColor }}
-            ticks={customTicks}
-            tickFormatter={yearTickFormatter}
-            tickMargin={8}
-            height={30}
-            padding={{ left: 5, right: 5 }}
-            axisLine={{ stroke: themeColors.axisStroke }}
-            tickLine={{ stroke: themeColors.axisStroke }}
-            interval={0} // Force display of all ticks
-            scale="band"
-          />
-          <YAxis 
-            tick={{ fontSize: 12, fill: themeColors.textColor }} 
-            width={35}
-            tickFormatter={(value) => value >= 1000 ? `${(value/1000).toFixed(0)}k` : value}
-            axisLine={{ stroke: themeColors.axisStroke }}
-            tickLine={{ stroke: themeColors.axisStroke }}
-            domain={[0, 'dataMax']}
-          />
-          <Tooltip content={<CustomSolversTooltip />} />
-          <Area 
-            type="monotone" 
-            dataKey="totalSolvers" 
-            name="Total Solvers"
-            stroke="#2E8B57" 
-            strokeWidth={1.5}
-            fillOpacity={1} 
-            fill="url(#colorSolvers)" 
-            isAnimationActive={false}
-            dot={<CustomDot />}
-            activeDot={{ r: 4, strokeWidth: 1, fill: "#2E8B57" }}
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+      <ChartSummary value={latest.totalSolvers} label="unique solvers" context={`Recorded through ${latest.month}`} />
+      <div className="chart-canvas">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
+          <AreaChart data={recorded} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
+            <CartesianGrid vertical={false} strokeDasharray="3 3" stroke={colors.gridStroke} />
+            <XAxis dataKey="month" tick={{ fontSize: 10, fill: colors.textColor }} height={22}
+              tickFormatter={(value: string) => value.slice(-4)}
+              ticks={recorded.filter((row) => row.month.startsWith('Jan')).map((row) => row.month)}
+              interval="preserveStartEnd" minTickGap={20} axisLine={false} tickLine={false} />
+            <YAxis width={34} tickCount={3} tick={{ fontSize: 10, fill: colors.textColor }}
+              tickFormatter={(value: number) => value >= 1000 ? `${(value / 1000).toFixed(0)}k` : `${value}`}
+              axisLine={false} tickLine={false} />
+            <Tooltip contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
+              border: `1px solid ${colors.tooltipBorder}`, fontSize: 12, borderRadius: 6 }}
+              labelFormatter={(label) => latestMonthLabel(String(label))}
+              formatter={(value: number) => [value.toLocaleString(), 'Unique solvers']} />
+            <Area type="monotone" dataKey="totalSolvers" stroke="#2E8B57" fill="#2E8B57"
+              fillOpacity={0.12} strokeWidth={2} isAnimationActive={false} activeDot={{ r: 3 }} />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="trend-caption"><span>At least one solve · {recorded[0].month} – {latest.month}</span></div>
     </div>
   );
 });
 
-// Tabbed wrapper that swaps between Solvers Growth, Year-over-Year, and
-// First-Time Solvers in the same chart panel. The panel header keeps a
-// static title so the layout doesn't reflow when the active tab changes.
-type GrowthTab = 'growth' | 'yoy' | 'first-time' | 'percentiles';
-
+type GrowthTab = 'monthly' | 'growth' | 'first-time' | 'percentiles';
 interface GrowthChartTabsProps {
   solversGrowthData: SolversGrowthDataPoint[];
   rawPuzzles?: Puzzle[] | null;
   puzzlesLoading?: boolean;
 }
+const VIEWS: Array<{ id: GrowthTab; label: string; tooltip: string }> = [
+  { id: 'growth', label: 'Total solvers', tooltip: 'Cumulative unique solvers with at least one recorded solve. Only recorded data is shown; public solver lists begin in November 2015.' },
+  { id: 'monthly', label: 'Monthly activity', tooltip: 'Unique solvers in each calendar month. Each name is counted once even when a month has multiple puzzles. The current month is still in progress.' },
+  { id: 'first-time', label: 'New solvers', tooltip: 'Solvers making their first recorded appearance in each month, calculated from changes in the cumulative unique-solver count.' },
+  { id: 'percentiles', label: 'Rank distribution', tooltip: 'Average finish percentile for solvers with at least two puzzles. Higher percentiles mean earlier positions in the published solver lists.' },
+];
 
-const TAB_META: Record<GrowthTab, { label: string; title: string; tooltip: string }> = {
-  growth: {
-    label: 'Total',
-    title: '🌱 Solvers Growth',
-    tooltip:
-      'Cumulative unique solvers over time. Solver lists are publicly available from Nov 2015 onwards.',
-  },
-  yoy: {
-    label: 'YoY',
-    title: '📈 Year-over-Year',
-    tooltip:
-      'Unique solvers per month, one line per year. Useful for comparing seasonal participation across years.',
-  },
-  'first-time': {
-    label: 'New',
-    title: '✨ First-Time Solvers',
-    tooltip:
-      'First-time solvers per month — newcomers who had never appeared in any prior puzzle.',
-  },
-  percentiles: {
-    label: 'Rank',
-    title: '🏅 Percentile Rank',
-    tooltip:
-      'Distribution of average percentile rank across solvers with 2 or more puzzles solved (Enthusiasts & Masters). Higher percentile = faster average finish.',
-  },
-};
-
-const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({
-  solversGrowthData,
-  rawPuzzles,
-  puzzlesLoading,
-}) => {
+export const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({ solversGrowthData, rawPuzzles, puzzlesLoading }) => {
   const [tab, setTab] = useState<GrowthTab>('growth');
-
+  const activeView = VIEWS.find((view) => view.id === tab)!;
   return (
-    <div
-      className="chart-container mini growth-chart-tabs"
-      style={{ display: 'flex', flexDirection: 'column', padding: '8px 5px 0 0' }}
-    >
-      <div className="growth-tabs-header">
-        <TitleTooltip tooltip={TAB_META[tab].tooltip}>
-          {TAB_META[tab].title}
-        </TitleTooltip>
-        <SegmentedControl<GrowthTab>
-          className="growth-tabs-strip"
-          tabs
-          ariaLabel="Growth chart view"
-          options={(['growth', 'yoy', 'first-time', 'percentiles'] as GrowthTab[]).map(
-            (t) => ({ value: t, label: TAB_META[t].label })
-          )}
-          value={tab}
-          onChange={(t) => {
-            if (t !== tab) trackEvent('chart_tab_change', { tab: t });
-            setTab(t);
-          }}
-        />
+    <div className="chart-container mini growth-chart-tabs" data-view={tab}>
+      <div className="trend-header">
+        <div className="trend-title">
+          <h3>Trends</h3>
+          <HelpTooltip content={activeView.tooltip} rich>
+            <button type="button" className="trend-help" aria-label={`About ${activeView.label.toLowerCase()}`}>i</button>
+          </HelpTooltip>
+        </div>
+        <select className="trend-view-select" aria-label="Trend view" value={tab}
+          onChange={(event) => { const next = event.target.value as GrowthTab; setTab(next); trackEvent('chart_tab_change', { tab: next }); }}>
+          {VIEWS.map((view) => <option key={view.id} value={view.id}>{view.label}</option>)}
+        </select>
       </div>
-
       <div className="growth-tab-panel">
+        {tab === 'monthly' && <MonthlyParticipationChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />}
         {tab === 'growth' && <SolversGrowthBody data={solversGrowthData} />}
-        {tab === 'yoy' && (
-          <YoYChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />
-        )}
         {tab === 'first-time' && <FirstTimeSolversChart solversGrowth={solversGrowthData} />}
-        {tab === 'percentiles' && (
-          <PercentileRankChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />
-        )}
+        {tab === 'percentiles' && <PercentileRankChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />}
       </div>
     </div>
   );
 };
 
-// Optimized component for displaying top puzzles
-const MostSolvedPuzzlesTable = memo(({ data }: { data: PuzzleData[] }) => {
-  const themeColors = useThemeColors();
-  
-  // Memoize sorted data to prevent recalculation on re-renders
-  const topPuzzles = useMemo(() => {
-    return (data?.length ? [...data] : [])
-      .sort((a, b) => b.solvers - a.solvers)
-      .slice(0, 10);
-  }, [data]);
-  
-  const helpers = useMemo(() => ({
-    getPuzzleUrl: (solutionUrl: string) => {
-      return solutionUrl?.replace("-solution", "-index") || "#";
-    },
-    formatPuzzleDate: (id: string) => {
-      if (!id?.includes('-')) return 'N/A';
-      const [year, monthStr] = id.split('-');
-      const month = parseInt(monthStr, 10);
-      return month >= 1 && month <= 12 ?
-        `${MONTH_CODES[month-1]} ${year}` : 'N/A';
-    }
-  }), []);
-
+export const MostSolvedPuzzlesTable = memo(({ data }: { data: PuzzleData[] }) => {
+  const colors = useThemeColors();
+  // Empty published lists are encoded as 0 upstream; their counts are unknown.
+  const puzzles = useMemo(() => [...data].sort((a, b) => {
+    const aPublished = a.solvers > 0;
+    const bPublished = b.solvers > 0;
+    if (aPublished !== bPublished) return aPublished ? -1 : 1;
+    return aPublished ? b.solvers - a.solvers : 0;
+  }), [data]);
+  const puzzleUrl = (url: string) => url ? url.replace('-solution', '-index') : 'https://www.janestreet.com/puzzles/current-puzzle/';
+  const formatPuzzleDate = (id: string) => {
+    const [year, monthText] = id.split('-');
+    const month = Number(monthText);
+    return month >= 1 && month <= 12 ? `${MONTH_CODES[month - 1]} ${year}` : 'N/A';
+  };
   return (
-    <div className="chart-container mini" style={{ display: 'flex', flexDirection: 'column', padding: '8px 5px 0' }}>
-      <TitleTooltip tooltip="The number of solvers can reflect the difficulty of the puzzle, but can also reflect the number of unique participants during that month.">
-        🧩 Top 10 Most Solved Puzzles
+    <div className="chart-container mini most-solved-panel">
+      <TitleTooltip tooltip="All available puzzles, ordered by published solver count. N/A means the solver list has not been published. Participation affects these counts as well as puzzle difficulty.">
+        Most solved puzzles
       </TitleTooltip>
-      <div className="puzzle-table-container" style={{ flex: '1', display: 'flex', flexDirection: 'column', marginBottom: '0' }}>
-        <table className="puzzle-table" style={{ flex: '1', marginBottom: '0' }} aria-label="Top 10 most solved puzzles">
-          <thead>
-            <tr>
-              <th scope="col" style={{ width: 'calc(100% - 160px)' }}>Puzzle</th>
-              <th scope="col" style={{ width: '80px' }}>Date</th>
-              <th scope="col" style={{ width: '80px' }}>Solvers</th>
-            </tr>
-          </thead>
+      <div className="puzzle-table-container">
+        <table className="puzzle-table" aria-label="Puzzles ranked by number of solvers">
+          <thead><tr>
+            <th scope="col" style={{ width: 'calc(100% - 160px)' }}>Puzzle</th>
+            <th scope="col" style={{ width: '80px' }}>Date</th>
+            <th scope="col" style={{ width: '80px' }}>Solvers</th>
+          </tr></thead>
           <tbody>
-            {topPuzzles.length > 0 ? (
-              topPuzzles.map((puzzle, index) => {
-                const isLast = index === topPuzzles.length - 1;
-                const borderStyle = isLast ? 'none' : `1px solid ${themeColors.gridStroke}`;
-                
-                return (
-                  <tr key={puzzle.id || `puzzle-${index}`}>
-                    <td style={{ borderBottom: borderStyle }}>
-                      <a 
-                        href={helpers.getPuzzleUrl(puzzle.solution_url)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="puzzle-link-table"
-                        title={puzzle.name}
-                      >
-                        {puzzle.name}
-                      </a>
-                    </td>
-                    <td style={{ borderBottom: borderStyle }}>{helpers.formatPuzzleDate(puzzle.id)}</td>
-                    <td style={{ borderBottom: borderStyle }}>{puzzle.solvers.toLocaleString()}</td>
-                  </tr>
-                );
-              })
-            ) : (
-              <tr>
-                <td colSpan={3}>No puzzle data available</td>
+            {puzzles.map((puzzle, index) => (
+              <tr key={puzzle.id || `puzzle-${index}`}>
+                <td style={{ borderBottomColor: colors.gridStroke }}>
+                  <a href={puzzleUrl(puzzle.solution_url)} target="_blank" rel="noopener noreferrer"
+                    className="puzzle-link-table" title={puzzle.name}>{puzzle.name}</a>
+                </td>
+                <td style={{ borderBottomColor: colors.gridStroke }}>{formatPuzzleDate(puzzle.id)}</td>
+                <td style={{ borderBottomColor: colors.gridStroke }}>
+                  {puzzle.solvers > 0 ? puzzle.solvers.toLocaleString() : (
+                    <HelpTooltip content="Solver list not published" rich tabIndex={0}
+                      aria-label="N/A: Solver list not published">
+                      N/A
+                    </HelpTooltip>
+                  )}
+                </td>
               </tr>
-            )}
+            ))}
+            {!puzzles.length && <tr><td colSpan={3}>No puzzle data available</td></tr>}
           </tbody>
         </table>
       </div>
@@ -407,22 +145,10 @@ const MostSolvedPuzzlesTable = memo(({ data }: { data: PuzzleData[] }) => {
   );
 });
 
-const Charts: React.FC<ChartsProps> = ({
-  solversGrowthData,
-  mostSolvedPuzzlesData = [],
-  rawPuzzles,
-  puzzlesLoading,
-}) => {
-  return (
-    <div className="charts-dashboard">
-      <GrowthChartTabs
-        solversGrowthData={solversGrowthData}
-        rawPuzzles={rawPuzzles}
-        puzzlesLoading={puzzlesLoading}
-      />
-      <MostSolvedPuzzlesTable data={mostSolvedPuzzlesData} />
-    </div>
-  );
-};
-
-export default Charts; 
+const Charts: React.FC<ChartsProps> = ({ solversGrowthData, mostSolvedPuzzlesData = [], rawPuzzles, puzzlesLoading }) => (
+  <div className="charts-dashboard">
+    <GrowthChartTabs solversGrowthData={solversGrowthData} rawPuzzles={rawPuzzles} puzzlesLoading={puzzlesLoading} />
+    <MostSolvedPuzzlesTable data={mostSolvedPuzzlesData} />
+  </div>
+);
+export default Charts;

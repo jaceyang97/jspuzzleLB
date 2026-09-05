@@ -22,17 +22,42 @@ export const useScrollPagination = ({
   const tableRef = useRef<HTMLTableElement>(null);
 
   useEffect(() => {
-    if (totalItems > 0 && visibleItems < totalItems && containerRef.current && tableRef.current) {
-      const timer = setTimeout(() => {
-        const containerHeight = containerRef.current!.clientHeight;
-        const tableHeight = tableRef.current!.scrollHeight;
-        if (tableHeight <= containerHeight) {
-          setVisibleItems(totalItems);
+    const container = containerRef.current;
+    const table = tableRef.current;
+    if (!container || !table || visibleItems >= totalItems) return;
+
+    let active = true;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const scheduleFill = () => {
+      if (!active) return;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (!active) return;
+        const containerHeight = container.clientHeight;
+        const tableHeight = table.scrollHeight;
+        // Hidden panels have no measurable height. Wait until they become
+        // visible, then add one batch at a time until the table can scroll.
+        if (containerHeight > 0 && tableHeight > 0 && tableHeight <= containerHeight) {
+          setVisibleItems(prev => Math.min(prev + batchSize, totalItems));
         }
       }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [totalItems, visibleItems]);
+    };
+
+    scheduleFill();
+    const observer = typeof ResizeObserver !== 'undefined'
+      ? new ResizeObserver(scheduleFill)
+      : undefined;
+    observer?.observe(container);
+    observer?.observe(table);
+    window.addEventListener('resize', scheduleFill);
+
+    return () => {
+      active = false;
+      clearTimeout(timer);
+      observer?.disconnect();
+      window.removeEventListener('resize', scheduleFill);
+    };
+  }, [totalItems, visibleItems, batchSize]);
 
   const handleScroll = useCallback(
     (e: React.UIEvent<HTMLDivElement>) => {
