@@ -9,7 +9,7 @@ import InfoTooltip from '../../../components/InfoTooltip';
 const VIEWS = [
   { id: 'top-solvers', label: 'Top solvers', shortLabel: 'Solvers', description: 'All-time standings, ranked by total puzzles solved.' },
   { id: 'streaks', label: 'Longest streaks', shortLabel: 'Streaks', description: 'Personal best runs of consecutive months with a solve.' },
-  { id: 'rising-stars', label: 'Rising stars', shortLabel: 'Rising', description: 'First recorded solve within the last 12 calendar months, with at least 3 solves. Ranked by total solves divided by elapsed months since the first solve.' },
+  { id: 'rising-stars', label: 'Rising stars', shortLabel: 'Rising', description: 'First recorded within the 18 calendar months through the latest completed puzzle month. At least 2 puzzles solved and 3 completed puzzles with published solver lists since debut, including the first. Solve rate is the share of those puzzles solved, up to 100%. Open puzzles and missing lists do not count. Higher rates rank first, then more solves. Equal records share a rank.' },
 ] as const;
 type View = typeof VIEWS[number]['id'];
 
@@ -19,7 +19,10 @@ interface Props {
 }
 
 export default function LeaderboardWorkspace({ data, onSolverClick }: Props) {
-  const [view, setView] = useState<View>('top-solvers');
+  const [view, setView] = useState<View>(() => {
+    const requested = new URLSearchParams(window.location.search).get('view');
+    return VIEWS.find(item => item.id === requested)?.id ?? 'top-solvers';
+  });
   const [search, setSearch] = useState('');
   const activeView = VIEWS.find((item) => item.id === view)!;
   const rows: Array<{ name: string }> = view === 'top-solvers' ? data.topSolvers : view === 'streaks' ? data.longestStreaks : data.risingStars;
@@ -64,7 +67,12 @@ export default function LeaderboardWorkspace({ data, onSolverClick }: Props) {
                 <span className="leaderboard-tab-label-short" aria-hidden="true">{item.shortLabel}</span>
               </button>
               {view === item.id && (
-                <InfoTooltip content={item.description} label="How this ranking works"
+                <InfoTooltip content={item.id === 'rising-stars' ? <span className="rising-ranking-help">
+                  <span>{item.description}</span>
+                  {data.risingStarsAsOf && <span className="rising-ranking-asof">Results through {data.risingStarsAsOf}.</span>}
+                  <a href="/rising-stars">Why these rules? <span aria-hidden="true">↗</span></a>
+                </span> : item.description} label="How this ranking works"
+                  interactive={item.id === 'rising-stars'} popupLabel="Rising stars ranking details"
                   className="ranking-help" describedBy="ranking-description" />
               )}
             </div>

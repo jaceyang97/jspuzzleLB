@@ -13,7 +13,7 @@ interface RisingStarsTableProps {
 const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data, searchTerm = '', onSolverClick }) => {
   const filteredData = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
-    return data.map((solver, index) => ({ ...solver, rank: index + 1 })).filter((solver) =>
+    return data.filter((solver) =>
       solver.name.toLowerCase().includes(query)
     );
   }, [data, searchTerm]);
@@ -26,7 +26,7 @@ const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data, se
   return (
     <div className="dashboard-table" onScroll={handleScroll} ref={containerRef}>
       <table
-        className="leaderboard-table mini"
+        className="leaderboard-table mini rising-stars-table"
         ref={tableRef}
         aria-label="Rising stars - new solvers with high solve rates"
       >
@@ -34,8 +34,8 @@ const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data, se
           <tr>
             <th scope="col" style={{ width: '10%' }}>Rank</th>
             <th scope="col" style={{ width: '40%' }}><SolverColumnHeader /></th>
-            <th scope="col" className="center" style={{ width: '15%' }} aria-label="Puzzles solved per month">Per month</th>
-            <th scope="col" className="center" style={{ width: '15%' }}>Solved</th>
+            <th scope="col" className="center" style={{ width: '15%' }}>Solve rate</th>
+            <th scope="col" className="center" style={{ width: '15%' }}>Record</th>
             <th scope="col" className="center" style={{ width: '20%' }}>Debut</th>
           </tr>
         </thead>
@@ -65,8 +65,9 @@ const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data, se
                       </button>
                     ) : <span className="solver-name">{solver.name}</span>}
                   </td>
-                  <td className="center leaderboard-score">{Number.isFinite(solver.solveRate) ? solver.solveRate.toFixed(1) : 'N/A'}</td>
-                  <td className="center leaderboard-secondary">{solver.puzzlesSolved ?? 'N/A'}</td>
+                  <td className="center leaderboard-score">{Number.isFinite(solver.solveRate) && solver.solveRate >= 0 && solver.solveRate <= 1
+                    ? `${Number((solver.solveRate * 100).toFixed(1))}%` : 'N/A'}</td>
+                  <td className="center leaderboard-secondary" aria-label={`${solver.puzzlesSolved} of ${solver.opportunities} published puzzles solved`}>{solver.puzzlesSolved}/{solver.opportunities}</td>
                   <td className="center leaderboard-secondary">{solver.firstAppearance || 'N/A'}</td>
                 </tr>
               );

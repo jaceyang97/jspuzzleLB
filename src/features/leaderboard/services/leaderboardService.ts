@@ -1,5 +1,6 @@
 import { calculateLeaderboardData, formatDate } from '../../../utils/leaderboardUtils';
 import { LeaderboardData, Puzzle } from '../types';
+import { calculateRisingStars, RISING_STARS_RULE } from '../../../utils/risingStars';
 
 const fetchJson = async <T>(path: string): Promise<T> => {
   const response = await fetch(path);
@@ -14,6 +15,28 @@ export const loadLeaderboardData = async (): Promise<LeaderboardData> => {
   try {
     // stats.json uses raw field names (solver, length, start, end) — map to our types
     const raw = await fetchJson<Record<string, any>>('/data/stats.json');
+    const hasPublishedRisingStars = raw.risingStarsRule === RISING_STARS_RULE
+      && Object.prototype.hasOwnProperty.call(raw, 'risingStarsAsOf')
+      && (raw.risingStarsAsOf === null || typeof raw.risingStarsAsOf === 'string')
+      && Array.isArray(raw.risingStars)
+      && raw.risingStars.every((s: any) => s && typeof s.solver === 'string'
+        && Number.isInteger(s.puzzlesSolved) && s.puzzlesSolved >= 2
+        && Number.isInteger(s.opportunities) && s.opportunities >= Math.max(3, s.puzzlesSolved)
+        && Number.isInteger(s.rank) && s.rank >= 1
+        && Number.isFinite(s.solveRate) && s.solveRate >= 0 && s.solveRate <= 1);
+    // A matching schema alone is not enough: an older policy can contain valid
+    // rates but the wrong eligible names. Rebuild when the policy differs.
+    const rising = hasPublishedRisingStars ? {
+      risingStars: raw.risingStars.map((s: any) => ({
+        name: s.solver,
+        solveRate: s.solveRate,
+        puzzlesSolved: s.puzzlesSolved,
+        opportunities: s.opportunities,
+        rank: s.rank,
+        firstAppearance: formatDate(s.firstAppearance),
+      })),
+      risingStarsAsOf: raw.risingStarsAsOf === null ? null : formatDate(raw.risingStarsAsOf),
+    } : calculateRisingStars(await fetchJson<Puzzle[]>('/data/data.json'));
     return {
       totalPuzzles: raw.totalPuzzles,
       uniqueSolvers: raw.uniqueSolvers,
@@ -35,12 +58,7 @@ export const loadLeaderboardData = async (): Promise<LeaderboardData> => {
         startDate: formatDate(s.start),
         endDate: formatDate(s.end),
       })),
-      risingStars: (raw.risingStars ?? []).map((s: any) => ({
-        name: s.solver,
-        solveRate: s.solveRate,
-        puzzlesSolved: s.puzzlesSolved,
-        firstAppearance: formatDate(s.firstAppearance),
-      })),
+      ...rising,
       currentPuzzleProgress: raw.currentPuzzleProgress ?? undefined,
     };
   } catch {

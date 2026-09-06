@@ -1,5 +1,6 @@
 import { format, parse, compareAsc, differenceInMonths } from 'date-fns';
 import { LeaderboardData, Puzzle, SolverStats } from '../features/leaderboard/types';
+import { calculateRisingStars } from './risingStars';
 
 export const MONTH_CODES = [
   'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -275,32 +276,7 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
     .sort((a, b) => b.streakLength - a.streakLength)
     .slice(0, 20);
   
-  // Rising stars: first appearance within the past 12 months (current
-  // month included) AND at least 3 puzzles solved.
-  const currentDate = new Date();
-  const nowMonthIdx = currentDate.getFullYear() * 12 + currentDate.getMonth();
-  const monthIdxOf = (dateText: string): number => {
-    const date = parseDate(dateText);
-    return date.getFullYear() * 12 + date.getMonth();
-  };
-
-  const risingStars = Array.from(solverMap.values())
-    .filter(solver =>
-      nowMonthIdx - monthIdxOf(solver.firstAppearance) <= 11 &&
-      solver.puzzlesSolved >= 3
-    )
-    .map(solver => {
-      const firstDate = parseDate(solver.firstAppearance);
-      const monthsSinceStart = Math.max(1, nowMonthIdx - monthIdxOf(solver.firstAppearance));
-      return {
-        name: solver.name,
-        puzzlesSolved: solver.puzzlesSolved,
-        solveRate: solver.puzzlesSolved / monthsSinceStart,
-        firstAppearance: formatMonthYear(firstDate),
-      };
-    })
-    .sort((a, b) => b.solveRate - a.solveRate)
-    .slice(0, 20);
+  const { risingStars, risingStarsAsOf } = calculateRisingStars(puzzles);
   
   // Calculate monthly participation - sample every other month for better performance
   const sortedMonths = Array.from(allMonths).sort((a, b) => 
@@ -378,8 +354,9 @@ export const calculateLeaderboardData = (puzzles: Puzzle[]): LeaderboardData => 
     topSolvers,
     longestStreaks,
     risingStars,
+    risingStarsAsOf,
     monthlyParticipation,
     solversGrowth,
     mostSolvedPuzzles,
   };
-}; 
+};

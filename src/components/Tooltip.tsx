@@ -13,10 +13,12 @@ type TooltipProps = {
   as?: React.ElementType;
   className?: string;
   rich?: boolean;
+  interactive?: boolean;
+  popupLabel?: string;
 } & Omit<React.HTMLAttributes<HTMLElement>, 'content'>;
 
 const Tooltip: React.FC<TooltipProps> = ({
-  content, children, as: Tag = 'span', className, rich,
+  content, children, as: Tag = 'span', className, rich, interactive = false, popupLabel,
   onMouseEnter, onMouseLeave, onFocus, onBlur, onPointerDown, onKeyDown, ...rest
 }) => {
   const [open, setOpen] = useState(false);
@@ -96,6 +98,14 @@ const Tooltip: React.FC<TooltipProps> = ({
   }, [open, id]);
 
   useEffect(() => {
+    if (!interactive) return;
+    const target = anchorRef.current?.querySelector<HTMLElement>(FOCUSABLE);
+    if (!target) return;
+    target.setAttribute('aria-expanded', String(open));
+    return () => { target.removeAttribute('aria-expanded'); };
+  }, [interactive, open]);
+
+  useEffect(() => {
     if (!open) return;
     const dismissOutside = (event: PointerEvent) => { if (!owns(event.target)) hide(); };
     const dismissEscape = (event: KeyboardEvent) => {
@@ -141,6 +151,15 @@ const Tooltip: React.FC<TooltipProps> = ({
       }}
       onKeyDown={(event: React.KeyboardEvent<HTMLElement>) => {
         onKeyDown?.(event);
+        if (!event.defaultPrevented && interactive && open && event.key === 'Tab' && !event.shiftKey) {
+          const firstLink = tipRef.current?.querySelector<HTMLElement>(FOCUSABLE);
+          if (firstLink) {
+            event.preventDefault();
+            event.stopPropagation();
+            firstLink.focus();
+            return;
+          }
+        }
         const contentElement = contentRef.current;
         if (!event.defaultPrevented && open && event.key === 'Tab' && !event.shiftKey && contentElement &&
           contentElement.scrollHeight > contentElement.clientHeight + 1) {
@@ -153,7 +172,8 @@ const Tooltip: React.FC<TooltipProps> = ({
     </Tag>
     {open && createPortal(
       <span ref={tipRef} id={id} className={`ui-tooltip ui-tooltip-portal${rich ? ' rich' : ''}`}
-        data-open="" data-placement={position?.placement ?? 'bottom'} role="tooltip"
+        data-open="" data-placement={position?.placement ?? 'bottom'} role={interactive ? 'dialog' : 'tooltip'}
+        aria-label={interactive ? popupLabel : undefined}
         style={{ position: 'fixed', left: position?.left ?? 0, top: position?.top ?? 0,
           maxWidth: position?.maxWidth, maxHeight: position?.maxHeight, transform: 'none',
           visibility: position?.visible ? 'visible' : 'hidden',
@@ -165,6 +185,12 @@ const Tooltip: React.FC<TooltipProps> = ({
           if (event.key !== 'Tab') return;
           event.preventDefault();
           event.stopPropagation();
+          if (interactive) {
+            const links = Array.from(tipRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE) ?? []);
+            const currentIndex = links.indexOf(document.activeElement as HTMLElement);
+            const nextLink = links[currentIndex + (event.shiftKey ? -1 : 1)];
+            if (nextLink) { nextLink.focus(); return; }
+          }
           if (event.shiftKey) { focusTarget.current?.focus(); return; }
           const trigger = focusTarget.current ?? anchorRef.current;
           const focusScope = trigger?.closest('[role="dialog"], [aria-modal="true"], dialog') ?? document;

@@ -6,6 +6,8 @@ import os
 from datetime import datetime, timezone
 from typing import Dict, List, Any, Optional
 
+from .rising_stars import RISING_STARS_RULE, build_rising_stars
+
 
 @functools.lru_cache(maxsize=256)
 def _parse_date(date_text: str) -> datetime:
@@ -152,26 +154,7 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
     )
     longest_streaks = sorted(longest_streaks, key=lambda s: s["length"], reverse=True)[:20]
 
-    # Rising stars: first appearance within the past 12 months (current
-    # month included) AND at least 3 puzzles solved.
-    now = datetime.now(timezone.utc)
-    now_month_idx = now.year * 12 + now.month
-
-    rising_stars = []
-    for solver in solver_map.values():
-        first_date = _parse_date(solver["firstAppearance"])
-        first_month_idx = first_date.year * 12 + first_date.month
-        months_since = max(1, now_month_idx - first_month_idx)
-        if now_month_idx - first_month_idx <= 11 and solver["puzzlesSolved"] >= 3:
-            rising_stars.append(
-                {
-                    "solver": solver["name"],
-                    "puzzlesSolved": solver["puzzlesSolved"],
-                    "solveRate": solver["puzzlesSolved"] / months_since,
-                    "firstAppearance": solver["firstAppearance"],
-                }
-            )
-    rising_stars = sorted(rising_stars, key=lambda s: s["solveRate"], reverse=True)[:20]
+    rising_stars, rising_stars_as_of = build_rising_stars(puzzles)
 
     # Monthly participation
     sorted_months = sorted(list(all_months), key=lambda m: _parse_date(m))
@@ -243,6 +226,8 @@ def build_stats(puzzles: List[Dict[str, Any]]) -> Dict[str, Any]:
         ],
         "longestStreaks": longest_streaks,
         "risingStars": rising_stars,
+        "risingStarsAsOf": rising_stars_as_of,
+        "risingStarsRule": RISING_STARS_RULE,
         "monthlyParticipation": monthly_participation,
         "solversGrowth": solvers_growth,
         "mostSolvedPuzzles": most_solved_puzzles,

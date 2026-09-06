@@ -36,7 +36,7 @@ const data: LeaderboardData = {
     name, streakLength: 6 - index, startDate: 'Jan 2026', endDate: 'Jun 2026',
   })),
   risingStars: ['Ada', 'Morgan'].map((name, index) => ({
-    name, puzzlesSolved: 6 - index, solveRate: 1.5 - index / 2, firstAppearance: 'May 2026',
+    name, puzzlesSolved: 6 - index, opportunities: 6, rank: index + 1, solveRate: (6 - index) / 6, firstAppearance: 'May 2026',
   })),
   monthlyParticipation: [],
   solversGrowth: [],

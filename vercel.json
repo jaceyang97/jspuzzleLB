@@ -1,0 +1,13 @@
+{
+  "redirects": [
+    { "source": "/designs/rising-stars-review.html", "destination": "/rising-stars", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/rising-stars", "destination": "/index.html" },
+    { "source": "/rising-stars/", "destination": "/index.html" }
+  ],
+  "headers": [
+    { "source": "/rising-stars", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] },
+    { "source": "/rising-stars/", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] }
+  ]
+}

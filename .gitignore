@@ -34,3 +34,11 @@ yarn-error.log*
 
 # Claude Code local config
 .claude/
+
+# Reproducible research working files; compressed results are committed.
+/analysis/rising-stars/expanded/results/*_grid.json
+/analysis/rising-stars/expanded/results/*_grid.csv
+/analysis/rising-stars/expanded/results/origin_metrics.npz
+/analysis/rising-stars/expanded/figures/*
+!/analysis/rising-stars/expanded/figures/selected-*.png
+!/analysis/rising-stars/expanded/figures/selected-*.svg

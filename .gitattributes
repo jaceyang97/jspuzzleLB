@@ -2,3 +2,5 @@
 /public/data/*.json text eol=lf
 /analysis/** text eol=lf
 /analysis/**/*.png binary
+/src/features/rising-stars/data/*.json text eol=lf
+/analysis/**/*.gz binary

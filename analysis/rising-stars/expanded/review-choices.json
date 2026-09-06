@@ -1,0 +1,17 @@
+{
+  "purpose": "Exploratory comparison, not an approved production policy",
+  "config_ids": [
+    "W12-S3-E3-raw",
+    "W18-S2-E3-raw",
+    "W18-S3-E3-raw",
+    "W12-S2-E2-raw",
+    "W12-S4-E4-raw",
+    "W12-S3-E3-wilson",
+    "W12-S3-E3-beta",
+    "W13-S2-E3-raw",
+    "W12-S2-E3-raw",
+    "W12-S2-E2-wilson",
+    "W12-S2-E3-wilson",
+    "W18-S2-E2-raw"
+  ]
+}

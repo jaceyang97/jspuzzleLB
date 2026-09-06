@@ -27,9 +27,12 @@ const data: LeaderboardData = {
   risingStars: ['Ada', 'Morgan'].map((name, index) => ({
     name,
     puzzlesSolved: 6 - index,
-    solveRate: 1.5 - index / 2,
+    solveRate: (6 - index) / 6,
+    opportunities: 6,
+    rank: index + 1,
     firstAppearance: 'May 2026',
   })),
+  risingStarsAsOf: 'Aug 2026',
   monthlyParticipation: [],
   solversGrowth: [],
   mostSolvedPuzzles: [],
@@ -42,6 +45,59 @@ const views = [
 ];
 
 describe('LeaderboardWorkspace', () => {
+  afterEach(() => { window.history.replaceState({}, '', '/'); });
+
+  test('opens the article return link in Rising stars and ignores unknown view values', () => {
+    window.history.replaceState({}, '', '/?view=rising-stars');
+    const first = render(<LeaderboardWorkspace data={data} onSolverClick={jest.fn()} />);
+    expect(screen.getByRole('tab', { name: 'Rising stars', selected: true })).toBeVisible();
+    first.unmount();
+    window.history.replaceState({}, '', '/?view=unknown');
+    render(<LeaderboardWorkspace data={data} onSolverClick={jest.fn()} />);
+    expect(screen.getByRole('tab', { name: 'Top solvers', selected: true })).toBeVisible();
+  });
+
+  test('exposes the article only inside Rising stars help, with keyboard access and return focus', () => {
+    render(<LeaderboardWorkspace data={data} onSolverClick={jest.fn()} />);
+    expect(screen.queryByRole('link', { name: /Why these rules/ })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('tab', { name: 'Rising stars' }));
+    expect(screen.queryByRole('link', { name: /Why these rules/ })).not.toBeInTheDocument();
+    const help = screen.getByRole('button', { name: 'How this ranking works' });
+    expect(help).toHaveAttribute('aria-haspopup', 'dialog');
+    expect(help).toHaveAttribute('aria-expanded', 'false');
+    act(() => help.focus());
+    const popup = screen.getByRole('dialog', { name: 'Rising stars ranking details' });
+    expect(popup).toHaveTextContent('Results through Aug 2026.');
+    const link = within(popup).getByRole('link', { name: /Why these rules/ });
+    expect(link).toHaveAttribute('href', '/rising-stars');
+    expect(help).toHaveAttribute('aria-expanded', 'true');
+    fireEvent.keyDown(help, { key: 'Tab' });
+    expect(link).toHaveFocus();
+    fireEvent.keyDown(link, { key: 'Tab', shiftKey: true });
+    expect(help).toHaveFocus();
+    fireEvent.keyDown(help, { key: 'Tab' });
+    fireEvent.keyDown(link, { key: 'Escape' });
+    expect(help).toHaveFocus();
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    act(() => help.blur());
+    act(() => help.focus());
+    fireEvent.keyDown(help, { key: 'Tab' });
+    fireEvent.keyDown(screen.getByRole('link', { name: /Why these rules/ }), { key: 'Tab' });
+    expect(screen.getByRole('searchbox')).toHaveFocus();
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  test('a touch on Rising stars help opens the article link and an outside tap closes it', () => {
+    render(<LeaderboardWorkspace data={data} onSolverClick={jest.fn()} />);
+    fireEvent.click(screen.getByRole('tab', { name: 'Rising stars' }));
+    const touch = new Event('pointerdown', { bubbles: true });
+    Object.defineProperty(touch, 'pointerType', { value: 'touch' });
+    fireEvent(screen.getByRole('button', { name: 'How this ranking works' }), touch);
+    expect(screen.getByRole('link', { name: /Why these rules/ })).toBeVisible();
+    fireEvent.pointerDown(document.body);
+    expect(screen.queryByRole('link', { name: /Why these rules/ })).not.toBeInTheDocument();
+  });
+
   test('shows exactly one ranking table as the selected view changes', () => {
     render(<LeaderboardWorkspace data={data} onSolverClick={jest.fn()} />);
 
@@ -67,7 +123,7 @@ describe('LeaderboardWorkspace', () => {
       const help = screen.getByRole('button', { name: 'How this ranking works' });
       expect(help).toHaveAccessibleDescription(description!.textContent!);
       fireEvent.focus(help);
-      expect(screen.getByRole('tooltip')).toHaveTextContent(description!.textContent!);
+      expect(screen.getByRole(view.source === 'rising-stars' ? 'dialog' : 'tooltip')).toHaveTextContent(description!.textContent!);
       fireEvent.blur(help);
     }
   });
@@ -87,7 +143,7 @@ describe('LeaderboardWorkspace', () => {
         expect(tab.parentElement).not.toContainElement(help);
       }
       fireEvent.focus(help);
-      expect(screen.getByRole('tooltip')).toHaveTextContent(document.getElementById('ranking-description')!.textContent!);
+      expect(screen.getByRole(view.source === 'rising-stars' ? 'dialog' : 'tooltip')).toHaveTextContent(document.getElementById('ranking-description')!.textContent!);
       fireEvent.blur(help);
     }
   });

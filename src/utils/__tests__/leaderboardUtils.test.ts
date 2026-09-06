@@ -1,4 +1,3 @@
-import { addMonths, format } from 'date-fns';
 import {
   calculateLeaderboardData,
   competitionRanks,
@@ -228,49 +227,19 @@ describe('computeRankChanges', () => {
 });
 
 describe('rising stars eligibility', () => {
-  // Puzzle dated `offset` months from now, e.g. -2 → "June 2026" when
-  // the current month is August 2026.
-  const monthText = (offset: number): string =>
-    format(addMonths(new Date(), offset), 'MMMM yyyy');
-
-  test('requires 3 distinct puzzles — duplicate names on one puzzle count once', () => {
-    // "Star": 3 distinct puzzles. "Dupe": 3 list entries but only 2
-    // distinct puzzles (listed twice on a double puzzle) → excluded.
+  test('fallback exposes the published-opportunity record and completed snapshot month', () => {
     const puzzles = [
-      puzzle(monthText(-3), 'P1', ['Star']),
-      puzzle(monthText(-2), 'P2', ['Star', 'Dupe', 'Dupe']),
-      puzzle(monthText(-1), 'P3', ['Star', 'Dupe']),
-    ];
+      puzzle('June 2026', 'P1', ['Star']),
+      puzzle('July 2026', 'P2', ['Star', 'Dupe', 'Dupe']),
+      puzzle('August 2026', 'P3', ['Star', 'Dupe']),
+    ].map((entry) => ({ ...entry, solution_url: `https://example.test/${entry.name}` }));
     const data = calculateLeaderboardData(puzzles);
-    const names = data.risingStars.map((s) => s.name);
-    expect(names).toContain('Star');
-    expect(names).not.toContain('Dupe');
-
+    expect(data.risingStarsAsOf).toBe('Aug 2026');
+    expect(data.risingStars).toEqual([{
+      name: 'Star', puzzlesSolved: 3, opportunities: 3, solveRate: 1, rank: 1, firstAppearance: 'Jun 2026',
+    }]);
     const dupe = data.topSolvers.find((s) => s.name === 'Dupe');
     expect(dupe?.puzzlesSolved).toBe(2);
-  });
-
-  test('first appearance must fall within the past 12 months', () => {
-    // "Old" first appeared 12 months back (the 13th month counting the
-    // current one) → excluded. "Recent" first appeared 11 months back
-    // (the 12th month) → included. Both have 3 solves.
-    const puzzles = [
-      puzzle(monthText(-12), 'P1', ['Old']),
-      puzzle(monthText(-11), 'P2', ['Old', 'Recent']),
-      puzzle(monthText(-10), 'P3', ['Old', 'Recent']),
-      puzzle(monthText(-9), 'P4', ['Recent']),
-    ];
-    const names = calculateLeaderboardData(puzzles).risingStars.map((s) => s.name);
-    expect(names).toContain('Recent');
-    expect(names).not.toContain('Old');
-  });
-
-  test('fewer than 3 solves never qualifies, however recent', () => {
-    const puzzles = [
-      puzzle(monthText(-1), 'P1', ['Casual']),
-      puzzle(monthText(0), 'P2', ['Casual']),
-    ];
-    expect(calculateLeaderboardData(puzzles).risingStars).toHaveLength(0);
   });
 });
 

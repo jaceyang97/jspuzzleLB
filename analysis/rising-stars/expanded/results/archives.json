@@ -1,0 +1,32 @@
+[
+  {
+    "file": "era_2018_2020_grid.json.gz",
+    "uncompressed_sha256": "5e2ef1d0c59388accdc8247a17ff62ef1ca3840fc6348088b8f03dcc3c27a743",
+    "uncompressed_bytes": 7787865,
+    "compressed_bytes": 498679
+  },
+  {
+    "file": "era_2021_2023_grid.json.gz",
+    "uncompressed_sha256": "8a8dba55405cfe3793413fc1307138a798033e73d2170cbe84146e6ff132816b",
+    "uncompressed_bytes": 7837185,
+    "compressed_bytes": 515629
+  },
+  {
+    "file": "era_2024_2026_grid.json.gz",
+    "uncompressed_sha256": "eeeb9e15784e7fb880d5e89fc2b0c90588fee92ec586cd63959bffdb67968268",
+    "uncompressed_bytes": 7880403,
+    "compressed_bytes": 530838
+  },
+  {
+    "file": "late_2023_2026_grid.json.gz",
+    "uncompressed_sha256": "632deed2b85d70cd22d0f4ffd088cce1426d95b526120f0369aa34963c72ec90",
+    "uncompressed_bytes": 7914781,
+    "compressed_bytes": 601318
+  },
+  {
+    "file": "pooled_grid.json.gz",
+    "uncompressed_sha256": "9731db0276f93072310d5eb58d0d146f9e8bd5e22d377cf9494b282e2ada2173",
+    "uncompressed_bytes": 9124536,
+    "compressed_bytes": 707804
+  }
+]

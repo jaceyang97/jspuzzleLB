@@ -3,6 +3,10 @@ export interface Puzzle {
   name: string;
   solution_url: string;
   solvers: string[];
+  puzzle_id?: string | number;
+  id?: string | number;
+  puzzle_url?: string;
+  url?: string;
   solver_timestamps?: Record<string, string>;
 }
 
@@ -19,6 +23,15 @@ export interface SolverDistribution {
   onePuzzle: number;
   twoToNine: number;
   tenPlus: number;
+}
+
+export interface RisingStar {
+  name: string;
+  solveRate: number;
+  puzzlesSolved: number;
+  opportunities: number;
+  rank: number;
+  firstAppearance: string;
 }
 
 export interface LeaderboardData {
@@ -39,12 +52,8 @@ export interface LeaderboardData {
     startDate: string;
     endDate: string;
   }>;
-  risingStars: Array<{
-    name: string;
-    solveRate: number;
-    puzzlesSolved: number;
-    firstAppearance: string;
-  }>;
+  risingStars: RisingStar[];
+  risingStarsAsOf?: string | null;
   monthlyParticipation: { month: string; solvers: number }[];
   solversGrowth: { month: string; totalSolvers: number }[];
   mostSolvedPuzzles: { id: string; name: string; solvers: number; solution_url: string }[];
