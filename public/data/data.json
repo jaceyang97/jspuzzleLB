@@ -35,7 +35,14 @@
       "Fred Vu",
       "Michael Ott",
       "Enes Sissenbi",
-      "Shardul Deshpande"
+      "Shardul Deshpande",
+      "Max Nordanberg",
+      "Sam Wei",
+      "Evan Semet",
+      "Joshua Kindler",
+      "William Bekerman",
+      "Gabriel Dowd Tostado",
+      "Artem Makarov"
     ],
     "solver_timestamps": {
       "CC": "2026-10-02T17:22:32.202956+00:00",
@@ -69,7 +76,14 @@
       "Fred Vu": "2026-10-02T17:22:32.202956+00:00",
       "Michael Ott": "2026-10-02T17:22:32.202956+00:00",
       "Enes Sissenbi": "2026-10-02T17:22:32.202956+00:00",
-      "Shardul Deshpande": "2026-10-02T17:22:32.202956+00:00"
+      "Shardul Deshpande": "2026-10-02T17:22:32.202956+00:00",
+      "Max Nordanberg": "2026-10-03T15:38:56.823145+00:00",
+      "Sam Wei": "2026-10-03T15:38:56.823145+00:00",
+      "Evan Semet": "2026-10-03T15:38:56.823145+00:00",
+      "Joshua Kindler": "2026-10-03T15:38:56.823145+00:00",
+      "William Bekerman": "2026-10-03T15:38:56.823145+00:00",
+      "Gabriel Dowd Tostado": "2026-10-03T15:38:56.823145+00:00",
+      "Artem Makarov": "2026-10-03T15:38:56.823145+00:00"
     },
     "puzzle_id": "2026-10-01-it-s-a-metric-too"
   },
