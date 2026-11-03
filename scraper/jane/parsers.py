@@ -27,6 +27,11 @@ _NON_SOLVER_ROWS = frozenset({
     "<i>ordered from least expensive to most expensive</i><br>",
 })
 
+# Confirmed aliases must stay merged when upstream leaderboards are refreshed.
+_SOLVER_ALIASES = {
+    "elias botsford": "Elias Botsford",
+}
+
 
 def clean_solver_name(name: str) -> str:
     """
@@ -34,7 +39,8 @@ def clean_solver_name(name: str) -> str:
     """
     # A leading byte-order mark is an encoding artifact, not part of a name.
     name = name.strip().lstrip("\ufeff")
-    return re.sub(r"\s*\([^)]*\)", "", name).strip()
+    name = re.sub(r"\s*\([^)]*\)", "", name).strip()
+    return _SOLVER_ALIASES.get(name, name)
 
 
 def clean_solver_names(names: List[str]) -> List[str]:

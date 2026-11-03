@@ -1,8 +1,8 @@
 {
   "totalPuzzles": 154,
-  "uniqueSolvers": 17472,
+  "uniqueSolvers": 17471,
   "solverDistribution": {
-    "onePuzzle": 13021,
+    "onePuzzle": 13020,
     "twoToNine": 4157,
     "tenPlus": 294
   },
@@ -3032,6 +3032,13 @@
       "rankChange": -1
     },
     {
+      "name": "Elias Botsford",
+      "puzzlesSolved": 7,
+      "firstAppearance": "May 2026",
+      "lastSolve": "November 2026",
+      "rankChange": 116
+    },
+    {
       "name": "Alexander Lipatov",
       "puzzlesSolved": 7,
       "firstAppearance": "May 2026",
@@ -3883,1078 +3890,1071 @@
       "puzzlesSolved": 6,
       "firstAppearance": "November 2025",
       "lastSolve": "November 2026",
-      "rankChange": 148
+      "rankChange": 147
     },
     {
       "name": "Devom Brahmbhatt",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2026",
       "lastSolve": "November 2026",
-      "rankChange": 148
+      "rankChange": 147
     },
     {
       "name": "Barney Hong",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2026",
       "lastSolve": "November 2026",
-      "rankChange": 148
+      "rankChange": 147
     },
     {
       "name": "John Kraits",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2026",
       "lastSolve": "November 2026",
-      "rankChange": 148
+      "rankChange": 147
     },
     {
       "name": "Chaitanya Mahawar",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2025",
       "lastSolve": "November 2026",
-      "rankChange": 148
+      "rankChange": 147
     },
     {
       "name": "Hobie Doyle",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2025",
       "lastSolve": "November 2026",
-      "rankChange": 148
-    },
-    {
-      "name": "Elias Botsford",
-      "puzzlesSolved": 6,
-      "firstAppearance": "May 2026",
-      "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": 147
     },
     {
       "name": "Chattelion Luo \u6c86",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2026",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Nickita Khylkouski",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2026",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Karol Musieli\u0144ski",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2025",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Hangyu Liang",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2026",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Alexander Klasen",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2026",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Hoang Vu",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2026",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Moritz Dittmann",
       "puzzlesSolved": 6,
       "firstAppearance": "October 2025",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Bojun Jia",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2026",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Oliver Middleton",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2026",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Raja Nabeel",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2024",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Maxime Reynouard",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2025",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Aditya Patil",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2026",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Cesar Daniel Garcia Ortega",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2025",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Satya J",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2026",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Andrej Filipovski",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2025",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Sourabh Raj Jaiswal",
       "puzzlesSolved": 6,
       "firstAppearance": "April 2025",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Alexander Brush",
       "puzzlesSolved": 6,
       "firstAppearance": "November 2025",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Thomas Kennedy",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2026",
       "lastSolve": "October 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "awmlet",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2025",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Drew Mathieson",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2025",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Mihaela Stefan",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2025",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Matt Abate",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2025",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "J\u00f8rgen Boganes",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2025",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Devid Ferri",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2025",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Christos Panayi",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2026",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Alexander Nord",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2024",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Dusty",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2024",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Glen R",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2024",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Aadeesh Garg",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2025",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Markus Str\u00f8mme",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2024",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Steve Crow",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2024",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Edward Brilmyer Jr.",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2024",
       "lastSolve": "September 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Abhirve Munipalle",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2025",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Matt Michnik",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2025",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Shuyang Wang",
       "puzzlesSolved": 6,
       "firstAppearance": "October 2025",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Ethan Wang",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2025",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "David Nachuan Chen",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2025",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Mathias Kandil",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2025",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Pascal Hein",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2024",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Will Banfield",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2023",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Ryan Liu",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2024",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Casey Lunkley",
       "puzzlesSolved": 6,
       "firstAppearance": "October 2025",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Krystian Wojcicki",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2023",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "lesys",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2025",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Andrei Levin",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2026",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "John Joseph",
       "puzzlesSolved": 6,
       "firstAppearance": "April 2025",
       "lastSolve": "August 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Cosmin-C.R",
       "puzzlesSolved": 6,
       "firstAppearance": "November 2025",
       "lastSolve": "July 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Shuai Huang",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2025",
       "lastSolve": "July 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Christopher Moon",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2025",
       "lastSolve": "July 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Matt R",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2021",
       "lastSolve": "July 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Greg Hartmann",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2024",
       "lastSolve": "July 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Donte Truong",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2025",
       "lastSolve": "July 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Joseph Seibel",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2025",
       "lastSolve": "June 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Susie Park",
       "puzzlesSolved": 6,
       "firstAppearance": "November 2025",
       "lastSolve": "June 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Nate K.",
       "puzzlesSolved": 6,
       "firstAppearance": "April 2025",
       "lastSolve": "May 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Chris Yi",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2023",
       "lastSolve": "May 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Maurice",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2021",
       "lastSolve": "May 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Terence Zeng",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2024",
       "lastSolve": "May 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Milad Heidari-Koochi",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2022",
       "lastSolve": "May 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Lachlan Cox",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2024",
       "lastSolve": "February 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Dan Hicks",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2024",
       "lastSolve": "February 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Darryl Chia",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2025",
       "lastSolve": "February 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Dmitry Kuzminov",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2025",
       "lastSolve": "February 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Mihir Joshi",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2024",
       "lastSolve": "February 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Sivanyaa Sivanayagam",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2023",
       "lastSolve": "February 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Brendon Hablutzel",
       "puzzlesSolved": 6,
       "firstAppearance": "November 2024",
       "lastSolve": "February 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Ryan Sullivan",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2020",
       "lastSolve": "February 2026",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Kunal Singhal",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2018",
       "lastSolve": "December 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Anthime Valin",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2024",
       "lastSolve": "December 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Kaustubh Dighe",
       "puzzlesSolved": 6,
       "firstAppearance": "October 2024",
       "lastSolve": "November 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Jonas Bruun Hubrechts",
       "puzzlesSolved": 6,
       "firstAppearance": "November 2024",
       "lastSolve": "November 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "nina",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2024",
       "lastSolve": "November 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Mitchell Kwong",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2025",
       "lastSolve": "October 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Daniel Sun",
       "puzzlesSolved": 6,
       "firstAppearance": "August 2024",
       "lastSolve": "October 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Alexei Kubzin",
       "puzzlesSolved": 6,
       "firstAppearance": "October 2024",
       "lastSolve": "August 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Arav K Jha",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2024",
       "lastSolve": "August 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "David Fernandes",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2024",
       "lastSolve": "July 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Xiaowei",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2024",
       "lastSolve": "July 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Milo Byrnes",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2024",
       "lastSolve": "July 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "ZH",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2023",
       "lastSolve": "July 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Chappy",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2023",
       "lastSolve": "June 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Itai Berda",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2025",
       "lastSolve": "June 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Mihail Minkov",
       "puzzlesSolved": 6,
       "firstAppearance": "October 2024",
       "lastSolve": "May 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Pengfei Zhang",
       "puzzlesSolved": 6,
       "firstAppearance": "April 2024",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Xander Morgan",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2024",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Edouardo Honig",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2024",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Albert Carlson",
       "puzzlesSolved": 6,
       "firstAppearance": "October 2024",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Andrew Lizarraga",
       "puzzlesSolved": 6,
       "firstAppearance": "October 2023",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Olivier Coz",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2024",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Richard McQueen II",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2021",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Nicolai Siim Larsen",
       "puzzlesSolved": 6,
       "firstAppearance": "November 2024",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Lyndon Fan",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2021",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Santhosh Karnik",
       "puzzlesSolved": 6,
       "firstAppearance": "August 2024",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Javier Lim",
       "puzzlesSolved": 6,
       "firstAppearance": "October 2024",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Pratyush Sharma",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2024",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Arthur Soenarto",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2024",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Marcelo Silveira",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2023",
       "lastSolve": "April 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Austin Lee",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2023",
       "lastSolve": "March 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "minson",
       "puzzlesSolved": 6,
       "firstAppearance": "November 2021",
       "lastSolve": "March 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Z",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2023",
       "lastSolve": "February 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Vijay Shanmugam",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2022",
       "lastSolve": "January 2025",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Mateo Neira",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2022",
       "lastSolve": "December 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Jonathan Dees",
       "puzzlesSolved": 6,
       "firstAppearance": "March 2024",
       "lastSolve": "December 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Shirley Zhu",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2021",
       "lastSolve": "December 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Andrew Hom",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2023",
       "lastSolve": "December 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Aayush - UCSB'27",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2023",
       "lastSolve": "October 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "LYU WEIBIN",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2023",
       "lastSolve": "August 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Greg Baimetov",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2024",
       "lastSolve": "August 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Isaac Noel",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2023",
       "lastSolve": "June 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Joline Cheng",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2023",
       "lastSolve": "June 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Rish Naik",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2024",
       "lastSolve": "June 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "T1 Baker",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2023",
       "lastSolve": "May 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Teawoo Kim",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2023",
       "lastSolve": "May 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Jeffrey Pei",
       "puzzlesSolved": 6,
       "firstAppearance": "November 2021",
       "lastSolve": "March 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Preet Sheth",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2023",
       "lastSolve": "March 2024",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Anupam Bhakta",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2023",
       "lastSolve": "July 2023",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Sebastian Kaels Vigh",
       "puzzlesSolved": 6,
       "firstAppearance": "October 2021",
       "lastSolve": "July 2023",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Gary R.W. Greaves",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2022",
       "lastSolve": "June 2023",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "rhodryb",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2022",
       "lastSolve": "June 2023",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Alexis Flores Hernandez",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2022",
       "lastSolve": "May 2023",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Alex Wice",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2015",
       "lastSolve": "January 2023",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Konstantin Vladimirov",
       "puzzlesSolved": 6,
       "firstAppearance": "April 2020",
       "lastSolve": "October 2022",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Vinod Krishnamoorthy",
       "puzzlesSolved": 6,
       "firstAppearance": "August 2021",
       "lastSolve": "July 2022",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Artun Bayer",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2021",
       "lastSolve": "May 2022",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Giannis Tsaraias",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2018",
       "lastSolve": "April 2022",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Yinbai Li",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2021",
       "lastSolve": "February 2022",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Ishin Shah",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2021",
       "lastSolve": "February 2022",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Lawrence Long",
       "puzzlesSolved": 6,
       "firstAppearance": "July 2021",
       "lastSolve": "January 2022",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Patrick Liscio",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2021",
       "lastSolve": "November 2021",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Kendric Postrero",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2020",
       "lastSolve": "September 2021",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Sunny Lee",
       "puzzlesSolved": 6,
       "firstAppearance": "November 2019",
       "lastSolve": "July 2021",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Jarry Xiao",
       "puzzlesSolved": 6,
       "firstAppearance": "February 2018",
       "lastSolve": "April 2021",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Hudson Vieira",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2020",
       "lastSolve": "July 2020",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Jacoby Jaeger",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2019",
       "lastSolve": "July 2020",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Peasley",
       "puzzlesSolved": 6,
       "firstAppearance": "June 2018",
       "lastSolve": "June 2020",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Roman Lyapin",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2016",
       "lastSolve": "January 2020",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Nicolas Auguin",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2018",
       "lastSolve": "January 2020",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "istinetz",
       "puzzlesSolved": 6,
       "firstAppearance": "April 2019",
       "lastSolve": "January 2020",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Aleksey P",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2016",
       "lastSolve": "September 2019",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Thomas HUET",
       "puzzlesSolved": 6,
       "firstAppearance": "August 2018",
       "lastSolve": "August 2019",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Alex Stein",
       "puzzlesSolved": 6,
       "firstAppearance": "April 2017",
       "lastSolve": "April 2019",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Valerii G",
       "puzzlesSolved": 6,
       "firstAppearance": "May 2017",
       "lastSolve": "January 2019",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Cole Holcomb",
       "puzzlesSolved": 6,
       "firstAppearance": "November 2017",
       "lastSolve": "April 2018",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Michael Borkowski",
       "puzzlesSolved": 6,
       "firstAppearance": "December 2015",
       "lastSolve": "July 2017",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Tamas Kenez",
       "puzzlesSolved": 6,
       "firstAppearance": "September 2016",
       "lastSolve": "June 2017",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Junjiajia Long",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2016",
       "lastSolve": "September 2016",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Maurice Granger",
       "puzzlesSolved": 6,
       "firstAppearance": "January 2016",
       "lastSolve": "July 2016",
-      "rankChange": -5
+      "rankChange": -6
     },
     {
       "name": "Haden Wasserbaech",
@@ -31173,13 +31173,6 @@
     },
     {
       "name": "Sacha Boublil",
-      "puzzlesSolved": 1,
-      "firstAppearance": "November 2026",
-      "lastSolve": "November 2026",
-      "rankChange": null
-    },
-    {
-      "name": "elias botsford",
       "puzzlesSolved": 1,
       "firstAppearance": "November 2026",
       "lastSolve": "November 2026",
@@ -131555,7 +131548,7 @@
     },
     {
       "month": "Nov 2026",
-      "totalSolvers": 17472
+      "totalSolvers": 17471
     }
   ],
   "mostSolvedPuzzles": [
@@ -131750,7 +131743,7 @@
         "timestamp": "2026-11-02T21:20:28.870652+00:00"
       },
       {
-        "solver": "elias botsford",
+        "solver": "Elias Botsford",
         "timestamp": "2026-11-02T21:20:28.870652+00:00"
       },
       {
@@ -132479,5 +132472,5 @@
       }
     ]
   },
-  "generatedAt": "2026-11-03T18:59:06.332325+00:00"
+  "generatedAt": "2026-11-03T19:09:16.372351+00:00"
 }
