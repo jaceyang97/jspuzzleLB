@@ -10,7 +10,7 @@
 .selected-distribution-label > span { color: var(--text-tertiary); font-size: 12px; }
 .selected-distribution-count { flex: none; font-size: 14px; font-weight: 500; line-height: 20px; }
 .central-flow .flow-trends.selected-sidebar-card .trend-header { margin: 0 0 22px; }
-.central-flow .flow-trends.selected-sidebar-card .trend-view-select { width: 100%; max-width: none; padding-inline: 10px; border-radius: 6px; }
+.central-flow .flow-trends.selected-sidebar-card .trend-view-select { width: 100%; max-width: none; padding-inline: 10px; border-radius: var(--radius-control); }
 .central-flow .flow-trends.selected-sidebar-card .chart-canvas { height: 180px; min-height: 180px; }
 .central-flow .flow-data-card { display: flex; flex-direction: column; gap: var(--flow-card-gap, 12px); }
 .central-flow .flow-data-card > h2 { flex: none; min-height: 20px; margin: 0; line-height: 20px; }
@@ -48,12 +48,12 @@
 .central-flow .flow-about { display: flex; flex-direction: column; gap: 6px; }
 .selected-project-learn { display: flex; flex: none; align-items: center; gap: 6px; min-height: 24px; color: var(--text-primary); font-size: 13px; line-height: 18px; font-weight: 500; text-decoration: none; }
 .selected-project-learn > svg { flex: none; }
-.selected-project-feedback { position: relative; display: block; flex: 1; min-width: 0; min-height: 64px; padding: 0; border: 1px solid var(--border-primary); border-radius: 7px; }
+.selected-project-feedback { position: relative; display: block; flex: 1; min-width: 0; min-height: 64px; padding: 0; border: 1px solid var(--border-primary); border-radius: var(--radius-control); }
 .selected-project-feedback textarea { display: block; width: 100%; height: 100%; min-height: 62px; margin: 0; padding: 8px 58px 8px 10px; border: 0; border-radius: inherit; background: transparent; color: var(--text-primary); font: inherit; font-size: 14px; line-height: 20px; resize: none; }
 .selected-project-feedback textarea::placeholder { color: var(--text-tertiary); opacity: 1; }
 .selected-project-feedback:has(textarea:focus-visible) { outline: 2px solid var(--text-primary); outline-offset: 2px; }
 .selected-project-feedback textarea:focus-visible { outline: none; }
-.selected-project-feedback > button { position: absolute; right: 7px; bottom: 7px; width: 40px; height: 28px; padding: 0; border: 0; border-radius: 4px; background: var(--text-primary); color: var(--bg-secondary); font: inherit; font-size: 12px; line-height: 16px; font-weight: 500; }
+.selected-project-feedback > button { position: absolute; right: 7px; bottom: 7px; width: 40px; height: 28px; padding: 0; border: 0; border-radius: var(--radius-control); background: var(--text-primary); color: var(--bg-secondary); font: inherit; font-size: 12px; line-height: 16px; font-weight: 500; }
 .selected-project-feedback > button::before { position: absolute; inset: -8px -2px; content: ''; }
 .selected-project-feedback > button:disabled { background: var(--bg-hover-strong); color: var(--text-tertiary); cursor: not-allowed; }
 .selected-project-credit { color: var(--text-secondary); }

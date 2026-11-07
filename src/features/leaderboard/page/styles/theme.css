@@ -1,4 +1,4 @@
-.central-flow .flow-theme-button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--text-primary); touch-action: manipulation; }
+.central-flow .flow-theme-button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: var(--radius-control); background: transparent; color: var(--text-primary); touch-action: manipulation; }
 .flow-theme-button svg { width: 18px; height: 18px; pointer-events: none; }
 :root[data-magicui-theme-vt='active']::view-transition-group(root) { animation-duration: var(--magicui-theme-toggle-vt-duration); }
 :root[data-magicui-theme-vt='active']::view-transition-old(root), :root[data-magicui-theme-vt='active']::view-transition-new(root) { animation: none; mix-blend-mode: normal; }

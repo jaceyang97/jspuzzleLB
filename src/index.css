@@ -87,6 +87,8 @@
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-pill: 980px;
+  --radius-card: 14px;
+  --radius-control: var(--radius-card);
 }
 
 /* Dark theme */

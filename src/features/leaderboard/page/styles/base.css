@@ -14,20 +14,20 @@
 .lab-eyebrow { color: var(--text-tertiary); font-size: 12px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; line-height: 1.5; }
 .lab-visually-hidden, .lab-skip:not(:focus) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .lab-skip:focus { position: fixed; z-index: 100; top: 8px; left: 8px; padding: 12px; background: var(--bg-secondary); }
-.lab-icon-button { width: 44px; height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 8px; color: var(--text-tertiary); background: transparent; flex-shrink: 0; }
+.lab-icon-button { width: 44px; height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: var(--radius-control); color: var(--text-tertiary); background: transparent; flex-shrink: 0; }
 @media (hover: hover) and (pointer: fine) {
 .lab-icon-button:hover { background: var(--bg-hover-strong); color: var(--text-primary); } }
 .lab-search { width: min(100%, 380px); flex-shrink: 0; }
 .lab-search label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary); }
 .lab-search-field { position: relative; }
 .lab-search-field > svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--text-tertiary); }
-.lab-search input { appearance: none; display: block; width: 100%; height: 52px; border: 1px solid var(--border-primary); border-radius: 9px; background: var(--bg-secondary); padding: 0 50px 0 46px; font-size: 16px; color: var(--text-primary); transition: border-color 150ms ease-out, box-shadow 150ms ease-out; }
+.lab-search input { appearance: none; display: block; width: 100%; height: 52px; border: 1px solid var(--border-primary); border-radius: var(--radius-control); background: var(--bg-secondary); padding: 0 50px 0 46px; font-size: 16px; color: var(--text-primary); transition: border-color 150ms ease-out, box-shadow 150ms ease-out; }
 @media (hover: hover) and (pointer: fine) {
 .lab-search input:hover { border-color: var(--text-muted); } }
 .lab-search input:focus-visible { outline: 2px solid var(--text-secondary); outline-offset: 2px; }
 .lab-search input::placeholder { color: var(--text-tertiary); }
 .lab-search input::-webkit-search-cancel-button { display: none; }
-.lab-search-field > button { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); height: 44px; width: 44px; display: grid; place-items: center; border: 0; background: transparent; color: var(--text-tertiary); border-radius: 6px; }
+.lab-search-field > button { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); height: 44px; width: 44px; display: grid; place-items: center; border: 0; background: transparent; color: var(--text-tertiary); border-radius: var(--radius-control); }
 .lab .lab-search-field > button:active { transform: translateY(-50%) scale(.96); }
 @media (hover: hover) and (pointer: fine) {
 .lab-search-field > button:hover { color: var(--text-primary); } }
@@ -41,7 +41,7 @@
 .lab-tabs button:hover { color: var(--text-primary); } }
 .lab-pagination { display: flex; align-items: center; justify-content: space-between; gap: 16px; color: var(--text-tertiary); font-size: 12px; font-variant-numeric: tabular-nums; }
 .lab-pagination > div { display: flex; gap: 12px; align-items: center; }
-.lab-pagination button { min-width: 44px; height: 44px; display: grid; place-items: center; padding: 0; border: 1px solid var(--border-primary); border-radius: 6px; font-size: 17px; background: var(--bg-secondary); color: var(--text-secondary); }
+.lab-pagination button { min-width: 44px; height: 44px; display: grid; place-items: center; padding: 0; border: 1px solid var(--border-primary); border-radius: var(--radius-control); font-size: 17px; background: var(--bg-secondary); color: var(--text-secondary); }
 @media (hover: hover) and (pointer: fine) {
 .lab-pagination button:hover:not(:disabled) { background: var(--bg-hover); } }
 .lab-pagination button:disabled { border-color: var(--border-secondary); }
@@ -49,7 +49,7 @@
 .lab-empty > svg { color: var(--text-tertiary); }
 .lab-empty h3 { font-size: 18px; font-weight: 600; }
 .lab-empty p { color: var(--text-tertiary); font-size: 14px; max-width: 38ch; overflow-wrap: anywhere; }
-.lab-button { border: 1px solid var(--border-primary); border-radius: 7px; min-height: 44px; padding: 0 16px; background: var(--bg-secondary); color: var(--text-primary); }
+.lab-button { border: 1px solid var(--border-primary); border-radius: var(--radius-control); min-height: 44px; padding: 0 16px; background: var(--bg-secondary); color: var(--text-primary); }
 .lab-record { color: var(--text-primary); background: var(--bg-secondary); display: flex; flex-direction: column; height: 100%; min-height: 0; }
 .lab-record-header { padding: 28px 34px 26px; border-bottom: 1px solid var(--border-primary); flex-shrink: 0; }
 .lab-record-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 20px; margin-bottom: 26px; }
@@ -221,8 +221,8 @@
 .arena .lab-tabs button::after { height: 2px; bottom: 4px; background: var(--text-primary); }
 .arena .lab-search { flex: none; width: 260px; margin: 0; }
 .arena .lab-search label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.arena .lab-search-field { height: 44px; border: 1px solid var(--arena-rule); border-radius: 0; padding: 0; background: transparent; }
-.arena .lab-search input { height: 42px; font-size: 16px; border: 0; border-radius: 0; background: transparent; }
+.arena .lab-search-field { height: 44px; border: 1px solid var(--arena-rule); border-radius: var(--radius-control); padding: 0; background: transparent; }
+.arena .lab-search input { height: 42px; font-size: 16px; border: 0; background: transparent; }
 .arena .lab-search-field > button { width: 44px; height: 44px; flex: none; }
 .arena .lab-search-field kbd { margin-inline-end: 9px; }
 .arena-columns, .arena-row { display: grid; grid-template-columns: var(--arena-side) minmax(0, 1fr) var(--arena-side); align-items: center; }
