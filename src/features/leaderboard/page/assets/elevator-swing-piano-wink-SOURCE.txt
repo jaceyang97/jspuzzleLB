@@ -1,0 +1,24 @@
+Title: Lift 15 · Swing Piano Wink
+Created in the user's Suno account on 2026-11-07.
+Selected by the user using the 0:16 artwork and description in their screenshot.
+Source: https://suno.com/song/c1b58d5a-2fe4-4be3-9cef-731a0de1f0e5
+The downloaded MP3 metadata confirms the same Suno clip ID.
+
+Original file duration: 15.8 seconds.
+Preview asset: original recording with only its final sustain extended.
+The first 15.4 seconds retain the original samples before level adjustment.
+The last 0.4 seconds use pitch-preserving time stretching at tempo 0.38
+(FFmpeg atempo=0.5,atempo=0.76), joined with a 35 ms linear crossfade.
+This extends the tail by 0.5976 seconds, to a decoded duration of 16.3976 seconds.
+No generated continuation or new notes are used. The final 850 ms use a
+cosine-squared fade to silence. Gain remains reduced by 7 dB, with a 20 ms
+entrance ramp, stereo 48 kHz / 160 kbit/s MP3.
+Playback adds a 150 ms entrance and only a 20 ms exit ramp. The scrolling follows
+the audio output clock through the complete decoded recording and longer tail.
+The arrival recording is scheduled independently by elevatorSound.js.
+The latest timing trial advances it by 500 ms from the former 120 ms
+post-arrival timing, accounting for output latency. Music and scrolling
+retain their shared end time and the same fade.
+
+Recipe and verification: .cache/leaderboard-preview/extend-original-tail.py
+Processing details: .cache/leaderboard-preview/original-tail-refinement/processing.json

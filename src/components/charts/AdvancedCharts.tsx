@@ -1,12 +1,11 @@
-import React, { memo, useMemo, useState } from 'react';
-import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, BarChart, Bar } from 'recharts';
+import React, { memo, useMemo } from 'react';
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import ChartTooltipContent from './ChartTooltipContent';
 import { Puzzle } from '../../features/leaderboard/types';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
 import { useThemeColors } from '../../hooks/useThemeColors';
-import { trackEvent } from '../../utils/analytics';
 
-const ACCENT = '#2E8B57';
+const ACCENT = 'var(--accent-primary)';
 export const chartMonthIndex = (month: string): number => {
   const date = new Date(month);
   return Number.isNaN(date.getTime()) ? NaN : date.getFullYear() * 12 + date.getMonth();
@@ -28,57 +27,77 @@ export const ChartSummary = ({ value, label, context }: { value: number; label: 
 // Precomputed participation is sampled. Raw lists preserve every recorded month
 // and count each name once even when a month contains multiple puzzles.
 export const buildMonthlyParticipation = (puzzles: Puzzle[]) => {
-  const months = new Map<number, Set<string>>();
+  const months = new Map<number, { solvers: Set<string>; publishedLists: number; totalLists: number }>();
   for (const puzzle of puzzles) {
     const index = chartMonthIndex(puzzle.date_text);
     if (!Number.isFinite(index) || index < 2015 * 12 + 10) continue;
-    const solvers = months.get(index) ?? new Set<string>();
-    puzzle.solvers.forEach((name) => solvers.add(name));
-    months.set(index, solvers);
+    const month = months.get(index) ?? { solvers: new Set<string>(), publishedLists: 0, totalLists: 0 };
+    month.totalLists += 1;
+    if (puzzle.solvers.length) month.publishedLists += 1;
+    puzzle.solvers.forEach((name) => month.solvers.add(name));
+    months.set(index, month);
   }
-  return Array.from(months).sort(([a], [b]) => a - b).map(([index, solvers]) => ({
-    month: `${MONTH_CODES[index % 12]} ${Math.floor(index / 12)}`,
-    monthIndex: index,
-    solvers: solvers.size,
-  }));
+  if (!months.size) return [];
+  const seen = new Set<string>();
+  const first = Math.min(...Array.from(months.keys()));
+  const last = Math.max(...Array.from(months.keys()));
+  return Array.from({ length: last - first + 1 }, (_, offset) => {
+    const index = first + offset;
+    const month = months.get(index);
+    const published = !!month?.publishedLists;
+    const solvers = month?.solvers ?? new Set<string>();
+    let newSolvers = 0;
+    solvers.forEach((name) => {
+      if (!seen.has(name)) newSolvers += 1;
+      seen.add(name);
+    });
+    return {
+      month: `${MONTH_CODES[index % 12]} ${Math.floor(index / 12)}`,
+      monthIndex: index,
+      solvers: published ? solvers.size : null,
+      newSolvers: published ? newSolvers : null,
+      returningSolvers: published ? solvers.size - newSolvers : null,
+      publishedLists: month?.publishedLists ?? 0,
+      totalLists: month?.totalLists ?? 0,
+    };
+  });
 };
 interface PuzzleChartProps { puzzles: Puzzle[] | null; loading: boolean; }
 
 export const MonthlyParticipationChart = memo(({ puzzles, loading }: PuzzleChartProps) => {
   const colors = useThemeColors();
-  const [allTime, setAllTime] = useState(false);
   const data = useMemo(() => puzzles ? buildMonthlyParticipation(puzzles) : [], [puzzles]);
-  const latest = data[data.length - 1];
-  const visible = useMemo(() => allTime || !latest ? data : data.filter((row) => row.monthIndex >= latest.monthIndex - 23), [data, latest, allTime]);
-  if (loading && !puzzles) return <div className="chart-loading">Loading monthly activity…</div>;
-  if (!latest) return <div className="chart-loading">Monthly activity is unavailable.</div>;
+  const now = new Date();
+  const currentMonth = now.getFullYear() * 12 + now.getMonth();
+  const latest = [...data].reverse().find((row) => row.monthIndex < currentMonth);
+  const visible = useMemo(() => latest ? data.filter((row) => row.monthIndex >= latest.monthIndex - 11 && row.monthIndex <= latest.monthIndex) : [], [data, latest]);
+  if (loading && !puzzles) return <div className="chart-loading" role="status">Loading new and returning solvers…</div>;
+  if (!latest) return <div className="chart-loading">New and returning solver history is unavailable.</div>;
   return (
-    <div className="growth-chart-body">
-      <ChartSummary value={latest.solvers} label="monthly solvers" context={latestMonthLabel(latest.month)} />
+    <div className="growth-chart-body new-returning-chart">
+      <div className="trend-composition-summary">
+        <dl className="trend-composition-key">
+          <div><dt><i aria-hidden="true" style={{ backgroundColor: colors.textColor }} />Returning</dt><dd>{latest.returningSolvers?.toLocaleString() ?? 'N/A'}</dd></div>
+          <div><dt><i aria-hidden="true" style={{ backgroundColor: ACCENT }} />New</dt><dd>{latest.newSolvers?.toLocaleString() ?? 'N/A'}</dd></div>
+        </dl>
+      </div>
       <div className="chart-canvas">
         <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-          <LineChart accessibilityLayer data={visible} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
+          <BarChart accessibilityLayer data={visible} maxBarSize={20} barCategoryGap="24%" margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
             <CartesianGrid vertical={false} stroke={colors.gridStroke} strokeDasharray="3 3" />
-            <XAxis dataKey="month" tick={{ fontSize: 10, fill: colors.textColor }} height={22}
+            <XAxis dataKey="month" tick={{ fontSize: 12, fill: colors.textColor }} height={24}
               tickFormatter={shortMonth} interval="preserveStartEnd" minTickGap={30} axisLine={false} tickLine={false} />
             <YAxis width={34} tickCount={3} tickFormatter={compactNumber} allowDecimals={false}
-              tick={{ fontSize: 10, fill: colors.textColor }} axisLine={false} tickLine={false} />
+              tick={{ fontSize: 12, fill: colors.textColor }} axisLine={false} tickLine={false} />
             <Tooltip content={<ChartTooltipContent />} isAnimationActive={false} wrapperStyle={{ visibility: 'hidden', pointerEvents: 'none' }} contentStyle={{ backgroundColor: colors.tooltipBg, color: colors.textColor,
               border: `1px solid ${colors.tooltipBorder}`, fontSize: 12, borderRadius: 6 }}
+              cursor={{ fill: colors.gridStroke, fillOpacity: 0.5 }}
               labelFormatter={(label) => latestMonthLabel(String(label))}
-              formatter={(value: number) => [value.toLocaleString(), 'Unique solvers']} />
-            <Line type="monotone" dataKey="solvers" stroke={ACCENT} strokeWidth={2}
-              dot={false} activeDot={{ r: 3 }} isAnimationActive={false} />
-          </LineChart>
+              formatter={(value: number, name) => [value.toLocaleString(), name]} />
+            <Bar name="Returning" dataKey="returningSolvers" stackId="solvers" fill={colors.textColor} isAnimationActive={false} />
+            <Bar name="New" dataKey="newSolvers" stackId="solvers" fill={ACCENT} radius={[2, 2, 0, 0]} isAnimationActive={false} />
+          </BarChart>
         </ResponsiveContainer>
-      </div>
-      <div className="trend-caption">
-        <span>{visible[0]?.month} – {latest.month}</span>
-        {data.length > 24 && <button type="button" aria-pressed={allTime}
-          aria-label={allTime ? 'Show the last 24 months' : 'Show all recorded months'}
-          onClick={() => { setAllTime(!allTime); trackEvent('activity_range_change', { range: allTime ? '24-months' : 'all-time' }); }}>
-          {allTime ? 'Last 24 months' : 'All time'}
-        </button>}
       </div>
     </div>
   );

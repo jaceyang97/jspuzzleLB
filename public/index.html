@@ -2,9 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/js_puzzle_solver_logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <link id="site-icon" rel="icon" href="%PUBLIC_URL%/js_puzzle_solver_logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="%PUBLIC_URL%/fonts/geist-mono-variable.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/fonts/leaderboard.css" />
+    <script>
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem('theme'); } catch (error) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.innerWidth > 768 && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#1c1c1e' : '#ffffff';
+        document.getElementById('site-icon').href = theme === 'dark' ? '%PUBLIC_URL%/js_puzzle_solver_logo_dark.svg' : '%PUBLIC_URL%/js_puzzle_solver_logo.svg';
+      })();
+    </script>
     <meta
       name="description"
       content="Jane Street Puzzle Leaderboard"

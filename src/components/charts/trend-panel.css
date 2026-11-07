@@ -16,6 +16,12 @@
 .growth-chart-tabs .trend-caption { display: flex; flex: none; align-items: center; justify-content: space-between; gap: 6px; min-height: 24px; margin-top: 2px; color: var(--text-tertiary); font-size: 10px; line-height: 1.4; }
 .growth-chart-tabs .trend-caption button { flex: none; min-height: 28px; padding: 2px 0 2px 5px; border: 0; background: none; color: var(--accent-secondary); cursor: pointer; font-size: 10px; }
 .growth-chart-tabs .chart-loading { min-height: 180px; display: grid; place-content: center; color: var(--text-tertiary); font-size: 12px; }
+.growth-chart-tabs .trend-composition-summary { flex: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.growth-chart-tabs .trend-composition-key { display: flex; gap: 24px; margin: 0; }
+.growth-chart-tabs .trend-composition-key > div { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.growth-chart-tabs .trend-composition-key dt { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 12px; line-height: 18px; }
+.growth-chart-tabs .trend-composition-key i { flex: none; width: 8px; height: 8px; border-radius: 2px; }
+.growth-chart-tabs .trend-composition-key dd { margin: 0; color: var(--text-primary); font-size: 20px; line-height: 26px; font-weight: 500; font-variant-numeric: tabular-nums; }
 @media (min-width: 1180px) and (max-height: 800px) {
   .dashboard-layout .growth-chart-tabs .chart-canvas { height: 120px; }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function HeaderTitle() {
   return (
-    <h1 className="header-title" aria-label="Jane Street Puzzle Leaderboard, unofficial">
+    <h1 className="header-title" aria-label="Jane Street Puzzles Leaderboard, unofficial">
       <span className="title-bold header-brand-name" aria-hidden="true">
         <span className="title-full">Jane Street</span>
         <span className="title-short">JS</span>
@@ -15,7 +15,7 @@ export default function HeaderTitle() {
         </svg>
       </span>
       <span className="title-separator" aria-hidden="true">|</span>
-      <span className="title-regular">Puzzle Leaderboard</span>
+      <span className="title-regular">Puzzles Leaderboard</span>
     </h1>
   );
 }

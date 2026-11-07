@@ -11,7 +11,7 @@ export interface ThemeColors {
 const LIGHT: ThemeColors = {
   gridStroke: '#ececf0',
   axisStroke: '#d2d2d7',
-  textColor: '#86868b',
+  textColor: '#6e6e73',
   tooltipBg: 'rgba(255, 255, 255, 0.95)',
   tooltipBorder: '#e5e5ea',
 };

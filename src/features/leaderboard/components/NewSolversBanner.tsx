@@ -17,6 +17,7 @@ interface NewSolversBannerProps {
   compact?: boolean;
   inline?: boolean;
   announcementIcon?: ReactNode;
+  puzzleContext?: ReactNode;
   onSolverClick?: (name: string) => void;
 }
 
@@ -153,6 +154,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
   compact = false,
   inline = false,
   announcementIcon,
+  puzzleContext,
   onSolverClick,
 }) => {
   const [dismissed, setDismissed] = useState(false);
@@ -199,9 +201,9 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       const chipGap = px(previewStyle.columnGap || previewStyle.gap);
       const fixed = Array.from(row.querySelectorAll<HTMLElement>('[data-activity-fixed]'))
         .filter((element) => window.getComputedStyle(element).display !== 'none');
-      const available = width - px(rowStyle.paddingLeft) - px(rowStyle.paddingRight)
-        - fixed.reduce((sum, element) => sum + element.getBoundingClientRect().width, 0)
-        - fixed.length * rowGap;
+      const contextWidth = rowStyle.flexDirection === 'column' ? 0
+        : fixed.reduce((sum, element) => sum + element.getBoundingClientRect().width, 0) + fixed.length * rowGap;
+      const available = width - px(rowStyle.paddingLeft) - px(rowStyle.paddingRight) - contextWidth;
       const chips = Array.from(measurement.querySelectorAll<HTMLElement>('.solver-chip'));
       let count = 0;
       for (let candidate = Math.min(4, inlineNames.length); candidate > 0; candidate -= 1) {
@@ -228,7 +230,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       observer?.disconnect();
       window.removeEventListener('resize', fitNames);
     };
-  }, [inline, dismissed, inlineNames, announcementIcon]);
+  }, [inline, dismissed, inlineNames, announcementIcon, puzzleContext]);
 
   useEffect(() => {
     if (inline && inlineVisibleCount >= inlineNames.length) setMoreOpen(false);
@@ -329,6 +331,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
               }
             }}>
             <div ref={rowRef} className="header-activity-row">
+              {puzzleContext && <span className="header-activity-context" data-activity-fixed>{puzzleContext}</span>}
               <span className="banner-tag" data-activity-fixed>NEW TODAY</span>
               {announcementIcon && <span className="header-activity-icon" data-activity-fixed aria-hidden="true">{announcementIcon}</span>}
               <span className="header-activity-preview">
@@ -363,7 +366,6 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
                 minWidth: 0, maxWidth: popoverPosition.maxWidth, maxHeight: popoverPosition.maxHeight,
                 transform: 'none', overflowY: 'auto',
               } : undefined}>
-              <span className="banner-more-tooltip-label">Added today · <a className="banner-puzzle-link" href="https://www.janestreet.com/puzzles/current-puzzle/" target="_blank" rel="noopener noreferrer">{currentPuzzleProgress.puzzleName}</a></span>
               <ul ref={moreListRef} className="banner-more-list" tabIndex={0}
                 style={popoverPosition ? { maxHeight: popoverPosition.listMaxHeight } : undefined}>
                 {names.slice(inlineVisibleCount).map((name, index) => <li key={`${name}-${index}`}>

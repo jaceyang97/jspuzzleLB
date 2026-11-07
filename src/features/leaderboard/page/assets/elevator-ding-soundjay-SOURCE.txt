@@ -1,0 +1,34 @@
+Title: Elevator Bell Ding
+Author: SoundJay
+Envato item ID: MTSDP4W
+Source: https://elements.envato.com/elevator-bell-ding-MTSDP4W
+Selected by the user from the highlighted SoundJay result on 2026-11-07.
+
+Current asset: elevator-ding-soundjay-recorded.mp3.
+The user reported that Download preview was wrong and explicitly requested
+starting a recording before clicking the selected row's webpage Play button.
+That recording replaces the earlier downloaded preview; do not substitute it.
+
+Capture: WASAPI loopback of the actual system playback, stereo, 48 kHz.
+Recording started at 2026-11-07 06:59:48.615 UTC, before the Play click at
+2026-11-07 07:00:03.426 UTC. No capture dropouts were reported.
+Trimmed only the surrounding blank time, retained the complete bell decay,
+normalized the captured peak to -1.5 dBFS and applied 3 ms / 20 ms edge ramps.
+Duration: 2.781271 seconds. Encoded as stereo 48 kHz / 320 kbit/s MP3.
+SHA256: db4bc772562da6205c9063ee2481c438d1b01312044777713eb24c075be6cc2b
+Playback gain is 0.25 before the existing 0.9 master, close to the earlier
+ding's level in the rendered mix. The user then requested a 500 ms advance
+from the earlier post-arrival timing. Schedule the same recording once on the
+audio clock during the final deceleration, with output-latency compensation.
+The music and scrolling still finish together. Cancellation stops the scheduled
+ding; arrival cleanup allows its complete remaining tail to play.
+
+This file records acquisition and processing. A license certificate was not
+obtained during this recording workflow.
+
+Capture, click timing, raw WAV and processing record:
+.cache/leaderboard-preview/soundjay-ding/page-recording/capture.json
+.cache/leaderboard-preview/soundjay-ding/page-recording/play-click.json
+.cache/leaderboard-preview/soundjay-ding/page-recording/soundjay-page-playback-raw.wav
+.cache/leaderboard-preview/soundjay-ding/page-recording/processing.json
+.cache/leaderboard-preview/soundjay-ding/page-recording/playing.jpg

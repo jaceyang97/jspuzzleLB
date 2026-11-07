@@ -1,0 +1,77 @@
+.central-flow .selected-sidebar-card { font-variant-numeric: tabular-nums; }
+.central-flow .flow-community.selected-sidebar-card { display: grid; grid-template-rows: auto auto; gap: 12px; }
+.selected-population { --population-gap: 8px; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: var(--population-gap); min-width: 0; min-height: 0; margin: 0; }
+.selected-population > svg { display: block; width: 100%; height: auto; aspect-ratio: 118 / 48; min-height: 0; }
+.selected-population > figcaption { color: var(--text-tertiary); font-size: 11px; line-height: 16px; }
+.selected-distribution-key { list-style: none; display: flex; flex-direction: column; gap: 4px; padding: 0; margin: 0; }
+.selected-distribution-key > li { display: grid; grid-template-columns: 7px minmax(0, 1fr) auto; align-items: center; gap: 8px; min-width: 0; min-height: 20px; }
+.selected-distribution-swatch { flex: none; width: 7px; height: 7px; border-radius: 2px; }
+.selected-distribution-label { display: flex; align-items: baseline; gap: 6px; min-width: 0; font-size: 13px; line-height: 20px; white-space: nowrap; }
+.selected-distribution-label > span { color: var(--text-tertiary); font-size: 12px; }
+.selected-distribution-count { flex: none; font-size: 14px; font-weight: 500; line-height: 20px; }
+.central-flow .flow-trends.selected-sidebar-card .trend-header { margin: 0 0 22px; }
+.central-flow .flow-trends.selected-sidebar-card .trend-view-select { width: 100%; max-width: none; padding-inline: 10px; border-radius: 6px; }
+.central-flow .flow-trends.selected-sidebar-card .chart-canvas { height: 180px; min-height: 180px; }
+.central-flow .flow-data-card { display: flex; flex-direction: column; gap: var(--flow-card-gap, 12px); }
+.central-flow .flow-data-card > h2 { flex: none; min-height: 20px; margin: 0; line-height: 20px; }
+.central-flow .flow-data-card > .chart-container.mini { display: flex; flex: 1; flex-direction: column; height: auto; min-height: 0; }
+.central-flow .flow-data-card .growth-chart-body { display: flex; flex: 1; flex-direction: column; height: auto; min-height: 0; }
+.central-flow .flow-data-card .chart-canvas { flex: 1; height: 0; min-height: 0; }
+.central-flow .flow-data-card .trend-composition-summary { margin-bottom: 6px; }
+.central-flow .flow-data-card .trend-composition-key { justify-content: space-between; gap: 12px; }
+.central-flow .flow-data-card .trend-composition-key > div { flex: none; flex-direction: row; align-items: baseline; gap: 8px; }
+.central-flow .flow-data-card .trend-composition-key dd { font-size: 18px; line-height: 24px; }
+.central-flow .flow-dialog-panels .flow-data-card { height: 260px; }
+.central-flow .flow-puzzles.selected-sidebar-card .selected-puzzle-viewport { height: clamp(360px, 48dvh, 540px); overflow-x: hidden; }
+.central-flow .flow-puzzles.selected-sidebar-card { --puzzle-columns: minmax(0, 1fr) 56px 44px; gap: 12px; }
+.central-flow .selected-puzzles-header { display: flex; align-items: center; flex: none; min-height: 20px; margin: 0; }
+.central-flow .selected-puzzles-header h2 { flex: 1; min-width: 0; margin: 0; font-size: 14px; font-weight: 650; line-height: 20px; letter-spacing: -.02em; text-wrap: balance; }
+.selected-puzzle-table { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.selected-puzzle-columns { display: grid; grid-template-columns: var(--puzzle-columns); column-gap: 8px; align-items: center; flex: none; min-height: 24px; padding-inline-end: var(--puzzle-scrollbar-gap, 0px); border-bottom: var(--flow-hairline) solid var(--border-primary); color: var(--text-tertiary); font-size: 12px; line-height: 18px; }
+.selected-puzzle-columns > :nth-child(n+2) { text-align: end; }
+.selected-puzzles-summary { display: grid; grid-template-columns: var(--puzzle-columns); column-gap: 8px; align-items: center; flex: none; height: 52px; padding-inline-end: var(--puzzle-scrollbar-gap, 0px); border-top: 1px solid var(--text-primary); }
+.selected-puzzles-summary > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.selected-puzzles-summary > div:nth-child(2) { align-items: flex-end; }
+.selected-puzzles-summary strong { color: var(--text-primary); font-size: 17px; line-height: 20px; font-weight: 600; }
+.selected-puzzles-summary span { color: var(--text-tertiary); font-size: 12px; line-height: 16px; }
+.selected-puzzle-viewport:focus-visible { outline: 2px solid var(--accent-secondary); outline-offset: 4px; }
+.selected-puzzle-list { list-style: none; padding: 0; margin: 0; }
+.selected-puzzle-entry { position: relative; display: grid; grid-template-columns: var(--puzzle-columns); align-items: center; gap: 8px; min-width: 0; min-height: 44px; padding-block: 10px; border-bottom: var(--flow-hairline) solid var(--border-primary); }
+.selected-puzzle-name { min-width: 0; }
+.selected-puzzle-name > a { display: block; min-height: 20px; color: var(--text-primary); font-size: 14px; font-weight: 400; line-height: 20px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.selected-puzzle-name > a::after { content: ''; position: absolute; inset: 0; }
+.selected-puzzle-entry:has(a:focus-visible) { outline: 2px solid var(--accent-secondary); outline-offset: -2px; }
+.selected-puzzle-name > a:focus-visible { outline: none; }
+.selected-puzzle-entry > .ui-tooltip-anchor { position: relative; z-index: 1; justify-self: end; }
+.selected-puzzle-date { color: var(--text-tertiary); font-size: 12px; line-height: 20px; text-align: end; white-space: nowrap; }
+.selected-puzzle-count { color: var(--text-primary); font-size: 14px; font-weight: 500; line-height: 20px; text-align: end; white-space: nowrap; }
+.central-flow .flow-about { display: flex; flex-direction: column; gap: 6px; }
+.selected-project-learn { display: flex; flex: none; align-items: center; gap: 6px; min-height: 24px; color: var(--text-primary); font-size: 13px; line-height: 18px; font-weight: 500; text-decoration: none; }
+.selected-project-learn > svg { flex: none; }
+.selected-project-feedback { position: relative; display: block; flex: 1; min-width: 0; min-height: 64px; padding: 0; border: 1px solid var(--border-primary); border-radius: 7px; }
+.selected-project-feedback textarea { display: block; width: 100%; height: 100%; min-height: 62px; margin: 0; padding: 8px 58px 8px 10px; border: 0; border-radius: inherit; background: transparent; color: var(--text-primary); font: inherit; font-size: 14px; line-height: 20px; resize: none; }
+.selected-project-feedback textarea::placeholder { color: var(--text-tertiary); opacity: 1; }
+.selected-project-feedback:has(textarea:focus-visible) { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+.selected-project-feedback textarea:focus-visible { outline: none; }
+.selected-project-feedback > button { position: absolute; right: 7px; bottom: 7px; width: 40px; height: 28px; padding: 0; border: 0; border-radius: 4px; background: var(--text-primary); color: var(--bg-secondary); font: inherit; font-size: 12px; line-height: 16px; font-weight: 500; }
+.selected-project-feedback > button::before { position: absolute; inset: -8px -2px; content: ''; }
+.selected-project-feedback > button:disabled { background: var(--bg-hover-strong); color: var(--text-tertiary); cursor: not-allowed; }
+.selected-project-credit { color: var(--text-secondary); }
+.selected-project-credit > a { color: var(--text-primary); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.selected-project-disclaimer { flex: none; margin: 0; color: var(--text-tertiary); font-size: 12px; line-height: 17px; text-wrap: pretty; }
+.central-flow .flow-layout[data-rail-density='compact'] .selected-project-disclaimer { font-size: 11px; line-height: 15px; }
+.selected-project-learn:focus-visible, .selected-project-credit > a:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; border-radius: 2px; }
+@media (hover: hover) and (pointer: fine) {
+  .selected-project-learn:hover { text-decoration: underline; text-underline-offset: 3px; }
+}
+@media (max-width: 700px), (pointer: coarse) {
+  .selected-project-learn { min-height: 44px; }
+  .selected-project-feedback { flex: none; height: 96px; }
+  .selected-project-feedback textarea { font-size: 16px; line-height: 20px; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .selected-puzzle-name > a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .16em; }
+}
+@media (max-height: 800px) {
+  .central-flow .flow-trends.selected-sidebar-card .chart-canvas { height: 150px; min-height: 150px; }
+}

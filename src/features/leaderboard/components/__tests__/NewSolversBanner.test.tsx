@@ -87,14 +87,15 @@ describe('compact activity popover', () => {
     expect(screen.queryByRole('region', { name: 'Puzzle activity' })).not.toBeInTheDocument();
   });
 
-  test('header activity exposes the remaining solvers and puzzle link without a separate banner', () => {
+  test('header activity exposes remaining solvers without repeating the activity heading', () => {
     render(<NewSolversBanner inline currentPuzzleProgress={progress} generatedAt="2026-09-06T09:00:00Z" />);
     const trigger = screen.getByRole('button', { name: '2 more solvers added today' });
     fireEvent.click(trigger);
     const popover = screen.getByRole('region', { name: 'More solvers added today' });
     names.slice(1).forEach((name) => expect(within(popover).getByText(name)).toBeVisible());
     expect(within(popover).queryByText(names[0])).not.toBeInTheDocument();
-    expect(within(popover).getByRole('link', { name: 'Hint Singles' })).toHaveAttribute('href', 'https://www.janestreet.com/puzzles/current-puzzle/');
+    expect(within(popover).queryByRole('link', { name: 'Hint Singles' })).not.toBeInTheDocument();
+    expect(within(popover).queryByText(/Added today/)).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Dismiss banner' })).not.toBeInTheDocument();
     fireEvent.keyDown(within(popover).getByRole('list'), { key: 'Escape' });
     expect(trigger).toHaveFocus();
@@ -126,6 +127,7 @@ describe('inline activity names', () => {
       if (this.classList.contains('header-activity')) return rect(0, 0, containerWidth, 44);
       if (this.classList.contains('banner-tag')) return rect(0, 0, 70, 20);
       if (this.classList.contains('header-activity-icon')) return rect(0, 0, 18, 20);
+      if (this.classList.contains('header-activity-context')) return rect(0, 0, 100, 44);
       if (this.classList.contains('header-activity-more')) return rect(210, 30, 32, 28);
       if (this.classList.contains('banner-more-tooltip')) return rect(0, 0, 200, 180);
       if (this.classList.contains('banner-more-list')) return rect(0, 0, 176, 140);
@@ -166,6 +168,21 @@ describe('inline activity names', () => {
     act(() => { staleCallback(); });
     expect(callbacks.size).toBe(0);
     expect(disconnect).toHaveBeenCalled();
+  });
+
+  test('reserves space for the puzzle context only when it shares the names row', () => {
+    containerWidth = 500;
+    render(<NewSolversBanner inline currentPuzzleProgress={today} generatedAt="2026-09-06T09:00:00Z"
+      puzzleContext={<a href="https://www.janestreet.com/puzzles/current-puzzle/">Hint Singles</a>} />);
+    const activity = screen.getByRole('region', { name: 'Puzzle activity' });
+    const row = activity.querySelector<HTMLElement>('.header-activity-row')!;
+    expect(shownNames(row)).toEqual(allNames.slice(0, 2));
+    expect(within(row).getByRole('button', { name: '6 more solvers added today' })).toHaveTextContent('+6');
+
+    row.style.flexDirection = 'column';
+    resizeContainer(500);
+    expect(shownNames(row)).toEqual(allNames.slice(0, 4));
+    expect(within(row).getByRole('button', { name: '4 more solvers added today' })).toHaveTextContent('+4');
   });
 
   test('accounts for the optional announcement icon and has no remainder when all names fit', () => {

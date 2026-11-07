@@ -1,0 +1,64 @@
+.leaderboard-header.lh--selected .current-puzzle-content { min-height: 56px; padding-block: 6px; }
+.central-flow .flow-scope { container: ranking-choices / inline-size; }
+
+@container ranking-choices (max-width: 290px) {
+  .central-flow .flow-scope .flow-ranking-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .central-flow .flow-scope .flow-ranking-tabs button { display: flex; align-items: center; justify-content: center; min-width: 0; font-size: 12px; line-height: 16px; white-space: normal; }
+  .central-flow .flow-scope .flow-ranking-tabs button > span:first-child { max-width: 60px; }
+}
+
+@media (min-width: 1121px) and (min-height: 701px) {
+  .central-flow .flow-layout { grid-template-columns: minmax(224px, .3fr) minmax(0, 1fr) minmax(224px, .3fr); row-gap: 16px; }
+  .central-flow .flow-rail { --flow-card-padding: 16px; --flow-card-gap: 12px; display: grid; grid-template-rows: repeat(2, minmax(0, 1fr)) minmax(210px, 1fr); align-items: stretch; gap: 16px; height: var(--flow-rail-height, 640px); max-height: none; padding: 0; margin: 0; overflow: visible; }
+  .central-flow .flow-rail--right > .flow-puzzles { grid-row: span 2; }
+  .central-flow .flow-rail > .selected-sidebar-card { min-height: 0; min-width: 0; padding: var(--flow-card-padding); }
+  .central-flow .flow-rail > .flow-community { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: var(--flow-card-gap); }
+  .central-flow .flow-rail .selected-population { container-type: size; }
+  .central-flow .flow-rail .selected-population > svg { width: 100%; height: 100%; aspect-ratio: auto; }
+  .central-flow .flow-rail .selected-population > figcaption { padding-inline-start: max(0px, calc((100cqw - (100cqh - 16px - var(--population-gap)) * 118 / 48) / 2)); }
+  .central-flow .flow-rail > .flow-trends { display: flex; min-height: 0; }
+  .central-flow .flow-rail .flow-trends .chart-container.mini { display: flex; flex-direction: column; flex: 1; height: 100%; min-height: 0; }
+  .central-flow .flow-rail .flow-trends .trend-header { flex: none; min-height: 40px; margin: 0 0 var(--flow-card-gap); }
+  .central-flow .flow-rail .flow-trends .trend-view-select { height: 40px; min-height: 40px; }
+  .central-flow .flow-rail .flow-trends .growth-tab-panel, .central-flow .flow-rail .flow-trends .growth-chart-body { display: flex; flex-direction: column; flex: 1; min-height: 0; height: auto; }
+  .central-flow .flow-rail .flow-trends .chart-canvas { flex: 1; height: 0; min-height: 0; }
+  .central-flow .flow-rail .flow-trends .trend-summary { flex: none; min-height: 0; margin: 0 0 4px; }
+  .central-flow .flow-rail .flow-trends .trend-summary-value strong { font-size: 20px; }
+  .central-flow .flow-rail .flow-trends .trend-summary-context, .central-flow .flow-rail .flow-trends .trend-caption { display: none; }
+  .central-flow .flow-rail .flow-puzzles .selected-puzzle-viewport { flex: 1; height: 0; min-height: 0; }
+  .central-flow .flow-rail .flow-puzzles { gap: var(--flow-card-gap); }
+  .central-flow .flow-layout[data-rail-density='compact'] .flow-rail { --flow-card-padding: 12px; --flow-card-gap: 8px; }
+  .central-flow .flow-layout[data-rail-density='compact'] .selected-population { --population-gap: 6px; }
+  .central-flow .flow-layout[data-rail-density='compact'] .selected-distribution-label { gap: 4px; font-size: 12px; }
+  .central-flow .flow-layout[data-rail-density='compact'] .selected-distribution-label > span { font-size: 11px; }
+  .central-flow .flow-layout[data-rail-density='compact'] .selected-distribution-count { font-size: 13px; }
+  .central-flow .flow-layout[data-rail-density='compact'] .flow-trends .trend-header { min-height: 36px; }
+  .central-flow .flow-layout[data-rail-density='compact'] .flow-trends .trend-view-select { min-height: 36px; height: 36px; }
+}
+
+.central-flow:has(.flow-layout[data-rail-layout='dialog']) { --flow-tools-height: 118px; }
+.central-flow .flow-layout[data-rail-layout='dialog'] { display: block; max-width: 960px; margin-inline: auto; padding-top: 12px; }
+.central-flow .flow-layout[data-rail-layout='dialog'] > .flow-rail { display: none; }
+.central-flow .flow-layout[data-rail-layout='dialog'] .flow-tools-row { position: sticky; top: 0; z-index: 15; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 16px; min-height: 118px; padding-block: 8px; background: var(--bg-secondary); }
+.central-flow .flow-layout[data-rail-layout='dialog'] .flow-tools-row > .flow-scope { grid-column: 1 / -1; grid-row: 1; position: static; min-height: 44px; justify-content: center; }
+.central-flow .flow-layout[data-rail-layout='dialog'] .flow-tools-row .lab-search { grid-column: 1; grid-row: 2; position: static; }
+.central-flow .flow-layout[data-rail-layout='dialog'] .flow-ranking-tabs { justify-content: center; }
+.central-flow .flow-layout[data-rail-layout='dialog'] .flow-stats-button { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 44px; padding: 8px 16px; border: 1px solid var(--border-primary); background: transparent; color: var(--text-primary); font-size: 14px; }
+
+@media (min-width: 1121px) and (max-height: 820px) {
+  .central-flow .flow-rail .trend-composition-summary { gap: 6px; margin-bottom: 6px; }
+  .central-flow .flow-rail .trend-composition-key { justify-content: space-between; gap: 12px; }
+  .central-flow .flow-rail .trend-composition-key > div { flex: none; flex-direction: row; align-items: baseline; gap: 8px; }
+  .central-flow .flow-rail .trend-composition-key dt { gap: 5px; font-size: 11px; }
+  .central-flow .flow-rail .trend-composition-key i { width: 7px; height: 7px; }
+  .central-flow .flow-rail .trend-composition-key dd { font-size: 18px; line-height: 24px; }
+  .leaderboard-header.lh--selected .lh-main { min-height: 128px; padding-block: 8px; gap: 8px 24px; }
+  .leaderboard-header.lh--selected .lh-logo { width: 64px; height: 64px; }
+  @container leaderboard-header (max-width: 1250px) {
+    .leaderboard-header.lh--selected .lh-main { min-height: 132px; padding-block: 8px; gap: 8px 20px; }
+  }
+}
+
+@container leaderboard-header (max-width: 600px) {
+  .leaderboard-header.lh--selected .current-puzzle-content { min-height: 0; padding-block: 4px; gap: 4px; }
+}

@@ -6,7 +6,7 @@ import { useThemeColors } from '../../hooks/useThemeColors';
 import InfoTooltip from '../InfoTooltip';
 import ChartTooltipContent from './ChartTooltipContent';
 import HelpTooltip from '../Tooltip';
-import { MonthlyParticipationChart, FirstTimeSolversChart, PercentileRankChart, ChartSummary, chartMonthIndex, latestMonthLabel } from './AdvancedCharts';
+import { MonthlyParticipationChart, ChartSummary, chartMonthIndex, latestMonthLabel } from './AdvancedCharts';
 import { trackEvent } from '../../utils/analytics';
 import './trend-panel.css';
 
@@ -19,24 +19,25 @@ interface ChartsProps {
   puzzlesLoading?: boolean;
 }
 
-const SolversGrowthBody = memo(({ data }: { data: SolversGrowthDataPoint[] }) => {
+export const SolversGrowthBody = memo(({ data, endpoint = false }: { data: SolversGrowthDataPoint[]; endpoint?: boolean }) => {
   const colors = useThemeColors();
   const recorded = useMemo(() => data.filter((row) => chartMonthIndex(row.month) >= 2015 * 12 + 10)
     .sort((a, b) => chartMonthIndex(a.month) - chartMonthIndex(b.month)), [data]);
   const latest = recorded[recorded.length - 1];
   if (!latest) return <div className="chart-loading">Solver history is unavailable.</div>;
+  const ceiling = Math.max(10000, Math.ceil(Math.max(...recorded.map((row) => row.totalSolvers)) / 10000) * 10000);
   return (
     <div className="growth-chart-body">
-      <ChartSummary value={latest.totalSolvers} label="unique solvers" context={`Recorded through ${latest.month}`} />
+      {!endpoint && <ChartSummary value={latest.totalSolvers} label="unique solvers" context={`Recorded through ${latest.month}`} />}
       <div className="chart-canvas">
         <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-          <AreaChart data={recorded} accessibilityLayer margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
+          <AreaChart data={recorded} accessibilityLayer margin={{ top: endpoint ? 20 : 8, right: 6, left: 0, bottom: 0 }}>
             <CartesianGrid vertical={false} strokeDasharray="3 3" stroke={colors.gridStroke} />
-            <XAxis dataKey="month" tick={{ fontSize: 10, fill: colors.textColor }} height={22}
-              tickFormatter={(value: string) => value.slice(-4)}
-              ticks={recorded.filter((row) => row.month.startsWith('Jan')).map((row) => row.month)}
+            <XAxis dataKey="month" tick={{ fontSize: endpoint ? 12 : 10, fill: colors.textColor }} height={22}
+              tickFormatter={(value: string) => endpoint ? value : value.slice(-4)}
+              ticks={endpoint ? [recorded[0].month, latest.month] : recorded.filter((row) => row.month.startsWith('Jan')).map((row) => row.month)}
               interval="preserveStartEnd" minTickGap={20} axisLine={false} tickLine={false} />
-            <YAxis width={34} tickCount={3} tick={{ fontSize: 10, fill: colors.textColor }}
+            <YAxis width={34} tickCount={3} domain={endpoint ? [0, ceiling] : undefined} ticks={endpoint ? [0, ceiling / 2, ceiling] : undefined} tick={{ fontSize: endpoint ? 12 : 10, fill: colors.textColor }}
               tickFormatter={(value: number) => value >= 1000 ? `${(value / 1000).toFixed(0)}k` : `${value}`}
               axisLine={false} tickLine={false} />
             <Tooltip content={<ChartTooltipContent />} isAnimationActive={false} wrapperStyle={{ visibility: 'hidden', pointerEvents: 'none' }}
@@ -44,39 +45,46 @@ const SolversGrowthBody = memo(({ data }: { data: SolversGrowthDataPoint[] }) =>
               border: `1px solid ${colors.tooltipBorder}`, fontSize: 12, borderRadius: 6 }}
               labelFormatter={(label) => latestMonthLabel(String(label))}
               formatter={(value: number) => [value.toLocaleString(), 'Unique solvers']} />
-            <Area type="monotone" dataKey="totalSolvers" stroke="#2E8B57" fill="#2E8B57"
-              fillOpacity={0.12} strokeWidth={2} isAnimationActive={false} activeDot={{ r: 3 }} />
+            <Area type="monotone" dataKey="totalSolvers" stroke="var(--accent-primary)" fill="var(--accent-primary)"
+              fillOpacity={0.12} strokeWidth={2} strokeLinecap="round" isAnimationActive={false}
+              activeDot={endpoint ? { r: 3.5, fill: 'var(--accent-primary)', stroke: 'var(--flow-panel, var(--bg-secondary))', strokeWidth: 1.5 } : { r: 3 }}
+              dot={endpoint ? ({ cx, cy, index }) => {
+                if (index !== recorded.length - 1) return <React.Fragment key={index} />;
+                return <g key={index} className="solvers-growth-endpoint" pointerEvents="none">
+                  <circle cx={cx} cy={cy} r={3.5} fill="var(--accent-primary)" stroke="var(--flow-panel, var(--bg-secondary))" strokeWidth={1.5} />
+                  <text x={cx - 8} y={cy - 8} textAnchor="end" fill="var(--text-primary)" fontSize={16} fontWeight={600}>{latest.totalSolvers.toLocaleString()}</text>
+                </g>;
+              } : false} />
           </AreaChart>
         </ResponsiveContainer>
       </div>
-      <div className="trend-caption"><span>At least one solve · {recorded[0].month} – {latest.month}</span></div>
+      {!endpoint && <div className="trend-caption"><span>At least one solve · {recorded[0].month} – {latest.month}</span></div>}
     </div>
   );
 });
 
-type GrowthTab = 'monthly' | 'growth' | 'first-time' | 'percentiles';
+type GrowthTab = 'monthly' | 'growth';
 interface GrowthChartTabsProps {
   solversGrowthData: SolversGrowthDataPoint[];
   rawPuzzles?: Puzzle[] | null;
   puzzlesLoading?: boolean;
+  variant?: 'default' | 'endpoint';
 }
 const VIEWS: Array<{ id: GrowthTab; label: string; tooltip: string }> = [
   { id: 'growth', label: 'Total solvers', tooltip: 'Cumulative unique solvers with at least one recorded solve. Only recorded data is shown; public solver lists begin in November 2015.' },
-  { id: 'monthly', label: 'Monthly activity', tooltip: 'Unique solvers in each calendar month. Each name is counted once even when a month has multiple puzzles. The current month is still in progress.' },
-  { id: 'first-time', label: 'New solvers', tooltip: 'Solvers making their first recorded appearance in each month, calculated from changes in the cumulative unique-solver count.' },
-  { id: 'percentiles', label: 'Rank distribution', tooltip: 'Average finish percentile for solvers with at least two puzzles. Higher percentiles mean earlier positions in the published solver lists.' },
+  { id: 'monthly', label: 'New & returning', tooltip: 'Monthly unique solvers from published lists. Returning solvers are grey at the bottom; first recorded solvers are blue at the top. The latest 12 ended months are shown.' },
 ];
 
-export const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({ solversGrowthData, rawPuzzles, puzzlesLoading }) => {
+export const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({ solversGrowthData, rawPuzzles, puzzlesLoading, variant = 'default' }) => {
   const [tab, setTab] = useState<GrowthTab>('growth');
   const activeView = VIEWS.find((view) => view.id === tab)!;
   return (
-    <div className="chart-container mini growth-chart-tabs" data-view={tab}>
+    <div className="chart-container mini growth-chart-tabs" data-view={tab} data-variant={variant}>
       <div className="trend-header">
-        <div className="trend-title">
+        {variant === 'default' && <div className="trend-title">
           <h3>Trends</h3>
           <InfoTooltip content={activeView.tooltip} label={`About ${activeView.label.toLowerCase()}`} />
-        </div>
+        </div>}
         <select className="trend-view-select" aria-label="Trend view" value={tab}
           onChange={(event) => { const next = event.target.value as GrowthTab; setTab(next); trackEvent('chart_tab_change', { tab: next }); }}>
           {VIEWS.map((view) => <option key={view.id} value={view.id}>{view.label}</option>)}
@@ -84,9 +92,7 @@ export const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({ solversGrowthD
       </div>
       <div className="growth-tab-panel">
         {tab === 'monthly' && <MonthlyParticipationChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />}
-        {tab === 'growth' && <SolversGrowthBody data={solversGrowthData} />}
-        {tab === 'first-time' && <FirstTimeSolversChart solversGrowth={solversGrowthData} />}
-        {tab === 'percentiles' && <PercentileRankChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />}
+        {tab === 'growth' && <SolversGrowthBody data={solversGrowthData} endpoint={variant === 'endpoint'} />}
       </div>
     </div>
   );

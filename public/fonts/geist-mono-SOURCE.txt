@@ -1,0 +1,4 @@
+Geist Mono variable WOFF2
+Source: https://raw.githubusercontent.com/vercel/geist-font/ef2597cfc42f4797676df105517ccc0a1cfa6569/fonts/GeistMono/webfonts/GeistMono%5Bwght%5D.woff2
+License: https://raw.githubusercontent.com/vercel/geist-font/ef2597cfc42f4797676df105517ccc0a1cfa6569/OFL.txt
+Revision: ef2597cfc42f4797676df105517ccc0a1cfa6569

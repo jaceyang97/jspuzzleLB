@@ -9,7 +9,14 @@ interface PopoverPosition {
   maxHeight: number;
 }
 
-const PuzzleNavigation: React.FC = () => {
+type NavigationItem = 'intro' | 'current' | 'archive';
+
+interface PuzzleNavigationProps {
+  selectedItem?: NavigationItem | null;
+  onItemSelect?: (item: NavigationItem) => void;
+}
+
+const PuzzleNavigation: React.FC<PuzzleNavigationProps> = ({ selectedItem = 'intro', onItemSelect }) => {
   const [open, setOpen] = useState(false);
   const [position, setPosition] = useState<PopoverPosition | null>(null);
   const introRef = useRef<HTMLDivElement>(null);
@@ -176,9 +183,10 @@ const PuzzleNavigation: React.FC = () => {
     <nav className="puzzle-navigation" aria-label="Puzzle navigation">
       <div ref={introRef} className="intro-container" onMouseEnter={() => show()} onMouseLeave={handleMouseLeave}>
         <button ref={buttonRef} type="button" className="intro-button"
-          aria-label="INTRO" aria-current="page" aria-haspopup="dialog" aria-expanded={open} aria-controls={popoverId}
+          aria-label="INTRO" aria-current={selectedItem === 'intro' ? 'page' : undefined} aria-haspopup="dialog" aria-expanded={open} aria-controls={popoverId}
           onFocus={() => show()} onBlur={handleBlur}
           onClick={() => {
+            onItemSelect?.('intro');
             if (pinned.current) dismiss();
             else { pinned.current = true; show(true); }
           }}
@@ -190,6 +198,7 @@ const PuzzleNavigation: React.FC = () => {
           }}>INTRO <span className="panel-info-marker intro-info-marker" aria-hidden="true">i</span></button>
       </div>
       <a ref={currentLinkRef} className="js-nav-link"
+        aria-current={selectedItem === 'current' ? 'true' : undefined} onClick={() => onItemSelect?.('current')}
         onKeyDown={(event) => {
           if (event.key !== 'Tab' || !event.shiftKey) return;
           event.preventDefault();
@@ -201,6 +210,7 @@ const PuzzleNavigation: React.FC = () => {
         }}
         href="https://www.janestreet.com/puzzles/current-puzzle/" target="_blank" rel="noopener noreferrer">CURRENT PUZZLE</a>
       <a className="js-nav-link" href="https://www.janestreet.com/puzzles/archive/"
+        aria-current={selectedItem === 'archive' ? 'true' : undefined} onClick={() => onItemSelect?.('archive')}
         target="_blank" rel="noopener noreferrer">ARCHIVE</a>
       {introduction}
     </nav>

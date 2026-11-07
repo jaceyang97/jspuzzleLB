@@ -1,0 +1,13 @@
+.central-flow .flow-theme-button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--text-primary); touch-action: manipulation; }
+.flow-theme-button svg { width: 18px; height: 18px; pointer-events: none; }
+:root[data-magicui-theme-vt='active']::view-transition-group(root) { animation-duration: var(--magicui-theme-toggle-vt-duration); }
+:root[data-magicui-theme-vt='active']::view-transition-old(root), :root[data-magicui-theme-vt='active']::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+:root[data-magicui-theme-vt='active']::view-transition-old(root) { z-index: 1; }
+:root[data-magicui-theme-vt='active']::view-transition-new(root) { z-index: 2; clip-path: var(--magicui-theme-vt-clip-from); }
+:root[data-magicui-theme-vt='active']::view-transition { pointer-events: none; }
+:root[data-magicui-theme-vt='active'] * { transition: none !important; }
+@media (hover: hover) and (pointer: fine) { .central-flow .flow-theme-button:hover { color: var(--accent-primary); } }
+@media (prefers-reduced-motion: reduce) {
+  :root[data-magicui-theme-vt]::view-transition-group(root), :root[data-magicui-theme-vt]::view-transition-old(root), :root[data-magicui-theme-vt]::view-transition-new(root) { animation: none; }
+}
+.theme-switching *, .theme-switching *::before, .theme-switching *::after, .theme-switching *::backdrop { transition: none !important; animation: none !important; }

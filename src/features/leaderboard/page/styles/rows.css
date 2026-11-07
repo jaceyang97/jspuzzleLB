@@ -1,0 +1,124 @@
+.central-flow .flow-scope .lab-tabs { gap: 24px; }
+.central-flow .flow-scope .lab-tabs button { font-weight: 500; }
+.central-flow { --flow-tools-height: 0px; --flow-name-base: clamp(28px, 3.1vw, 40px); --flow-rank-base: 32px; --flow-score-base: 28px; --flow-change-base: 16px; --flow-rank-gap: 10px; --flow-rank-offset: 0px; }
+.flow-tools-row { display: contents; }
+.flow-tools-row > .flow-scope { grid-column: 1; grid-row: 1; position: sticky; top: 12px; z-index: 15; min-width: 0; min-height: 48px; display: flex; align-items: center; background: var(--bg-secondary); }
+.central-flow .flow-tools-row .lab-search { grid-column: 3; grid-row: 1; position: sticky; top: 12px; z-index: 15; width: 100%; max-width: none; background: var(--bg-secondary); }
+.central-flow .flow-tools-row .lab-search-field { height: 48px; }
+.central-flow .flow-tools-row .lab-search input { height: 46px; }
+.central-flow .flow-layout { grid-template-rows: 48px auto; row-gap: 20px; padding-top: 24px; }
+.central-flow .flow-primary { grid-column: 2; grid-row: 1 / 3; }
+.central-flow .flow-rail--left { grid-column: 1; grid-row: 2; }
+.central-flow .flow-rail--right { grid-column: 3; grid-row: 2; }
+.central-flow .flow-toolbar { top: var(--flow-tools-height); }
+.central-flow .flow-rail { top: 80px; max-height: calc(100dvh - 92px); }
+.central-flow .flow-ranking-tabs { position: relative; width: 100%; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.flow-ranking-tabs::-webkit-scrollbar { display: none; }
+.central-flow .flow-ranking-tabs button { position: relative; flex: none; }
+.central-flow .flow-ranking-tabs button::after { display: none; }
+.flow-tab-indicator { position: absolute; inset-inline: 0; bottom: 4px; height: 2px; border-radius: 1px; background: var(--text-primary); pointer-events: none; }
+.central-flow .flow-columns {
+  min-height: 48px;
+  border-top: 0;
+  background: var(--bg-primary);
+  color: var(--text-tertiary);
+  font-size: 14px;
+  line-height: 22px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+[data-theme='dark'] .central-flow .flow-columns { background: var(--bg-hover); }
+.central-flow .flow-columns > span:not(:last-child) { border-inline-end: var(--flow-hairline) solid var(--border-primary); }
+.central-flow .flow-primary[data-ranking='rising'] { --flow-score-column: 160px; }
+.central-flow .flow-columns, .central-flow .arena-row { grid-template-columns: var(--arena-side) minmax(0, 1fr) var(--flow-score-column, var(--arena-side)); }
+.central-flow .arena-row {
+  --flow-row-scale: 1;
+  --flow-row-name-size: calc(var(--flow-name-base) * var(--flow-row-scale));
+  --flow-row-rank-size: calc(var(--flow-rank-base) * var(--flow-row-scale));
+  --flow-row-number-size: calc(var(--flow-score-base) * var(--flow-row-scale));
+  --flow-row-change-size: calc(var(--flow-change-base) * var(--flow-row-scale));
+}
+.central-flow .arena-row[data-rank='1'] { --flow-row-scale: 2; }
+.central-flow .arena-row[data-rank='2'] { --flow-row-scale: 1.4142135623730951; }
+.central-flow .arena-row[data-rank='3'] { --flow-row-scale: 1.1547005383792517; }
+.central-flow .arena-person { position: relative; padding-block: 24px; padding-inline: max(14px, calc(var(--flow-row-rank-size) * var(--flow-rank-digits) * .3 + var(--flow-row-change-size) * var(--flow-change-characters) * .6 + var(--flow-rank-gap) + var(--flow-rank-offset) + 12px - var(--arena-side) / 2)); }
+.central-flow .arena-row[data-rank] .arena-name { font-size: var(--flow-row-name-size); font-weight: 700; }
+.flow-winner-crown {
+  --crown-ink: var(--text-primary);
+  --crown-secondary: var(--text-secondary);
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  display: block;
+  width: 52px;
+  height: auto;
+  aspect-ratio: 10 / 7;
+  overflow: visible;
+  transform: translateX(-50%) rotate(-7deg);
+  pointer-events: none;
+}
+.flow-crown-sheen { opacity: 0; transform: translateX(-40px); }
+.flow-crown-sparkle { opacity: 0; transform: scale(.8); transform-box: fill-box; transform-origin: center; }
+@keyframes flow-crown-polish {
+  0% { opacity: 0; transform: translateX(-40px); }
+  15% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(220px); }
+}
+@keyframes flow-crown-glint {
+  0% { opacity: 0; transform: scale(.8) rotate(-16deg); }
+  35% { opacity: 1; transform: scale(1.12) rotate(0deg); }
+  65% { opacity: .9; transform: scale(1) rotate(8deg); }
+  100% { opacity: 0; transform: scale(.9) rotate(16deg); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .central-flow .arena-row[data-rank='1']:hover .flow-crown-sheen { animation: flow-crown-polish 620ms linear both; }
+  .central-flow .arena-row[data-rank='1']:hover .flow-crown-sparkle { animation: flow-crown-glint 280ms ease-out 400ms both; }
+}
+.central-flow .flow-score strong { font-size: var(--flow-row-number-size); letter-spacing: 0; }
+.central-flow .flow-rank { display: flex; align-items: center; justify-content: center; font-size: var(--flow-row-rank-size); }
+.flow-rank-value { position: relative; display: inline-flex; align-items: center; }
+.flow-rank-number, .flow-rank-change, .flow-score strong { font-family: 'Geist Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; font-synthesis: none; }
+.flow-rank-number { display: block; text-align: center; }
+.flow-rank-change { position: absolute; inset-inline-start: calc(100% + var(--flow-rank-gap)); top: 50%; transform: translateY(-50%); width: max-content; color: var(--text-tertiary); font-size: var(--flow-row-change-size); font-weight: 400; line-height: 1.1; white-space: nowrap; text-align: start; }
+.flow-rank-change[data-direction='up'] { color: color-mix(in srgb, var(--rank-up) 80%, var(--text-primary)); }
+.flow-rank-change[data-direction='down'] { color: var(--danger); }
+.flow-rank-change[data-direction='new'] { color: var(--accent-primary); }
+.central-flow .flow-record-context { position: absolute; inset-inline: 0; top: calc(100% - 24px); min-height: 20px; font-size: 13px; line-height: 20px; opacity: 0; transition: opacity 120ms ease-out; }
+.central-flow .arena-row-target:focus-visible .flow-record-context { opacity: 1; transition: none; }
+@media (hover: hover) and (pointer: fine) {
+  .central-flow .arena-row-target:hover .flow-record-context { opacity: 1; }
+}
+@media (max-width: 1400px) {
+  .central-flow { --arena-side: 104px; }
+}
+@media (max-width: 1120px), (max-height: 700px) {
+  .central-flow { --flow-tools-height: 118px; }
+  .flow-tools-row { position: sticky; top: 0; z-index: 15; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 16px; min-height: 118px; padding-block: 8px; background: var(--bg-secondary); }
+  .flow-tools-row > .flow-scope { grid-column: 1 / -1; grid-row: 1; position: static; min-height: 44px; justify-content: center; }
+  .central-flow .flow-tools-row .lab-search { grid-column: 1; grid-row: 2; position: static; }
+  .central-flow .flow-ranking-tabs { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .central-flow { --arena-side: 80px; --flow-name-base: 22px; --flow-rank-base: 24px; --flow-score-base: 22px; --flow-change-base: 14px; --flow-rank-gap: 8px; --flow-rank-offset: -10px; }
+  .central-flow .flow-primary[data-ranking='rising'] { --flow-score-column: 120px; }
+  .central-flow .flow-columns > span:first-child { padding-inline-end: 20px; }
+  .central-flow .arena-person { padding-block: 26px; }
+  .flow-winner-crown { width: 44px; }
+  .central-flow .flow-rank { transform: translateX(var(--flow-rank-offset)); }
+  .central-flow .flow-columns { font-size: 13px; }
+  .central-flow .flow-record-context { top: calc(100% - 26px); font-size: 12px; }
+  .central-flow .flow-scope .lab-tabs { gap: 20px; }
+}
+@media (max-width: 360px) {
+  .central-flow { --arena-side: 64px; --flow-name-base: 18px; --flow-rank-base: 20px; --flow-score-base: 18px; --flow-change-base: 12px; }
+  .central-flow .flow-primary[data-ranking='rising'] { --flow-score-column: 104px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .central-flow .flow-record-context { transition: none; }
+  .flow-winner-crown .flow-crown-sheen, .flow-winner-crown .flow-crown-sparkle { animation: none; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
+  .central-flow .arena-row[data-rank='1']:hover .flow-crown-sheen { opacity: .7; transform: translateX(92px); }
+  .central-flow .arena-row[data-rank='1']:hover .flow-crown-sparkle { opacity: 1; transform: none; }
+}
