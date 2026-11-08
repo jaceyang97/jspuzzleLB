@@ -17,18 +17,14 @@ const groups = [
 export function CommunityCard({ data, id = 'community-data' }) {
   const distribution = data.solverDistribution;
   const total = distribution ? groups.reduce((sum, group) => sum + distribution[group.key], 0) : 0;
-  const allocations = total > 0 ? groups.map((group) => {
-    const share = distribution[group.key] / total * 60;
-    return { ...group, cells: Math.floor(share), remainder: share % 1 };
-  }) : [];
-  const remaining = 60 - allocations.reduce((sum, group) => sum + group.cells, 0);
-  [...allocations].sort((a, b) => b.remainder - a.remainder).slice(0, remaining).forEach((group) => { group.cells += 1; });
+  const squareUnit = distribution?.tenPlus || distribution?.twoToNine || distribution?.onePuzzle || 1;
+  const allocations = total > 0 ? groups.map((group) => ({ ...group, cells: Math.round(distribution[group.key] / squareUnit) })) : [];
   const cells = allocations.flatMap((group) => Array.from({ length: group.cells }, () => group));
+  const gridHeight = Math.ceil(cells.length / 12) * 10 - 2;
   return <section className="ladder-insight flow-card flow-community selected-sidebar-card" id={id} aria-label="Solvers by puzzles solved">
     {total > 0 ? <>
-      <figure className="selected-population">
-        <svg viewBox="0 0 118 48" preserveAspectRatio="xMidYMid meet" aria-hidden="true">{cells.map((group, index) => <rect key={index} data-group={group.key} x={index % 12 * 10} y={Math.floor(index / 12) * 10} width="8" height="8" rx=".35" fill={group.color}><title>{group.label}: {number(distribution[group.key])} solvers</title></rect>)}</svg>
-        <figcaption>≈ {number(Math.round(total / 60))} solvers per square</figcaption>
+      <figure className="selected-population" aria-label={`Each square represents approximately ${number(squareUnit)} solvers`}>
+        <svg viewBox={`0 0 118 ${gridHeight}`} preserveAspectRatio="xMidYMid meet" aria-hidden="true">{cells.map((group, index) => <rect key={index} data-group={group.key} x={index % 12 * 10} y={Math.floor(index / 12) * 10} width="8" height="8" rx=".35" fill={group.color}><title>{group.label}: {number(distribution[group.key])} solvers</title></rect>)}</svg>
       </figure>
       <ul className="selected-distribution-key" aria-label="Solver categories">{groups.map((group) => <li key={group.key}><span className="selected-distribution-swatch" style={{ background: group.color }} aria-hidden="true" /><span className="selected-distribution-label">{group.label}<span>{group.range}</span></span><span className="selected-distribution-count">{number(distribution[group.key])}</span></li>)}</ul>
     </> : <p className="flow-data-note">Solver distribution is unavailable.</p>}

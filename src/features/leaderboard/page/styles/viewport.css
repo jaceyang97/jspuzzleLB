@@ -15,7 +15,6 @@
   .central-flow .flow-rail > .flow-community { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: var(--flow-card-gap); }
   .central-flow .flow-rail .selected-population { container-type: size; }
   .central-flow .flow-rail .selected-population > svg { width: 100%; height: 100%; aspect-ratio: auto; }
-  .central-flow .flow-rail .selected-population > figcaption { padding-inline-start: max(0px, calc((100cqw - (100cqh - 16px - var(--population-gap)) * 118 / 48) / 2)); }
   .central-flow .flow-rail > .flow-trends { display: flex; min-height: 0; }
   .central-flow .flow-rail .flow-trends .chart-container.mini { display: flex; flex-direction: column; flex: 1; height: 100%; min-height: 0; }
   .central-flow .flow-rail .flow-trends .trend-header { flex: none; min-height: 40px; margin: 0 0 var(--flow-card-gap); }
@@ -28,7 +27,6 @@
   .central-flow .flow-rail .flow-puzzles .selected-puzzle-viewport { flex: 1; height: 0; min-height: 0; }
   .central-flow .flow-rail .flow-puzzles { gap: var(--flow-card-gap); }
   .central-flow .flow-layout[data-rail-density='compact'] .flow-rail { --flow-card-padding: 12px; --flow-card-gap: 8px; }
-  .central-flow .flow-layout[data-rail-density='compact'] .selected-population { --population-gap: 6px; }
   .central-flow .flow-layout[data-rail-density='compact'] .selected-distribution-label { gap: 4px; font-size: 12px; }
   .central-flow .flow-layout[data-rail-density='compact'] .selected-distribution-label > span { font-size: 11px; }
   .central-flow .flow-layout[data-rail-density='compact'] .selected-distribution-count { font-size: 13px; }

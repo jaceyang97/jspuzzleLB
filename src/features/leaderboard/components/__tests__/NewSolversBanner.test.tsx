@@ -275,6 +275,7 @@ describe('inline activity names', () => {
     fireEvent.click(within(popover).getByRole('button', { name: 'Open profile for Edsger Dijkstra' }));
     expect(onSolverClick).toHaveBeenCalledTimes(2);
     expect(onSolverClick).toHaveBeenLastCalledWith('Edsger Dijkstra');
+    expect(more).toHaveFocus();
     expect(more).toHaveAttribute('aria-expanded', 'false');
     expect(screen.queryByRole('region', { name: 'More solvers added today' })).not.toBeInTheDocument();
   });

@@ -11,16 +11,26 @@ const puzzles = months.map((month, index) => ({ date_text: `${month} 2015`, name
 const data = { topSolvers: [{ name: 'Ada Lovelace', puzzlesSolved: 12, firstAppearance: 'Jan 2015', lastSolve: 'Dec 2015' }] };
 const initialWidth = window.innerWidth;
 const initialHeight = window.innerHeight;
+const initialResizeObserver = window.ResizeObserver;
+let availableHeight = 520;
 
 beforeEach(() => {
   Object.defineProperty(window, 'innerWidth', { configurable: true, writable: true, value: 1440 });
   Object.defineProperty(window, 'innerHeight', { configurable: true, writable: true, value: 900 });
   (useRawPuzzleData as jest.Mock).mockReturnValue({ puzzles, loading: false, error: null });
+  availableHeight = 520;
+  window.ResizeObserver = jest.fn().mockImplementation(() => ({ observe: jest.fn(), disconnect: jest.fn() }));
+  jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+    const height = this.classList.contains('lab-history-page') ? availableHeight : this.tagName === 'THEAD' ? 44 : this.tagName === 'TR' ? 45 : 0;
+    return { x: 0, y: 0, width: 600, height, top: 0, left: 0, right: 600, bottom: height, toJSON: () => ({}) };
+  });
 });
 
 afterEach(() => {
   window.innerWidth = initialWidth;
   window.innerHeight = initialHeight;
+  window.ResizeObserver = initialResizeObserver;
+  jest.restoreAllMocks();
 });
 
 test('pages through every solved puzzle without requiring an inner scroll area', () => {
@@ -41,13 +51,40 @@ test('resizing to a smaller page resets the range and keeps records reachable', 
   render(<ProfileContent data={data} name="Ada Lovelace" onClose={jest.fn()} />);
   fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
   window.innerWidth = 390;
+  availableHeight = 180;
   fireEvent(window, new Event('resize'));
   const table = screen.getByRole('table');
   expect(within(table).getAllByRole('link').map(link => link.textContent)).toEqual(['Puzzle 12', 'Puzzle 11', 'Puzzle 10']);
   expect(screen.getByText('1–3 of 12')).toBeInTheDocument();
   expect(screen.getByText('1 / 4')).toBeInTheDocument();
   window.innerWidth = 1440;
+  availableHeight = 520;
   fireEvent(window, new Event('resize'));
   expect(within(table).getAllByRole('row')).toHaveLength(11);
   expect(screen.getByText('1–10 of 12')).toBeInTheDocument();
+});
+
+test('keeps pagination present and disabled while puzzle history is loading', () => {
+  (useRawPuzzleData as jest.Mock).mockReturnValue({ puzzles: null, loading: true, error: null });
+  render(<ProfileContent data={data} name="Ada Lovelace" onClose={jest.fn()} />);
+  expect(screen.getByText('Loading puzzle history…')).toBeVisible();
+  expect(screen.getByRole('navigation', { name: 'Results pages' })).toBeVisible();
+  expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
+});
+
+test('placement help opens on click and Escape closes only the explanation', () => {
+  const onClose = jest.fn();
+  render(<ProfileContent data={data} name="Ada Lovelace" onClose={onClose} />);
+  const summary = screen.getByLabelText('About placement');
+  fireEvent.click(summary);
+  expect(summary.closest('details')).toHaveAttribute('open');
+  expect(screen.getByRole('note')).toBeVisible();
+  fireEvent.pointerDown(screen.getByRole('heading', { name: 'Solved puzzles' }));
+  expect(summary.closest('details')).not.toHaveAttribute('open');
+  fireEvent.click(summary);
+  fireEvent.keyDown(summary, { key: 'Escape' });
+  expect(summary.closest('details')).not.toHaveAttribute('open');
+  expect(summary).toHaveFocus();
+  expect(onClose).not.toHaveBeenCalled();
 });

@@ -1,8 +1,7 @@
 .central-flow .selected-sidebar-card { font-variant-numeric: tabular-nums; }
 .central-flow .flow-community.selected-sidebar-card { display: grid; grid-template-rows: auto auto; gap: 12px; }
-.selected-population { --population-gap: 8px; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: var(--population-gap); min-width: 0; min-height: 0; margin: 0; }
-.selected-population > svg { display: block; width: 100%; height: auto; aspect-ratio: 118 / 48; min-height: 0; }
-.selected-population > figcaption { color: var(--text-tertiary); font-size: 11px; line-height: 16px; }
+.selected-population { min-width: 0; min-height: 0; margin: 0; }
+.selected-population > svg { display: block; width: 100%; height: auto; min-height: 0; }
 .selected-distribution-key { list-style: none; display: flex; flex-direction: column; gap: 4px; padding: 0; margin: 0; }
 .selected-distribution-key > li { display: grid; grid-template-columns: 7px minmax(0, 1fr) auto; align-items: center; gap: 8px; min-width: 0; min-height: 20px; }
 .selected-distribution-swatch { flex: none; width: 7px; height: 7px; border-radius: 2px; }

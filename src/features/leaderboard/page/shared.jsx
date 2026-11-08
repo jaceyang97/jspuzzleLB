@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useRawPuzzleData } from '../hooks/useRawPuzzleData';
 import { computeAveragePercentile, findSolverPlacement, formatDate } from '../../../utils/leaderboardUtils';
 import { solverInitial } from '../../../utils/solverInitial';
@@ -57,31 +57,65 @@ export function EmptyState({ search, onClear }) {
   return <div className="lab-empty"><Icon name="search" size={28} /><h3>No matching solvers</h3><p>We couldn’t find “{search.trim()}”. Try a shorter name or a different spelling.</p><button type="button" className="lab-button" onClick={onClear}>Clear search</button></div>;
 }
 
-export function Pagination({ page, pages, setPage, count, pageSize = 40 }) {
-  return <nav className="lab-pagination" aria-label="Results pages"><span>{count ? `${page * pageSize + 1}–${Math.min((page + 1) * pageSize, count)} of ${count.toLocaleString()}` : '0 results'}</span><div><button type="button" disabled={page === 0} onClick={() => setPage(page - 1)} aria-label="Previous page">←</button><span>{page + 1} / {Math.max(pages, 1)}</span><button type="button" disabled={page >= pages - 1} onClick={() => setPage(page + 1)} aria-label="Next page">→</button></div></nav>;
+export function Pagination({ page, pages, setPage, count, pageSize = 40, busy = false }) {
+  return <nav className="lab-pagination" aria-label="Results pages"><span role="status" aria-atomic="true">{count ? `${page * pageSize + 1}–${Math.min((page + 1) * pageSize, count)} of ${count.toLocaleString()}` : '0 results'}</span><div><button type="button" disabled={busy || page === 0} onClick={() => setPage(page - 1)} aria-label="Previous page">←</button><span>{page + 1} / {Math.max(pages, 1)}</span><button type="button" disabled={busy || page >= pages - 1} onClick={() => setPage(page + 1)} aria-label="Next page">→</button></div></nav>;
 }
 
+function PlacementHelp() {
+  const details = useRef(null);
+  const id = useId();
+  useEffect(() => {
+    const dismiss = (event) => {
+      const element = details.current;
+      if (element && !element.contains(event.target)) element.open = false;
+    };
+    document.addEventListener('pointerdown', dismiss);
+    return () => document.removeEventListener('pointerdown', dismiss);
+  }, []);
+  return <details ref={details} className="lab-placement-help" onKeyDown={(event) => {
+    if (event.key === 'Escape' && event.currentTarget.open) {
+      event.preventDefault(); event.stopPropagation(); event.currentTarget.open = false;
+      event.currentTarget.querySelector('summary').focus();
+    }
+  }}><summary aria-label="About placement" aria-describedby={id}><span aria-hidden="true">ⓘ</span></summary><div id={id} className="lab-placement-explanation" role="note">Position in Jane Street’s published solver list, in submission order.</div></details>;
+}
+
+function HistoryRows({ placements, measure = false }) {
+  return placements.map((item) => <tr key={`${item.puzzle.date_text}-${item.puzzle.name}`}><td>{formatDate(item.puzzle.date_text)}</td><td>{measure ? <span className="lab-history-link">{item.puzzle.name}</span> : <a className="lab-history-link" href={item.puzzle.solution_url} target="_blank" rel="noreferrer">{item.puzzle.name}</a>}</td><td className="lab-number">{item.rank.toLocaleString()} <span>/ {item.total.toLocaleString()}</span></td></tr>);
+}
 
 export function ProfileContent({ data, name, onClose }) {
   const { puzzles, loading, error } = useRawPuzzleData(!!name);
   const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(() => window.innerWidth <= 700 ? 3 : window.innerHeight <= 600 ? 5 : 10);
-  useEffect(() => {
-    const resize = () => {
-      const next = window.innerWidth <= 700 ? 3 : window.innerHeight <= 600 ? 5 : 10;
-      if (pageSize !== next) {
-        setPageSize(next);
-        setPage(0);
-      }
-    };
-    window.addEventListener('resize', resize);
-    return () => window.removeEventListener('resize', resize);
-  }, [pageSize]);
+  const [pageSize, setPageSize] = useState(1);
+  const history = useRef(null);
+  const measurement = useRef(null);
   const rank = useMemo(() => data.topSolvers.findIndex((item) => item.name === name) + 1, [data, name]);
   const standing = rank ? data.topSolvers[rank - 1] : null;
   const placements = useMemo(() => (puzzles || []).map((puzzle) => findSolverPlacement(name, puzzle)).filter(Boolean).sort((a, b) => new Date(b.puzzle.date_text) - new Date(a.puzzle.date_text)), [puzzles, name]);
   const percentile = useMemo(() => computeAveragePercentile(placements), [placements]);
+  useLayoutEffect(() => {
+    let active = true;
+    const resize = () => {
+      if (!active) return;
+      const available = history.current.getBoundingClientRect().height;
+      if (!available) return;
+      const table = measurement.current;
+      const rowHeight = Math.max(45, ...Array.from(table.tBodies[0].rows, (row) => row.getBoundingClientRect().height));
+      const next = Math.max(1, Math.min(10, Math.floor((available - table.tHead.getBoundingClientRect().height) / rowHeight)));
+      if (pageSize !== next) { setPageSize(next); setPage(0); }
+    };
+    resize();
+    const observer = new ResizeObserver(resize);
+    observer.observe(history.current);
+    observer.observe(measurement.current);
+    window.addEventListener('resize', resize);
+    document.fonts?.ready.then(resize);
+    return () => { active = false; observer.disconnect(); window.removeEventListener('resize', resize); };
+  }, [placements, pageSize]);
+  const count = loading ? standing?.puzzlesSolved ?? 0 : placements.length;
   return <article className="lab-record" aria-label={`Record for ${name}`}>
+    {onClose && <button type="button" className="lab-icon-button lab-profile-close" aria-label="Close profile" onClick={onClose}><Icon name="close" /></button>}
     <header className="lab-record-header"><span className="lab-eyebrow">Solver record</span>
       <div className="lab-record-identity">
         <svg className="lab-avatar" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" focusable="false">
@@ -92,13 +126,14 @@ export function ProfileContent({ data, name, onClose }) {
         <h2>{name}</h2>
       </div>
       <dl className="lab-record-metrics"><div><dt>Overall rank</dt><dd className="lab-record-count">{rank ? `#${rank.toLocaleString()}` : '—'}</dd></div><div><dt>Puzzles solved</dt><dd className="lab-record-count">{standing?.puzzlesSolved ?? (loading ? '…' : placements.length)}</dd></div><div><dt>First recorded</dt><dd>{standing?.firstAppearance || (placements.length ? formatDate(placements[placements.length - 1].puzzle.date_text) : loading ? '…' : '—')}</dd></div><div><dt>Latest solve</dt><dd>{standing?.lastSolve || (placements.length ? formatDate(placements[0].puzzle.date_text) : '—')}</dd></div></dl>
-      {percentile && <p className="lab-record-footnote">Average submission percentile <span>{percentile.value.toFixed(1)}%</span>. Higher means earlier in the published solver list.</p>}
+      <p className="lab-record-footnote">Average submission percentile <span>{percentile ? `${percentile.value.toFixed(1)}%` : loading ? '…' : '—'}</span>. Higher means earlier in the published solver list.</p>
     </header>
-    <section className="lab-record-history"><div className="lab-record-history-title"><h3>Solved puzzles</h3>{onClose && <button type="button" className="lab-icon-button" aria-label="Close profile" onClick={onClose}><Icon name="close" /></button>}</div>
-      {loading ? <p className="lab-record-message" role="status">Loading puzzle history…</p> : error ? <p className="lab-record-message" role="alert">Puzzle history couldn’t load. Close and reopen this record to try again.</p> : !placements.length ? <p className="lab-record-message">No published puzzle history for this name.</p> : <>
-        <div className="lab-history-page"><table className="lab-history-table"><thead><tr><th scope="col">Month</th><th scope="col">Puzzle</th><th scope="col" className="lab-number">Placement <span title="Position in Jane Street’s published solver list, in submission order.">ⓘ</span></th></tr></thead><tbody>{placements.slice(page * pageSize, (page + 1) * pageSize).map((item) => <tr key={`${item.puzzle.date_text}-${item.puzzle.name}`}><td>{formatDate(item.puzzle.date_text)}</td><td><a href={item.puzzle.solution_url} target="_blank" rel="noreferrer">{item.puzzle.name}</a></td><td className="lab-number">{item.rank.toLocaleString()} <span>/ {item.total.toLocaleString()}</span></td></tr>)}</tbody></table></div>
-        {placements.length > pageSize && <Pagination page={page} pages={Math.ceil(placements.length / pageSize)} count={placements.length} pageSize={pageSize} setPage={setPage} />}
-      </>}
+    <section className="lab-record-history"><div className="lab-record-history-title"><h3>Solved puzzles</h3></div>
+      <div ref={history} className="lab-history-page">
+        <div className="lab-history-measure" aria-hidden="true"><table ref={measurement} className="lab-history-table"><thead><tr><th>Month</th><th>Puzzle</th><th className="lab-number"><span className="lab-placement-heading">Placement<span className="lab-placement-size" /></span></th></tr></thead><tbody><HistoryRows placements={placements} measure /></tbody></table></div>
+        {loading ? <p className="lab-record-message" role="status">Loading puzzle history…</p> : error ? <p className="lab-record-message" role="alert">Puzzle history couldn’t load. Close and reopen this record to try again.</p> : !placements.length ? <p className="lab-record-message">No published puzzle history for this name.</p> : <table className="lab-history-table"><thead><tr><th scope="col">Month</th><th scope="col">Puzzle</th><th scope="col" className="lab-number"><span className="lab-placement-heading">Placement<PlacementHelp /></span></th></tr></thead><tbody><HistoryRows placements={placements.slice(page * pageSize, (page + 1) * pageSize)} /></tbody></table>}
+      </div>
+      <Pagination page={page} pages={Math.ceil(count / pageSize)} count={count} pageSize={pageSize} setPage={setPage} busy={loading || !!error} />
     </section>
   </article>;
 }

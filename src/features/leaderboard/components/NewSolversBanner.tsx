@@ -70,7 +70,8 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
     return crawlDate ? currentPuzzleProgress?.timeline.filter((entry) => entry.timestamp.slice(0, 10) === crawlDate) ?? [] : [];
   }, [currentPuzzleProgress, generatedAt]);
   const inlineNames = useMemo(() => todaysSolvers.map((entry) => entry.solver), [todaysSolvers]);
-  const selectInlineSolver = (name: string) => {
+  const selectInlineSolver = (name: string, returnTarget?: HTMLButtonElement | null) => {
+    returnTarget?.focus({ preventScroll: true });
     setMoreOpen(false);
     onSolverClick?.(name);
   };
@@ -267,7 +268,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
               <ul ref={moreListRef} className="banner-more-list" tabIndex={0}
                 style={popoverPosition ? { maxHeight: popoverPosition.listMaxHeight } : undefined}>
                 {names.slice(inlineVisibleCount).map((name, index) => <li key={`${name}-${index}`}>
-                  <SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} onClick={() => selectInlineSolver(name)} />
+                  <SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} onClick={() => selectInlineSolver(name, moreButtonRef.current)} />
                 </li>)}
               </ul>
             </span>
