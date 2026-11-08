@@ -160,8 +160,12 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       const margin = 12;
       const maxWidth = Math.max(0, viewportWidth - margin * 2);
       const width = Math.min(box.width, maxWidth);
+      const firstPill = inline ? list.querySelector<HTMLElement>('.solver-chip-name') : null;
+      const preferredLeft = firstPill
+        ? anchor.left - (firstPill.getBoundingClientRect().left - box.left)
+        : anchor.left + anchor.width / 2 - width / 2;
       const left = Math.max(viewportLeft + margin, Math.min(
-        anchor.left + anchor.width / 2 - width / 2,
+        preferredLeft,
         viewportLeft + viewportWidth - margin - width,
       ));
       const top = Math.max(viewportTop + margin, anchor.bottom + 8);

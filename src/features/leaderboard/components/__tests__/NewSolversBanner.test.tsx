@@ -150,6 +150,7 @@ describe('inline activity names', () => {
       if (this.classList.contains('header-activity-more')) return rect(210, 30, 32, 28);
       if (this.classList.contains('banner-more-tooltip')) return rect(0, 0, 200, 180);
       if (this.classList.contains('banner-more-list')) return rect(0, 0, 176, 140);
+      if (this.classList.contains('solver-chip-name') && this.closest('.header-activity-popover')) return rect(16, 0, 100, 24);
       if (this.classList.contains('solver-chip')) {
         const name = this.querySelector('.solver-chip-name')?.textContent ?? '';
         return rect(0, 0, [110, 140, 90, 120][allNames.indexOf(name)] ?? 100, 24);
@@ -232,7 +233,7 @@ describe('inline activity names', () => {
     const trigger = screen.getByRole('button', { name: '7 more solvers added today' });
     fireEvent.click(trigger);
     let popover = screen.getByRole('region', { name: 'More solvers added today' });
-    expect(popover).toHaveStyle({ left: '126px', top: '66px' });
+    expect(popover).toHaveStyle({ left: '194px', top: '66px' });
     expect(within(popover).getAllByRole('listitem')).toHaveLength(7);
     allNames.slice(1).forEach((name) => expect(within(popover).getByRole('button', { name: `Open profile for ${name}` })).toBeVisible());
     expect(within(popover).queryByText(allNames[0])).not.toBeInTheDocument();
