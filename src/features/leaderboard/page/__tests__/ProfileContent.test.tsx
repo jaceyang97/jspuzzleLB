@@ -77,7 +77,7 @@ test('placement help opens immediately on hover and Escape closes only the expla
   const onClose = jest.fn();
   render(<ProfileContent data={data} name="Ada Lovelace" onClose={onClose} />);
   const trigger = screen.getByRole('button', { name: 'About placement' });
-  fireEvent.mouseEnter(trigger.closest('.ui-tooltip-anchor')!);
+  fireEvent.mouseEnter(within(trigger).getByText('Placement'));
   expect(screen.getByRole('tooltip')).toBeVisible();
   fireEvent.pointerDown(screen.getByRole('heading', { name: 'Solved puzzles' }));
   expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();

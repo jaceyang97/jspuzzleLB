@@ -34,9 +34,9 @@
 .lab-history-table td:last-child { font-size: 13px; white-space: nowrap; }
 .lab-history-table td:last-child span { color: var(--text-tertiary); }
 .lab-history-link { display: flex; align-items: center; min-width: 44px; min-height: 44px; padding-block: 1px; line-height: 1.5; overflow-wrap: anywhere; }
-.lab-placement-heading { display: flex; justify-content: flex-end; align-items: center; }
-.lab-placement-help { display: inline-flex; flex: none; font-weight: 400; }
-.lab-placement-trigger, .lab-placement-size { display: grid; place-items: center; flex: none; width: 44px; height: 44px; padding: 0; border: 0; border-radius: var(--radius-control); background: transparent; color: inherit; cursor: pointer; touch-action: manipulation; }
+.lab-placement-heading, .lab-placement-trigger { display: inline-flex; align-items: center; gap: 6px; min-width: 44px; min-height: 44px; padding: 0; }
+.lab-placement-help { display: flex; justify-content: flex-end; font-weight: 400; }
+.lab-placement-trigger { border: 0; border-radius: var(--radius-control); background: transparent; color: inherit; cursor: pointer; touch-action: manipulation; }
 .lab-record .lab-pagination { flex: none; margin: auto 0 0; padding-top: 14px; gap: 12px; font-size: 12px; }
 .lab-record .lab-pagination > div { gap: 10px; }
 .lab-record .lab-pagination button { width: 44px; height: 44px; padding: 0; border-radius: var(--radius-control); }

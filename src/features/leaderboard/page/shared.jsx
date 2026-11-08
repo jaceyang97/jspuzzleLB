@@ -64,7 +64,7 @@ export function Pagination({ page, pages, setPage, count, pageSize = 40, busy = 
 
 function PlacementHelp() {
   return <Tooltip content="Position in Jane Street’s published solver list, in submission order." className="lab-placement-help" surfaceClassName="puzzle-info-tooltip" openDelay={0}>
-    <button type="button" className="lab-placement-trigger" aria-label="About placement"><span className="panel-info-marker" aria-hidden="true">i</span></button>
+    <button type="button" className="lab-placement-trigger" aria-label="About placement"><span>Placement</span><span className="panel-info-marker" aria-hidden="true">i</span></button>
   </Tooltip>;
 }
 
@@ -118,8 +118,8 @@ export function ProfileContent({ data, name, onClose }) {
     </header>
     <section className="lab-record-history"><div className="lab-record-history-title"><h3>Solved puzzles</h3></div>
       <div ref={history} className="lab-history-page">
-        <div className="lab-history-measure" aria-hidden="true"><table ref={measurement} className="lab-history-table"><thead><tr><th>Month</th><th>Puzzle</th><th className="lab-number"><span className="lab-placement-heading">Placement<span className="lab-placement-size" /></span></th></tr></thead><tbody><HistoryRows placements={placements} measure /></tbody></table></div>
-        {loading ? <p className="lab-record-message" role="status">Loading puzzle history…</p> : error ? <p className="lab-record-message" role="alert">Puzzle history couldn’t load. Close and reopen this record to try again.</p> : !placements.length ? <p className="lab-record-message">No published puzzle history for this name.</p> : <table className="lab-history-table"><thead><tr><th scope="col">Month</th><th scope="col">Puzzle</th><th scope="col" className="lab-number"><span className="lab-placement-heading">Placement<PlacementHelp /></span></th></tr></thead><tbody><HistoryRows placements={placements.slice(page * pageSize, (page + 1) * pageSize)} /></tbody></table>}
+        <div className="lab-history-measure" aria-hidden="true"><table ref={measurement} className="lab-history-table"><thead><tr><th>Month</th><th>Puzzle</th><th className="lab-number"><span className="lab-placement-heading">Placement<span className="panel-info-marker">i</span></span></th></tr></thead><tbody><HistoryRows placements={placements} measure /></tbody></table></div>
+        {loading ? <p className="lab-record-message" role="status">Loading puzzle history…</p> : error ? <p className="lab-record-message" role="alert">Puzzle history couldn’t load. Close and reopen this record to try again.</p> : !placements.length ? <p className="lab-record-message">No published puzzle history for this name.</p> : <table className="lab-history-table"><thead><tr><th scope="col">Month</th><th scope="col">Puzzle</th><th scope="col" className="lab-number" aria-label="Placement"><PlacementHelp /></th></tr></thead><tbody><HistoryRows placements={placements.slice(page * pageSize, (page + 1) * pageSize)} /></tbody></table>}
       </div>
       <Pagination page={page} pages={Math.ceil(count / pageSize)} count={count} pageSize={pageSize} setPage={setPage} busy={loading || !!error} />
     </section>
