@@ -4,3 +4,9 @@
 /analysis/**/*.png binary
 /src/features/rising-stars/data/*.json text eol=lf
 /analysis/**/*.gz binary
+
+/public/data/*.json linguist-generated=true
+/analysis/**/results/** linguist-generated=true
+/analysis/**/figures/** linguist-generated=true
+/src/features/rising-stars/data/*.json linguist-generated=true
+/src/features/leaderboard/page/vendor/** linguist-vendored=true

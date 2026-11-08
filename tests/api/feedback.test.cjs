@@ -11,8 +11,8 @@ function setup() {
   process.env.FEEDBACK_TO = 'recipient@gmail.com';
   const sendMail = mock.fn(async () => ({ accepted: ['recipient@gmail.com'] }));
   const create = mock.method(nodemailer, 'createTransport', () => ({ sendMail }));
-  delete require.cache[require.resolve('../api/feedback')];
-  const handler = require('../api/feedback');
+  delete require.cache[require.resolve('../../api/feedback')];
+  const handler = require('../../api/feedback');
   return { handler, sendMail, create };
 }
 

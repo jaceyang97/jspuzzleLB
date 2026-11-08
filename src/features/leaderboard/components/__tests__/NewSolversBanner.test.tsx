@@ -48,7 +48,7 @@ describe('compact activity popover', () => {
     Object.defineProperty(window, 'innerWidth', { configurable: true, writable: true, value: 280 });
     Object.defineProperty(window, 'innerHeight', { configurable: true, writable: true, value: 667 });
     jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
-      if (this.classList.contains('banner-more-trigger')) return rect(triggerLeft, 83, 56, 28);
+      if (this.classList.contains('banner-more-trigger') || this.classList.contains('header-activity-more')) return rect(triggerLeft, 83, 56, 28);
       if (this.classList.contains('banner-more-tooltip')) return rect(0, 0, 200, 180);
       if (this.classList.contains('banner-more-list')) return rect(0, 0, 176, 140);
       return rect(0, 0, 0, 0);
@@ -131,11 +131,13 @@ describe('inline activity names', () => {
     timeline: allNames.map((solver) => ({ solver, timestamp: '2026-09-06T08:00:00Z' })),
   };
   let containerWidth: number;
+  let triggerTop: number;
   let callbacks: Set<() => void>;
   let disconnect: jest.Mock;
 
   beforeEach(() => {
     containerWidth = 640;
+    triggerTop = 30;
     callbacks = new Set();
     disconnect = jest.fn();
     window.ResizeObserver = jest.fn().mockImplementation((callback: () => void) => {
@@ -147,7 +149,7 @@ describe('inline activity names', () => {
       if (this.classList.contains('banner-tag')) return rect(0, 0, 70, 20);
       if (this.classList.contains('header-activity-icon')) return rect(0, 0, 18, 20);
       if (this.classList.contains('header-activity-context')) return rect(0, 0, 100, 44);
-      if (this.classList.contains('header-activity-more')) return rect(210, 30, 32, 28);
+      if (this.classList.contains('header-activity-more')) return rect(210, triggerTop, 32, 28);
       if (this.classList.contains('banner-more-tooltip')) return rect(0, 0, 200, 180);
       if (this.classList.contains('banner-more-list')) return rect(0, 0, 176, 140);
       if (this.classList.contains('solver-chip-name') && this.closest('.header-activity-popover')) return rect(16, 0, 100, 24);
@@ -225,6 +227,55 @@ describe('inline activity names', () => {
     expect(shownNames(row)).toEqual(allNames.slice(0, 3));
     expect(row.querySelector('.header-activity-more')).not.toBeInTheDocument();
     expect(screen.queryByRole('region', { name: 'More solvers added today' })).not.toBeInTheDocument();
+  });
+
+  describe('scroll anchoring', () => {
+    beforeEach(() => { jest.useFakeTimers(); });
+    afterEach(() => { jest.useRealTimers(); });
+
+    function openNames() {
+      containerWidth = 250;
+      render(<div data-testid="scroll-host"><NewSolversBanner inline currentPuzzleProgress={today} generatedAt="2026-09-06T09:00:00Z" /></div>);
+      const trigger = screen.getByRole('button', { name: '7 more solvers added today' });
+      fireEvent.click(trigger);
+      return { trigger, popover: screen.getByRole('region', { name: 'More solvers added today' }) };
+    }
+
+    function scroll(target: HTMLElement | Window) {
+      fireEvent.scroll(target);
+      act(() => { jest.advanceTimersByTime(20); });
+    }
+
+    test('moves with its trigger during page scrolling', () => {
+      const { popover } = openNames();
+      triggerTop = 10;
+      scroll(window);
+      expect(popover).toHaveStyle({ left: '194px', top: '46px' });
+    });
+
+    test('also follows a scrolling ancestor', () => {
+      const { popover } = openNames();
+      triggerTop = 20;
+      scroll(screen.getByTestId('scroll-host'));
+      expect(popover).toHaveStyle({ top: '56px' });
+    });
+
+    test.each([-40, window.innerHeight + 10])('closes when the trigger leaves the viewport at %dpx', (top) => {
+      const { trigger, popover } = openNames();
+      within(popover).getAllByRole('button')[0].focus();
+      triggerTop = top;
+      scroll(window);
+      expect(trigger).toHaveAttribute('aria-expanded', 'false');
+      expect(trigger).toHaveFocus();
+      expect(screen.queryByRole('region', { name: 'More solvers added today' })).not.toBeInTheDocument();
+    });
+
+    test('stays open while scrolling the names list itself', () => {
+      const { trigger, popover } = openNames();
+      scroll(within(popover).getByRole('list'));
+      expect(trigger).toHaveAttribute('aria-expanded', 'true');
+      expect(popover).toBeVisible();
+    });
   });
 
   test('anchors only the remaining-name list to +N and closes on Escape, outside pointer, or focus leaving', () => {

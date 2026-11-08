@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import './App.css';
-import Leaderboard from './components/Leaderboard';
+import Leaderboard from './features/leaderboard/Leaderboard';
 
 const RisingStarsArticle = lazy(() => import('./features/rising-stars/RisingStarsArticle'));
 

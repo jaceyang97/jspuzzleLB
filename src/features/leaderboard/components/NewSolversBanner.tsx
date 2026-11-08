@@ -66,9 +66,6 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
   const moreButtonRef = useRef<HTMLButtonElement>(null);
   const morePopoverRef = useRef<HTMLSpanElement>(null);
   const moreListRef = useRef<HTMLUListElement>(null);
-  const [popoverPosition, setPopoverPosition] = useState<{
-    left: number; top: number; maxWidth: number; maxHeight: number; listMaxHeight: number;
-  } | null>(null);
   const moreId = useId();
   const todaysSolvers = useMemo(() => {
     const crawlDate = generatedAt?.slice(0, 10);
@@ -173,7 +170,6 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
 
   useLayoutEffect(() => {
     if ((!compact && !inline) || (!moreOpen && !(inline && moreRendered)) || dismissed) {
-      setPopoverPosition(null);
       return;
     }
     const button = moreButtonRef.current;
@@ -188,6 +184,13 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       const viewportWidth = viewport?.width ?? window.innerWidth;
       const viewportHeight = viewport?.height ?? window.innerHeight;
       const anchor = button.getBoundingClientRect();
+      if (anchor.bottom <= viewportTop || anchor.top >= viewportTop + viewportHeight ||
+        anchor.right <= viewportLeft || anchor.left >= viewportLeft + viewportWidth) {
+        if (popover.contains(document.activeElement)) button.focus({ preventScroll: true });
+        setMoreOpen(false);
+        setMoreRendered(false);
+        return;
+      }
       const box = popover.getBoundingClientRect();
       const margin = 12;
       const maxWidth = Math.max(0, viewportWidth - margin * 2);
@@ -204,22 +207,33 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       const maxHeight = Math.max(0, viewportTop + viewportHeight - margin - top);
       const chromeHeight = box.height - list.getBoundingClientRect().height;
       const listMaxHeight = Math.max(0, Math.min(240, maxHeight - chromeHeight));
-      setPopoverPosition((previous) =>
-        previous?.left === left && previous.top === top && previous.maxWidth === maxWidth &&
-        previous.maxHeight === maxHeight && previous.listMaxHeight === listMaxHeight
-          ? previous : { left, top, maxWidth, maxHeight, listMaxHeight }
-      );
+      // Scroll tracking updates geometry without rerendering every name pill.
+      Object.assign(popover.style, {
+        left: `${left}px`, top: `${top}px`, maxWidth: `${maxWidth}px`, maxHeight: `${maxHeight}px`,
+      });
+      list.style.maxHeight = `${listMaxHeight}px`;
+    };
+    let scrollFrame = 0;
+    const followScroll = (event: Event) => {
+      if (event.target === list || scrollFrame) return;
+      scrollFrame = requestAnimationFrame(() => {
+        scrollFrame = 0;
+        position();
+      });
     };
     position();
     const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(position);
     observer?.observe(button);
     observer?.observe(popover);
     window.addEventListener('resize', position);
+    window.addEventListener('scroll', followScroll, { capture: true, passive: true });
     window.visualViewport?.addEventListener('resize', position);
     window.visualViewport?.addEventListener('scroll', position);
     return () => {
       observer?.disconnect();
+      cancelAnimationFrame(scrollFrame);
       window.removeEventListener('resize', position);
+      window.removeEventListener('scroll', followScroll, true);
       window.visualViewport?.removeEventListener('resize', position);
       window.visualViewport?.removeEventListener('scroll', position);
     };
@@ -297,13 +311,8 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
               role="region" aria-label="More solvers added today" aria-hidden={!moreOpen}
               data-state={moreOpen && moreEntered ? 'open' : 'closed'} data-animate={animateMore || undefined}
               hidden={(!moreOpen && !moreRendered) || names.length <= inlineVisibleCount}
-              style={popoverPosition ? {
-                position: 'fixed', left: popoverPosition.left, top: popoverPosition.top,
-                minWidth: 0, maxWidth: popoverPosition.maxWidth, maxHeight: popoverPosition.maxHeight,
-                transform: 'none',
-              } : undefined}>
-              <ul ref={moreListRef} className="banner-more-list" tabIndex={0}
-                style={popoverPosition ? { maxHeight: popoverPosition.listMaxHeight } : undefined}>
+              style={{ position: 'fixed', minWidth: 0, transform: 'none' }}>
+              <ul ref={moreListRef} className="banner-more-list" tabIndex={0}>
                 {names.slice(inlineVisibleCount).map((name, index) => <li key={`${name}-${index}`}
                   style={{ '--solver-index': Math.min(index, 5) } as React.CSSProperties}>
                   <SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} onClick={() => selectInlineSolver(name, moreButtonRef.current)} />
@@ -366,13 +375,9 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
                 role={compact ? 'region' : 'tooltip'}
                 aria-label={compact ? 'More solvers added today' : undefined}
                 hidden={compact ? !moreOpen : undefined}
-                style={compact && popoverPosition ? {
+                style={compact ? {
                   position: 'fixed',
-                  left: popoverPosition.left,
-                  top: popoverPosition.top,
                   minWidth: 0,
-                  maxWidth: popoverPosition.maxWidth,
-                  maxHeight: popoverPosition.maxHeight,
                   transform: 'none',
                   overflowY: 'auto',
                 } : undefined}
@@ -381,8 +386,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
                   Also joined today
                 </span>
                 <ul className="banner-more-list" tabIndex={compact ? 0 : undefined}
-                  ref={compact ? moreListRef : undefined}
-                  style={compact && popoverPosition ? { maxHeight: popoverPosition.listMaxHeight } : undefined}>
+                  ref={compact ? moreListRef : undefined}>
                   {hidden.map((name) => (
                     <li key={name}>
                       <SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} />

@@ -1493,77 +1493,6 @@ h3.ui-tooltip-anchor {
   flex-shrink: 0;
   margin-left: auto; /* right-aligned when wrapped onto its own row */
 }
-/* iOS-style segmented control (src/components/SegmentedControl.tsx):
-   recessed gray track, one raised thumb that glides to the active
-   segment (position via transform; measured width). */
-.segmented-control {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  padding: 2px;
-  background-color: var(--bg-hover-strong);
-  border-radius: var(--radius-sm);
-}
-.segmented-thumb {
-  position: absolute;
-  top: 2px;
-  bottom: 2px;
-  left: 0;
-  background-color: var(--bg-secondary);
-  border-radius: 6px;
-  box-shadow: var(--shadow-segment);
-  transition: transform 0.2s var(--ease-out), width 0.2s var(--ease-out);
-}
-.segmented-btn {
-  position: relative; /* sits above the thumb */
-  background: none;
-  border: none;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-tertiary);
-  padding: 5px 10px;
-  min-height: 28px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: color 0.2s ease, transform 0.25s var(--ease-out);
-  font-family: inherit;
-  letter-spacing: 0.01em;
-}
-/* Reserve the bold width so the active weight change never shifts layout */
-.segmented-btn .seg-label {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-}
-.segmented-btn .seg-label::after {
-  content: attr(data-label);
-  font-weight: 600;
-  height: 0;
-  overflow: hidden;
-  visibility: hidden;
-  pointer-events: none;
-}
-@media (hover: hover) and (pointer: fine) {
-  .segmented-btn:hover {
-    color: var(--text-primary);
-  }
-}
-.segmented-btn:active {
-  transform: scale(0.96);
-  transition-duration: 0.1s;
-}
-.segmented-btn.active {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-.segmented-btn:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
-}
 .growth-tab-panel {
   flex: 1;
   display: flex;
@@ -1588,7 +1517,6 @@ h3.ui-tooltip-anchor {
 }
 @media (max-width: 768px) {
   .growth-tabs-header { gap: 4px; }
-  .segmented-btn { padding: 6px 8px; font-size: 12px; min-height: 32px; }
 }
 
 /* Accessibility preferences
@@ -1609,7 +1537,6 @@ h3.ui-tooltip-anchor {
   .js-nav-link:active,
   .github-link:active,
   .banner-dismiss:active,
-  .segmented-btn:active,
   .solver-modal-close:active,
   .intro-container:active .intro-button {
     transform: none;
@@ -1644,11 +1571,6 @@ h3.ui-tooltip-anchor {
   .ui-tooltip,
   .ui-tooltip[data-open] {
     transform: translateX(calc(-50% + var(--tooltip-shift, 0px)));
-  }
-
-  /* The segmented thumb jumps instead of gliding */
-  .segmented-thumb {
-    transition: none;
   }
 
   .intro-tooltip,

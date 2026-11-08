@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
+.venv/
+venv/
 
 # Node.js dependencies
 node_modules/
@@ -17,6 +19,7 @@ node_modules/
 
 # Local recordings, API responses, screenshots, and release verification output
 /.cache/
+/prototypes/
 
 # Misc
 .DS_Store
