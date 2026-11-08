@@ -3,6 +3,7 @@ import Tooltip from '../../../components/Tooltip';
 import { useRawPuzzleData } from '../hooks/useRawPuzzleData';
 import { computeAveragePercentile, findSolverPlacement, formatDate } from '../../../utils/leaderboardUtils';
 import { solverInitial } from '../../../utils/solverInitial';
+import { CURRENT_PUZZLE_URL, solverPlacementUrl } from '../../../utils/puzzleLinks';
 
 export const scopes = [
   { id: 'top', label: 'Top solvers', description: 'All-time standings, ranked by total puzzles solved.' },
@@ -68,8 +69,25 @@ function PlacementHelp() {
   </Tooltip>;
 }
 
-function HistoryRows({ placements, measure = false }) {
-  return placements.map((item) => <tr key={`${item.puzzle.date_text}-${item.puzzle.name}`}><td>{formatDate(item.puzzle.date_text)}</td><td>{measure ? <span className="lab-history-link">{item.puzzle.name}</span> : <a className="lab-history-link" href={item.puzzle.solution_url} target="_blank" rel="noreferrer">{item.puzzle.name}</a>}</td><td className="lab-number">{item.rank.toLocaleString()} <span>/ {item.total.toLocaleString()}</span></td></tr>);
+function HistoryRows({ placements, name, measure = false }) {
+  return placements.map((item) => {
+    const placement = <>{item.rank.toLocaleString()} <span>/ {item.total.toLocaleString()}</span></>;
+    return <tr key={`${item.puzzle.date_text}-${item.puzzle.name}`}>
+      <td>{formatDate(item.puzzle.date_text)}</td>
+      <td>{measure
+        ? <span className="lab-history-link">{item.puzzle.name}</span>
+        : <a className="lab-history-link" href={item.puzzle.solution_url || CURRENT_PUZZLE_URL} target="_blank" rel="noopener noreferrer">{item.puzzle.name}</a>}
+      </td>
+      <td className="lab-number">{measure ? placement : <a
+        className="lab-placement-link"
+        href={solverPlacementUrl(item.puzzle.solution_url, name)}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Find ${name} in the published solver list for ${item.puzzle.name}`}
+        title="Find this name in Jane Street’s solver list"
+      >{placement}</a>}</td>
+    </tr>;
+  });
 }
 
 export function ProfileContent({ data, name, onClose }) {
@@ -118,8 +136,8 @@ export function ProfileContent({ data, name, onClose }) {
     </header>
     <section className="lab-record-history"><div className="lab-record-history-title"><h3>Solved puzzles</h3></div>
       <div ref={history} className="lab-history-page">
-        <div className="lab-history-measure" aria-hidden="true"><table ref={measurement} className="lab-history-table"><thead><tr><th>Month</th><th>Puzzle</th><th className="lab-number"><span className="lab-placement-heading">Placement<span className="panel-info-marker">i</span></span></th></tr></thead><tbody><HistoryRows placements={placements} measure /></tbody></table></div>
-        {loading ? <p className="lab-record-message" role="status">Loading puzzle history…</p> : error ? <p className="lab-record-message" role="alert">Puzzle history couldn’t load. Close and reopen this record to try again.</p> : !placements.length ? <p className="lab-record-message">No published puzzle history for this name.</p> : <table className="lab-history-table"><thead><tr><th scope="col">Month</th><th scope="col">Puzzle</th><th scope="col" className="lab-number" aria-label="Placement"><PlacementHelp /></th></tr></thead><tbody><HistoryRows placements={placements.slice(page * pageSize, (page + 1) * pageSize)} /></tbody></table>}
+        <div className="lab-history-measure" aria-hidden="true"><table ref={measurement} className="lab-history-table"><thead><tr><th>Month</th><th>Puzzle</th><th className="lab-number"><span className="lab-placement-heading">Placement<span className="panel-info-marker">i</span></span></th></tr></thead><tbody><HistoryRows placements={placements} name={name} measure /></tbody></table></div>
+        {loading ? <p className="lab-record-message" role="status">Loading puzzle history…</p> : error ? <p className="lab-record-message" role="alert">Puzzle history couldn’t load. Close and reopen this record to try again.</p> : !placements.length ? <p className="lab-record-message">No published puzzle history for this name.</p> : <table className="lab-history-table"><thead><tr><th scope="col">Month</th><th scope="col">Puzzle</th><th scope="col" className="lab-number" aria-label="Placement"><PlacementHelp /></th></tr></thead><tbody><HistoryRows placements={placements.slice(page * pageSize, (page + 1) * pageSize)} name={name} /></tbody></table>}
       </div>
       <Pagination page={page} pages={Math.ceil(count / pageSize)} count={count} pageSize={pageSize} setPage={setPage} busy={loading || !!error} />
     </section>

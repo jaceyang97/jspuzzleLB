@@ -38,9 +38,9 @@ test('pages through every solved puzzle without requiring an inner scroll area',
   const table = screen.getByRole('table');
   expect(within(table).getAllByRole('row')).toHaveLength(11);
   expect(screen.getByText('1–10 of 12')).toBeInTheDocument();
-  expect(within(table).getAllByRole('link')[0]).toHaveTextContent('Puzzle 12');
+  expect(within(table).getAllByRole('link', { name: /^Puzzle \d+$/ })[0]).toHaveTextContent('Puzzle 12');
   fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
-  expect(within(table).getAllByRole('link').map(link => link.textContent)).toEqual(['Puzzle 2', 'Puzzle 1']);
+  expect(within(table).getAllByRole('link', { name: /^Puzzle \d+$/ }).map(link => link.textContent)).toEqual(['Puzzle 2', 'Puzzle 1']);
   expect(screen.getByText('11–12 of 12')).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
   fireEvent.click(screen.getByRole('button', { name: 'Previous page' }));
@@ -54,7 +54,7 @@ test('resizing to a smaller page resets the range and keeps records reachable', 
   availableHeight = 180;
   fireEvent(window, new Event('resize'));
   const table = screen.getByRole('table');
-  expect(within(table).getAllByRole('link').map(link => link.textContent)).toEqual(['Puzzle 12', 'Puzzle 11', 'Puzzle 10']);
+  expect(within(table).getAllByRole('link', { name: /^Puzzle \d+$/ }).map(link => link.textContent)).toEqual(['Puzzle 12', 'Puzzle 11', 'Puzzle 10']);
   expect(screen.getByText('1–3 of 12')).toBeInTheDocument();
   expect(screen.getByText('1 / 4')).toBeInTheDocument();
   window.innerWidth = 1440;
@@ -71,6 +71,25 @@ test('keeps pagination present and disabled while puzzle history is loading', ()
   expect(screen.getByRole('navigation', { name: 'Results pages' })).toBeVisible();
   expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
   expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
+});
+
+test('links placements to the current solver while keeping the puzzle title link', () => {
+  render(<ProfileContent data={data} name="Ada Lovelace" onClose={jest.fn()} />);
+  const link = screen.getByRole('link', { name: 'Find Ada Lovelace in the published solver list for Puzzle 12' });
+  expect(link).toHaveTextContent('1 / 2');
+  expect(link).toHaveAttribute('href', 'https://example.com/12#correct-submissions-from:~:text=Ada%20Lovelace');
+  expect(link).toHaveAttribute('target', '_blank');
+  expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  expect(screen.getByRole('link', { name: 'Puzzle 12' })).toHaveAttribute('href', 'https://example.com/12');
+});
+
+test('keeps current puzzle links usable before a solution URL exists', () => {
+  (useRawPuzzleData as jest.Mock).mockReturnValue({
+    puzzles: [{ ...puzzles[11], solution_url: '' }], loading: false, error: null,
+  });
+  render(<ProfileContent data={data} name="Ada Lovelace" onClose={jest.fn()} />);
+  expect(screen.getByRole('link', { name: 'Puzzle 12' })).toHaveAttribute('href', 'https://www.janestreet.com/puzzles/current-puzzle/');
+  expect(screen.getByRole('link', { name: 'Find Ada Lovelace in the published solver list for Puzzle 12' })).toHaveAttribute('href', 'https://www.janestreet.com/puzzles/current-puzzle/#correct-submissions-from:~:text=Ada%20Lovelace');
 });
 
 test('placement help opens immediately on hover and Escape closes only the explanation', () => {
