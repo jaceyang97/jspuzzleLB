@@ -1,4 +1,7 @@
 {
+  "functions": {
+    "api/feedback.js": { "maxDuration": 30 }
+  },
   "redirects": [
     { "source": "/designs/rising-stars-review.html", "destination": "/rising-stars", "permanent": true }
   ],

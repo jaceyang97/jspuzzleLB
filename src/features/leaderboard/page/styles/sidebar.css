@@ -55,6 +55,8 @@
 .selected-project-feedback > button { position: absolute; right: 7px; bottom: 7px; width: 40px; height: 28px; padding: 0; border: 0; border-radius: var(--radius-control); background: var(--text-primary); color: var(--bg-secondary); font: inherit; font-size: 12px; line-height: 16px; font-weight: 500; }
 .selected-project-feedback > button::before { position: absolute; inset: -8px -2px; content: ''; }
 .selected-project-feedback > button:disabled { background: var(--bg-hover-strong); color: var(--text-tertiary); cursor: not-allowed; }
+.selected-project-trap { position: absolute; width: 1px; height: 1px; padding: 0; border: 0; opacity: 0; pointer-events: none; }
+.selected-project-feedback-status { margin: 0; color: var(--text-secondary); font-size: 12px; line-height: 17px; }
 .selected-project-credit { color: var(--text-secondary); }
 .selected-project-credit > a { color: var(--text-primary); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: .2em; }
 .selected-project-disclaimer { flex: none; margin: 0; color: var(--text-tertiary); font-size: 12px; line-height: 17px; text-wrap: pretty; }
