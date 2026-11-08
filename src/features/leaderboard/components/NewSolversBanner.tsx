@@ -54,6 +54,11 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
 }) => {
   const [dismissed, setDismissed] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [moreRendered, setMoreRendered] = useState(false);
+  const [moreEntered, setMoreEntered] = useState(false);
+  const pointerInteractionRef = useRef(false);
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const animateMore = inline && pointerInteractionRef.current && !reduceMotion;
   const [inlineVisibleCount, setInlineVisibleCount] = useState(1);
   const activityRef = useRef<HTMLDivElement>(null);
   const rowRef = useRef<HTMLDivElement>(null);
@@ -75,6 +80,32 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
     setMoreOpen(false);
     onSolverClick?.(name);
   };
+
+  useLayoutEffect(() => {
+    if (!inline) return;
+    const popover = morePopoverRef.current;
+    popover?.toggleAttribute('inert', !moreOpen);
+    let firstFrame = 0;
+    let secondFrame = 0;
+    let exitTimer = 0;
+    if (moreOpen) {
+      setMoreRendered(true);
+      if (animateMore) {
+        firstFrame = requestAnimationFrame(() => {
+          secondFrame = requestAnimationFrame(() => setMoreEntered(true));
+        });
+      } else setMoreEntered(true);
+    } else {
+      setMoreEntered(false);
+      if (animateMore) exitTimer = window.setTimeout(() => setMoreRendered(false), 140);
+      else setMoreRendered(false);
+    }
+    return () => {
+      cancelAnimationFrame(firstFrame);
+      cancelAnimationFrame(secondFrame);
+      window.clearTimeout(exitTimer);
+    };
+  }, [inline, moreOpen, animateMore]);
 
   useLayoutEffect(() => {
     if (!inline || dismissed || !inlineNames.length) return;
@@ -141,7 +172,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
   }, [inline, moreOpen]);
 
   useLayoutEffect(() => {
-    if ((!compact && !inline) || !moreOpen || dismissed) {
+    if ((!compact && !inline) || (!moreOpen && !(inline && moreRendered)) || dismissed) {
       setPopoverPosition(null);
       return;
     }
@@ -192,7 +223,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       window.visualViewport?.removeEventListener('resize', position);
       window.visualViewport?.removeEventListener('scroll', position);
     };
-  }, [compact, inline, moreOpen, dismissed, inlineVisibleCount]);
+  }, [compact, inline, moreOpen, moreRendered, dismissed, inlineVisibleCount]);
 
   if (dismissed) return null;
 
@@ -223,6 +254,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
               if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setMoreOpen(false);
             }}
             onKeyDown={(event) => {
+              pointerInteractionRef.current = false;
               if (event.key === 'Escape') {
                 event.preventDefault();
                 setMoreOpen(false);
@@ -241,7 +273,10 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
                 {names.length > inlineVisibleCount && <button ref={moreButtonRef} type="button" className="header-activity-more"
                   aria-label={`${names.length - inlineVisibleCount} more solvers added today`}
                   aria-expanded={moreOpen} aria-controls={moreId}
-                  onClick={() => setMoreOpen((open) => !open)}>+{names.length - inlineVisibleCount}</button>}
+                  onClick={(event) => {
+                    pointerInteractionRef.current = event.detail > 0;
+                    setMoreOpen((open) => !open);
+                  }}>+{names.length - inlineVisibleCount}</button>}
               </span>
             </div>
             <span className="header-activity-measure" aria-hidden="true"
@@ -259,15 +294,18 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
             </span>
             <span ref={morePopoverRef} id={moreId}
               className="banner-more-tooltip banner-more-popover header-activity-popover"
-              role="region" aria-label="More solvers added today" hidden={!moreOpen || names.length <= inlineVisibleCount}
+              role="region" aria-label="More solvers added today" aria-hidden={!moreOpen}
+              data-state={moreOpen && moreEntered ? 'open' : 'closed'} data-animate={animateMore || undefined}
+              hidden={(!moreOpen && !moreRendered) || names.length <= inlineVisibleCount}
               style={popoverPosition ? {
                 position: 'fixed', left: popoverPosition.left, top: popoverPosition.top,
                 minWidth: 0, maxWidth: popoverPosition.maxWidth, maxHeight: popoverPosition.maxHeight,
-                transform: 'none', overflowY: 'auto',
+                transform: 'none',
               } : undefined}>
               <ul ref={moreListRef} className="banner-more-list" tabIndex={0}
                 style={popoverPosition ? { maxHeight: popoverPosition.listMaxHeight } : undefined}>
-                {names.slice(inlineVisibleCount).map((name, index) => <li key={`${name}-${index}`}>
+                {names.slice(inlineVisibleCount).map((name, index) => <li key={`${name}-${index}`}
+                  style={{ '--solver-index': Math.min(index, 5) } as React.CSSProperties}>
                   <SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} onClick={() => selectInlineSolver(name, moreButtonRef.current)} />
                 </li>)}
               </ul>

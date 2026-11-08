@@ -6,7 +6,19 @@
 .leaderboard-header.lh--selected .current-puzzle-notice .solver-chip { min-width: 44px; min-height: 44px; max-width: none; padding: 0; gap: 0; border-radius: var(--radius-control); background: transparent; font-size: 14px; font-weight: 500; line-height: 18px; }
 .leaderboard-header.lh--selected .current-puzzle-notice .solver-chip-initial { display: none; }
 .leaderboard-header.lh--selected .current-puzzle-notice .solver-chip-name { display: block; padding: 4px 10px; border: 1px solid var(--border-secondary); border-radius: var(--radius-control); background: var(--bg-primary); color: var(--text-primary); font-size: 14px; font-weight: 500; line-height: 18px; overflow: visible; text-overflow: clip; white-space: nowrap; transition: background-color 150ms ease-out, border-color 150ms ease-out; }
+.leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover { width: max-content; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; overflow: visible; }
+.leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover::before { content: none; }
+.leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover[aria-hidden='true'] { pointer-events: none; }
+.leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; box-sizing: border-box; margin: 0; padding: 8px 12px 12px; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+.leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list::-webkit-scrollbar { display: none; }
+.leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list > li { flex: none; width: max-content; max-width: 100%; transform-origin: top left; }
+.leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list .solver-chip { width: auto; max-width: min(280px, 100%); padding: 0; }
+.leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list .solver-chip-name { box-shadow: 0 1px 2px rgb(0 0 0 / .08), 0 6px 14px -4px rgb(0 0 0 / .2); }
 .leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover .solver-chip-name { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover[data-animate] .banner-more-list > li { transition: opacity 140ms cubic-bezier(.2,.7,.2,1), transform 140ms cubic-bezier(.2,.7,.2,1); }
+.leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover[data-state='closed'] .banner-more-list > li { opacity: 0; transform: translateY(-6px) scale(.97); }
+.leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover[data-state='open'] .banner-more-list > li { opacity: 1; transform: translateY(0) scale(1); }
+.leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover[data-animate][data-state='open'] .banner-more-list > li { transition-duration: 200ms; transition-delay: calc(var(--solver-index) * 18ms); }
 .leaderboard-header.lh--selected .current-puzzle-notice .header-activity-more { position: relative; min-height: 44px; padding: 0 11px; border-radius: var(--radius-control); background: transparent; color: var(--text-secondary); font-size: 13px; font-weight: 400; line-height: 18px; }
 .leaderboard-header.lh--selected .current-puzzle-notice .header-activity-more::after { content: ''; position: absolute; inset-inline: 0; top: 50%; height: 28px; border: 1px dashed var(--border-primary); border-radius: var(--radius-control); transform: translateY(-50%); box-sizing: border-box; pointer-events: none; }
 .leaderboard-header.lh--selected .current-puzzle-notice :is(.solver-chip-button, .header-activity-more):focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
@@ -26,6 +38,8 @@
 }
 @media (hover: hover) and (pointer: fine) { .current-puzzle-title:hover { text-decoration-color: currentColor; } }
 @media (hover: hover) and (pointer: fine) {
+  .leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list { gap: 4px; }
+  .leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list .solver-chip { min-height: 32px; }
   .leaderboard-header.lh--selected .current-puzzle-notice .solver-chip-button:hover .solver-chip-name { background: color-mix(in srgb, var(--accent-primary) 16%, var(--bg-primary)); border-color: var(--accent-primary); }
   .leaderboard-header.lh--selected .current-puzzle-notice .header-activity-more:hover::after { border-style: solid; }
 }
