@@ -44,7 +44,7 @@ export default function ProjectInfoCard() {
     }
   };
   return <section className="flow-card flow-about selected-sidebar-card" aria-label="About this project">
-    <a className="selected-project-learn" href="https://github.com/jaceyang97/jspuzzleLB" target="_blank" rel="noopener noreferrer"><span>Learn how this site is made</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M7 5h12v12M19 5 5 19" /></svg></a>
+    <a className="selected-project-learn" href="https://jaceyang.notion.site/js-design?source=copy_link" target="_blank" rel="noopener noreferrer"><span>Learn how this site is made</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M7 5h12v12M19 5 5 19" /></svg></a>
     <form className="selected-project-feedback" onSubmit={sendFeedback} aria-busy={status === 'sending'}>
       <label className="lab-visually-hidden" htmlFor={field}>Features, fixes, feedback…</label>
       <textarea id={field} name="correction" rows={2} maxLength={2000} placeholder="Features, fixes, feedback…" aria-describedby={notice ? hint : undefined}
