@@ -34,8 +34,8 @@ module.exports = async function feedback(req, res) {
 
   const sender = process.env.GMAIL_ADDRESS?.trim();
   const password = process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, '');
-  const recipient = process.env.FEEDBACK_TO?.trim() || 'jaceyang8@gmail.com';
-  if (!sender || !password) {
+  const recipient = process.env.FEEDBACK_TO?.trim();
+  if (!sender || !password || !recipient) {
     console.error(JSON.stringify({ event: 'feedback_not_configured' }));
     return res.status(503).json({ error: 'Feedback is temporarily unavailable. Please try again later.' });
   }

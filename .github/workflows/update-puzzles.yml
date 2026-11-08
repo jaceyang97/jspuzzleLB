@@ -14,18 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write  # Allow writing to repository content
-      actions: read    # Allow reading actions
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         fetch-depth: 0  # Fetch all history for all branches and tags
         token: ${{ secrets.GITHUB_TOKEN }}  # Use built-in token
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
       with:
-        python-version: '3.10'
+        python-version: '3.13'
 
     - name: Install dependencies
       run: |
@@ -65,4 +64,6 @@ jobs:
 
     - name: Trigger Vercel redeploy
       if: steps.git-check.outputs.changes == 'true'
-      run: curl -s -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+      env:
+        VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+      run: curl --fail --silent --show-error --request POST --output /dev/null "$VERCEL_DEPLOY_HOOK"

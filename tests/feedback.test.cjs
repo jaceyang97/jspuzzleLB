@@ -77,6 +77,16 @@ test('missing credentials fail honestly', async () => {
   assert.equal(create.mock.callCount(),0);
 });
 
+test('requires a server-configured recipient without a fallback address', async () => {
+  const {handler,create}=setup();
+  delete process.env.FEEDBACK_TO;
+  mock.method(console,'error',()=>{});
+  const res=response();
+  await handler(request(),res);
+  assert.equal(res.statusCode,503);
+  assert.equal(create.mock.callCount(),0);
+});
+
 test('rejected mail reports failure and does not disclose SMTP errors', async () => {
   const {handler,sendMail}=setup();
   sendMail.mock.mockImplementation(async()=>{throw Object.assign(new Error('Sensitive SMTP detail'),{code:'EAUTH'});});

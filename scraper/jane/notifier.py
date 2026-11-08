@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import smtplib
+import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from typing import Dict, Any, List
@@ -48,7 +49,7 @@ def build_email_body(notification: Dict[str, Any]) -> str:
 
 def send_notification(
     notification: Dict[str, Any],
-    recipient: str = "jaceyang8@gmail.com",
+    recipient: str | None = None,
 ) -> bool:
     """
     Send email notification about new solvers via Gmail SMTP.
@@ -61,6 +62,7 @@ def send_notification(
     """
     sender = os.environ.get("GMAIL_ADDRESS", "")
     app_password = os.environ.get("GMAIL_APP_PASSWORD", "")
+    recipient = recipient or os.environ.get("NOTIFICATION_TO") or sender
 
     if not sender or not app_password:
         logger.warning(
@@ -88,12 +90,12 @@ def send_notification(
     msg.attach(MIMEText(body, "plain", "utf-8"))
 
     try:
-        with smtplib.SMTP(GMAIL_SMTP_HOST, GMAIL_SMTP_PORT) as server:
-            server.starttls()
+        with smtplib.SMTP(GMAIL_SMTP_HOST, GMAIL_SMTP_PORT, timeout=10) as server:
+            server.starttls(context=ssl.create_default_context())
             server.login(sender, app_password)
             server.sendmail(sender, [recipient], msg.as_string())
-        logger.info(f"Notification email sent to {recipient}: {subject}")
+        logger.info(f"Notification email sent: {subject}")
         return True
     except Exception as exc:
-        logger.error(f"Failed to send notification email: {exc}")
+        logger.error("Notification email failed ({})", type(exc).__name__)
         return False
