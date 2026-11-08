@@ -187,7 +187,11 @@
 .arena .ladder-insight:last-child { border-inline-end: 0; padding-inline-end: 0; }
 .arena :focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
 .arena button:active:not(:disabled) { transform: scale(.96); }
-.puzzle-intro-tooltip { z-index: 110; background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-primary); padding: 14px; border-radius: 0; box-shadow: var(--shadow-popover); }
+.puzzle-intro-tooltip, .ui-tooltip.ui-tooltip-portal.puzzle-info-tooltip { z-index: 110; background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-primary); border-radius: 0; box-shadow: var(--shadow-popover); }
+.puzzle-intro-tooltip { padding: 14px; }
+.ui-tooltip.ui-tooltip-portal.puzzle-info-tooltip { font-size: 14px; line-height: 1.5; }
+.ui-tooltip.puzzle-info-tooltip .ui-tooltip-content { padding: 14px; }
+.ui-tooltip.ui-tooltip-portal.puzzle-info-tooltip::before { display: none; }
 .puzzle-intro-tooltip:not([hidden]) { opacity: 1; visibility: visible; pointer-events: auto; transform: none; }
 .puzzle-intro-tooltip::before { display: none; }
 .puzzle-intro-tooltip:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }

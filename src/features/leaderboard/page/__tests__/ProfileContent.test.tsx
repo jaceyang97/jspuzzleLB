@@ -73,18 +73,16 @@ test('keeps pagination present and disabled while puzzle history is loading', ()
   expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
 });
 
-test('placement help opens on click and Escape closes only the explanation', () => {
+test('placement help opens immediately on hover and Escape closes only the explanation', () => {
   const onClose = jest.fn();
   render(<ProfileContent data={data} name="Ada Lovelace" onClose={onClose} />);
-  const summary = screen.getByLabelText('About placement');
-  fireEvent.click(summary);
-  expect(summary.closest('details')).toHaveAttribute('open');
-  expect(screen.getByRole('note')).toBeVisible();
+  const trigger = screen.getByRole('button', { name: 'About placement' });
+  fireEvent.mouseEnter(trigger.closest('.ui-tooltip-anchor')!);
+  expect(screen.getByRole('tooltip')).toBeVisible();
   fireEvent.pointerDown(screen.getByRole('heading', { name: 'Solved puzzles' }));
-  expect(summary.closest('details')).not.toHaveAttribute('open');
-  fireEvent.click(summary);
-  fireEvent.keyDown(summary, { key: 'Escape' });
-  expect(summary.closest('details')).not.toHaveAttribute('open');
-  expect(summary).toHaveFocus();
+  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  fireEvent.focus(trigger);
+  fireEvent.keyDown(trigger, { key: 'Escape' });
+  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
   expect(onClose).not.toHaveBeenCalled();
 });

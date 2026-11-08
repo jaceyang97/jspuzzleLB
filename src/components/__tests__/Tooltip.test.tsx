@@ -162,3 +162,16 @@ test('retains existing accessible descriptions and focusable static labels', () 
   expect(screen.getByRole('button')).toHaveAttribute('aria-describedby', 'existing');
   expect(screen.getByText('A static label')).toHaveAttribute('tabindex', '0');
 });
+
+test('opens an immediate styled tooltip inside its native dialog layer', () => {
+  render(<dialog open aria-label="Profile"><Tooltip content="Placement explanation" surfaceClassName="puzzle-info-tooltip" openDelay={0}><button>Placement help</button></Tooltip></dialog>);
+  const dialog = screen.getByRole('dialog', { name: 'Profile' });
+  const button = screen.getByRole('button', { name: 'Placement help' });
+  fireEvent.mouseEnter(button.closest('.ui-tooltip-anchor')!);
+  const tip = screen.getByRole('tooltip');
+  expect(tip.parentElement).toBe(dialog);
+  expect(tip).toHaveClass('puzzle-info-tooltip');
+  fireEvent.keyDown(button, { key: 'Escape' });
+  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  expect(dialog).toHaveAttribute('open');
+});

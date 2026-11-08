@@ -1,4 +1,5 @@
-import React, { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import Tooltip from '../../../components/Tooltip';
 import { useRawPuzzleData } from '../hooks/useRawPuzzleData';
 import { computeAveragePercentile, findSolverPlacement, formatDate } from '../../../utils/leaderboardUtils';
 import { solverInitial } from '../../../utils/solverInitial';
@@ -62,22 +63,9 @@ export function Pagination({ page, pages, setPage, count, pageSize = 40, busy = 
 }
 
 function PlacementHelp() {
-  const details = useRef(null);
-  const id = useId();
-  useEffect(() => {
-    const dismiss = (event) => {
-      const element = details.current;
-      if (element && !element.contains(event.target)) element.open = false;
-    };
-    document.addEventListener('pointerdown', dismiss);
-    return () => document.removeEventListener('pointerdown', dismiss);
-  }, []);
-  return <details ref={details} className="lab-placement-help" onKeyDown={(event) => {
-    if (event.key === 'Escape' && event.currentTarget.open) {
-      event.preventDefault(); event.stopPropagation(); event.currentTarget.open = false;
-      event.currentTarget.querySelector('summary').focus();
-    }
-  }}><summary aria-label="About placement" aria-describedby={id}><span aria-hidden="true">ⓘ</span></summary><div id={id} className="lab-placement-explanation" role="note">Position in Jane Street’s published solver list, in submission order.</div></details>;
+  return <Tooltip content="Position in Jane Street’s published solver list, in submission order." className="lab-placement-help" surfaceClassName="puzzle-info-tooltip" openDelay={0}>
+    <button type="button" className="lab-placement-trigger" aria-label="About placement"><span className="panel-info-marker" aria-hidden="true">i</span></button>
+  </Tooltip>;
 }
 
 function HistoryRows({ placements, measure = false }) {

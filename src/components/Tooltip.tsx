@@ -12,13 +12,15 @@ type TooltipProps = {
   children: React.ReactNode;
   as?: React.ElementType;
   className?: string;
+  surfaceClassName?: string;
+  openDelay?: number;
   rich?: boolean;
   interactive?: boolean;
   popupLabel?: string;
 } & Omit<React.HTMLAttributes<HTMLElement>, 'content'>;
 
 const Tooltip: React.FC<TooltipProps> = ({
-  content, children, as: Tag = 'span', className, rich, interactive = false, popupLabel,
+  content, children, as: Tag = 'span', className, surfaceClassName, openDelay = 400, rich, interactive = false, popupLabel,
   onMouseEnter, onMouseLeave, onFocus, onBlur, onPointerDown, onKeyDown, ...rest
 }) => {
   const [open, setOpen] = useState(false);
@@ -59,9 +61,9 @@ const Tooltip: React.FC<TooltipProps> = ({
       isOpen.current = true;
       setOpen(true);
     };
-    if (skipDelay || adjacent) doOpen();
-    else timer.current = window.setTimeout(doOpen, 400);
-  }, [clearTimer, hide]);
+    if (skipDelay || adjacent || openDelay === 0) doOpen();
+    else timer.current = window.setTimeout(doOpen, openDelay);
+  }, [clearTimer, hide, openDelay]);
 
   const owns = useCallback((target: EventTarget | null) => target instanceof Node &&
     (!!anchorRef.current?.contains(target) || !!tipRef.current?.contains(target)), []);
@@ -171,7 +173,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       {children}
     </Tag>
     {open && createPortal(
-      <span ref={tipRef} id={id} className={`ui-tooltip ui-tooltip-portal${rich ? ' rich' : ''}`}
+      <span ref={tipRef} id={id} className={`ui-tooltip ui-tooltip-portal${rich ? ' rich' : ''}${surfaceClassName ? ` ${surfaceClassName}` : ''}`}
         data-open="" data-placement={position?.placement ?? 'bottom'} role={interactive ? 'dialog' : 'tooltip'}
         aria-label={interactive ? popupLabel : undefined}
         style={{ position: 'fixed', left: position?.left ?? 0, top: position?.top ?? 0,
@@ -207,7 +209,7 @@ const Tooltip: React.FC<TooltipProps> = ({
           hide();
         }}>
         <span ref={contentRef} className="ui-tooltip-content" data-tooltip-content="" tabIndex={-1}>{content}</span>
-      </span>, document.body,
+      </span>, anchorRef.current?.closest('dialog[open]') ?? document.body,
     )}
   </>;
 };

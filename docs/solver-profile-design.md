@@ -10,7 +10,7 @@ The avatar and solver name share a horizontal center. First recorded belongs in 
 
 The history heading has no "Newest first" label. History stays in descending month order. It has no inner scroll area. Measure the available space and the tallest puzzle row to choose a page size, capped at ten records. Reserve the history and pagination space while loading and on the final page so the controls stay put.
 
-Keep the existing profile URLs, published-list placement, puzzle links, Escape and backdrop dismissal. At 820px and below, stack identity above history. Use compact statistics on short screens; the identity panel may scroll when a long name needs extra room. Keep puzzle links and help controls at least 44px high. Placement help opens with click or keyboard, and its first Escape closes the explanation. Returning from a profile opened in the news dropdown restores focus to the visible +N button.
+Keep the existing profile URLs, published-list placement, puzzle links, Escape and backdrop dismissal. At 820px and below, stack identity above history. Use compact statistics on short screens; the identity panel may scroll when a long name needs extra room. Keep puzzle links and help controls at least 44px high. Placement help uses the same plain i and popup surface as INTRO, opening immediately on hover, keyboard focus or touch. Its first Escape closes the explanation. Returning from a profile opened in the news dropdown restores focus to the visible +N button.
 
 ## Other directions
 

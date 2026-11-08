@@ -35,11 +35,8 @@
 .lab-history-table td:last-child span { color: var(--text-tertiary); }
 .lab-history-link { display: flex; align-items: center; min-width: 44px; min-height: 44px; padding-block: 1px; line-height: 1.5; overflow-wrap: anywhere; }
 .lab-placement-heading { display: flex; justify-content: flex-end; align-items: center; }
-.lab-placement-help { position: relative; font-weight: 400; }
-.lab-placement-help summary, .lab-placement-size { display: grid; place-items: center; flex: none; width: 44px; height: 44px; padding: 0; list-style: none; border-radius: var(--radius-control); cursor: pointer; touch-action: manipulation; }
-.lab-placement-help summary::-webkit-details-marker { display: none; }
-.lab-placement-help summary > span { font-size: 14px; }
-.lab-placement-explanation { position: absolute; top: 100%; right: 0; z-index: 1; width: min(280px, calc(100vw - 48px)); padding: 12px; border: 1px solid var(--border-primary); border-radius: var(--radius-control); background: var(--bg-secondary); color: var(--text-primary); box-shadow: var(--shadow-popover); font-size: 13px; line-height: 1.5; text-align: start; }
+.lab-placement-help { display: inline-flex; flex: none; font-weight: 400; }
+.lab-placement-trigger, .lab-placement-size { display: grid; place-items: center; flex: none; width: 44px; height: 44px; padding: 0; border: 0; border-radius: var(--radius-control); background: transparent; color: inherit; cursor: pointer; touch-action: manipulation; }
 .lab-record .lab-pagination { flex: none; margin: auto 0 0; padding-top: 14px; gap: 12px; font-size: 12px; }
 .lab-record .lab-pagination > div { gap: 10px; }
 .lab-record .lab-pagination button { width: 44px; height: 44px; padding: 0; border-radius: var(--radius-control); }

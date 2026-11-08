@@ -1,4 +1,4 @@
-/* Body portals escape rounded cards, scroll panels, sticky headers and modals. */
+/* Portals escape clipped panels while staying in the active dialog layer. */
 .ui-tooltip.ui-tooltip-portal, .ui-tooltip.ui-tooltip-portal.rich {
   position: fixed;
   inset: auto;
