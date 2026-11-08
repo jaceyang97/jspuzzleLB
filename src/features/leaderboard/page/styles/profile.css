@@ -34,7 +34,6 @@
 .lab-history-table td:last-child { font-size: 13px; white-space: nowrap; }
 .lab-history-table td:last-child span { color: var(--text-tertiary); }
 .lab-history-link { display: flex; align-items: center; min-width: 44px; min-height: 44px; padding-block: 1px; line-height: 1.5; overflow-wrap: anywhere; }
-.lab-placement-link { display: inline-flex; align-items: center; justify-content: flex-end; gap: .5ch; min-width: 44px; min-height: 44px; }
 .lab-placement-heading, .lab-placement-trigger { display: inline-flex; align-items: center; gap: 6px; min-width: 44px; min-height: 44px; padding: 0; }
 .lab-placement-help { display: flex; justify-content: flex-end; font-weight: 400; }
 .lab-placement-trigger { border: 0; border-radius: var(--radius-control); background: transparent; color: inherit; cursor: pointer; touch-action: manipulation; }

@@ -73,14 +73,15 @@ test('keeps pagination present and disabled while puzzle history is loading', ()
   expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
 });
 
-test('links placements to the current solver while keeping the puzzle title link', () => {
+test('puzzle titles locate the solver while placements remain plain text', () => {
   render(<ProfileContent data={data} name="Ada Lovelace" onClose={jest.fn()} />);
-  const link = screen.getByRole('link', { name: 'Find Ada Lovelace in the published solver list for Puzzle 12' });
-  expect(link).toHaveTextContent('1 / 2');
+  const row = screen.getByRole('row', { name: /^Dec 2015 Puzzle 12 / });
+  const link = within(row).getByRole('link', { name: 'Puzzle 12' });
   expect(link).toHaveAttribute('href', 'https://example.com/12#correct-submissions-from:~:text=Ada%20Lovelace');
   expect(link).toHaveAttribute('target', '_blank');
   expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-  expect(screen.getByRole('link', { name: 'Puzzle 12' })).toHaveAttribute('href', 'https://example.com/12');
+  expect(within(row).getAllByRole('link')).toHaveLength(1);
+  expect(within(row).getByRole('cell', { name: '1 / 2' })).toHaveTextContent('1 / 2');
 });
 
 test('keeps current puzzle links usable before a solution URL exists', () => {
@@ -88,8 +89,7 @@ test('keeps current puzzle links usable before a solution URL exists', () => {
     puzzles: [{ ...puzzles[11], solution_url: '' }], loading: false, error: null,
   });
   render(<ProfileContent data={data} name="Ada Lovelace" onClose={jest.fn()} />);
-  expect(screen.getByRole('link', { name: 'Puzzle 12' })).toHaveAttribute('href', 'https://www.janestreet.com/puzzles/current-puzzle/');
-  expect(screen.getByRole('link', { name: 'Find Ada Lovelace in the published solver list for Puzzle 12' })).toHaveAttribute('href', 'https://www.janestreet.com/puzzles/current-puzzle/#correct-submissions-from:~:text=Ada%20Lovelace');
+  expect(screen.getByRole('link', { name: 'Puzzle 12' })).toHaveAttribute('href', 'https://www.janestreet.com/puzzles/current-puzzle/#correct-submissions-from:~:text=Ada%20Lovelace');
 });
 
 test('placement help opens immediately on hover and Escape closes only the explanation', () => {

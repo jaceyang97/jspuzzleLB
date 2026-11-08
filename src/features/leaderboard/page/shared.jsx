@@ -3,7 +3,7 @@ import Tooltip from '../../../components/Tooltip';
 import { useRawPuzzleData } from '../hooks/useRawPuzzleData';
 import { computeAveragePercentile, findSolverPlacement, formatDate } from '../../../utils/leaderboardUtils';
 import { solverInitial } from '../../../utils/solverInitial';
-import { CURRENT_PUZZLE_URL, solverPlacementUrl } from '../../../utils/puzzleLinks';
+import { solverPlacementUrl } from '../../../utils/puzzleLinks';
 
 export const scopes = [
   { id: 'top', label: 'Top solvers', description: 'All-time standings, ranked by total puzzles solved.' },
@@ -70,24 +70,14 @@ function PlacementHelp() {
 }
 
 function HistoryRows({ placements, name, measure = false }) {
-  return placements.map((item) => {
-    const placement = <>{item.rank.toLocaleString()} <span>/ {item.total.toLocaleString()}</span></>;
-    return <tr key={`${item.puzzle.date_text}-${item.puzzle.name}`}>
-      <td>{formatDate(item.puzzle.date_text)}</td>
-      <td>{measure
-        ? <span className="lab-history-link">{item.puzzle.name}</span>
-        : <a className="lab-history-link" href={item.puzzle.solution_url || CURRENT_PUZZLE_URL} target="_blank" rel="noopener noreferrer">{item.puzzle.name}</a>}
-      </td>
-      <td className="lab-number">{measure ? placement : <a
-        className="lab-placement-link"
-        href={solverPlacementUrl(item.puzzle.solution_url, name)}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Find ${name} in the published solver list for ${item.puzzle.name}`}
-        title="Find this name in Jane Street’s solver list"
-      >{placement}</a>}</td>
-    </tr>;
-  });
+  return placements.map((item) => <tr key={`${item.puzzle.date_text}-${item.puzzle.name}`}>
+    <td>{formatDate(item.puzzle.date_text)}</td>
+    <td>{measure
+      ? <span className="lab-history-link">{item.puzzle.name}</span>
+      : <a className="lab-history-link" href={solverPlacementUrl(item.puzzle.solution_url, name)} target="_blank" rel="noopener noreferrer" title={`Find ${name} in Jane Street’s solver list`}>{item.puzzle.name}</a>}
+    </td>
+    <td className="lab-number">{item.rank.toLocaleString()} <span>/ {item.total.toLocaleString()}</span></td>
+  </tr>);
 }
 
 export function ProfileContent({ data, name, onClose }) {
