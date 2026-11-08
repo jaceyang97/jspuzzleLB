@@ -13,7 +13,7 @@ const fetchJson = async <T>(path: string): Promise<T> => {
 export const loadLeaderboardData = async (): Promise<LeaderboardData> => {
   // Try loading precomputed stats first (faster, smaller payload)
   try {
-    // stats.json uses raw field names (solver, length, start, end) — map to our types
+    // Map stats.json fields (solver, length, start, end) to the frontend types.
     const raw = await fetchJson<Record<string, any>>('/data/stats.json');
     const hasPublishedRisingStars = raw.risingStarsRule === RISING_STARS_RULE
       && Object.prototype.hasOwnProperty.call(raw, 'risingStarsAsOf')

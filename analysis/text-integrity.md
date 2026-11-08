@@ -11,7 +11,7 @@ Verified on 2026-09-06 (Asia/Shanghai), against baseline commit `bdb9be8`.
 
 These were stored-text and character-segmentation defects, not evidence that names needed a different font. No dependency or broad Unicode normalization was added.
 
-Published JSON writers and Git attributes use UTF-8 with LF line endings, keeping data bytes and research hashes consistent on Windows and Linux. The regression tests are included; automatic workflow execution was not added because the saved GitHub credential lacks workflow-edit permission.
+Published JSON writers and Git attributes use UTF-8 with LF line endings so data bytes and research hashes match on Windows and Linux. The repair includes regression tests. This change did not add them to the workflow.
 
 ## Verified official sources
 

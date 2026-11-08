@@ -81,7 +81,7 @@ const RisingStarsTable: React.FC<RisingStarsTableProps> = React.memo(({ data, se
           )}
           {visibleItems < filteredData.length && (
             <tr className="loading-row">
-              <td colSpan={5}>Loading more...</td>
+              <td colSpan={5}>Loading more…</td>
             </tr>
           )}
         </tbody>

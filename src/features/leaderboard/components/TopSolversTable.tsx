@@ -135,7 +135,7 @@ const TopSolversTable: React.FC<TopSolversTableProps> = React.memo(
             )}
             {visibleItems < filteredData.length && (
               <tr className="loading-row">
-                <td colSpan={5}>Loading more...</td>
+                <td colSpan={5}>Loading more…</td>
               </tr>
             )}
           </tbody>

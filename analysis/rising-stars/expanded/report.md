@@ -8,7 +8,7 @@ A name must first appear within the **18 calendar months** through the latest co
 
 The solve rate is **solved puzzles / observed puzzles**. Count the debut puzzle in both numbers. Open puzzles, missing months and unavailable solver lists count in neither number. A 2/2 record must wait; a 2/3 record qualifies. Higher rates rank first, then more solves. Identical records share a rank.
 
-This rule keeps the score between 0% and 100%. The observation requirement asks for evidence beyond an immediate 2/2 debut. It is a practical balance of continued participation, newer records and more names appearing near the top.
+The score stays between 0% and 100%. The three-puzzle minimum requires another published result after an immediate 2/2 debut. The study below compares how the thresholds affect participation, record age and exposure.
 
 ## What the study measures
 
@@ -49,7 +49,7 @@ Study percentages describe later participation, not the solve rate beside a curr
 
 ## Stability checks
 
-The selected rule retains useful performance under different treatments of ties and recent data:
+Later participation changes as follows when we vary ties and the final snapshot:
 
 | Check | Later participation |
 |---|---:|
@@ -60,7 +60,7 @@ The selected rule retains useful performance under different treatments of ties 
 
 Whole ties expand the average evaluated list to 22.81 names, so that row uses a different attention budget. The study also includes paired six- and twelve-calendar-month block resampling. These are exploratory sensitivity checks, not independent confirmation after selecting a rule or guaranteed population confidence intervals. Missing calendar months remain absent during resampling.
 
-Seventeen- and nineteen-month versions also lie on the frontier in all three eras. Their pooled participation is 37.35% and 38.02%, with progressively older records and less exposure. Eighteen is a readable compromise, not a uniquely optimal constant. A frontier identifies trade-offs; the product still needs to choose its priorities. [Boyd and Vandenberghe, section 4.7](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf).
+Seventeen- and nineteen-month versions also lie on the frontier in all three eras. Their pooled participation is 37.35% and 38.02%, with progressively older records and less exposure. Eighteen is the chosen cutoff. The study does not establish a unique optimum. A frontier identifies trade-offs; the product still needs to choose its priorities. [Boyd and Vandenberghe, section 4.7](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf).
 
 ## Limits
 

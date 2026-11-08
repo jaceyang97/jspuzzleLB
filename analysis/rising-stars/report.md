@@ -1,20 +1,20 @@
-# Rising stars: a bounded rate and evidence-based eligibility
+# Original Rising stars study
 
-Study date: **6 September 2026**, Asia/Shanghai. Recommendation frozen before the later-period test.
+Study date: 6 September 2026, Asia/Shanghai. The recommendation was fixed before the later-period test. This is a historical study. The site now uses the rule in the [expanded study](expanded/report.md).
 
 ## Recommendation
 
 Use **a 12-month debut window, at least three solved puzzles, and the percentage of published puzzles solved since debut**. Count the debut puzzle in both numerator and denominator. Rank by that percentage, then by more solved puzzles; identical records share a rank.
 
-This is a defensible balance of newness, evidence, and simplicity. It is **not a statistically established universal optimum**. The Pareto analysis identifies several useful compromises. A confidence-adjusted score is a valid alternative if predicting continued participation matters more than featuring newer names.
+The study compares later participation, record age and exposure. The recommended rule is on the Pareto frontier. It is not a statistically established universal optimum. A confidence-adjusted score is a valid alternative if predicting continued participation matters more than featuring newer names.
 
-The production ranking policy has deliberately not been changed in this research release: the user requested analysis and consultation first. The accompanying text-integrity repair is separate and ready for deployment.
+This study did not change the production ranking policy. The text-integrity repair was a separate change.
 
-## Why the current number exceeds one
+## Why the original rate exceeded one
 
-Both the Python aggregator and the TypeScript fallback divide total solves by the difference between debut and current month. That counts month **intervals**, while the numerator includes both endpoint puzzles.
+Both the Python aggregator and the TypeScript fallback divided total solves by the difference between debut and current month. That counted month **intervals**, while the numerator included both endpoint puzzles.
 
-Krish Yadav appears in July, August, and September 2026. The current code calculates **3 / 2 = 1.5**. An inclusive record would be **3 / 3 = 100%**. Nineteen of the twenty current Rising stars entries exceed one because of this error. The defect is in both calculation paths, not the table's decimal formatting.
+Krish Yadav appears in July, August, and September 2026. The code at the time calculated **3 / 2 = 1.5**. An inclusive record would be **3 / 3 = 100%**. Nineteen of the twenty Rising stars entries at the time exceeded one because of this error. The defect affected both calculation paths, not the table's decimal formatting.
 
 Simply adding one fixes that example but leaves two policy issues:
 
@@ -99,7 +99,7 @@ Two solves is a real trade-off: 32.23% future participation, younger records at 
 
 Four solves gains only **0.33 percentage points** over three, while displaying records about 0.76 opportunities older and roughly nine fewer names per year. That does not justify making the entry requirement stricter for this purpose.
 
-Wilson gains **3.31 percentage points**, with records 1.66 opportunities older and about eleven fewer names per year. That gain is worth acknowledging: confidence-adjusted ordering is useful if continued participation is the main goal. It also makes the visible rate and sorting score different, requiring an additional explanation. The raw rate remains the recommendation for a simple newcomer board.
+Wilson gains **3.31 percentage points**, with records 1.66 opportunities older and about eleven fewer names per year. Confidence-adjusted ordering favors continued participation over newer records. It also makes the visible rate and sorting score different, requiring an additional explanation. The raw rate remains the recommendation for a simple newcomer board.
 
 The 18-month Wilson rule has the strongest future participation among the frozen candidates. Its displayed records are almost twice as old as the recommendation's, and its reach is much lower. It serves a different preference and expands the user's proposed 12-month newcomer window.
 
@@ -124,7 +124,7 @@ Using completed results through **August 2026**, the 12-month eligibility window
 | 4 | Dawson Yao; Denis Abuti; Lucas Reymond; Umair Hundekar | 5/5 each | 100% |
 | 8 | 29 names tied | 4/4 each | 100% |
 
-This exposes another current UI problem: equal records should not receive different performance ranks. The twenty-slot study shares thirteen remaining slots across the 29-way boundary tie. For the product, keep the whole tied group accessible and use shared rank 8, rather than implying one arbitrary name is better. Evaluating twenty attention slots does not prove that showing all 36 tied-boundary entries will have identical exposure metrics.
+The UI at the time had another problem: equal records should not receive different performance ranks. The twenty-slot study shares thirteen remaining slots across the 29-way boundary tie. For the product, keep the whole tied group accessible and use shared rank 8, rather than implying one arbitrary name is better. Evaluating twenty attention slots does not prove that showing all 36 tied-boundary entries will have identical exposure metrics.
 
 Suggested columns: **Rank · Solver · Solve rate · Record · Debut**. Replace `PER MONTH` with `Solve rate`, show `100%` beside `4/4`, and retain the inline information icon next to the selected Rising stars tab.
 

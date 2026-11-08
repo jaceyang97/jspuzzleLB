@@ -14,6 +14,25 @@ const progress: NonNullable<LeaderboardData['currentPuzzleProgress']> = {
   timeline: names.map((solver) => ({ solver, timestamp: '2026-09-06T08:00:00Z' })),
 };
 
+describe('activity copy', () => {
+  test('states who solved the puzzle without a random slogan', () => {
+    render(<NewSolversBanner currentPuzzleProgress={progress} generatedAt="2026-09-06T09:00:00Z" />);
+    expect(screen.getByRole('region', { name: 'Puzzle activity' })).toHaveTextContent('solved Hint Singles');
+    names.forEach(name => expect(screen.getByText(name)).toBeVisible());
+  });
+
+  test('shows the total and last addition when nobody joined today', () => {
+    const previousDay = { ...progress, timeline: names.map(solver => ({ solver, timestamp: '2026-09-05T00:00:00Z' })) };
+    render(<NewSolversBanner currentPuzzleProgress={previousDay} generatedAt="2026-09-06T09:00:00Z" />);
+    expect(screen.getByRole('region', { name: 'Puzzle activity' })).toHaveTextContent('Hint Singles · 3 solvers · last added yesterday');
+  });
+
+  test.each([{}, { compact: true }, { inline: true }])('shows the same monthly count in each layout: %j', layout => {
+    render(<NewSolversBanner {...layout} monthlyParticipation={[{ month: 'Sep 2026', solvers: 1234 }]} />);
+    expect(screen.getByRole('region', { name: 'Puzzle activity' })).toHaveTextContent('Sep 2026 · 1,234 solvers');
+  });
+});
+
 function rect(left: number, top: number, width: number, height: number): DOMRect {
   return { x: left, y: top, left, top, width, height, right: left + width,
     bottom: top + height, toJSON: () => ({}) };

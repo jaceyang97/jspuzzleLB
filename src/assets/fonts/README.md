@@ -6,6 +6,5 @@
 The included `Caveat-OFL.txt` contains the copyright notice and SIL Open Font
 License 1.1.
 
-The header uses weight 600 for the word `unofficial`. Keeping the font beside
-the production CSS lets the app bundle and fingerprint it independently of
-the design comparison pages.
+The header uses weight 600 for the word `unofficial`. The build bundles and fingerprints this file independently of the archived
+design pages. The selected leaderboard uses the subset in `public/fonts/`.

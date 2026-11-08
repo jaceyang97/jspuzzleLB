@@ -8,11 +8,11 @@ interface StatsCardsProps {
 const StatsCards: React.FC<StatsCardsProps> = ({ totalPuzzles, uniqueSolvers }) => (
   <div className="stats-cards">
     <div className="stats-card">
-      <h3>Total Puzzles</h3>
+      <h3>Total puzzles</h3>
       <div className="stat-value">{totalPuzzles}</div>
     </div>
     <div className="stats-card">
-      <h3>Unique Solvers</h3>
+      <h3>Unique solvers</h3>
       <div className="stat-value">{uniqueSolvers.toLocaleString('en-US')}</div>
     </div>
   </div>

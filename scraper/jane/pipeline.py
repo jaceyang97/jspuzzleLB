@@ -124,7 +124,7 @@ def update_current(
         stored_id = current_entry.get("puzzle_id", "")
 
         if stored_id == puzzle_id or not stored_id:
-            # Case A: Same puzzle — merge solvers + timestamps
+            # Merge solvers and timestamps for the same puzzle.
             existing_ts = current_entry.get("solver_timestamps", {})
             merged_ts = merge_solvers_with_timestamps(fresh_solvers, existing_ts)
             new_solver_names = [s for s in fresh_solvers if s not in existing_ts]
@@ -142,7 +142,7 @@ def update_current(
                 f"({len(new_solver_names)} new)"
             )
         else:
-            # Case B: New puzzle detected — month transition
+            # A different puzzle starts the month transition.
             logger.info(f"New puzzle detected (was {stored_id}, now {puzzle_id})")
             _handle_month_transition(
                 session, base_url, puzzles, current_idx,
@@ -154,7 +154,7 @@ def update_current(
             notification["new_solvers"] = fresh_solvers
             notification["total_solvers"] = len(fresh_solvers)
     else:
-        # No current entry found — add the new puzzle
+        # Add the current puzzle if it is not in the archive.
         logger.info("No current puzzle entry found; adding new entry")
         merged_ts = merge_solvers_with_timestamps(fresh_solvers, {})
         new_entry = {
@@ -202,7 +202,7 @@ def _handle_month_transition(
     Handle the case where the current puzzle has changed (new month).
     Finalize the old puzzle and start tracking the new one.
     """
-    # Step 1: Fetch archive page 1 to find the old puzzle's solution URL
+    # Read archive page 1 for the old puzzle's solution URL
     # and the new puzzle's metadata
     try:
         page_url = f"{base_url}index.html"
@@ -215,7 +215,7 @@ def _handle_month_transition(
     old_entry = puzzles[old_current_idx]
     old_key = _puzzle_key_from_dict(old_entry)
 
-    # Step 2: Try to finalize the old puzzle with its solution page data.
+    # Finalize the old puzzle using its solution page.
     # We keep `puzzle_id` on the archived entry (rather than popping it) so
     # subsequent daily runs can re-fetch the leaderboard cheaply and pick up
     # late solver additions during the LEEWAY_DAYS window.
@@ -239,7 +239,7 @@ def _handle_month_transition(
                 logger.warning(f"Failed to finalize old puzzle: {exc}")
             break
 
-    # Step 3: Find the new puzzle's metadata from archive
+    # Find the new puzzle's metadata in the archive.
     new_entry_name = ""
     new_entry_date = ""
     for meta in metas:
@@ -253,7 +253,7 @@ def _handle_month_transition(
         new_entry_date = _date_text_from_puzzle_id(new_puzzle_id)
         new_entry_name = _name_from_puzzle_id(new_puzzle_id)
 
-    # Step 4: Add the new current puzzle
+    # Add the new current puzzle.
     merged_ts = merge_solvers_with_timestamps(new_solvers, {})
     new_entry = {
         "date_text": new_entry_date,

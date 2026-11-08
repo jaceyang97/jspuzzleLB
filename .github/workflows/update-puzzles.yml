@@ -1,4 +1,4 @@
-name: Update Jane Street Puzzles
+name: Update Jane Street puzzles
 
 on:
   schedule:
@@ -32,7 +32,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run puzzle scraper (lightweight daily update)
+    - name: Run daily puzzle update
       env:
         GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
         GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}

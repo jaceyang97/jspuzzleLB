@@ -1,10 +1,6 @@
-/* ================================================
-   COMPONENTS - Buttons, Cards, Tables, Charts
-   ================================================ */
+/* Shared component styles. */
 
-/* ------------------------------------------------
-   NAVIGATION LINKS & BUTTONS
-   ------------------------------------------------ */
+/* Navigation links & buttons */
 .intro-container {
   position: relative;
   margin-left: 16px;
@@ -96,9 +92,7 @@
   outline-offset: 2px;
 }
 
-/* ------------------------------------------------
-   THEME TOGGLE
-   ------------------------------------------------ */
+/* Theme toggle */
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -181,9 +175,7 @@
   pointer-events: none;
 }
 
-/* ------------------------------------------------
-   DATA DATE & CREDITS
-   ------------------------------------------------ */
+/* Data date & credits */
 .data-date {
   display: flex;
   flex-direction: column;
@@ -221,9 +213,7 @@
   }
 }
 
-/* ------------------------------------------------
-   INTRO TOOLTIP
-   ------------------------------------------------ */
+/* Intro tooltip */
 /* Materializes from its trigger: scale + fade from the top-left
    anchor rather than a hard display toggle */
 .intro-tooltip {
@@ -316,9 +306,7 @@
   }
 }
 
-/* ------------------------------------------------
-   STATS CARDS
-   ------------------------------------------------ */
+/* Stats cards */
 .stats-cards {
   display: flex;
   flex-direction: row;
@@ -328,7 +316,7 @@
   width: 100%;
 }
 
-/* Static info tiles — flat fill, no hover theatrics */
+/* Static statistics. */
 .stats-card {
   background-color: var(--bg-tertiary);
   border-radius: 10px;
@@ -357,9 +345,7 @@
   line-height: 1.15;
 }
 
-/* ------------------------------------------------
-   SECTION HEADERS
-   ------------------------------------------------ */
+/* Section headers */
 .dashboard-item h2 {
   margin: 0 0 10px;
   font-size: 15px;
@@ -386,9 +372,7 @@
   border-bottom: none;
 }
 
-/* ------------------------------------------------
-   SEARCH INPUT
-   ------------------------------------------------ */
+/* Search input */
 .search-container {
   display: flex;
   align-items: center;
@@ -423,9 +407,7 @@
   color: var(--text-muted);
 }
 
-/* ------------------------------------------------
-   TABLES
-   ------------------------------------------------ */
+/* Tables */
 .dashboard-table {
   flex: 1;
   overflow-y: auto;
@@ -462,8 +444,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Sticky header as a translucent material layer — rows scroll
-   underneath, a hairline replaces the hard 2px divider */
+/* Rows scroll beneath the translucent table header. */
 .leaderboard-table.mini th {
   background-color: var(--material-chrome);
   -webkit-backdrop-filter: var(--material-blur-thin);
@@ -547,9 +528,7 @@
 .rising-stars-column .leaderboard-table.mini th:nth-child(2),
 .rising-stars-column .leaderboard-table.mini td:nth-child(2) { width: 35%; }
 
-/* ------------------------------------------------
-   PUZZLE TABLE
-   ------------------------------------------------ */
+/* Puzzle table */
 .puzzle-table-container {
   flex: 1;
   overflow-y: auto;
@@ -629,9 +608,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* ------------------------------------------------
-   SOLVER DISTRIBUTION CHART
-   ------------------------------------------------ */
+/* Solver distribution chart */
 .solver-distribution {
   background-color: var(--bg-tertiary);
   border-radius: 10px;
@@ -722,9 +699,7 @@
   white-space: nowrap;
 }
 
-/* ------------------------------------------------
-   CHARTS
-   ------------------------------------------------ */
+/* Charts */
 .charts-container {
   flex: 1;
   display: flex;
@@ -774,9 +749,7 @@
   font-size: 12px;
 }
 
-/* ------------------------------------------------
-   TOOLTIPS
-   ------------------------------------------------ */
+/* Tooltips */
 .custom-tooltip {
   background-color: var(--bg-secondary);
   padding: 6px 9px;
@@ -901,11 +874,9 @@ h3.ui-tooltip-anchor {
   border-color: transparent transparent var(--tooltip-bg);
 }
 
-/* ------------------------------------------------
-   SKELETON LOADING
+/* Skeleton loading
    Renders the dashboard shell immediately with shimmering
-   placeholder blocks, so the page paints fast while data loads.
-   ------------------------------------------------ */
+   placeholder blocks, so the page paints fast while data loads. */
 .skeleton {
   display: block;
   background: linear-gradient(
@@ -998,9 +969,7 @@ h3.ui-tooltip-anchor {
 .skeleton-name { height: 12px; flex: 1; }
 .skeleton-num  { height: 12px; width: 48px; flex-shrink: 0; }
 
-/* ================================================
-   RESPONSIVE COMPONENT OVERRIDES
-   ================================================ */
+/* Responsive component overrides */
 
 @media (max-width: 768px) {
   .dashboard-table {
@@ -1183,10 +1152,8 @@ h3.ui-tooltip-anchor {
   animation: pulse 1s infinite ease-in-out;
 }
 
-/* ================================================
-   CLICKABLE ROW — entire <tr> opens the solver profile.
-   Larger click target than just the name text.
-   ================================================ */
+/* CLICKABLE ROW. Entire <tr> opens the solver profile.
+   Larger click target than just the name text. */
 .leaderboard-table.mini tr.clickable-row {
   cursor: pointer;
 }
@@ -1203,9 +1170,7 @@ h3.ui-tooltip-anchor {
   background-color: var(--bg-hover-strong);
 }
 
-/* ================================================
-   SOLVER PROFILE MODAL — compact profile card
-   ================================================ */
+/* SOLVER PROFILE MODAL. Compact profile card */
 /* Modal task: dim + blur the scrim to push the dashboard back.
    Enter/exit are transitions (not keyframes) so rapid open/close
    retargets smoothly instead of restarting; the exit retraces the
@@ -1249,7 +1214,7 @@ h3.ui-tooltip-anchor {
   transition: transform 0.32s var(--ease-sheet), opacity 0.32s var(--ease-sheet); /* enter */
 }
 
-/* Sheet grab handle — visible only in bottom-sheet mode */
+/* Sheet grab handle. Visible only in bottom-sheet mode */
 .sheet-handle {
   display: none;
   width: 36px;
@@ -1373,7 +1338,7 @@ h3.ui-tooltip-anchor {
   letter-spacing: 0.02em;
 }
 
-/* Two-stat row, centered, no card backgrounds — keeps the card calm */
+/* Two statistics share a centered row. */
 .solver-modal-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1496,19 +1461,11 @@ h3.ui-tooltip-anchor {
   }
 }
 
-/* ================================================
-   GROWTH CHART TABS
-   ------------------------------------------------
-   The Solvers Growth chart panel hosts four tabs:
-   Growth (default), Year-over-Year, First-Time, and
-   Percentile Rank.
-   ================================================ */
+/* Growth chart tabs. */
 .growth-chart-tabs {
   position: relative;
 }
-/* One row when the title and tab strip fit side by side; on narrow panels
-   the strip wraps to its own right-aligned row instead of crushing the
-   title down to its emoji. */
+/* Tabs wrap below the heading on narrow panels. */
 .growth-tabs-header {
   display: flex;
   align-items: center;
@@ -1634,11 +1591,9 @@ h3.ui-tooltip-anchor {
   .segmented-btn { padding: 6px 8px; font-size: 12px; min-height: 32px; }
 }
 
-/* ================================================
-   ACCESSIBILITY PREFERENCES
+/* Accessibility preferences
    Reduced motion ≠ no feedback: keep opacity fades,
-   drop movement, scaling, and looping animation.
-   ================================================ */
+   drop movement, scaling, and looping animation. */
 @media (prefers-reduced-motion: reduce) {
   .pulsing-dot,
   .pulsing-text {

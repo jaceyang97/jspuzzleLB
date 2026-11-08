@@ -96,18 +96,18 @@ export default function RisingStarsArticle() {
         </div>
         <ParetoChart />
         <div className="rs-copy">
-          <p><strong>The selected rule is on that frontier.</strong> Its names solved <strong>37.67%</strong> of the next six puzzles on average. It allows longer records in exchange for stronger evidence of continued participation. The frontier shows that trade-off; it does not identify one universal winner.</p>
+          <p><strong>The selected rule is on that frontier.</strong> The names it selected solved <strong>37.67%</strong> of the next six puzzles on average. These results describe the archive we tested. They do not establish the best rule for future puzzles.</p>
         </div>
       </section>
 
       <section aria-labelledby="period-title">
         <div className="rs-copy">
           <h2 id="period-title">Check different periods</h2>
-          <p>The rule lies on the frontier in all three periods below. This supports the choice across different parts of the archive. It does not mean that future results will match the average.</p>
+          <p>The rule lies on the frontier in all three periods below. Participation differs across periods, so the pooled average does not predict what comes next.</p>
         </div>
         <PeriodChart />
         <div className="rs-copy">
-          <p>Eighteen months is a practical balance between evidence and a recent debut. The three-puzzle minimum adds an observation beyond an immediate 2/2 start. The score itself stays simple.</p>
+          <p>Seventeen- and nineteen-month windows also lie on the frontier in all three periods. This site uses eighteen months. The three-puzzle minimum requires another published result after an immediate 2/2 start.</p>
           <p className="rs-limit">These are historical comparisons, not an independent test of future performance. More tested rules do not add new puzzles. Names and future outcomes repeat, and published lists can change. Study percentages measure later published participation, not individual solve rates or talent.</p>
         </div>
       </section>

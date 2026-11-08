@@ -192,7 +192,7 @@ export const PercentileRankChart = memo(({ puzzles, loading }: PuzzleChartProps)
           </BarChart>
         </ResponsiveContainer>
       </div>
-      <div className="trend-caption"><span>Average finish percentile · higher is faster</span></div>
+      <div className="trend-caption"><span>Average submission percentile · higher means earlier in the published list</span></div>
     </div>
   );
 });

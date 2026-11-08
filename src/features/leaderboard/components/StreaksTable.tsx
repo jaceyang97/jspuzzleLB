@@ -75,7 +75,7 @@ const StreaksTable: React.FC<StreaksTableProps> = React.memo(({ data, searchTerm
           )}
           {visibleItems < filteredData.length && (
             <tr className="loading-row">
-              <td colSpan={3}>Loading more...</td>
+              <td colSpan={3}>Loading more…</td>
             </tr>
           )}
         </tbody>

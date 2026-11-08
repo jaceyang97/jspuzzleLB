@@ -1,16 +1,5 @@
-/**
- * Behavioral analytics built on Vercel Web Analytics custom events.
- *
- * Every event funnels through trackEvent(), which:
- *  - never throws (analytics must never break the app)
- *  - truncates string values to stay within Vercel's payload limits
- *  - enforces a per-session event budget so one visitor can't burn
- *    through the monthly event quota
- *
- * initBehaviorTracking() installs the passive listeners (session start,
- * scroll depth, engagement time, outbound clicks, rage clicks, copies,
- * client errors). Component-level events (theme toggles, searches, modal
- * opens, chart tabs, ...) call trackEvent()/trackOnce() directly.
+/** Vercel custom events share a session budget and payload limits.
+ * Tracking failures must not interrupt the page.
  */
 import { track } from '@vercel/analytics';
 
@@ -40,7 +29,7 @@ export const trackEvent = (name: string, props?: EventProps): void => {
     }
     track(name, clean);
   } catch {
-    // Swallow: tracking failures are never user-visible.
+    // Analytics is optional; its failures must not interrupt the page.
   }
 };
 
@@ -51,9 +40,7 @@ export const trackOnce = (key: string, name: string, props?: EventProps): void =
   trackEvent(name, props);
 };
 
-// ---------------------------------------------------------------------------
 // Session context helpers
-// ---------------------------------------------------------------------------
 
 const deviceType = (): string => {
   const w = window.innerWidth;
@@ -78,7 +65,7 @@ const referrerType = (): string => {
   }
 };
 
-/** Visit counter persisted in localStorage — distinguishes new vs returning visitors. */
+/** Count visits in this browser to distinguish returning visitors. */
 const visitInfo = (): { visitNumber: number; returning: boolean } => {
   try {
     const KEY = 'jslb_visit_count';
@@ -128,9 +115,7 @@ const labelOf = (el: Element): string => {
   return truncate(label.replace(/\s+/g, ' '), 60);
 };
 
-// ---------------------------------------------------------------------------
 // Passive behavior listeners
-// ---------------------------------------------------------------------------
 
 const trackSessionStart = (): void => {
   const { visitNumber, returning } = visitInfo();
@@ -155,10 +140,8 @@ const trackSessionStart = (): void => {
   });
 };
 
-/**
- * Scroll depth milestones. On desktop the dashboard fits in the viewport
- * (no scrolling); on mobile the .dashboard-layout element scrolls, so we
- * listen in the capture phase to catch element-level scroll events too.
+/** Measure document and dashboard scrolling. Capture element scroll events
+ * because they do not bubble.
  */
 const installScrollDepthTracking = (onDepth: (pct: number) => void): void => {
   const milestones = [25, 50, 75, 100];
@@ -183,7 +166,7 @@ const installScrollDepthTracking = (onDepth: (pct: number) => void): void => {
       } else if (target instanceof Element && target.classList.contains('dashboard-layout')) {
         el = target;
       }
-      if (!el) return; // ignore inner table scrolling — covered by table_scroll
+      if (!el) return; // Inner table scrolling has its own table_scroll event.
       const pct = measure(el);
       onDepth(pct);
       for (const m of milestones) {
@@ -248,7 +231,7 @@ const installEngagementTracking = (getMaxScroll: () => number): void => {
   window.addEventListener('pagehide', flush);
 };
 
-/** Outbound link clicks — GitHub, janestreet.com puzzle links, author site, ... */
+/** Record clicks that leave this site. */
 const installOutboundClickTracking = (): void => {
   document.addEventListener(
     'click',
@@ -268,7 +251,7 @@ const installOutboundClickTracking = (): void => {
           area: areaOf(anchor),
         });
       } catch {
-        // unparsable href — ignore
+        // Ignore links whose URLs cannot be parsed.
       }
     },
     true
@@ -303,7 +286,7 @@ const installUiClickTracking = (): void => {
   );
 };
 
-/** Rage clicks: 4+ rapid clicks clustered in one spot — a frustration signal. */
+/** Record four or more rapid clicks near the same point. */
 const installRageClickTracking = (): void => {
   let recent: Array<{ t: number; x: number; y: number }> = [];
   let sends = 0;
@@ -354,7 +337,7 @@ const installErrorTracking = (): void => {
   });
 };
 
-/** Copy events — visitors grabbing solver names / stats is an engagement signal. */
+/** Record copied text and the page region it came from. */
 const installCopyTracking = (): void => {
   document.addEventListener('copy', () => {
     const selection = window.getSelection?.()?.toString() || '';
@@ -365,9 +348,7 @@ const installCopyTracking = (): void => {
   });
 };
 
-// ---------------------------------------------------------------------------
 // Entry point
-// ---------------------------------------------------------------------------
 
 let initialized = false;
 

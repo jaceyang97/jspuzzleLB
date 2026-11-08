@@ -10,7 +10,7 @@ export default function ProjectInfoCard() {
     <form className="selected-project-feedback" onSubmit={(event) => event.preventDefault()}>
       <label className="lab-visually-hidden" htmlFor={field}>Features, fixes, feedback…</label>
       <textarea id={field} name="correction" rows={2} maxLength={2000} placeholder="Features, fixes, feedback…" aria-describedby={hint} />
-      <button type="submit" disabled title="Feedback sending will be enabled soon.">Send</button>
+      <button type="submit" disabled title="Feedback sending is not available yet.">Send</button>
       <span id={hint} className="lab-visually-hidden">Feedback sending is not enabled yet.</span>
     </form>
     <p className="selected-project-disclaimer">{disclaimer}{' '}<span className="selected-project-credit">Created by <a href="https://www.jaceyang.com/" target="_blank" rel="noopener noreferrer">Jace Yang</a>.</span></p>

@@ -1,5 +1,3 @@
-// Format an ISO timestamp (or Date) as a short relative time string,
-// e.g. "just now", "5 min ago", "3 days ago", "2 mo ago".
 export const formatRelativeTime = (input: string | Date | undefined): string => {
   if (!input) return '';
   const date = input instanceof Date ? input : new Date(input);
@@ -27,7 +25,6 @@ export const formatRelativeTime = (input: string | Date | undefined): string => 
   return `${diffYr} yr${diffYr === 1 ? '' : 's'} ago`;
 };
 
-// Format an ISO timestamp as a long, exact human-readable string for tooltips.
 export const formatExactTime = (input: string | Date | undefined): string => {
   if (!input) return '';
   const date = input instanceof Date ? input : new Date(input);

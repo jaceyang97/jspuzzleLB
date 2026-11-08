@@ -11,7 +11,7 @@ from .models import Puzzle
 
 def load_existing(file_path: str) -> Dict[str, Dict[str, Any]]:
     """
-    Load existing puzzles from disk and index them by key to allow cheap lookups.
+    Load saved puzzles, keyed by date and title.
     """
     if not os.path.exists(file_path):
         return {}

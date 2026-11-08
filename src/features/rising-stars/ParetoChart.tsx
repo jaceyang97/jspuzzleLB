@@ -46,7 +46,7 @@ const HEIGHT = 350;
 const MARGIN = { left: 40, right: 16, top: 32, bottom: 54 };
 const LABEL_WIDTH = 116;
 const LABEL_CANDIDATES = [[14, -18], [14, 28], [-LABEL_WIDTH - 14, -18], [-LABEL_WIDTH - 14, 28], [-LABEL_WIDTH / 2, -40], [-LABEL_WIDTH / 2, 48]];
-const METHODS: Record<string, string> = { raw: 'Solve rate', count: 'Total solves', wilson: 'Conservative solve rate', beta: 'Adjusted solve rate' };
+const METHODS: Record<string, string> = { raw: 'Solve rate', count: 'Total solves', wilson: 'Wilson lower bound', beta: 'Beta-binomial mean' };
 const xValue = (row: ParetoRow, axis: Axis) => axis === 'age' ? row.average_post_debut_exposure : row.annualized_unique_reach;
 const percent = (value: number) => `${(value * 100).toFixed(2)}%`;
 const number = (value: number) => value.toLocaleString('en-US');

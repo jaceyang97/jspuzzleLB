@@ -96,7 +96,7 @@ def parse_archive_page(html: str) -> List[PuzzleMeta]:
         try:
             date = datetime.strptime(date_text, "%B %Y")
         except ValueError:
-            # Skip malformed dates to avoid poisoning downstream logic.
+            # Ignore records whose dates cannot be parsed.
             continue
 
         puzzle_name = name_tag.get_text(strip=True)

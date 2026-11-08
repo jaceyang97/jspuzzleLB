@@ -16,9 +16,9 @@ const FULL_TO_SHORT = new Map(
 /**
  * Per-puzzle placement for a solver. `rank` is the 1-based position in the
  * source JSON `solvers[]` array, which Jane Street publishes in submission
- * order. `percentile` is 100 × (1 − (rank − 1) / (total − 1)) — higher is
- * better. It is `null` when total < 2, since a single-solver puzzle has
- * no meaningful percentile.
+ * order. `percentile` is 100 × (1 − (rank − 1) / (total − 1)), ranging
+ * from 0 (last) to 100 (first). It is `null` when total < 2, since there is
+ * no comparison with another solver.
  */
 export interface SolverPlacement {
   puzzle: Puzzle;
@@ -28,9 +28,9 @@ export interface SolverPlacement {
 }
 
 /**
- * Find the solver's 1-based placement inside `puzzle.solvers`, or `null`
- * if they are not in the list. Placement is derived solely from JSON
- * order — never from name, date, or any other sort.
+ * Find the solver's 1-based position in the published list, or `null`
+ * if absent. Use the source JSON order, which represents submission
+ * order.
  */
 export const findSolverPlacement = (
   solverName: string,
@@ -51,8 +51,8 @@ export const findSolverPlacement = (
  * total < 2 are excluded (no defined percentile). Returns `null` if no
  * puzzle in the input qualifies.
  *
- * Formula: 100 × (1 − (rank − 1) / (total − 1)), averaged. Higher is
- * better; 100 = always first, 0 = always last.
+ * A mean of 100 means first in every qualifying list; 0 means last
+ * in every qualifying list.
  */
 export const computeAveragePercentile = (
   placements: SolverPlacement[],
@@ -85,7 +85,7 @@ export const competitionRanks = (
 };
 
 /**
- * Rank movement vs. the standings before the newest puzzle month.
+ * Rank movement since the standings before the newest puzzle month.
  * Positive = moved up, negative = moved down, `null` = not ranked last
  * month (first solve happened this month). Competition ranks are used on
  * both snapshots so ties never produce noise from arbitrary ordering.

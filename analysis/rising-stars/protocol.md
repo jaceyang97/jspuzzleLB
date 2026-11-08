@@ -4,9 +4,9 @@ Fixed before examining the validation results, 6 September 2026.
 
 ## Question
 
-Which eligibility and ordering rules find recently appearing names that continue solving published puzzles, while surfacing them early and keeping a useful selection of names?
+Which eligibility and ordering rules select recent names that keep solving published puzzles? Compare later participation, record age and the number of distinct names shown.
 
-Published solves are the observable outcome. The archive does not reveal attempts, effort, identity, or latent ability. Accordingly, future published participation is a measurable proxy for the requested newcomer "alpha", not a measurement of innate talent.
+Published solves are the observable outcome. The archive does not reveal attempts, effort, identity, or latent ability. The study uses future published participation as a proxy for the requested newcomer "alpha". It does not measure innate talent.
 
 ## Opportunity and identity definitions
 

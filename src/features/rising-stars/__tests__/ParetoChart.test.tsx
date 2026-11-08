@@ -55,15 +55,15 @@ test('keyboard navigation visits distinct results, preserves selection across ax
   expect(inspector).toHaveAttribute('aria-valuemax', '3');
   expect(within(details).getByText('2 rules give the same results')).toBeInTheDocument();
   fireEvent.keyDown(inspector, { key: 'ArrowRight' });
-  expect(details).toHaveTextContent('Conservative solve rate');
+  expect(details).toHaveTextContent('Wilson lower bound');
   fireEvent.keyDown(inspector, { key: 'ArrowLeft' });
   expect(details).toHaveTextContent('12 months');
   fireEvent.keyDown(inspector, { key: 'Home' });
   expect(details).toHaveTextContent('Total solves');
   fireEvent.keyDown(inspector, { key: 'End' });
-  expect(details).toHaveTextContent('Conservative solve rate');
+  expect(details).toHaveTextContent('Wilson lower bound');
   fireEvent.click(screen.getByRole('button', { name: 'Names/year' }));
-  expect(details).toHaveTextContent('Conservative solve rate');
+  expect(details).toHaveTextContent('Wilson lower bound');
   expect(inspector).toHaveAttribute('aria-valuenow', '1');
   fireEvent.click(within(details).getByRole('button', { name: 'Our choice' }));
   expect(details).toHaveTextContent('12 months');
@@ -79,7 +79,7 @@ test('tap selects the nearest point and hiding a selected sparse rule returns to
     const inspector = screen.getByRole('slider');
     const point = container.querySelector('[data-config-id="long"]')!;
     fireEvent.click(inspector, { clientX: Number(point.getAttribute('cx')) - 2, clientY: Number(point.getAttribute('cy')) + 2 });
-    expect(screen.getByRole('region', { name: 'Selected rule details' })).toHaveTextContent('Conservative solve rate');
+    expect(screen.getByRole('region', { name: 'Selected rule details' })).toHaveTextContent('Wilson lower bound');
     expect(inspector).toHaveFocus();
     fireEvent.click(screen.getByRole('checkbox', { name: 'Show rules with fewer names' }));
     fireEvent.keyDown(inspector, { key: 'Home' });
