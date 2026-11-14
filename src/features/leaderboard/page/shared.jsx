@@ -136,11 +136,24 @@ export function ProfileContent({ data, name, onClose }) {
 
 export function ProfileDialog({ data, name, onClose }) {
   const dialog = useRef(null);
+  // Keep the last profile mounted while the dialog plays its exit.
+  const [shown, setShown] = useState(name);
   useEffect(() => {
-    if (name && !dialog.current.open) dialog.current.showModal();
-    if (!name && dialog.current.open) dialog.current.close();
+    const element = dialog.current;
+    if (name) {
+      setShown(name);
+      if (!element.open) { element.showModal(); element.getBoundingClientRect(); }
+      element.dataset.state = 'open';
+      return undefined;
+    }
+    if (!element.open) { setShown(null); return undefined; }
+    element.dataset.state = 'closing';
+    const finish = () => { element.close(); setShown(null); };
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) { finish(); return undefined; }
+    const timer = window.setTimeout(finish, 140);
+    return () => window.clearTimeout(timer);
   }, [name]);
-  return <dialog ref={dialog} className="lab-profile-dialog" aria-label={name ? `Profile for ${name}` : 'Solver profile'} onCancel={(event) => { event.preventDefault(); onClose(); }} onClick={(event) => { if (event.target === dialog.current) { const rect = dialog.current.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose(); } }}>
-    {name && <ProfileContent key={name} data={data} name={name} onClose={onClose} />}
+  return <dialog ref={dialog} className="lab-profile-dialog" aria-label={shown ? `Profile for ${shown}` : 'Solver profile'} onCancel={(event) => { event.preventDefault(); onClose(); }} onClick={(event) => { if (event.target === dialog.current) { const rect = dialog.current.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose(); } }}>
+    {shown && <ProfileContent key={shown} data={data} name={shown} onClose={onClose} />}
   </dialog>;
 }

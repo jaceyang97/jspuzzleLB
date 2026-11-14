@@ -33,13 +33,13 @@
 .selected-puzzles-summary > div:nth-child(2) { align-items: flex-end; }
 .selected-puzzles-summary strong { color: var(--text-primary); font-size: 17px; line-height: 20px; font-weight: 600; }
 .selected-puzzles-summary span { color: var(--text-tertiary); font-size: 12px; line-height: 16px; }
-.selected-puzzle-viewport:focus-visible { outline: 2px solid var(--accent-secondary); outline-offset: 4px; }
+.selected-puzzle-viewport:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; }
 .selected-puzzle-list { list-style: none; padding: 0; margin: 0; }
 .selected-puzzle-entry { position: relative; display: grid; grid-template-columns: var(--puzzle-columns); align-items: center; gap: 8px; min-width: 0; min-height: 44px; padding-block: 10px; border-bottom: var(--flow-hairline) solid var(--border-primary); }
 .selected-puzzle-name { min-width: 0; }
 .selected-puzzle-name > a { display: block; min-height: 20px; color: var(--text-primary); font-size: 14px; font-weight: 400; line-height: 20px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .selected-puzzle-name > a::after { content: ''; position: absolute; inset: 0; }
-.selected-puzzle-entry:has(a:focus-visible) { outline: 2px solid var(--accent-secondary); outline-offset: -2px; }
+.selected-puzzle-entry:has(a:focus-visible) { outline: 2px solid var(--focus-ring); outline-offset: -2px; }
 .selected-puzzle-name > a:focus-visible { outline: none; }
 .selected-puzzle-entry > .ui-tooltip-anchor { position: relative; z-index: 1; justify-self: end; }
 .selected-puzzle-date { color: var(--text-tertiary); font-size: 12px; line-height: 20px; text-align: end; white-space: nowrap; }
@@ -50,9 +50,9 @@
 .selected-project-feedback { position: relative; display: block; flex: 1; min-width: 0; min-height: 64px; padding: 0; border: 1px solid var(--border-primary); border-radius: var(--radius-control); }
 .selected-project-feedback textarea { display: block; width: 100%; height: 100%; min-height: 62px; margin: 0; padding: 8px 58px 8px 10px; border: 0; border-radius: inherit; background: transparent; color: var(--text-primary); font: inherit; font-size: 14px; line-height: 20px; resize: none; }
 .selected-project-feedback textarea::placeholder { color: var(--text-tertiary); opacity: 1; }
-.selected-project-feedback:has(textarea:focus-visible) { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+.selected-project-feedback:has(textarea:focus-visible) { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .selected-project-feedback textarea:focus-visible { outline: none; }
-.selected-project-feedback > button { position: absolute; right: 7px; bottom: 7px; width: 40px; height: 28px; padding: 0; border: 0; border-radius: var(--radius-control); background: var(--text-primary); color: var(--bg-secondary); font: inherit; font-size: 12px; line-height: 16px; font-weight: 500; }
+.selected-project-feedback > button { position: absolute; right: 7px; bottom: 7px; width: 40px; height: 28px; padding: 0; border: 0; border-radius: 7px; background: var(--text-primary); color: var(--bg-secondary); font: inherit; font-size: 12px; line-height: 16px; font-weight: 500; }
 .selected-project-feedback > button::before { position: absolute; inset: -8px -2px; content: ''; }
 .selected-project-feedback > button:disabled { background: var(--bg-hover-strong); color: var(--text-tertiary); cursor: not-allowed; }
 .selected-project-trap { position: absolute; width: 1px; height: 1px; padding: 0; border: 0; opacity: 0; pointer-events: none; }
@@ -60,8 +60,8 @@
 .selected-project-credit { color: var(--text-secondary); }
 .selected-project-credit > a { color: var(--text-primary); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: .2em; }
 .selected-project-disclaimer { flex: none; margin: 0; color: var(--text-tertiary); font-size: 12px; line-height: 17px; text-wrap: pretty; }
-.central-flow .flow-layout[data-rail-density='compact'] .selected-project-disclaimer { font-size: 11px; line-height: 15px; }
-.selected-project-learn:focus-visible, .selected-project-credit > a:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; border-radius: 2px; }
+.central-flow .flow-layout[data-rail-density='compact'] .selected-project-disclaimer { font-size: 12px; line-height: 15px; }
+.selected-project-learn:focus-visible, .selected-project-credit > a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: var(--radius-xs); }
 @media (hover: hover) and (pointer: fine) {
   .selected-project-learn:hover { text-decoration: underline; text-underline-offset: 3px; }
 }

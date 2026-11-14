@@ -2,8 +2,8 @@
 .central-flow .flow-scope .lab-tabs button { font-weight: 500; }
 .central-flow { --flow-tools-height: 0px; --flow-name-base: clamp(28px, 3.1vw, 40px); --flow-rank-base: 32px; --flow-score-base: 28px; --flow-change-base: 16px; --flow-rank-gap: 10px; --flow-rank-offset: 0px; }
 .flow-tools-row { display: contents; }
-.flow-tools-row > .flow-scope { grid-column: 1; grid-row: 1; position: sticky; top: 12px; z-index: 15; min-width: 0; min-height: 48px; display: flex; align-items: center; background: var(--bg-secondary); }
-.central-flow .flow-tools-row .lab-search { grid-column: 3; grid-row: 1; position: sticky; top: 12px; z-index: 15; width: 100%; max-width: none; background: var(--bg-secondary); }
+.flow-tools-row > .flow-scope { grid-column: 1; grid-row: 1; position: sticky; top: 12px; z-index: var(--z-toolbar); min-width: 0; min-height: 48px; display: flex; align-items: center; background: var(--bg-secondary); }
+.central-flow .flow-tools-row .lab-search { grid-column: 3; grid-row: 1; position: sticky; top: 12px; z-index: var(--z-toolbar); width: 100%; max-width: none; background: var(--bg-secondary); }
 .central-flow .flow-tools-row .lab-search-field { height: 48px; }
 .central-flow .flow-tools-row .lab-search input { height: 46px; }
 .central-flow .flow-layout { grid-template-rows: 48px auto; row-gap: 20px; padding-top: 24px; }
@@ -42,7 +42,17 @@
 .central-flow .arena-row[data-rank='2'] { --flow-row-scale: 1.4142135623730951; }
 .central-flow .arena-row[data-rank='3'] { --flow-row-scale: 1.1547005383792517; }
 .central-flow .arena-person { position: relative; padding-block: 24px; padding-inline: max(14px, calc(var(--flow-row-rank-size) * var(--flow-rank-digits) * .3 + var(--flow-row-change-size) * var(--flow-change-characters) * .6 + var(--flow-rank-gap) + var(--flow-rank-offset) + 12px - var(--arena-side) / 2)); }
-.central-flow .arena-row[data-rank] .arena-name { font-size: var(--flow-row-name-size); font-weight: 700; }
+.central-flow .arena-person { container-type: inline-size; }
+/* Names shrink until their longest word fits on one line (.64em is a wide bold glyph).
+   Podium rows also fit the longest word above them, so a lower rank never renders larger,
+   but they never drop below a regular row unless their own word needs it. */
+.central-flow .arena-row[data-rank] .arena-name {
+  --name-fit-own: calc(100cqi / (var(--name-own-word, 8) * .64));
+  --name-fit-podium: calc(100cqi / (var(--name-longest-word, 8) * .64));
+  font-size: max(min(var(--flow-name-base), var(--name-fit-own)), min(var(--flow-row-name-size), var(--name-fit-podium)));
+  font-weight: 700;
+  overflow-wrap: break-word;
+}
 .flow-winner-crown {
   --crown-ink: var(--text-primary);
   --crown-secondary: var(--text-secondary);
@@ -89,12 +99,16 @@
 @media (hover: hover) and (pointer: fine) {
   .central-flow .arena-row-target:hover .flow-record-context { opacity: 1; }
 }
+/* Touch has no hover, so the context is always shown in its reserved space. */
+@media (hover: none), (pointer: coarse) {
+  .central-flow .flow-record-context { opacity: 1; transition: none; }
+}
 @media (max-width: 1400px) {
   .central-flow { --arena-side: 104px; }
 }
 @media (max-width: 1120px), (max-height: 700px) {
   .central-flow { --flow-tools-height: 118px; }
-  .flow-tools-row { position: sticky; top: 0; z-index: 15; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 16px; min-height: 118px; padding-block: 8px; background: var(--bg-secondary); }
+  .flow-tools-row { position: sticky; top: 0; z-index: var(--z-toolbar); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 16px; min-height: 118px; padding-block: 8px; background: var(--bg-secondary); }
   .flow-tools-row > .flow-scope { grid-column: 1 / -1; grid-row: 1; position: static; min-height: 44px; justify-content: center; }
   .central-flow .flow-tools-row .lab-search { grid-column: 1; grid-row: 2; position: static; }
   .central-flow .flow-ranking-tabs { justify-content: center; }

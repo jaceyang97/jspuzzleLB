@@ -61,37 +61,6 @@
   outline-offset: 2px;
 }
 
-.github-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-primary);
-  border-radius: 50%;
-  transition: opacity 0.2s ease, transform 0.25s var(--ease-out);
-}
-
-.github-icon {
-  width: 28px;
-  height: 28px;
-  fill: var(--github-fill);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .github-link:hover {
-    opacity: 0.75;
-  }
-}
-
-.github-link:active {
-  transform: scale(0.92);
-  transition-duration: 0.1s;
-}
-
-.github-link:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
-}
-
 /* Theme toggle */
 .theme-toggle {
   display: flex;
@@ -141,77 +110,7 @@
   }
 }
 
-.theme-icon-wrapper {
-  position: relative;
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.theme-icon {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1),
-              transform 0.3s cubic-bezier(0.2, 0, 0, 1),
-              filter 0.3s cubic-bezier(0.2, 0, 0, 1);
-}
-
-.theme-icon.active {
-  opacity: 1;
-  transform: scale(1);
-  filter: blur(0px);
-}
-
-.theme-icon.inactive {
-  opacity: 0;
-  /* Never from scale(0): keep a visible starting shape */
-  transform: scale(0.85);
-  filter: blur(4px);
-  pointer-events: none;
-}
-
 /* Data date & credits */
-.data-date {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: 12px;
-  color: var(--text-tertiary);
-}
-
-.data-date-label {
-  font-weight: 500;
-}
-
-.data-date-value {
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.creator-text {
-  font-size: 12px;
-  color: var(--text-tertiary);
-  font-weight: 400;
-  border-left: 1px solid var(--border-primary);
-  padding-left: 16px;
-}
-
-.creator-text .author-link {
-  color: var(--text-tertiary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .creator-text .author-link:hover {
-    color: var(--accent-primary);
-  }
-}
 
 /* Intro tooltip */
 /* Materializes from its trigger: scale + fade from the top-left
@@ -225,7 +124,7 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-popover);
   padding: 16px;
-  z-index: 1000;
+  z-index: var(--z-tooltip);
   font-size: 14px;
   line-height: 1.5;
   color: var(--text-secondary);
@@ -307,122 +206,16 @@
 }
 
 /* Stats cards */
-.stats-cards {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  gap: 6px;
-  width: 100%;
-}
 
 /* Static statistics. */
-.stats-card {
-  background-color: var(--bg-tertiary);
-  border-radius: 10px;
-  padding: 10px 12px;
-  text-align: center;
-  flex: 1;
-  min-width: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.stats-card h3 {
-  margin: 0 0 4px;
-  font-size: 12px;
-  color: var(--text-tertiary);
-  font-weight: 500;
-}
-
-.stat-value {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--text-primary);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
 
 /* Section headers */
-.dashboard-item h2 {
-  margin: 0 0 10px;
-  font-size: 15px;
-  color: var(--text-primary);
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-secondary);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-secondary);
-}
-
-.section-header h2 {
-  margin: 0;
-  padding-bottom: 0;
-  border-bottom: none;
-}
 
 /* Search input */
-.search-container {
-  display: flex;
-  align-items: center;
-}
 
 /* Filled search field, borderless until focus */
-.search-input {
-  padding: 7px 12px;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  background-color: var(--bg-tertiary);
-  color: var(--text-primary);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-  width: 180px;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .search-input:hover {
-    background-color: var(--bg-hover-strong);
-  }
-}
-
-.search-input:focus {
-  outline: none;
-  background-color: var(--bg-secondary);
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px var(--accent-tint);
-}
-
-.search-input::placeholder {
-  color: var(--text-muted);
-}
 
 /* Tables */
-.dashboard-table {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin-top: 4px;
-  min-height: 200px;
-  max-height: calc(100% - 30px);
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--border-secondary);
-  border-radius: 10px;
-  background-color: var(--bg-secondary);
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-}
 
 .leaderboard-table.mini {
   width: 100%;
@@ -478,19 +271,7 @@
   }
 }
 
-.solver-name {
-  display: inline-block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: middle;
-}
-
 /* Header cells hosting a tooltip must not clip it (the ± column) */
-.leaderboard-table.mini th.th-has-tooltip {
-  overflow: visible;
-}
 
 /* Rank movement vs. last month (Top Solvers "Change" column) */
 .rank-change {
@@ -609,94 +390,12 @@
 }
 
 /* Solver distribution chart */
-.solver-distribution {
-  background-color: var(--bg-tertiary);
-  border-radius: 10px;
-  padding: 10px 12px;
-  margin-bottom: 8px;
-}
-
-.distribution-header h3 {
-  margin: 0 0 8px 0;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.distribution-chart {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 6px;
-}
-
-.distribution-bar {
-  display: flex;
-  height: 22px;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: inset 0 1px 3px var(--shadow-md);
-}
-
-.bar-segment {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  min-width: 40px;
-}
-
-.bar-segment.one-puzzle { background: var(--bar-one-puzzle); }
-.bar-segment.two-nine { background: var(--bar-two-nine); }
-.bar-segment.ten-plus { background: var(--bar-ten-plus); }
-
-.segment-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 10px;
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  padding: 0 4px;
-  letter-spacing: 0.02em;
-}
-
-.distribution-legend {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 12px;
-}
 
 .legend-item {
   display: inline-flex;
   align-items: center;
   gap: 5px;
   cursor: help;
-}
-
-.legend-color {
-  width: 9px;
-  height: 9px;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
-.legend-color.one-puzzle { background: var(--bar-one-puzzle); }
-.legend-color.two-nine { background: var(--bar-two-nine); }
-.legend-color.ten-plus { background: var(--bar-ten-plus); }
-
-.legend-text {
-  font-size: 11px;
-  color: var(--text-tertiary);
-  font-weight: 500;
-  white-space: nowrap;
 }
 
 /* Charts */
@@ -750,30 +449,6 @@
 }
 
 /* Tooltips */
-.custom-tooltip {
-  background-color: var(--bg-secondary);
-  padding: 6px 9px;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-popover);
-  font-size: 11px;
-  z-index: 100;
-}
-
-.custom-tooltip p {
-  margin: 0;
-  font-size: 11px;
-  line-height: 1.4;
-}
-
-.custom-tooltip .label {
-  font-weight: bold;
-  margin-bottom: 2px;
-  color: var(--text-primary);
-}
-
-.custom-tooltip .value {
-  color: var(--text-secondary);
-}
 
 /* Unified tooltip primitive (src/components/Tooltip.tsx). One look and one
    behavior for every explanatory tooltip: delayed first open, instant for
@@ -790,15 +465,6 @@
 h2.ui-tooltip-anchor,
 h3.ui-tooltip-anchor {
   display: block;
-}
-
-.title-with-tooltip {
-  cursor: help;
-}
-.title-tooltip-text {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 /* The heading itself must not clip the tooltip; ellipsis moved to the
    inner text span above */
@@ -830,7 +496,7 @@ h3.ui-tooltip-anchor {
   width: max-content;
   max-width: min(320px, calc(100vw - 32px));
   box-shadow: 0 2px 8px var(--shadow-lg);
-  z-index: 1500;
+  z-index: var(--z-tooltip);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -877,46 +543,6 @@ h3.ui-tooltip-anchor {
 /* Skeleton loading
    Renders the dashboard shell immediately with shimmering
    placeholder blocks, so the page paints fast while data loads. */
-.skeleton {
-  display: block;
-  background: linear-gradient(
-    90deg,
-    var(--bg-tertiary) 0%,
-    var(--bg-hover-strong) 50%,
-    var(--bg-tertiary) 100%
-  );
-  background-size: 200% 100%;
-  border-radius: 4px;
-  /* Constant looping motion reads best at a steady speed */
-  animation: skeleton-shimmer 1.4s linear infinite;
-}
-
-@keyframes skeleton-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skeleton { animation: none; }
-}
-
-.skeleton-stat-label {
-  height: 12px;
-  width: 60%;
-  margin: 0 auto 8px;
-}
-
-.skeleton-stat-value {
-  height: 22px;
-  width: 50%;
-  margin: 0 auto;
-}
-
-.skeleton-distribution {
-  height: 90px;
-  width: 100%;
-  margin: 6px 0;
-}
 
 .skeleton-chart {
   height: 100%;
@@ -926,109 +552,26 @@ h3.ui-tooltip-anchor {
   margin-bottom: 8px;
 }
 
-.skeleton-heading {
-  height: 18px;
-  width: 60%;
-  margin-bottom: 10px;
-}
-
-.skeleton-search {
-  height: 30px;
-  width: 180px;
-}
-
-.skeleton-banner {
-  height: 14px;
-  width: 280px;
-  max-width: 60%;
-}
-
-.skeleton-table {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border: 1px solid var(--border-secondary);
-  border-radius: 10px;
-  padding: 8px;
-  overflow: hidden;
-  min-height: 200px;
-}
-
 .skeleton-row {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.skeleton-row-head .skeleton {
-  opacity: 0.7;
-}
-
-.skeleton-rank { height: 12px; width: 24px; flex-shrink: 0; }
-.skeleton-name { height: 12px; flex: 1; }
-.skeleton-num  { height: 12px; width: 48px; flex-shrink: 0; }
-
 /* Responsive component overrides */
 
 @media (max-width: 768px) {
-  .dashboard-table {
-    max-height: 280px;
-    height: auto;
-    min-height: 200px;
-    overflow-y: auto;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .github-icon { width: 24px !important; height: 24px !important; }
   .js-nav-link { display: none; }
-  .data-date { font-size: 11px; flex-direction: row; gap: 4px; }
-  .data-date-label::after { content: ':'; }
-  .creator-text { display: none; }
   .theme-toggle { display: none; }
   
   /* Section header */
-  .section-header { flex-direction: column; align-items: stretch; gap: 8px; }
-  .search-input { width: 100%; max-width: none; font-size: 16px; padding: 8px 12px; }
-  .search-container { width: 100%; }
   
   /* Distribution chart */
-  .solver-distribution { padding: 10px; margin-bottom: 8px; }
-  .distribution-header h3 { font-size: 13px; margin-bottom: 8px; }
-  .distribution-bar { height: 28px; }
-  .segment-label { font-size: 10px; }
-  .bar-segment { min-width: 30px; }
-  .distribution-legend { 
-    flex-direction: row; 
-    flex-wrap: wrap;
-    gap: 6px 12px; 
-    justify-content: flex-start;
-  }
   .legend-item { gap: 4px; }
-  .legend-color { width: 10px; height: 10px; }
-  .legend-text { font-size: 10px; }
   
   /* Stats cards */
-  .stats-cards { 
-    flex-direction: row; 
-    gap: 8px; 
-    margin-bottom: 10px; 
-  }
-  .stats-card { 
-    flex: 1; 
-    min-width: 0; 
-    padding: 10px 12px; 
-  }
-  .stats-card h3 { font-size: 12px; margin-bottom: 3px; }
-  .stat-value { font-size: 20px; }
   
   /* Stats-charts column specific styling */
-  .stats-charts-column {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
   
   /* Tables */
   .leaderboard-table.mini { font-size: 12px; min-width: 100%; }
@@ -1055,15 +598,6 @@ h3.ui-tooltip-anchor {
   .chart-container.mini h3 { font-size: 12px; margin-bottom: 4px; }
   
   /* Ensure proper stacking */
-  .solver-distribution {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .dashboard-table {
-    position: relative;
-    z-index: 1;
-  }
   
   /* Puzzle table - show ~5 rows with scroll */
   .puzzle-table-container {
@@ -1078,25 +612,12 @@ h3.ui-tooltip-anchor {
 }
 
 @media (max-width: 480px) {
-  .github-icon { width: 22px !important; height: 22px !important; }
-  .github-link { min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
   .js-nav-link { display: none; }
-  .data-date { font-size: 10px; text-align: left; align-items: flex-start; flex-direction: row; gap: 4px; }
-  .data-date-label { display: none; }
-  .creator-text { display: none; }
   .theme-toggle { display: none; }
   
   /* Stats cards - keep side by side */
-  .stats-cards { flex-direction: row; gap: 8px; }
-  .stats-card { flex: 1; min-width: 0; padding: 8px 10px; }
-  .stats-card h3 { font-size: 12px; }
-  .stat-value { font-size: 18px; }
   
   /* Tables - limit height and make scrollable */
-  .dashboard-table { 
-    max-height: 240px;
-    min-height: 180px; 
-  }
   .leaderboard-table.mini { font-size: 11px; }
   .leaderboard-table.mini th,
   .leaderboard-table.mini td { padding: 8px 4px; }
@@ -1131,68 +652,18 @@ h3.ui-tooltip-anchor {
   .puzzle-table th { height: 20px; }
   
   /* Distribution chart */
-  .solver-distribution { padding: 10px; margin-bottom: 8px; }
-  .distribution-bar { height: 26px; }
-  .segment-label { font-size: 9px; }
-  .distribution-legend { 
-    flex-direction: row; 
-    flex-wrap: wrap;
-    gap: 4px 10px; 
-  }
-  .legend-text { font-size: 9px; }
 }
 
 /* Pulsing animation for "Ongoing" indicator in Solvers Growth chart */
-@keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
-}
-.pulsing-dot, .pulsing-text {
-  animation: pulse 1s infinite ease-in-out;
-}
 
 /* CLICKABLE ROW. Entire <tr> opens the solver profile.
    Larger click target than just the name text. */
-.leaderboard-table.mini tr.clickable-row {
-  cursor: pointer;
-}
-@media (hover: hover) and (pointer: fine) {
-  .leaderboard-table.mini tr.clickable-row:hover .solver-name {
-    color: var(--accent-primary);
-  }
-}
-.leaderboard-table.mini tr.clickable-row:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: -2px;
-}
-.leaderboard-table.mini tr.clickable-row:active {
-  background-color: var(--bg-hover-strong);
-}
 
 /* SOLVER PROFILE MODAL. Compact profile card */
 /* Modal task: dim + blur the scrim to push the dashboard back.
    Enter/exit are transitions (not keyframes) so rapid open/close
    retargets smoothly instead of restarting; the exit retraces the
    entry path, just faster (asymmetric timing). */
-.solver-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
-  backdrop-filter: blur(8px) saturate(120%);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.2s ease; /* exit */
-}
-.solver-modal-backdrop[data-state="open"] {
-  opacity: 1;
-  transition: opacity 0.25s ease; /* enter */
-}
 .solver-modal {
   position: relative;
   background-color: var(--bg-secondary);
@@ -1208,31 +679,13 @@ h3.ui-tooltip-anchor {
   opacity: 0;
   transition: transform 0.2s var(--ease-out), opacity 0.2s var(--ease-out); /* exit */
 }
-.solver-modal-backdrop[data-state="open"] .solver-modal {
-  transform: none;
-  opacity: 1;
-  transition: transform 0.32s var(--ease-sheet), opacity 0.32s var(--ease-sheet); /* enter */
-}
 
 /* Sheet grab handle. Visible only in bottom-sheet mode */
-.sheet-handle {
-  display: none;
-  width: 36px;
-  height: 5px;
-  border-radius: 999px;
-  background-color: var(--bg-hover-strong);
-  margin: 8px auto 0;
-  flex-shrink: 0;
-}
 
 /* On small screens the profile becomes a bottom sheet: it enters up from
    the bottom edge, exits back down the same path, and can be flicked away
    (drag logic in SolverProfileModal). */
 @media (max-width: 640px) {
-  .solver-modal-backdrop {
-    align-items: flex-end;
-    padding: 0;
-  }
   .solver-modal {
     width: 100%;
     max-height: 88vh;
@@ -1240,115 +693,12 @@ h3.ui-tooltip-anchor {
     opacity: 1; /* the sheet slides rather than fades */
     transform: translateY(100%);
   }
-  .solver-modal-backdrop[data-state="open"] .solver-modal {
-    transform: translateY(0);
-  }
-  .sheet-handle {
-    display: block;
-  }
-  .solver-modal-drag-zone {
-    touch-action: none; /* the zone drags; the list below still scrolls */
-  }
-}
-.solver-modal-close-wrap {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
 }
 /* Right-align the close tooltip so the modal's overflow doesn't clip it */
-.solver-modal-close-wrap .ui-tooltip {
-  left: auto;
-  right: 0;
-  transform: translateY(-3px) scale(0.97);
-}
-.solver-modal-close-wrap .ui-tooltip[data-open] {
-  transform: translateY(0) scale(1);
-}
-.solver-modal-close-wrap .ui-tooltip::before {
-  left: auto;
-  right: 9px;
-  transform: none;
-}
-.solver-modal-close {
-  background-color: var(--bg-tertiary);
-  border: none;
-  color: var(--text-tertiary);
-  font-size: 18px;
-  line-height: 1;
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.25s var(--ease-out);
-}
-@media (hover: hover) and (pointer: fine) {
-  .solver-modal-close:hover {
-    background-color: var(--bg-hover-strong);
-    color: var(--text-primary);
-  }
-}
-.solver-modal-close:active {
-  transform: scale(0.9);
-  transition-duration: 0.1s;
-}
-.solver-modal-close:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
-}
 
 /* Profile-card identity: avatar centered, name and meta below */
-.solver-modal-identity {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 22px 20px 14px;
-  gap: 10px;
-}
-.solver-modal-avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25),
-              inset 0 -2px 4px rgba(0, 0, 0, 0.12);
-}
-.solver-modal-title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
-  word-break: break-word;
-  line-height: 1.25;
-}
-.solver-modal-eyebrow {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-tertiary);
-  letter-spacing: 0.02em;
-}
 
 /* Two statistics share a centered row. */
-.solver-modal-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  padding: 6px 20px 16px;
-  border-bottom: 1px solid var(--border-secondary);
-}
-.solver-modal-stats.three {
-  grid-template-columns: 1fr 1fr 1fr;
-}
 .solver-stat-info {
   display: inline-flex;
   align-items: center;
@@ -1383,98 +733,12 @@ h3.ui-tooltip-anchor {
   border-radius: 8px;
   background-color: var(--bg-tertiary);
 }
-.solver-stat-value {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text-primary);
-  font-variant-numeric: tabular-nums;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-}
-.solver-stat-label {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-top: 4px;
-}
-
-.solver-modal-section-label {
-  padding: 12px 20px 6px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-tertiary);
-}
-.solver-modal-list {
-  overflow-y: auto;
-  padding: 0 16px 16px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-}
-.solver-modal-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  font-variant-numeric: tabular-nums;
-}
-.solver-modal-table td {
-  padding: 6px 4px;
-  border-bottom: 1px solid var(--border-secondary);
-  color: var(--text-secondary);
-}
-.solver-modal-table tr:last-child td {
-  border-bottom: none;
-}
-.solver-modal-date {
-  width: 86px;
-  white-space: nowrap;
-  color: var(--text-tertiary);
-  font-size: 12px;
-}
-.solver-modal-place {
-  width: 84px;
-  white-space: nowrap;
-  text-align: right;
-  color: var(--text-tertiary);
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-}
-.solver-modal-state {
-  padding: 22px;
-  text-align: center;
-  color: var(--text-tertiary);
-  font-size: 13px;
-}
-.solver-modal-state.error {
-  color: var(--danger);
-}
-
-@media (max-width: 480px) {
-  .solver-modal-title {
-    font-size: 16px;
-  }
-  .solver-stat-value {
-    font-size: 17px;
-  }
-}
 
 /* Growth chart tabs. */
 .growth-chart-tabs {
   position: relative;
 }
 /* Tabs wrap below the heading on narrow panels. */
-.growth-tabs-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 4px 6px;
-  padding: 0 2px 4px 0;
-  min-width: 0;
-}
 .growth-chart-tabs h3 {
   margin: 0;
   font-size: 13px;
@@ -1488,10 +752,6 @@ h3.ui-tooltip-anchor {
   flex: 1 0 auto;
   max-width: 100%;
   min-width: 0;
-}
-.growth-tabs-strip {
-  flex-shrink: 0;
-  margin-left: auto; /* right-aligned when wrapped onto its own row */
 }
 .growth-tab-panel {
   flex: 1;
@@ -1509,61 +769,30 @@ h3.ui-tooltip-anchor {
 /* Inline toolbar above the chart body content (used by the YoY tab for the
    Recent / All years toggle). Sits in normal flow so it never overlaps the
    tab strip above. */
-.growth-chart-toolbar {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 2px 4px;
-  flex-shrink: 0;
-}
-@media (max-width: 768px) {
-  .growth-tabs-header { gap: 4px; }
-}
 
 /* Accessibility preferences
    Reduced motion ≠ no feedback: keep opacity fades,
    drop movement, scaling, and looping animation. */
 @media (prefers-reduced-motion: reduce) {
-  .pulsing-dot,
-  .pulsing-text {
-    animation: none;
-    opacity: 1;
-  }
 
-  .logo-link:hover,
-  .logo-link:active,
   .theme-toggle:hover,
   .theme-toggle:active,
   .theme-toggle:hover svg,
   .js-nav-link:active,
-  .github-link:active,
   .banner-dismiss:active,
-  .solver-modal-close:active,
   .intro-container:active .intro-button {
     transform: none;
   }
 
-  .theme-icon {
-    transition: opacity 0.2s ease;
-    transform: none !important;
-    filter: none !important;
-  }
-
   /* Modal/sheet: cross-fade in place instead of translating */
-  .solver-modal,
-  .solver-modal-backdrop[data-state="open"] .solver-modal {
+  .solver-modal {
     transform: none;
     opacity: 0;
     transition: opacity 0.2s ease;
   }
-  .solver-modal-backdrop[data-state="open"] .solver-modal {
-    opacity: 1;
-  }
   @media (max-width: 640px) {
     .solver-modal {
       opacity: 0;
-    }
-    .solver-modal-backdrop[data-state="open"] .solver-modal {
-      opacity: 1;
     }
   }
 
@@ -1604,12 +833,6 @@ h3.ui-tooltip-anchor {
   .ui-tooltip {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
-  }
-
-  .solver-modal-backdrop {
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    background-color: rgba(0, 0, 0, 0.6);
   }
 }
 

@@ -44,7 +44,7 @@ test('exposes rank movement and singular puzzle counts in the active row layout'
   ];
   render(<SelectedRankedRows rows={rows} data={data} scope="top" onSelect={jest.fn()} start={1} total={2} />);
   expect(screen.getByRole('button', { name: 'Open profile for Ada, rank 1, 1 puzzle, Not ranked last month' })).toBeVisible();
-  expect(screen.getByLabelText('Down 2 since last month')).toHaveTextContent('-2');
+  expect(screen.getByLabelText('Down 2 since last month')).toHaveTextContent('−2');
   expect(screen.getByRole('button', { name: /Open profile for Morgan/ })).toHaveAccessibleDescription('Last seen Sep 2026');
 });
 

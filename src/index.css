@@ -84,10 +84,27 @@
   --radius-pill: 980px;
   --radius-card: 14px;
   --radius-control: var(--radius-card);
+  --radius-xs: 4px;
+  --radius-dialog: 20px;
+  --focus-ring: var(--text-primary);
+  --z-sticky: 10;
+  --z-toolbar: 15;
+  --z-aside: 19;
+  --z-floating: 20;
+  --z-popover: 30;
+  --z-tooltip: 40;
+  --z-skip: 50;
+  --mark-ink: #d30b26;
+  --backdrop-dialog: rgb(0 0 0 / .32);
+  --shadow-dialog: 0 0 0 1px rgb(0 0 0 / .05), 0 4px 12px rgb(0 0 0 / .08), 0 24px 80px rgb(0 0 0 / .2);
+  --shadow-chip: 0 1px 2px rgb(0 0 0 / .08), 0 6px 14px -4px rgb(0 0 0 / .2);
 }
 
 /* Dark theme */
 [data-theme="dark"] {
+  --mark-ink: #f2747b;
+  --shadow-dialog: 0 0 0 1px rgb(255 255 255 / .12);
+  --shadow-chip: 0 0 0 1px rgb(255 255 255 / .1), 0 6px 14px -4px rgb(0 0 0 / .6);
   color-scheme: dark;
 
   --bg-primary: #000000;
@@ -182,17 +199,6 @@ body {
 /* Theme color transitions. */
 body,
 .dashboard-layout,
-.dashboard-header,
-.dashboard-item,
-.dashboard-footer,
-.new-solvers-banner,
-.stats-card,
-.dashboard-table,
-.solver-distribution,
-.chart-container.mini {
-  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
-}
-
 ::selection {
   background-color: var(--accent-tint);
 }

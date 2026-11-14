@@ -13,7 +13,7 @@
 .leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list::-webkit-scrollbar { display: none; }
 .leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list > li { flex: none; width: max-content; max-width: 100%; transform-origin: top left; }
 .leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list .solver-chip { width: auto; max-width: min(280px, 100%); padding: 0; }
-.leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list .solver-chip-name { box-shadow: 0 1px 2px rgb(0 0 0 / .08), 0 6px 14px -4px rgb(0 0 0 / .2); }
+.leaderboard-header.lh--selected .current-puzzle-notice .banner-more-list .solver-chip-name { box-shadow: var(--shadow-chip); }
 .leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover .solver-chip-name { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
 .leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover[data-animate] .banner-more-list > li { transition: opacity 140ms cubic-bezier(.2,.7,.2,1), transform 140ms cubic-bezier(.2,.7,.2,1); }
 .leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover[data-state='closed'] .banner-more-list > li { opacity: 0; transform: translateY(-6px) scale(.97); }
@@ -21,15 +21,15 @@
 .leaderboard-header.lh--selected .current-puzzle-notice .header-activity-popover[data-animate][data-state='open'] .banner-more-list > li { transition-duration: 200ms; transition-delay: calc(var(--solver-index) * 18ms); }
 .leaderboard-header.lh--selected .current-puzzle-notice .header-activity-more { position: relative; min-height: 44px; padding: 0 11px; border-radius: var(--radius-control); background: transparent; color: var(--text-secondary); font-size: 13px; font-weight: 400; line-height: 18px; }
 .leaderboard-header.lh--selected .current-puzzle-notice .header-activity-more::after { content: ''; position: absolute; inset-inline: 0; top: 50%; height: 28px; border: 1px dashed var(--border-primary); border-radius: var(--radius-control); transform: translateY(-50%); box-sizing: border-box; pointer-events: none; }
-.leaderboard-header.lh--selected .current-puzzle-notice :is(.solver-chip-button, .header-activity-more):focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+.leaderboard-header.lh--selected .current-puzzle-notice :is(.solver-chip-button, .header-activity-more):focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .leaderboard-header.lh--selected .current-puzzle-notice .solver-chip-button:focus-visible .solver-chip-name { background: color-mix(in srgb, var(--accent-primary) 16%, var(--bg-primary)); border-color: var(--accent-primary); }
 .current-puzzle-notice--new .banner-tag { display: none; }
 .current-puzzle-context { display: inline-flex; align-items: center; flex: none; min-width: 0; min-height: 44px; max-width: 410px; gap: 8px; color: var(--text-primary); }
 .current-puzzle-context .lh-announcement-icon { margin-inline-end: 6px; }
-.current-puzzle-new { flex: none; color: var(--accent-primary); font-size: 11px; font-weight: 600; line-height: 16px; letter-spacing: .055em; white-space: nowrap; }
+.current-puzzle-new { flex: none; color: var(--accent-primary); font-size: 12px; font-weight: 600; line-height: 16px; letter-spacing: .055em; white-space: nowrap; }
 .current-puzzle-for { flex: none; color: var(--text-tertiary); font-size: 14px; }
 .current-puzzle-title { display: inline-flex; align-items: center; min-width: 0; min-height: 44px; color: var(--text-primary); font-size: 15px; font-weight: 500; line-height: 22px; text-decoration: underline; text-decoration-color: var(--text-muted); text-decoration-thickness: 1px; text-underline-offset: 4px; overflow-wrap: anywhere; touch-action: manipulation; }
-.current-puzzle-title:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 4px; border-radius: 3px; }
+.current-puzzle-title:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; border-radius: var(--radius-xs); }
 @container leaderboard-header (max-width: 600px) {
   .current-puzzle-content { flex-direction: column; gap: 6px; }
   .current-puzzle-context { max-width: 100%; }

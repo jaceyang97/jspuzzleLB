@@ -28,7 +28,7 @@
   .central-flow .flow-rail .flow-puzzles { gap: var(--flow-card-gap); }
   .central-flow .flow-layout[data-rail-density='compact'] .flow-rail { --flow-card-padding: 12px; --flow-card-gap: 8px; }
   .central-flow .flow-layout[data-rail-density='compact'] .selected-distribution-label { gap: 4px; font-size: 12px; }
-  .central-flow .flow-layout[data-rail-density='compact'] .selected-distribution-label > span { font-size: 11px; }
+  .central-flow .flow-layout[data-rail-density='compact'] .selected-distribution-label > span { font-size: 12px; }
   .central-flow .flow-layout[data-rail-density='compact'] .selected-distribution-count { font-size: 13px; }
   .central-flow .flow-layout[data-rail-density='compact'] .flow-trends .trend-header { min-height: 36px; }
   .central-flow .flow-layout[data-rail-density='compact'] .flow-trends .trend-view-select { min-height: 36px; height: 36px; }
@@ -37,7 +37,7 @@
 .central-flow:has(.flow-layout[data-rail-layout='dialog']) { --flow-tools-height: 118px; }
 .central-flow .flow-layout[data-rail-layout='dialog'] { display: block; max-width: 960px; margin-inline: auto; padding-top: 12px; }
 .central-flow .flow-layout[data-rail-layout='dialog'] > .flow-rail { display: none; }
-.central-flow .flow-layout[data-rail-layout='dialog'] .flow-tools-row { position: sticky; top: 0; z-index: 15; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 16px; min-height: 118px; padding-block: 8px; background: var(--bg-secondary); }
+.central-flow .flow-layout[data-rail-layout='dialog'] .flow-tools-row { position: sticky; top: 0; z-index: var(--z-toolbar); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 16px; min-height: 118px; padding-block: 8px; background: var(--bg-secondary); }
 .central-flow .flow-layout[data-rail-layout='dialog'] .flow-tools-row > .flow-scope { grid-column: 1 / -1; grid-row: 1; position: static; min-height: 44px; justify-content: center; }
 .central-flow .flow-layout[data-rail-layout='dialog'] .flow-tools-row .lab-search { grid-column: 1; grid-row: 2; position: static; }
 .central-flow .flow-layout[data-rail-layout='dialog'] .flow-ranking-tabs { justify-content: center; }
@@ -47,7 +47,7 @@
   .central-flow .flow-rail .trend-composition-summary { gap: 6px; margin-bottom: 6px; }
   .central-flow .flow-rail .trend-composition-key { justify-content: space-between; gap: 12px; }
   .central-flow .flow-rail .trend-composition-key > div { flex: none; flex-direction: row; align-items: baseline; gap: 8px; }
-  .central-flow .flow-rail .trend-composition-key dt { gap: 5px; font-size: 11px; }
+  .central-flow .flow-rail .trend-composition-key dt { gap: 5px; font-size: 12px; }
   .central-flow .flow-rail .trend-composition-key i { width: 7px; height: 7px; }
   .central-flow .flow-rail .trend-composition-key dd { font-size: 18px; line-height: 24px; }
   .leaderboard-header.lh--selected .lh-main { min-height: 128px; padding-block: 8px; gap: 8px 24px; }

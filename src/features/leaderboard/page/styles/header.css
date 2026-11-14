@@ -34,7 +34,7 @@
 .leaderboard-header .header-activity-more { appearance: none; display: inline-flex; align-items: center; justify-content: center; flex: none; min-width: 44px; min-height: 44px; padding: 4px 10px; border: 0; border-radius: 999px; background: var(--bg-hover-strong); color: var(--text-primary); font: inherit; font-size: 13px; line-height: 1.4; font-weight: 550; font-variant-numeric: tabular-nums; white-space: nowrap; box-shadow: none; cursor: pointer; transition: background-color 150ms ease-out; }
 .leaderboard-header .header-activity-more[aria-expanded='true'] { background: var(--border-primary); }
 .leaderboard-header .header-activity-popover[hidden] { display: none; }
-.leaderboard-header .header-activity-popover { position: fixed; display: block; z-index: 30; width: 340px; max-width: calc(100vw - 24px); padding: 16px; border: 1px solid var(--border-primary); border-radius: 14px; background: var(--bg-secondary); color: var(--text-primary); box-shadow: var(--flow-modal-shadow); text-align: start; opacity: 1; pointer-events: auto; }
+.leaderboard-header .header-activity-popover { position: fixed; display: block; z-index: var(--z-popover); width: 340px; max-width: calc(100vw - 24px); padding: 16px; border: 1px solid var(--border-primary); border-radius: var(--radius-card); background: var(--bg-secondary); color: var(--text-primary); box-shadow: var(--shadow-dialog); text-align: start; opacity: 1; pointer-events: auto; }
 .leaderboard-header .banner-more-tooltip-label { display: block; font-size: 12px; font-weight: 550; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; }
 .leaderboard-header .banner-more-list { display: grid; gap: 2px; list-style: none; padding: 0; margin: 0; max-height: 240px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 .leaderboard-header .banner-more-list li { display: flex; min-width: 0; padding: 0; }
@@ -43,7 +43,7 @@
 .leaderboard-header .header-activity-fallback { color: var(--text-secondary); font-size: 14px; line-height: 1.5; }
 .leaderboard-header .banner-puzzle-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .leaderboard-header button:active { transform: scale(.97); }
-.leaderboard-header :is(button, a):focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
+.leaderboard-header :is(button, a):focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
 .leaderboard-header :is(button, a) { touch-action: manipulation; }
 
 @container leaderboard-header (max-width: 1240px) {
@@ -52,7 +52,7 @@
   .leaderboard-header .header-brand-name, .leaderboard-header .header-title .title-regular, .leaderboard-header .header-title .title-separator { font-size: 32px; }
   .leaderboard-header.lh--flanked .lh-main { gap: 18px; }
   .leaderboard-header .puzzle-navigation { gap: 0 12px; }
-  .leaderboard-header .puzzle-navigation .intro-button, .leaderboard-header .puzzle-navigation .js-nav-link { font-size: 11px; }
+  .leaderboard-header .puzzle-navigation .intro-button, .leaderboard-header .puzzle-navigation .js-nav-link { font-size: 12px; }
 }
 @container leaderboard-header (max-width: 1000px) {
   .leaderboard-header.lh--flanked .lh-main { grid-template-columns: 1fr auto; gap: 10px 20px; padding-block: 14px 24px; }
@@ -65,10 +65,10 @@
   .leaderboard-header .header-brand-name, .leaderboard-header .header-title .title-regular, .leaderboard-header .header-title .title-separator { font-size: 20px; }
   .leaderboard-header .header-title .title-separator { margin-inline: .45em; }
   .leaderboard-header .puzzle-navigation { gap: 0 12px; flex-wrap: nowrap; }
-  .leaderboard-header .puzzle-navigation .intro-button, .leaderboard-header .puzzle-navigation .js-nav-link { font-size: 10px; letter-spacing: .02em; }
+  .leaderboard-header .puzzle-navigation .intro-button, .leaderboard-header .puzzle-navigation .js-nav-link { font-size: 12px; letter-spacing: .02em; }
   .leaderboard-header .lh-notice { min-height: 62px; padding: 6px 10px; gap: 8px; }
   .leaderboard-header .lh-announcement-icon svg { width: 24px; height: 24px; }
-  .leaderboard-header .banner-tag { font-size: 10px; letter-spacing: .03em; }
+  .leaderboard-header .banner-tag { font-size: 12px; letter-spacing: .03em; }
   .leaderboard-header .header-activity-row { gap: 8px; }
   .leaderboard-header .header-activity-preview { gap: 4px; }
   .leaderboard-header .solver-chip { max-width: 142px; padding-inline-end: 4px; gap: 6px; font-size: 13px; }
@@ -81,7 +81,7 @@
   .leaderboard-header .lh-logo { width: 32px; height: 32px; }
   .leaderboard-header .lh-brand { gap: 8px; }
   .leaderboard-header .puzzle-navigation { gap: 0 8px; flex-wrap: wrap; }
-  .leaderboard-header .puzzle-navigation .intro-button, .leaderboard-header .puzzle-navigation .js-nav-link { font-size: 10px; }
+  .leaderboard-header .puzzle-navigation .intro-button, .leaderboard-header .puzzle-navigation .js-nav-link { font-size: 12px; }
 }
 @container leaderboard-header (max-width: 310px) {
   .leaderboard-header .lh-announcement-icon { display: none; }
@@ -102,8 +102,7 @@
 .leaderboard-header.lh--selected .header-title .title-separator { font-size: var(--lh-title); }
 .leaderboard-header.lh--selected .header-brand-name { font-weight: 700; letter-spacing: -.035em; }
 .leaderboard-header.lh--selected .header-title .title-separator { margin-inline: .46em; }
-.leaderboard-header.lh--selected .unofficial-mark { color: #d30b26; }
-[data-theme='dark'] .leaderboard-header.lh--selected .unofficial-mark { color: #f2747b; }
+.leaderboard-header.lh--selected .unofficial-mark { color: var(--mark-ink); }
 .leaderboard-header.lh--selected .puzzle-navigation { flex-wrap: nowrap; gap: 20px; justify-content: flex-start; }
 .leaderboard-header.lh--selected .puzzle-navigation :is(.intro-button, .js-nav-link) { position: relative; font-size: 15px; font-weight: 600; letter-spacing: .015em; color: var(--text-primary); text-decoration: none; }
 .leaderboard-header.lh--selected .puzzle-navigation :is(.intro-button, .js-nav-link)::after { content: ''; position: absolute; left: 0; right: 0; height: 2px; bottom: 5px; background: currentColor; transform: scaleX(0); transform-origin: left center; transition: none; }
@@ -122,7 +121,7 @@
 .leaderboard-header.lh--final .lh-tools .selected-updated { justify-items: start; padding-inline-end: 20px; border-inline-end: 1px solid var(--border-secondary); }
 .leaderboard-header.lh--final .selected-updated > time { font-weight: 400; }
 .selected-updated { display: grid; justify-items: end; gap: 4px; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.selected-updated > span { font-size: 10px; font-weight: 600; letter-spacing: .08em; color: var(--text-tertiary); line-height: 14px; }
+.selected-updated > span { font-size: 12px; font-weight: 600; letter-spacing: .08em; color: var(--text-tertiary); line-height: 14px; }
 .selected-updated > time { font-size: 14px; font-weight: 600; line-height: 20px; }
 .selected-notice { padding-inline: 28px; background: var(--bg-primary); border-block: 1px solid var(--lh-rule); }
 .leaderboard-header.lh--selected .lh-notice { position: relative; min-height: 80px; padding: 12px 0; gap: 24px; background: transparent; border: 0; }
@@ -161,8 +160,8 @@
   .leaderboard-header.lh--selected .lh-tools { gap: 0; }
   .leaderboard-header.lh--selected .selected-updated { position: absolute; inset-inline-end: 0; bottom: 7px; display: flex; align-items: baseline; gap: 7px; }
   .leaderboard-header.lh--selected .lh-main { position: relative; }
-  .leaderboard-header.lh--selected .selected-updated > span { font-size: 9px; }
-  .leaderboard-header.lh--selected .selected-updated > time { font-size: 11px; }
+  .leaderboard-header.lh--selected .selected-updated > span { font-size: 12px; }
+  .leaderboard-header.lh--selected .selected-updated > time { font-size: 12px; }
   .leaderboard-header.lh--final .lh-tools .selected-updated { padding-inline-end: 0; border: 0; }
   .leaderboard-header.lh--selected .puzzle-navigation { gap: 14px; }
   .leaderboard-header.lh--selected .puzzle-navigation :is(.intro-button, .js-nav-link) { font-size: 13px; letter-spacing: 0; }

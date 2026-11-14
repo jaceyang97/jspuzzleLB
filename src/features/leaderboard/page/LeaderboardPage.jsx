@@ -62,7 +62,7 @@ function StatsDialog({ open, onClose, children }) {
     }
     if (!element.open) return undefined;
     element.dataset.state = 'closing';
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { element.close(); return undefined; }
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) { element.close(); return undefined; }
     const timer = window.setTimeout(() => element.close(), 140);
     return () => window.clearTimeout(timer);
   }, [open]);
@@ -97,7 +97,7 @@ export default function LeaderboardPage(props) {
     <a href="#main-rankings" className="lab-skip">Skip to rankings</a>
     <div className="arena-page"><Header {...props} onSelect={(name) => onSelect(name, 'new_today')} onCommunity={onCommunity} />
       <div className="flow-layout" ref={layout}>
-        <div className="flow-tools-row" ref={tools}><div className="flow-scope"><SelectedRankingTabs scope={scope} onChange={changeScope} /></div><SearchField compact value={search} onChange={changeSearch} onSubmit={() => filtered[0] && onSelect(filtered[0].name)} /><button type="button" className="flow-stats-button" onClick={showStats}>Stats <span aria-hidden="true">↗</span></button></div>
+        <div className="flow-tools-row" ref={tools}><div className="flow-scope"><SelectedRankingTabs scope={scope} onChange={changeScope} /></div><SearchField compact value={search} onChange={changeSearch} onSubmit={() => filtered[0] && onSelect(filtered[0].name)} /><button type="button" className="flow-stats-button" onClick={showStats} aria-haspopup="dialog">Stats</button></div>
         <aside className="flow-rail flow-rail--left ladder-insights" aria-label="Solver trends and categories"><TotalSolversCard data={data} /><NewReturningCard puzzles={puzzles} loading={loading} /><CommunityCard data={data} /></aside>
         <main className="flow-primary" id="main-rankings" data-ranking={scope} ref={primary} tabIndex={-1}>
           <p className="lab-visually-hidden" role="status" aria-live="polite" aria-atomic="true">{search.trim() ? `${filtered.length.toLocaleString('en-US')} ${filtered.length === 1 ? 'match' : 'matches'} for ${search.trim()}` : ''}</p>

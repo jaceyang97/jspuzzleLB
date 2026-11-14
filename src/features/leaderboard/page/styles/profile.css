@@ -1,5 +1,4 @@
-.lab-profile-dialog { width: min(900px, calc(100vw - 32px)); max-width: none; height: min(680px, calc(100dvh - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--border-primary); border-radius: var(--radius-card); background: var(--bg-secondary); color: var(--text-primary); box-shadow: var(--shadow-modal); overflow: auto; overscroll-behavior: contain; }
-.lab-profile-dialog::backdrop { background: rgba(0, 0, 0, .45); }
+.lab-profile-dialog { width: min(900px, calc(100vw - 32px)); max-width: none; height: min(680px, calc(100dvh - 32px)); max-height: calc(100dvh - 32px); padding: 0; background: var(--bg-secondary); color: var(--text-primary); overflow: auto; overscroll-behavior: contain; }
 .lab-record { position: relative; display: flex; height: 100%; min-height: 0; color: var(--text-primary); background: var(--bg-secondary); font-size: 14px; line-height: 1.45; }
 .lab-profile-close { position: absolute; top: 12px; right: 12px; z-index: 2; }
 .lab-profile-dialog button:disabled { color: var(--text-muted); cursor: default; }
@@ -69,8 +68,8 @@
   .lab-record-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; }
   .lab-record-metrics > div { flex-direction: column; align-items: flex-start; gap: 2px; padding: 0; border: 0; }
   .lab-record-metrics > div:last-child { border: 0; }
-  .lab-record-metrics dt { font-size: 11px; }
+  .lab-record-metrics dt { font-size: 12px; }
   .lab-record-metrics dd { font-size: 14px; }
   .lab-record-metrics .lab-record-count { font-size: 20px; }
-  .lab-record .lab-record-footnote { margin-top: auto; font-size: 11px; }
+  .lab-record .lab-record-footnote { margin-top: auto; font-size: 12px; }
 }
