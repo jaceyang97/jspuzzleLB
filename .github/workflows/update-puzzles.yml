@@ -31,6 +31,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Test scraper
+      run: python -m unittest discover -s scraper/tests -v
+
     - name: Run daily puzzle update
       env:
         GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}

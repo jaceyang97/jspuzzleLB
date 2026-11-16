@@ -112,18 +112,27 @@ def update_current(
     puzzle_id, fresh_solvers = result
     notification = dict(empty_notification)
 
-    # Find the existing "current" entry (no solution_url)
-    current_idx = None
-    for i, entry in enumerate(puzzles):
-        if not entry.get("solution_url"):
-            current_idx = i
-            break
+    # The monthly puzzle keeps its identity when Jane Street changes its slug.
+    # Match its month first; an older entry may still lack a solution URL.
+    current_month = _date_text_from_puzzle_id(puzzle_id)
+    current_idx = next(
+        (i for i, entry in enumerate(puzzles)
+         if current_month and entry.get("date_text") == current_month),
+        None,
+    )
+    if current_idx is None:
+        current_idx = next(
+            (i for i, entry in enumerate(puzzles) if not entry.get("solution_url")),
+            None,
+        )
 
     if current_idx is not None:
         current_entry = puzzles[current_idx]
         stored_id = current_entry.get("puzzle_id", "")
 
-        if stored_id == puzzle_id or not stored_id:
+        if stored_id == puzzle_id or (
+            current_month and current_entry.get("date_text") == current_month
+        ):
             # Merge solvers and timestamps for the same puzzle.
             existing_ts = current_entry.get("solver_timestamps", {})
             merged_ts = merge_solvers_with_timestamps(fresh_solvers, existing_ts)
@@ -243,7 +252,7 @@ def _handle_month_transition(
     new_entry_name = ""
     new_entry_date = ""
     for meta in metas:
-        if not meta.solution_url:
+        if not meta.solution_url and meta.date_text == _date_text_from_puzzle_id(new_puzzle_id):
             new_entry_name = meta.name
             new_entry_date = meta.date_text
             break

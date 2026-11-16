@@ -12,6 +12,8 @@ Use `python main.py --help` for full-archive and refresh options. Scraper tests 
 python -m unittest discover -s scraper/tests -v
 ```
 
+Daily updates match the current puzzle by its published month before comparing source IDs. Jane Street can change a puzzle's slug during the month; that updates the existing record and preserves solver timestamps. A later month starts the archive transition. An older record without a solution URL must not hide an already tracked current month.
+
 ## Solver names
 
 The client validates UTF-8 when a response declares a conflicting charset. Parsers preserve published Unicode names and reject structural rows. Existing encoding repairs are conservative; they must not turn legitimate international names into guessed replacements.
