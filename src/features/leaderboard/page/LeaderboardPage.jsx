@@ -3,7 +3,8 @@ import { Button } from '@ui-sdk/react/button';
 import { Tabs, TabsPanel } from '@ui-sdk/react/tabs';
 import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from '@ui-sdk/react/dialog';
 import { SelectedRankedRows, SelectedRankingHeader, SelectedRankingTabs } from './Rankings';
-import { EmptyState, Icon, SearchField, scopes, useRankings } from './shared';
+import { EmptyState, Icon, scopes, useRankings } from './shared';
+import SolverSearch from './SolverSearch';
 import { CommunityCard, TotalSolversCard, NewReturningCard, ProjectInfoCard, PuzzlesCard } from './Insights';
 import useRankedPuzzles from './useRankedPuzzles';
 import usePageWindow from './usePageWindow';
@@ -42,7 +43,7 @@ function PageStandings({ data, scope, search, setSearch, filtered, onSelect, onB
   const windowed = usePageWindow({ count: filtered.length, onAnchorShift: adjustForLayoutShift });
   return <>
     <div className="flow-list" ref={windowed.list} data-loaded={windowed.loaded} data-total={filtered.length}>
-      {filtered.length ? <div className="flow-window" style={{ paddingTop: windowed.before, paddingBottom: windowed.after }}><SelectedRankedRows rows={filtered.slice(windowed.first, windowed.end)} data={data} scope={scope} onSelect={onSelect} start={windowed.first + 1} total={filtered.length} /></div> : <EmptyState search={search} onClear={() => setSearch('')} />}
+      {filtered.length ? <div className="flow-window" style={{ paddingTop: windowed.before, paddingBottom: windowed.after }}><SelectedRankedRows rows={filtered.slice(windowed.first, windowed.end)} data={data} scope={scope} onSelect={onSelect} start={windowed.first + 1} total={filtered.length} /></div> : <EmptyState search={search} scope={scope} onClear={() => setSearch('')} />}
     </div>
     {!!filtered.length && <div className="flow-list-ending">
       <p className="flow-list-end" role="status">{windowed.loaded < filtered.length ? 'More solvers as you scroll ↓' : 'End of this ranking'}</p>
@@ -80,7 +81,7 @@ export default function LeaderboardPage(props) {
     <a href="#main-rankings" className="lab-skip">Skip to rankings</a>
     <div className="arena-page"><Header {...props} onSelect={(name) => onSelect(name, 'new_today')} onCommunity={onCommunity} />
       <Tabs value={scope} onValueChange={changeScope} aria-label="Rankings" className="flow-layout" ref={layout}>
-        <div className="flow-tools-row" ref={tools}><div className="flow-scope"><SelectedRankingTabs /></div><SearchField compact value={search} onChange={changeSearch} onSubmit={() => filtered[0] && onSelect(filtered[0].name)} /><DialogTrigger className="flow-stats-button">Stats</DialogTrigger></div>
+        <div className="flow-tools-row" ref={tools}><div className="flow-scope"><SelectedRankingTabs /></div><SolverSearch solvers={data.topSolvers} value={search} onChange={changeSearch} onSelect={onSelect} /><DialogTrigger className="flow-stats-button">Stats</DialogTrigger></div>
         <aside className="flow-rail flow-rail--left ladder-insights" aria-label="Solver trends and categories"><TotalSolversCard data={data} /><NewReturningCard puzzles={puzzles} loading={loading} /><CommunityCard data={data} /></aside>
         <main className="flow-primary" id="main-rankings" data-ranking={scope} ref={primary} tabIndex={-1}>
           <p className="lab-visually-hidden" role="status" aria-live="polite" aria-atomic="true">{search.trim() ? `${filtered.length.toLocaleString('en-US')} ${filtered.length === 1 ? 'match' : 'matches'} for ${search.trim()}` : ''}</p>
@@ -96,8 +97,21 @@ export default function LeaderboardPage(props) {
       </Tabs>
     </div>
     <DialogContent keepMounted className="flow-stats-dialog">
-      <header><DialogTitle>Community &amp; puzzles</DialogTitle><DialogClose aria-label="Close statistics"><Icon name="close" /></DialogClose></header>
-      {statsVisited && <div className="flow-dialog-panels ladder-insights"><TotalSolversCard data={data} /><NewReturningCard puzzles={puzzles} loading={loading} /><CommunityCard data={data} id="mobile-community-data" /><PuzzlesCard rows={rankedPuzzles} error={error} totalPuzzles={data.totalPuzzles} totalMonths={totalMonths} /><ProjectInfoCard /></div>}
+      <header><DialogTitle>Community &amp; puzzles</DialogTitle><DialogClose aria-label="Close statistics"><Icon name="close" /></DialogClose>
+        <nav className="stats-section-links" aria-label="Statistics sections">
+          {['Trends', 'Community', 'Puzzles', 'Feedback'].map(label => {
+            const id = `stats-${label.toLowerCase()}`;
+            return <a key={id} href={`#${id}`} onClick={event => {
+              const target = document.getElementById(id);
+              if (!target || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+              event.preventDefault();
+              target.scrollIntoView({ block: 'start' });
+              (target.querySelector('textarea') ?? target).focus({ preventScroll: true });
+            }}>{label}</a>;
+          })}
+        </nav>
+      </header>
+      {statsVisited && <div className="flow-dialog-panels ladder-insights"><TotalSolversCard data={data} id="stats-trends" /><NewReturningCard puzzles={puzzles} loading={loading} /><CommunityCard data={data} id="stats-community" /><PuzzlesCard id="stats-puzzles" rows={rankedPuzzles} error={error} totalPuzzles={data.totalPuzzles} totalMonths={totalMonths} /><ProjectInfoCard id="stats-feedback" /></div>}
     </DialogContent>
   </div></Dialog>;
 }

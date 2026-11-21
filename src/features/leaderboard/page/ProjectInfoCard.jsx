@@ -4,7 +4,7 @@ import React, { useId, useRef, useState } from 'react';
 
 const disclaimer = 'This site is not affiliated with, endorsed by, or sponsored by Jane Street. All puzzle data is compiled from publicly available information.';
 
-export default function ProjectInfoCard() {
+export default function ProjectInfoCard({ id }) {
   const field = useId();
   const hint = useId();
   const [message, setMessage] = useState('');
@@ -45,7 +45,7 @@ export default function ProjectInfoCard() {
       pending.current = false;
     }
   };
-  return <section className="flow-card flow-about selected-sidebar-card" aria-label="About this project">
+  return <section id={id} className="flow-card flow-about selected-sidebar-card" aria-label="About this project">
     <a className="selected-project-learn" href="https://x.com/jaceyang97/status/2119479003392467001" target="_blank" rel="noopener noreferrer"><span>Learn how this site is made</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M7 5h12v12M19 5 5 19" /></svg></a>
     <form className="selected-project-feedback" onSubmit={sendFeedback} aria-busy={status === 'sending'}>
       <label className="lab-visually-hidden" htmlFor={field}>Features, fixes, feedback…</label>

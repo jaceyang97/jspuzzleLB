@@ -64,6 +64,34 @@ test('resizing to a smaller page resets the range and keeps records reachable', 
   expect(screen.getByText('1–10 of 12')).toBeInTheDocument();
 });
 
+test('choosing a year from a later page resets pagination and preserves the overall metrics', async () => {
+  const older = { ...puzzles[0], date_text: 'January 2014', name: 'Earlier puzzle' };
+  (useRawPuzzleData as jest.Mock).mockReturnValue({ puzzles: [...puzzles, older], loading: false, error: null });
+  render(<ProfileContent data={data} name="Ada Lovelace" onClose={jest.fn()} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
+  fireEvent.click(screen.getByLabelText('Filter solved puzzles by year'));
+  fireEvent.click(await screen.findByRole('option', { name: '2014' }));
+  expect(screen.getByText('1–1 of 1')).toBeVisible();
+  expect(within(screen.getByRole('table')).getByRole('link', { name: 'Earlier puzzle' })).toBeVisible();
+  expect(screen.getByText('12', { selector: '.lab-record-count' })).toBeVisible();
+  fireEvent.click(screen.getByLabelText('Filter solved puzzles by year'));
+  fireEvent.click(await screen.findByRole('option', { name: 'All years' }));
+  expect(screen.getByText('1–10 of 13')).toBeVisible();
+});
+
+test('a profile bookmark survives remount and can be removed', () => {
+  const mount = () => render(<ProfileContent data={data} name="Ada Lovelace" onClose={jest.fn()} />);
+  const bookmark = () => screen.getByRole('button', { name: 'Save as my profile' });
+  const first = mount();
+  fireEvent.click(bookmark());
+  expect(bookmark()).toHaveAttribute('aria-pressed', 'true');
+  first.unmount();
+  mount();
+  expect(bookmark()).toHaveAttribute('aria-pressed', 'true');
+  fireEvent.click(bookmark());
+  expect(bookmark()).toHaveAttribute('aria-pressed', 'false');
+});
+
 test('keeps pagination present and disabled while puzzle history is loading', () => {
   (useRawPuzzleData as jest.Mock).mockReturnValue({ puzzles: null, loading: true, error: null });
   render(<ProfileContent data={data} name="Ada Lovelace" onClose={jest.fn()} />);

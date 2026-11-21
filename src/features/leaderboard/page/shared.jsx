@@ -1,10 +1,10 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Button } from '@ui-sdk/react/button';
 import { Dialog, DialogContent } from '@ui-sdk/react/dialog';
-import { Field, FieldLabel } from '@ui-sdk/react/field';
-import { Input, InputClear, InputGroup } from '@ui-sdk/react/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui-sdk/react/select';
+import { Toggle } from '@ui-sdk/react/toggle';
 import { Pagination as PageNavigation, PaginationNext, PaginationPrevious } from '@ui-sdk/react/pagination';
-import { useShortcut } from '@ui-sdk/react/shortcuts';
+import { saveSolver, useSavedSolver } from '../hooks/useSavedSolver';
 import Tooltip from '../../../components/Tooltip';
 import { useRawPuzzleData } from '../hooks/useRawPuzzleData';
 import { computeAveragePercentile, findSolverPlacement, formatDate } from '../../../utils/leaderboardUtils';
@@ -25,31 +25,11 @@ export function Icon({ name, size = 20 }) {
     sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" /></>,
     moon: <path d="M20.5 13A8.6 8.6 0 0 1 11 3.5 8.6 8.6 0 1 0 20.5 13Z" />,
     chevron: <path d="m9 5 7 7-7 7" />,
+    bookmark: <path d="M6 4.5h12v16l-6-4-6 4z" />,
   };
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</svg>;
 }
 
-
-export function SearchField({ value, onChange, compact = false, onSubmit }) {
-  const input = useRef(null);
-  useShortcut('/', () => input.current?.focus(), {
-    description: 'Find a solver',
-    when: () => !document.querySelector('[aria-modal="true"]:not([hidden]), dialog[open]'),
-  });
-  return <form className={`lab-search${compact ? ' lab-search--compact' : ''}`} role="search"
-    onSubmit={(event) => { event.preventDefault(); onSubmit?.(); }}>
-    <Field>
-      <FieldLabel>Find a solver</FieldLabel>
-      <InputGroup className="lab-search-field">
-        <Icon name="search" />
-        <Input ref={input} type="search" placeholder="Search by name…" value={value} onValueChange={onChange}
-          aria-keyshortcuts="/" autoComplete="off" spellCheck={false} data-1p-ignore="true" />
-        <InputClear aria-label="Clear search"><Icon name="close" size={17} /></InputClear>
-        {!value && <kbd aria-hidden="true">/</kbd>}
-      </InputGroup>
-    </Field>
-  </form>;
-}
 
 export function useRankings(data, scope, search) {
   const all = useMemo(() => {
@@ -63,8 +43,9 @@ export function useRankings(data, scope, search) {
 }
 
 
-export function EmptyState({ search, onClear }) {
-  return <div className="lab-empty"><Icon name="search" size={28} /><h3>No matching solvers</h3><p>We couldn’t find “{search.trim()}”. Try a shorter name or a different spelling.</p><Button className="lab-button" onClick={onClear}>Clear search</Button></div>;
+export function EmptyState({ search, scope, onClear }) {
+  const ranking = scopes.find(item => item.id === scope);
+  return <div className="lab-empty"><Icon name="search" size={28} /><h3>No matching solvers</h3><p>No matches for “{search.trim()}” in {ranking.label}. {scope === 'top' ? 'Try a shorter name or a different spelling.' : 'Use the search box to find profiles across all rankings.'}</p><Button className="lab-button" onClick={onClear}>Clear search</Button></div>;
 }
 
 export function Pagination({ page, pages, setPage, count, pageSize = 40, busy = false }) {
@@ -94,6 +75,9 @@ function HistoryRows({ placements, name, measure = false }) {
 
 export function ProfileContent({ data, name, onClose }) {
   const { puzzles, loading, error } = useRawPuzzleData(!!name);
+  const saved = useSavedSolver();
+  const [saveError, setSaveError] = useState(false);
+  const [year, setYear] = useState('all');
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(1);
   const history = useRef(null);
@@ -102,6 +86,9 @@ export function ProfileContent({ data, name, onClose }) {
   const standing = rank ? data.topSolvers[rank - 1] : null;
   const placements = useMemo(() => (puzzles || []).map((puzzle) => findSolverPlacement(name, puzzle)).filter(Boolean).sort((a, b) => new Date(b.puzzle.date_text) - new Date(a.puzzle.date_text)), [puzzles, name]);
   const percentile = useMemo(() => computeAveragePercentile(placements), [placements]);
+  const years = useMemo(() => [...new Set(placements.map(({ puzzle }) => puzzle.date_text.match(/\b\d{4}\b/)?.[0]).filter(Boolean))].sort().reverse(), [placements]);
+  const selectedYear = years.includes(year) ? year : 'all';
+  const visiblePlacements = selectedYear === 'all' ? placements : placements.filter(({ puzzle }) => puzzle.date_text.includes(selectedYear));
   useLayoutEffect(() => {
     let active = true;
     const resize = () => {
@@ -121,7 +108,7 @@ export function ProfileContent({ data, name, onClose }) {
     document.fonts?.ready.then(resize);
     return () => { active = false; observer.disconnect(); window.removeEventListener('resize', resize); };
   }, [placements, pageSize]);
-  const count = loading ? standing?.puzzlesSolved ?? 0 : placements.length;
+  const count = loading ? standing?.puzzlesSolved ?? 0 : visiblePlacements.length;
   return <article className="lab-record" aria-label={`Record for ${name}`}>
     {onClose && <Button className="lab-icon-button lab-profile-close" aria-label="Close profile" onClick={onClose}><Icon name="close" /></Button>}
     <header className="lab-record-header"><span className="lab-eyebrow">Solver record</span>
@@ -131,15 +118,30 @@ export function ProfileContent({ data, name, onClose }) {
           <circle className="lab-avatar-stitch" cx="32" cy="32" r="25.5" />
           <text className="lab-avatar-initial" x="32" y="42.5" textAnchor="middle">{solverInitial(name)}</text>
         </svg>
-        <h2>{name}</h2>
+        <div className="lab-record-name"><h2>{name}</h2>
+          {standing && <Toggle className="profile-bookmark" aria-label="Save as my profile"
+            title={saved === name ? 'Remove my saved profile' : 'Save as my profile on this device'}
+            pressed={saved === name} onPressedChange={pressed => setSaveError(!saveSolver(pressed ? name : null))}>
+            <Icon name="bookmark" size={19} />
+          </Toggle>}
+        </div>
+        {saveError && <span role="status">This browser couldn’t save your preference.</span>}
       </div>
       <dl className="lab-record-metrics"><div><dt>Overall rank</dt><dd className="lab-record-count">{rank ? `#${rank.toLocaleString()}` : '—'}</dd></div><div><dt>Puzzles solved</dt><dd className="lab-record-count">{standing?.puzzlesSolved ?? (loading ? '…' : placements.length)}</dd></div><div><dt>First recorded</dt><dd>{standing?.firstAppearance || (placements.length ? formatDate(placements[placements.length - 1].puzzle.date_text) : loading ? '…' : '—')}</dd></div><div><dt>Latest solve</dt><dd>{standing?.lastSolve || (placements.length ? formatDate(placements[0].puzzle.date_text) : '—')}</dd></div></dl>
       <p className="lab-record-footnote">Average submission percentile <span>{percentile ? `${percentile.value.toFixed(1)}%` : loading ? '…' : '—'}</span>. Higher means earlier in the published solver list.</p>
     </header>
-    <section className="lab-record-history"><div className="lab-record-history-title"><h3>Solved puzzles</h3></div>
+    <section className="lab-record-history"><div className="lab-record-history-title"><h3>Solved puzzles</h3>
+      {years.length > 1 && <Select value={selectedYear} onValueChange={next => { if (next) { setYear(next); setPage(0); } }}>
+        <SelectTrigger className="profile-year" aria-label="Filter solved puzzles by year"><SelectValue /> <span aria-hidden="true">⌄</span></SelectTrigger>
+        <SelectContent className="profile-year-options" align="end" sideOffset={4}>
+          <SelectItem value="all" label="All years">All years</SelectItem>
+          {years.map(item => <SelectItem key={item} value={item}>{item}</SelectItem>)}
+        </SelectContent>
+      </Select>}
+    </div>
       <div ref={history} className="lab-history-page">
         <div className="lab-history-measure" aria-hidden="true"><table ref={measurement} className="lab-history-table"><thead><tr><th>Month</th><th>Puzzle</th><th className="lab-number"><span className="lab-placement-heading">Placement<span className="panel-info-marker">i</span></span></th></tr></thead><tbody><HistoryRows placements={placements} name={name} measure /></tbody></table></div>
-        {loading ? <p className="lab-record-message" role="status">Loading puzzle history…</p> : error ? <p className="lab-record-message" role="alert">Puzzle history couldn’t load. Close and reopen this record to try again.</p> : !placements.length ? <p className="lab-record-message">No published puzzle history for this name.</p> : <table className="lab-history-table"><thead><tr><th scope="col">Month</th><th scope="col">Puzzle</th><th scope="col" className="lab-number" aria-label="Placement"><PlacementHelp /></th></tr></thead><tbody><HistoryRows placements={placements.slice(page * pageSize, (page + 1) * pageSize)} name={name} /></tbody></table>}
+        {loading ? <p className="lab-record-message" role="status">Loading puzzle history…</p> : error ? <p className="lab-record-message" role="alert">Puzzle history couldn’t load. Close and reopen this record to try again.</p> : !placements.length ? <p className="lab-record-message">No published puzzle history for this name.</p> : <table className="lab-history-table"><thead><tr><th scope="col">Month</th><th scope="col">Puzzle</th><th scope="col" className="lab-number" aria-label="Placement"><PlacementHelp /></th></tr></thead><tbody><HistoryRows placements={visiblePlacements.slice(page * pageSize, (page + 1) * pageSize)} name={name} /></tbody></table>}
       </div>
       <Pagination page={page} pages={Math.ceil(count / pageSize)} count={count} pageSize={pageSize} setPage={setPage} busy={loading || !!error} />
     </section>

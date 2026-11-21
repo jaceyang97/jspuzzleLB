@@ -102,6 +102,11 @@ html:has(.central-flow):has([aria-modal="true"]:not([hidden])) { overflow: hidde
 .flow-stats-dialog > header h2 { font-size: 17px; font-weight: 650; margin: 0; }
 .flow-stats-dialog > header button { width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: var(--radius-control); color: var(--text-primary); background: transparent; }
 .flow-dialog-panels { display: grid; gap: 18px; padding: 18px; }
+.flow-stats-dialog { overflow-y: auto; overscroll-behavior: contain; scroll-padding-top: 114px; }
+.flow-stats-dialog > header { display: grid; grid-template-columns: 1fr auto; gap: 0 12px; padding-block: 8px 0; }
+.stats-section-links { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 4px; }
+.stats-section-links a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 3px; color: var(--text-secondary); font-size: 13px; text-underline-offset: 4px; }
+.stats-section-links a:is(:hover, :focus-visible) { text-decoration: underline; color: var(--text-primary); }
 .central-flow .flow-dialog-panels > .flow-card { padding: 16px 0; border-radius: 0; box-shadow: none; border-bottom: var(--flow-hairline) solid var(--border-primary); }
 .central-flow .flow-dialog-panels > .flow-card:last-child { border-bottom: 0; }
 @media (min-resolution: 192dpi) { .central-flow { --flow-hairline: .5px; } }

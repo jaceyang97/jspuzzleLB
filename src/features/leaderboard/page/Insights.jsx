@@ -21,7 +21,7 @@ export function CommunityCard({ data, id = 'community-data' }) {
   const allocations = total > 0 ? groups.map((group) => ({ ...group, cells: Math.round(distribution[group.key] / squareUnit) })) : [];
   const cells = allocations.flatMap((group) => Array.from({ length: group.cells }, () => group));
   const gridHeight = Math.ceil(cells.length / 12) * 10 - 2;
-  return <section className="ladder-insight flow-card flow-community selected-sidebar-card" id={id} aria-label="Solvers by puzzles solved">
+  return <section className="ladder-insight flow-card flow-community selected-sidebar-card" id={id} tabIndex={-1} aria-label="Solvers by puzzles solved">
     {total > 0 ? <>
       <figure className="selected-population" aria-label={`Each square represents approximately ${number(squareUnit)} solvers`}>
         <svg viewBox={`0 0 118 ${gridHeight}`} preserveAspectRatio="xMidYMid meet" aria-hidden="true">{cells.map((group, index) => <rect key={index} data-group={group.key} x={index % 12 * 10} y={Math.floor(index / 12) * 10} width="8" height="8" rx=".35" fill={group.color}><title>{group.label}: {number(distribution[group.key])} solvers</title></rect>)}</svg>
@@ -47,7 +47,7 @@ function PuzzleRow({ puzzle, index, total }) {
   </li>;
 }
 
-export function PuzzlesCard({ rows, error, totalPuzzles, totalMonths }) {
+export function PuzzlesCard({ rows, error, totalPuzzles, totalMonths, id }) {
   const windowed = useInfiniteWindow({ count: rows.length, estimate: 44, batch: 20, fallbackHeight: 420 });
   const card = useRef(null);
   const idle = useRef(null);
@@ -68,7 +68,7 @@ export function PuzzlesCard({ rows, error, totalPuzzles, totalMonths }) {
     window.clearTimeout(idle.current);
     idle.current = window.setTimeout(() => delete element.dataset.scrolling, 650);
   };
-  return <section ref={card} className="ladder-insight flow-card flow-puzzles selected-sidebar-card" aria-label="Most solved puzzles">
+  return <section ref={card} id={id} tabIndex={id ? -1 : undefined} className="ladder-insight flow-card flow-puzzles selected-sidebar-card" aria-label="Most solved puzzles">
     <header className="selected-puzzles-header"><h2>Most solved puzzles</h2></header>
     {error && <p className="flow-data-note" role="status">Showing summary data; full puzzle history could not load.</p>}
     <div className="selected-puzzle-table">

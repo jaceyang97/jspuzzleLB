@@ -21,6 +21,21 @@
 .lab-record-history { display: flex; flex: 1; flex-direction: column; min-width: 0; min-height: 0; padding: 16px 20px 20px 28px; }
 .lab-record-history-title { display: flex; flex: none; align-items: center; min-height: 44px; padding-right: 44px; padding-bottom: 8px; }
 .lab-record-history-title h3 { font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
+.lab-record-name { display: flex; align-items: center; justify-content: center; gap: 4px; max-width: 100%; }
+.lab-record-name h2 { width: auto; min-width: 0; }
+.profile-bookmark, .profile-year {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px; padding: 0 6px; flex: none;
+  border: 0; border-radius: var(--radius-control); background: transparent; color: var(--text-secondary); cursor: pointer;
+}
+.profile-bookmark[data-pressed] svg { fill: currentColor; }
+.profile-year { margin-inline-start: auto; gap: 5px; font-size: 13px; }
+.profile-year-options { min-width: 110px; }
+.profile-year-options [role='option'] { padding: 10px 12px; min-height: 40px; border-radius: var(--radius-xs); font-size: 14px; cursor: pointer; }
+.profile-year-options [aria-selected='true'] { font-weight: 650; }
+@media (hover: hover) and (pointer: fine) {
+  .profile-bookmark:hover, .profile-year:hover { background: var(--bg-hover); }
+}
 .lab-history-page { position: relative; flex: 1; min-width: 0; min-height: 0; }
 .lab-history-measure { position: absolute; inset-inline: 0; top: 0; height: 0; overflow: hidden; visibility: hidden; pointer-events: none; }
 .lab-history-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
