@@ -1,3 +1,4 @@
+import { Button } from '@ui-sdk/react/button';
 import React from 'react';
 import LeaderboardHeader from './LeaderboardHeader';
 
@@ -23,6 +24,6 @@ export function LeaderboardError(props) {
   return <Frame {...props}><main className="flow-load-error" role="alert">
     <h2>The leaderboard couldn’t load.</h2>
     <p>Please check your connection and try again.</p>
-    <button type="button" className="lab-button" onClick={() => window.location.reload()}>Try again</button>
+    <Button type="button" className="lab-button" onClick={() => window.location.reload()}>Try again</Button>
   </main></Frame>;
 }

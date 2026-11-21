@@ -35,8 +35,8 @@ test('starts with the full-list rules and exposes every tested rule without losi
   expect(markedIds).toContain('W18-S2-E3-raw');
   expect(articleParetoData.rows.flatMap((point) => point.equivalent_config_ids)).toHaveLength(10400);
 
-  fireEvent.click(screen.getByRole('button', { name: 'Names/year' }));
-  expect(screen.getByRole('button', { name: 'Names/year' })).toHaveAttribute('aria-pressed', 'true');
+  fireEvent.click(screen.getByRole('radio', { name: 'Names/year' }));
+  expect(screen.getByRole('radio', { name: 'Names/year' })).toHaveAttribute('aria-checked', 'true');
   // Both projections highlight the full three-goal frontier.
   expect(screen.getByRole('region', { name: 'Selected rule details' })).toHaveTextContent('On the frontier across all three goals.');
   expect(container.querySelector('[data-frontier-id="W18-S2-E3-raw"]')).toBeInTheDocument();
@@ -60,9 +60,12 @@ test('keyboard navigation visits distinct results, preserves selection across ax
   expect(details).toHaveTextContent('12 months');
   fireEvent.keyDown(inspector, { key: 'Home' });
   expect(details).toHaveTextContent('Total solves');
+  fireEvent.keyDown(inspector, { key: 'PageUp' });
+  expect(inspector).toHaveAttribute('aria-valuenow', '3');
+  fireEvent.keyDown(inspector, { key: 'Home' });
   fireEvent.keyDown(inspector, { key: 'End' });
   expect(details).toHaveTextContent('Wilson lower bound');
-  fireEvent.click(screen.getByRole('button', { name: 'Names/year' }));
+  fireEvent.click(screen.getByRole('radio', { name: 'Names/year' }));
   expect(details).toHaveTextContent('Wilson lower bound');
   expect(inspector).toHaveAttribute('aria-valuenow', '1');
   fireEvent.click(within(details).getByRole('button', { name: 'Our choice' }));

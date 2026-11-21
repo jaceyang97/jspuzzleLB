@@ -1,6 +1,6 @@
 # Development
 
-The frontend is a React app, the feedback endpoint runs as a Vercel Function, and a Python scraper maintains the public puzzle data. Use Node.js 22 and Python 3.13 to match the deployed function and scraper workflow.
+The frontend uses React 19, UI SDK and Vite, the feedback endpoint runs as a Vercel Function, and a Python scraper maintains the public puzzle data. Use Node.js 22.12 or newer in the 22.x series and Python 3.13 to match the deployed function and scraper workflow.
 
 ## Run locally
 
@@ -46,5 +46,6 @@ Frontend tests live beside their components in `__tests__/`. Fonts and third-par
 
 - [Data collection and text handling](data.md)
 - [Interface behavior](interface.md)
+- [UI SDK implementation notes (中文)](ui-sdk.md)
 - [Feedback delivery](feedback.md)
 - [Ranking research](../analysis/README.md)

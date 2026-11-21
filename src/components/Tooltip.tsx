@@ -1,3 +1,4 @@
+import { bindLayer } from '@ui-sdk/core';
 import React, { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useFloatingTooltip } from './useFloatingTooltip';
@@ -108,21 +109,14 @@ const Tooltip: React.FC<TooltipProps> = ({
   }, [interactive, open]);
 
   useEffect(() => {
-    if (!open) return;
-    const dismissOutside = (event: PointerEvent) => { if (!owns(event.target)) hide(); };
-    const dismissEscape = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape') return;
-      event.preventDefault();
-      event.stopPropagation();
-      if (tipRef.current?.contains(document.activeElement)) focusTarget.current?.focus();
-      hide();
-    };
-    document.addEventListener('pointerdown', dismissOutside);
-    document.addEventListener('keydown', dismissEscape);
-    return () => {
-      document.removeEventListener('pointerdown', dismissOutside);
-      document.removeEventListener('keydown', dismissEscape);
-    };
+    if (!open || !tipRef.current) return;
+    return bindLayer(tipRef.current, {
+      contains: owns,
+      onDismiss: (reason) => {
+        if (reason === 'escape-key' && tipRef.current?.contains(document.activeElement)) focusTarget.current?.focus();
+        hide();
+      },
+    });
   }, [open, hide, owns]);
 
   useEffect(() => () => {
@@ -209,7 +203,7 @@ const Tooltip: React.FC<TooltipProps> = ({
           hide();
         }}>
         <span ref={contentRef} className="ui-tooltip-content" data-tooltip-content="" tabIndex={-1}>{content}</span>
-      </span>, anchorRef.current?.closest('dialog[open]') ?? document.body,
+      </span>, anchorRef.current?.closest('[aria-modal="true"], dialog[open]') ?? document.body,
     )}
   </>;
 };

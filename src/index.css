@@ -1,3 +1,5 @@
+@layer ui-sdk;
+
 /* Theme and layout tokens. */
 :root {
   color-scheme: light;

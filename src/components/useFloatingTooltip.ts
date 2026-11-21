@@ -11,7 +11,7 @@ const clamp = (value: number, min: number, max: number) => Math.max(min, Math.mi
 
 /** One rule for body portals, including zoom and on-screen keyboard viewports. */
 export function useFloatingTooltip(
-  open: boolean, anchorRef: RefObject<HTMLElement>, surfaceRef: RefObject<HTMLElement>,
+  open: boolean, anchorRef: RefObject<HTMLElement | null>, surfaceRef: RefObject<HTMLElement | null>,
   getReferenceRect?: () => TooltipReferenceRect | null, preferredWidth = 320,
 ) {
   const [position, setPosition] = useState<FloatingTooltipPosition | null>(null);

@@ -1,4 +1,6 @@
 {
+  "framework": "vite",
+  "outputDirectory": "build",
   "functions": {
     "api/feedback.js": { "maxDuration": 30 }
   },

@@ -14,7 +14,7 @@ interface TransitionStub {
 describe('useTheme', () => {
   const originalMatchMedia = window.matchMedia;
   const originalWidth = window.innerWidth;
-  const transitionDocument = document as Document & { startViewTransition?: (update: () => void) => TransitionStub };
+  const transitionDocument = document as unknown as { startViewTransition?: (update: () => void) => TransitionStub };
   const listeners = new Map<string, Set<(event: MediaQueryListEvent) => void>>();
   let systemDark = false;
   let reducedMotion = false;

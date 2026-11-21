@@ -1,4 +1,10 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { Button } from '@ui-sdk/react/button';
+import { Dialog, DialogContent } from '@ui-sdk/react/dialog';
+import { Field, FieldLabel } from '@ui-sdk/react/field';
+import { Input, InputClear, InputGroup } from '@ui-sdk/react/input';
+import { Pagination as PageNavigation, PaginationNext, PaginationPrevious } from '@ui-sdk/react/pagination';
+import { useShortcut } from '@ui-sdk/react/shortcuts';
 import Tooltip from '../../../components/Tooltip';
 import { useRawPuzzleData } from '../hooks/useRawPuzzleData';
 import { computeAveragePercentile, findSolverPlacement, formatDate } from '../../../utils/leaderboardUtils';
@@ -26,22 +32,24 @@ export function Icon({ name, size = 20 }) {
 
 export function SearchField({ value, onChange, compact = false, onSubmit }) {
   const input = useRef(null);
-  useEffect(() => {
-    const focusSearch = (event) => {
-      if (event.key !== '/' || event.metaKey || event.ctrlKey || event.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName) || event.target.isContentEditable || event.target.closest('dialog[open]')) return;
-      event.preventDefault(); input.current?.focus();
-    };
-    document.addEventListener('keydown', focusSearch);
-    return () => document.removeEventListener('keydown', focusSearch);
-  }, []);
-  return <form className={`lab-search${compact ? ' lab-search--compact' : ''}`} role="search" onSubmit={(event) => { event.preventDefault(); onSubmit?.(); }}>
-    <label htmlFor="solver-search">Find a solver</label>
-    <div className="lab-search-field"><Icon name="search" /><input ref={input} id="solver-search" type="search" placeholder="Search by name…" value={value} onChange={(event) => onChange(event.target.value)} autoComplete="off" spellCheck="false" data-1p-ignore="true" />
-      {value ? <button type="button" aria-label="Clear search" onClick={() => { onChange(''); input.current?.focus(); }}><Icon name="close" size={17} /></button> : <kbd aria-hidden="true">/</kbd>}
-    </div>
+  useShortcut('/', () => input.current?.focus(), {
+    description: 'Find a solver',
+    when: () => !document.querySelector('[aria-modal="true"]:not([hidden]), dialog[open]'),
+  });
+  return <form className={`lab-search${compact ? ' lab-search--compact' : ''}`} role="search"
+    onSubmit={(event) => { event.preventDefault(); onSubmit?.(); }}>
+    <Field>
+      <FieldLabel>Find a solver</FieldLabel>
+      <InputGroup className="lab-search-field">
+        <Icon name="search" />
+        <Input ref={input} type="search" placeholder="Search by name…" value={value} onValueChange={onChange}
+          aria-keyshortcuts="/" autoComplete="off" spellCheck={false} data-1p-ignore="true" />
+        <InputClear aria-label="Clear search"><Icon name="close" size={17} /></InputClear>
+        {!value && <kbd aria-hidden="true">/</kbd>}
+      </InputGroup>
+    </Field>
   </form>;
 }
-
 
 export function useRankings(data, scope, search) {
   const all = useMemo(() => {
@@ -56,16 +64,20 @@ export function useRankings(data, scope, search) {
 
 
 export function EmptyState({ search, onClear }) {
-  return <div className="lab-empty"><Icon name="search" size={28} /><h3>No matching solvers</h3><p>We couldn’t find “{search.trim()}”. Try a shorter name or a different spelling.</p><button type="button" className="lab-button" onClick={onClear}>Clear search</button></div>;
+  return <div className="lab-empty"><Icon name="search" size={28} /><h3>No matching solvers</h3><p>We couldn’t find “{search.trim()}”. Try a shorter name or a different spelling.</p><Button className="lab-button" onClick={onClear}>Clear search</Button></div>;
 }
 
 export function Pagination({ page, pages, setPage, count, pageSize = 40, busy = false }) {
-  return <nav className="lab-pagination" aria-label="Results pages"><span role="status" aria-atomic="true">{count ? `${page * pageSize + 1}–${Math.min((page + 1) * pageSize, count)} of ${count.toLocaleString()}` : '0 results'}</span><div><button type="button" disabled={busy || page === 0} onClick={() => setPage(page - 1)} aria-label="Previous page">←</button><span>{page + 1} / {Math.max(pages, 1)}</span><button type="button" disabled={busy || page >= pages - 1} onClick={() => setPage(page + 1)} aria-label="Next page">→</button></div></nav>;
+  return <PageNavigation className="lab-pagination" aria-label="Results pages" page={page + 1}
+    pageCount={Math.max(pages, 1)} disabled={busy} onPageChange={(next) => setPage(next - 1)}>
+    <span role="status" aria-atomic="true">{count ? `${page * pageSize + 1}–${Math.min((page + 1) * pageSize, count)} of ${count.toLocaleString()}` : '0 results'}</span>
+    <div><PaginationPrevious aria-label="Previous page">←</PaginationPrevious><span>{page + 1} / {Math.max(pages, 1)}</span><PaginationNext aria-label="Next page">→</PaginationNext></div>
+  </PageNavigation>;
 }
 
 function PlacementHelp() {
   return <Tooltip content="Position in Jane Street’s published solver list, in submission order." className="lab-placement-help" surfaceClassName="puzzle-info-tooltip" openDelay={0}>
-    <button type="button" className="lab-placement-trigger" aria-label="About placement"><span>Placement</span><span className="panel-info-marker" aria-hidden="true">i</span></button>
+    <Button className="lab-placement-trigger" aria-label="About placement"><span>Placement</span><span className="panel-info-marker" aria-hidden="true">i</span></Button>
   </Tooltip>;
 }
 
@@ -111,7 +123,7 @@ export function ProfileContent({ data, name, onClose }) {
   }, [placements, pageSize]);
   const count = loading ? standing?.puzzlesSolved ?? 0 : placements.length;
   return <article className="lab-record" aria-label={`Record for ${name}`}>
-    {onClose && <button type="button" className="lab-icon-button lab-profile-close" aria-label="Close profile" onClick={onClose}><Icon name="close" /></button>}
+    {onClose && <Button className="lab-icon-button lab-profile-close" aria-label="Close profile" onClick={onClose}><Icon name="close" /></Button>}
     <header className="lab-record-header"><span className="lab-eyebrow">Solver record</span>
       <div className="lab-record-identity">
         <svg className="lab-avatar" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" focusable="false">
@@ -135,25 +147,13 @@ export function ProfileContent({ data, name, onClose }) {
 }
 
 export function ProfileDialog({ data, name, onClose }) {
-  const dialog = useRef(null);
-  // Keep the last profile mounted while the dialog plays its exit.
-  const [shown, setShown] = useState(name);
-  useEffect(() => {
-    const element = dialog.current;
-    if (name) {
-      setShown(name);
-      if (!element.open) { element.showModal(); element.getBoundingClientRect(); }
-      element.dataset.state = 'open';
-      return undefined;
-    }
-    if (!element.open) { setShown(null); return undefined; }
-    element.dataset.state = 'closing';
-    const finish = () => { element.close(); setShown(null); };
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) { finish(); return undefined; }
-    const timer = window.setTimeout(finish, 140);
-    return () => window.clearTimeout(timer);
-  }, [name]);
-  return <dialog ref={dialog} className="lab-profile-dialog" aria-label={shown ? `Profile for ${shown}` : 'Solver profile'} onCancel={(event) => { event.preventDefault(); onClose(); }} onClick={(event) => { if (event.target === dialog.current) { const rect = dialog.current.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose(); } }}>
-    {shown && <ProfileContent key={shown} data={data} name={shown} onClose={onClose} />}
-  </dialog>;
+  const [lastName, setLastName] = useState(name);
+  useEffect(() => { if (name) setLastName(name); }, [name]);
+  const shown = name || lastName;
+  return <Dialog open={Boolean(name)} onOpenChange={(open) => { if (!open) onClose(); }}
+    onOpenChangeComplete={(open) => { if (!open) setLastName(null); }}>
+    <DialogContent className="lab-profile-dialog" aria-label={shown ? `Profile for ${shown}` : 'Solver profile'}>
+      {shown && <ProfileContent key={shown} data={data} name={shown} onClose={onClose} />}
+    </DialogContent>
+  </Dialog>;
 }

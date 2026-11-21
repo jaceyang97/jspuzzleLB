@@ -18,7 +18,9 @@ describe('GrowthChartTabs', () => {
       { month: 'Aug 2026', totalSolvers: 1234 },
     ]} />);
 
-    expect(screen.getByRole('combobox', { name: 'Trend view' })).toHaveValue('growth');
+    const trigger = screen.getByRole('combobox', { name: 'Trend view' });
+    expect(trigger).toHaveTextContent('Total solvers');
+    fireEvent.click(trigger);
     expect(screen.getByRole('option', { name: 'Total solvers', selected: true })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'About total solvers' })).toBeVisible();
     expect(screen.getByText('1,234')).toBeVisible();
@@ -36,7 +38,7 @@ describe('GrowthChartTabs', () => {
   });
 
   test('shows new and returning counts without date or range captions', () => {
-    jest.useFakeTimers('modern');
+    jest.useFakeTimers();
     jest.setSystemTime(new Date('2026-11-07T12:00:00Z'));
     render(<GrowthChartTabs solversGrowthData={[]} rawPuzzles={[
       { name: 'September', date_text: 'Sep 2026', solution_url: '', solvers: ['Ada'] },
@@ -45,7 +47,8 @@ describe('GrowthChartTabs', () => {
       { name: 'November', date_text: 'Nov 2026', solution_url: '', solvers: ['Ada', 'Grace', 'New in November'] },
     ]} />);
 
-    fireEvent.change(screen.getByRole('combobox', { name: 'Trend view' }), { target: { value: 'monthly' } });
+    fireEvent.click(screen.getByRole('combobox', { name: 'Trend view' }));
+    fireEvent.click(screen.getByRole('option', { name: 'New & returning' }));
 
     expect(screen.getByText('Returning')).toBeVisible();
     expect(screen.getByText('New')).toBeVisible();
@@ -56,14 +59,15 @@ describe('GrowthChartTabs', () => {
   });
 
   test('keeps an unpublished latest month visible as unknown instead of reusing older counts', () => {
-    jest.useFakeTimers('modern');
+    jest.useFakeTimers();
     jest.setSystemTime(new Date('2026-11-07T12:00:00Z'));
     render(<GrowthChartTabs solversGrowthData={[]} rawPuzzles={[
       { name: 'September', date_text: 'Sep 2026', solution_url: '', solvers: ['Ada'] },
       { name: 'October', date_text: 'Oct 2026', solution_url: '', solvers: [] },
     ]} />);
 
-    fireEvent.change(screen.getByRole('combobox', { name: 'Trend view' }), { target: { value: 'monthly' } });
+    fireEvent.click(screen.getByRole('combobox', { name: 'Trend view' }));
+    fireEvent.click(screen.getByRole('option', { name: 'New & returning' }));
 
     expect(screen.getAllByText('N/A', { selector: 'dd' })).toHaveLength(2);
   });

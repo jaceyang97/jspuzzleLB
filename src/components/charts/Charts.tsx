@@ -1,3 +1,4 @@
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui-sdk/react/select';
 import React, { memo, useState, useMemo } from 'react';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { MONTH_CODES } from '../../utils/leaderboardUtils';
@@ -85,10 +86,16 @@ export const GrowthChartTabs: React.FC<GrowthChartTabsProps> = ({ solversGrowthD
           <h3>Trends</h3>
           <InfoTooltip content={activeView.tooltip} label={`About ${activeView.label.toLowerCase()}`} />
         </div>}
-        <select className="trend-view-select" aria-label="Trend view" value={tab}
-          onChange={(event) => { const next = event.target.value as GrowthTab; setTab(next); trackEvent('chart_tab_change', { tab: next }); }}>
-          {VIEWS.map((view) => <option key={view.id} value={view.id}>{view.label}</option>)}
-        </select>
+        <Select value={tab} items={VIEWS.map(({ id, label }) => ({ value: id, label }))} onValueChange={(next) => {
+          if (next !== 'monthly' && next !== 'growth') return;
+          setTab(next);
+          trackEvent('chart_tab_change', { tab: next });
+        }}>
+          <SelectTrigger className="trend-view-select" aria-label="Trend view"><SelectValue /><span aria-hidden="true">⌄</span></SelectTrigger>
+          <SelectContent className="trend-view-options" align="start" sideOffset={4}>
+            {VIEWS.map(({ id, label }) => <SelectItem key={id} value={id}>{label}</SelectItem>)}
+          </SelectContent>
+        </Select>
       </div>
       <div className="growth-tab-panel">
         {tab === 'monthly' && <MonthlyParticipationChart puzzles={rawPuzzles ?? null} loading={!!puzzlesLoading} />}

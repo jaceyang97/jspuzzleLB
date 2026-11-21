@@ -12,7 +12,7 @@ test('submits feedback once and clears the draft only after acceptance', async (
   render(<ProjectInfoCard />);
   const field = screen.getByRole('textbox', { name: 'Features, fixes, feedback…' });
   expect(screen.getByRole('button', { name: 'Send feedback' })).toBeDisabled();
-  fireEvent.change(field, { target: { value: '  Please add a date filter.  ' } });
+  fireEvent.input(field, { target: { value: '  Please add a date filter.  ' } });
   fireEvent.submit(field.form);
   fireEvent.submit(field.form);
   expect(global.fetch).toHaveBeenCalledTimes(1);
@@ -34,7 +34,7 @@ test.each([
   global.fetch = jest.fn(response);
   render(<ProjectInfoCard />);
   const field = screen.getByRole('textbox', { name: 'Features, fixes, feedback…' });
-  fireEvent.change(field, { target: { value: 'Please fix my name.' } });
+  fireEvent.input(field, { target: { value: 'Please fix my name.' } });
   fireEvent.submit(field.form);
   await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(notice));
   expect(field).toHaveValue('Please fix my name.');
@@ -45,7 +45,7 @@ test('Ctrl+Enter submits while Enter preserves multiline input', async () => {
   global.fetch = jest.fn(async () => ({ ok: true, json: async () => ({ ok: true }) }));
   render(<ProjectInfoCard />);
   const field = screen.getByRole('textbox', { name: 'Features, fixes, feedback…' });
-  fireEvent.change(field, { target: { value: 'A suggestion' } });
+  fireEvent.input(field, { target: { value: 'A suggestion' } });
   fireEvent.keyDown(field, { key: 'Enter' });
   expect(global.fetch).not.toHaveBeenCalled();
   fireEvent.keyDown(field, { key: 'Enter', ctrlKey: true });

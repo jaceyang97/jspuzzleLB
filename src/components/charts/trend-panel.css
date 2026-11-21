@@ -41,3 +41,8 @@
 @media (max-width: 700px) {
   .dashboard-layout .dashboard-stage--short .growth-chart-tabs .chart-canvas { height: clamp(100px, 28dvh, 180px); }
 }
+
+.trend-view-select[data-slot] { display: inline-flex; align-items: center; justify-content: space-between; gap: 8px; }
+.trend-view-options { min-width: var(--anchor-width); padding: 4px; background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-sm); box-shadow: var(--shadow-popover); font-size: 14px; }
+.trend-view-options [role='option'] { padding: 8px 12px; border-radius: 4px; cursor: pointer; }
+.trend-view-options [data-highlighted] { background: var(--bg-hover-strong); }

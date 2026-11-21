@@ -1,3 +1,4 @@
+import { Button } from '@ui-sdk/react/button';
 import React from 'react';
 import { AnimatePresence, LazyMotion, domAnimation, useReducedMotion } from 'motion/react';
 import * as m from 'motion/react-m';
@@ -34,7 +35,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, onToggle }) => {
     : { opacity: 0, scale: 0.25, filter: 'blur(4px)' };
   return (
     <LazyMotion features={domAnimation} strict>
-      <button type="button" className="theme-toggle theme-toggle-motion" onClick={onToggle}
+      <Button type="button" className="theme-toggle theme-toggle-motion" onClick={onToggle}
         aria-label={`Switch to ${nextTheme} mode`}>
         <span className="theme-toggle-glyph" aria-hidden="true">
           {nativeTransition ? (
@@ -49,7 +50,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, onToggle }) => {
             </m.span>
           </AnimatePresence>}
         </span>
-      </button>
+      </Button>
     </LazyMotion>
   );
 };

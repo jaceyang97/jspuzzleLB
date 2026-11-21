@@ -9,7 +9,7 @@
 .rs-pareto button:disabled { cursor: default; }
 .rs-pareto-axis-options { display: flex; width: fit-content; max-width: 100%; gap: 2px; padding: 2px; margin-bottom: 18px; border: 1px solid var(--rs-rule, #d9d5ca); border-radius: 6px; }
 .rs-pareto-axis-options button { min-height: 40px; padding: 7px 14px; border: 0; border-radius: 4px; background: transparent; color: var(--rs-muted, #716d65); font-size: 12px; line-height: 1.4; white-space: nowrap; }
-.rs-pareto-axis-options button[aria-pressed='true'] { background: var(--rs-paper, #faf9f6); color: var(--rs-ink, #282723); box-shadow: 0 1px 3px #0000000b; }
+.rs-pareto-axis-options button[data-checked] { background: var(--rs-paper, #faf9f6); color: var(--rs-ink, #282723); box-shadow: 0 1px 3px #0000000b; }
 .rs-pareto-plot { width: 100%; min-width: 0; height: 350px; border-radius: 3px; touch-action: pan-y; cursor: crosshair; }
 .rs-pareto-plot svg { display: block; overflow: visible; font-family: inherit; }
 .rs-pareto-grid { stroke: var(--rs-rule, #d9d5ca); stroke-width: 1; }
@@ -32,7 +32,8 @@
 .rs-pareto-key-frontier { background: var(--rs-pareto-teal); }
 .rs-pareto-legend .rs-pareto-key-chosen { width: 12px; height: 12px; background: var(--rs-pareto-red); border-radius: 0; clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 94%,50% 72%,21% 94%,32% 57%,2% 35%,39% 35%); }
 .rs-pareto-show-all { display: flex; align-items: center; gap: 8px; min-height: 40px; width: fit-content; max-width: 100%; font-size: 11px; color: var(--rs-muted, #716d65); cursor: pointer; }
-.rs-pareto-show-all input { width: 15px; height: 15px; margin: 0; flex: none; accent-color: var(--rs-pareto-teal); }
+.rs-pareto-show-all [data-slot="checkbox"] { display: grid; place-items: center; width: 18px; height: 18px; padding: 0; flex: none; border: 1px solid var(--rs-muted); border-radius: 4px; background: var(--rs-paper); color: var(--rs-paper); }
+.rs-pareto-show-all [data-checked] { background: var(--rs-ink); border-color: var(--rs-ink); }
 .rs-pareto .rs-pareto-instructions { margin: 0 0 14px; color: var(--rs-muted, #716d65); font-size: 11px; line-height: 1.5; }
 .rs-pareto-details { padding-top: 13px; border-top: 1px solid var(--rs-rule, #d9d5ca); font-size: 12px; }
 .rs-pareto-detail-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 40px; }

@@ -1,28 +1,16 @@
-import React, { useId, useMemo, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import React, { useId, useMemo } from 'react';
+import { Button } from '@ui-sdk/react/button';
+import { TabsIndicator, TabsList, TabsTab } from '@ui-sdk/react/tabs';
 import { scopes } from './shared';
 import WinnerCrown from './WinnerCrown';
 
 const columns = { top: 'Puzzles', streaks: 'Months', rising: 'Solve rate' };
 
-export function SelectedRankingTabs({ scope, onChange }) {
-  const indicatorId = useId();
-  const tabs = useRef(null);
-  const reduceMotion = useReducedMotion();
-  const [keyboard, setKeyboard] = useState(false);
-  return <motion.div layoutScroll ref={tabs} className="lab-tabs flow-ranking-tabs" role="tablist" aria-label="Rankings" aria-orientation="horizontal">
-    {scopes.map((item, index) => <button key={item.id} id={`tab-${item.id}`} type="button" role="tab" aria-selected={scope === item.id} aria-controls="ranking-results" tabIndex={scope === item.id ? 0 : -1} onClick={() => { setKeyboard(false); onChange(item.id); }} onKeyDown={(event) => {
-      let next;
-      if (event.key === 'ArrowRight') next = (index + 1) % scopes.length;
-      else if (event.key === 'ArrowLeft') next = (index - 1 + scopes.length) % scopes.length;
-      else if (event.key === 'Home') next = 0;
-      else if (event.key === 'End') next = scopes.length - 1;
-      else return;
-      event.preventDefault(); event.stopPropagation(); setKeyboard(true); onChange(scopes[next].id);
-      const target = tabs.current.querySelectorAll('[role="tab"]')[next];
-      target.focus(); target.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-    }}><span>{item.label}</span>{scope === item.id && <motion.span className="flow-tab-indicator" layoutId={indicatorId} aria-hidden="true" transition={reduceMotion || keyboard ? { duration: 0 } : { type: 'spring', duration: .28, bounce: 0 }} />}</button>)}
-  </motion.div>;
+export function SelectedRankingTabs() {
+  return <TabsList className="lab-tabs flow-ranking-tabs" aria-label="Rankings">
+    {scopes.map(({ id, label }) => <TabsTab key={id} value={id}><span>{label}</span></TabsTab>)}
+    <TabsIndicator className="flow-tab-indicator" />
+  </TabsList>;
 }
 
 export function SelectedRankingHeader({ scope }) {
@@ -56,11 +44,11 @@ function RankingRow({ item, lastSeen, onSelect, index, total, fitWord }) {
   const changeLabel = rankChangeLabel(item.rankChange);
   const unit = item.score === 1 ? item.unit.replace(/s$/, '') : item.unit;
   return <li className={`arena-row${item.rank <= 3 ? ' arena-row--leading' : ''}`} data-rank={item.rank} data-row-index={index} aria-posinset={index + 1} aria-setsize={total} style={{ '--flow-rank-digits': String(item.rank).length, '--flow-change-characters': rankChangeText(item.rankChange).length, '--name-longest-word': fitWord, '--name-own-word': longestWordLength(item.name) }}>
-    <button type="button" className="arena-row-target" onClick={() => onSelect(item.name)} aria-label={`Open profile for ${item.name}, rank ${item.rank}, ${item.score} ${unit}${changeLabel ? `, ${changeLabel}` : ''}`} aria-describedby={contextId}>
+    <Button className="arena-row-target" onClick={() => onSelect(item.name)} aria-label={`Open profile for ${item.name}, rank ${item.rank}, ${item.score} ${unit}${changeLabel ? `, ${changeLabel}` : ''}`} aria-describedby={contextId}>
       <span className="arena-rank flow-rank"><span className="flow-rank-value"><span className="flow-rank-number">{item.rank}</span><RankChange value={item.rankChange} /></span></span>
       <span className="arena-person">{item.rank === 1 && <WinnerCrown />}<span className="arena-name">{item.name}</span><span className="arena-record-context flow-record-context" id={contextId}>{lastSeen ? `Last seen ${lastSeen}` : 'Last seen unavailable'}</span></span>
       <span className="arena-score flow-score"><strong>{item.score}</strong></span>
-    </button>
+    </Button>
   </li>;
 }
 

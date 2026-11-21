@@ -1,3 +1,5 @@
+import { bindLayer } from '@ui-sdk/core';
+import { Button } from '@ui-sdk/react/button';
 import React, { ReactNode, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { LeaderboardData } from '../types';
 import Tooltip from '../../../components/Tooltip';
@@ -38,7 +40,7 @@ const SolverChip: React.FC<{ name: string; colors: ChipColor; onClick?: () => vo
     <span className="solver-chip-name">{name}</span>
   </>;
   return onClick
-    ? <button type="button" className="solver-chip solver-chip-button" aria-label={`Open profile for ${name}`} onClick={onClick}>{content}</button>
+    ? <Button type="button" className="solver-chip solver-chip-button" aria-label={`Open profile for ${name}`} onClick={onClick}>{content}</Button>
     : <span className="solver-chip">{content}</span>;
 };
 
@@ -160,12 +162,17 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
   }, [inline, inlineVisibleCount, inlineNames.length]);
 
   useEffect(() => {
-    if (!inline || !moreOpen) return;
-    const closeOutside = (event: PointerEvent) => {
-      if (!activityRef.current?.contains(event.target as Node)) setMoreOpen(false);
-    };
-    document.addEventListener('pointerdown', closeOutside);
-    return () => document.removeEventListener('pointerdown', closeOutside);
+    if (!inline || !moreOpen || !morePopoverRef.current) return;
+    return bindLayer(morePopoverRef.current, {
+      contains: (target) => !!activityRef.current?.contains(target),
+      onDismiss: (reason) => {
+        if (reason === 'escape-key') {
+          pointerInteractionRef.current = false;
+          moreButtonRef.current?.focus();
+        }
+        setMoreOpen(false);
+      },
+    });
   }, [inline, moreOpen]);
 
   useLayoutEffect(() => {
@@ -267,14 +274,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
             onBlur={(event) => {
               if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setMoreOpen(false);
             }}
-            onKeyDown={(event) => {
-              pointerInteractionRef.current = false;
-              if (event.key === 'Escape') {
-                event.preventDefault();
-                setMoreOpen(false);
-                moreButtonRef.current?.focus();
-              }
-            }}>
+            onKeyDown={() => { pointerInteractionRef.current = false; }}>
             <div ref={rowRef} className="header-activity-row">
               {puzzleContext && <span className="header-activity-context" data-activity-fixed>{puzzleContext}</span>}
               <span className="banner-tag" data-activity-fixed>NEW TODAY</span>
@@ -284,13 +284,13 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
                   <SolverChip key={`${name}-${index}`} name={name} colors={VISIBLE_PALETTE[index % VISIBLE_PALETTE.length]}
                     onClick={() => selectInlineSolver(name)} />
                 ))}
-                {names.length > inlineVisibleCount && <button ref={moreButtonRef} type="button" className="header-activity-more"
+                {names.length > inlineVisibleCount && <Button ref={moreButtonRef} type="button" className="header-activity-more"
                   aria-label={`${names.length - inlineVisibleCount} more solvers added today`}
                   aria-expanded={moreOpen} aria-controls={moreId}
                   onClick={(event) => {
                     pointerInteractionRef.current = event.detail > 0;
                     setMoreOpen((open) => !open);
-                  }}>+{names.length - inlineVisibleCount}</button>}
+                  }}>+{names.length - inlineVisibleCount}</Button>}
               </span>
             </div>
             <span className="header-activity-measure" aria-hidden="true"
@@ -354,7 +354,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
               } : undefined}
             >
               {compact ? (
-                <button
+                <Button
                   ref={moreButtonRef}
                   type="button"
                   className="banner-more-trigger"
@@ -364,7 +364,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
                   onClick={() => setMoreOpen((open) => !open)}
                 >
                   {hidden.length} more
-                </button>
+                </Button>
               ) : (
                 <span className="banner-more-trigger">{hidden.length} more</span>
               )}
@@ -431,7 +431,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       aria-label="Puzzle activity"
     >
       <span className="banner-text">{content}</span>
-      {!inline && <button
+      {!inline && <Button
         type="button"
         className="banner-dismiss"
         onClick={() => {
@@ -441,7 +441,7 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
         aria-label="Dismiss banner"
       >
         ×
-      </button>}
+      </Button>}
     </div>
   );
 };

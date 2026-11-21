@@ -1,3 +1,5 @@
+import { bindLayer } from '@ui-sdk/core';
+import { Button } from '@ui-sdk/react/button';
 import React, { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { trackOnce } from '../../../utils/analytics';
@@ -35,7 +37,7 @@ const PuzzleNavigation: React.FC<PuzzleNavigationProps> = ({ selectedItem = 'int
   }, []);
 
   const ownsTarget = useCallback((target: EventTarget | null) => target instanceof Node && (
-    introRef.current?.contains(target) || popoverRef.current?.contains(target)
+    !!introRef.current?.contains(target) || !!popoverRef.current?.contains(target)
   ), []);
 
   const show = useCallback((explicit = false) => {
@@ -75,21 +77,11 @@ const PuzzleNavigation: React.FC<PuzzleNavigationProps> = ({ selectedItem = 'int
   useEffect(() => cancelClose, [cancelClose]);
 
   useEffect(() => {
-    if (!open) return;
-    const handlePointerDown = (event: PointerEvent) => {
-      if (!ownsTarget(event.target)) dismiss();
-    };
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape') return;
-      event.preventDefault();
-      dismiss(!!popoverRef.current?.contains(document.activeElement));
-    };
-    document.addEventListener('pointerdown', handlePointerDown);
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('pointerdown', handlePointerDown);
-      document.removeEventListener('keydown', handleEscape);
-    };
+    if (!open || !popoverRef.current) return;
+    return bindLayer(popoverRef.current, {
+      contains: ownsTarget,
+      onDismiss: (reason) => dismiss(reason === 'escape-key' && !!popoverRef.current?.contains(document.activeElement)),
+    });
   }, [open, dismiss, ownsTarget]);
 
   useLayoutEffect(() => {
@@ -182,7 +174,7 @@ const PuzzleNavigation: React.FC<PuzzleNavigationProps> = ({ selectedItem = 'int
   return (
     <nav className="puzzle-navigation" aria-label="Puzzle navigation">
       <div ref={introRef} className="intro-container" onMouseEnter={() => show()} onMouseLeave={handleMouseLeave}>
-        <button ref={buttonRef} type="button" className="intro-button"
+        <Button ref={buttonRef} type="button" className="intro-button"
           aria-label="INTRO" aria-current={selectedItem === 'intro' ? 'page' : undefined} aria-haspopup="dialog" aria-expanded={open} aria-controls={popoverId}
           onFocus={() => show()} onBlur={handleBlur}
           onClick={() => {
@@ -195,7 +187,7 @@ const PuzzleNavigation: React.FC<PuzzleNavigationProps> = ({ selectedItem = 'int
               event.preventDefault();
               popoverRef.current?.focus();
             }
-          }}>INTRO <span className="panel-info-marker intro-info-marker" aria-hidden="true">i</span></button>
+          }}>INTRO <span className="panel-info-marker intro-info-marker" aria-hidden="true">i</span></Button>
       </div>
       <a ref={currentLinkRef} className="js-nav-link"
         aria-current={selectedItem === 'current' ? 'true' : undefined} onClick={() => onItemSelect?.('current')}

@@ -42,7 +42,7 @@ test('pages through every solved puzzle without requiring an inner scroll area',
   fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
   expect(within(table).getAllByRole('link', { name: /^Puzzle \d+$/ }).map(link => link.textContent)).toEqual(['Puzzle 2', 'Puzzle 1']);
   expect(screen.getByText('11–12 of 12')).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Next page' })).toHaveAttribute('aria-disabled', 'true');
   fireEvent.click(screen.getByRole('button', { name: 'Previous page' }));
   expect(within(table).getAllByRole('row')).toHaveLength(11);
 });
@@ -69,8 +69,8 @@ test('keeps pagination present and disabled while puzzle history is loading', ()
   render(<ProfileContent data={data} name="Ada Lovelace" onClose={jest.fn()} />);
   expect(screen.getByText('Loading puzzle history…')).toBeVisible();
   expect(screen.getByRole('navigation', { name: 'Results pages' })).toBeVisible();
-  expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
-  expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Next page' })).toHaveAttribute('aria-disabled', 'true');
+  expect(screen.getByRole('button', { name: 'Previous page' })).toHaveAttribute('aria-disabled', 'true');
 });
 
 test('puzzle titles locate the solver while placements remain plain text', () => {

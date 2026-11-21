@@ -97,3 +97,7 @@
   .rs-article { padding-top: 0; }
   .rs-figure { break-inside: avoid; }
 }
+
+.rs-contents { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-bottom: 36px; padding-block: 6px; border-block: 1px solid var(--rs-rule); }
+.rs-contents a { display: inline-flex; align-items: center; min-height: 36px; color: var(--rs-accent); font-size: 13px; }
+.rs-article h2 { scroll-margin-top: 16px; }

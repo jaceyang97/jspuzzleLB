@@ -1,3 +1,7 @@
+import { stepBy, stepFromKey } from '@ui-sdk/core/number';
+import { Button } from '@ui-sdk/react/button';
+import { Checkbox, CheckboxIndicator } from '@ui-sdk/react/checkbox';
+import { SegmentedControl, SegmentedControlItem } from '@ui-sdk/react/segmented-control';
 import React, { useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import studyData from './data/pareto-study.json';
 import './ParetoChart.css';
@@ -141,12 +145,11 @@ export default function ParetoChart({ data = articleParetoData }: { data?: Paret
   };
   const step = (next: number) => setSelectedId(representatives[Math.max(0, Math.min(representatives.length - 1, next))].config_id);
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'ArrowRight') step(selectedIndex + 1);
-    else if (event.key === 'ArrowLeft') step(selectedIndex - 1);
-    else if (event.key === 'Home') step(0);
-    else if (event.key === 'End') step(representatives.length - 1);
-    else return;
+    const dir = getComputedStyle(event.currentTarget).direction === 'rtl' ? 'rtl' : 'ltr';
+    const move = stepFromKey(event.nativeEvent, { dir });
+    if (!move) return;
     event.preventDefault();
+    step(stepBy(selectedIndex, move, { min: 0, max: representatives.length - 1, step: 1 }));
   };
 
   // One direct label, positioned in the least crowded nearby space. Points
@@ -166,10 +169,11 @@ export default function ParetoChart({ data = articleParetoData }: { data?: Paret
 
   return <figure className="rs-pareto" aria-labelledby={`${id}-title`}>
     <div className="rs-pareto-heading"><strong id={`${id}-title`}>{number(data.metadata.counts.configurations)} rules compared</strong><span>Jan 2018–Feb 2026</span></div>
-    <div className="rs-pareto-axis-options" role="group" aria-label="Horizontal axis">
-      <button type="button" aria-pressed={axis === 'age'} onClick={() => setAxis('age')}>Record length</button>
-      <button type="button" aria-pressed={axis === 'reach'} onClick={() => setAxis('reach')}>Names/year</button>
-    </div>
+    <SegmentedControl className="rs-pareto-axis-options" aria-label="Horizontal axis" value={axis}
+      onValueChange={(value) => { if (value === 'age' || value === 'reach') setAxis(value); }}>
+      <SegmentedControlItem value="age">Record length</SegmentedControlItem>
+      <SegmentedControlItem value="reach">Names/year</SegmentedControlItem>
+    </SegmentedControl>
     <div ref={plotRef} className="rs-pareto-plot" role="slider" tabIndex={0}
       aria-label="Inspect a ranking rule" aria-orientation="horizontal" aria-valuemin={1} aria-valuemax={representatives.length}
       aria-valuenow={selectedIndex + 1} aria-valuetext={`${METHODS[selected.ranking]}, ${selected.window_months} months, at least ${selected.min_solves} solves. Later participation ${percent(selected.future_quality)}.`}
@@ -201,14 +205,14 @@ export default function ParetoChart({ data = articleParetoData }: { data?: Paret
       <span><i className="rs-pareto-key-chosen" />Selected rule · on frontier</span>
       {showUnderfilled && <span><i className="rs-pareto-key-hollow" />Fewer names</span>}
     </div>
-    <label className="rs-pareto-show-all"><input type="checkbox" checked={showUnderfilled} onChange={(event) => {
-      setShowUnderfilled(event.target.checked);
-      if (!event.target.checked && !selected.meets_95pct_fill) setSelectedId(chosen.config_id);
-    }} />Show rules with fewer names</label>
+    <label className="rs-pareto-show-all"><Checkbox checked={showUnderfilled} onCheckedChange={(checked) => {
+      setShowUnderfilled(checked === true);
+      if (!checked && !selected.meets_95pct_fill) setSelectedId(chosen.config_id);
+    }}><CheckboxIndicator aria-hidden="true">✓</CheckboxIndicator></Checkbox>Show rules with fewer names</label>
     <p id={`${id}-instructions`} className="rs-pareto-instructions">Hover, tap, or use arrow keys to inspect.</p>
     <div className="rs-pareto-details" role="region" aria-label="Selected rule details">
       <div className="rs-pareto-detail-heading"><strong>{METHODS[selected.ranking]}</strong>
-        <button type="button" className="rs-pareto-reset" onClick={() => setSelectedId(chosen.config_id)} disabled={selected.config_id === chosen.config_id}>Our choice</button></div>
+        <Button className="rs-pareto-reset" onClick={() => setSelectedId(chosen.config_id)} disabled={selected.config_id === chosen.config_id}>Our choice</Button></div>
       <p className="rs-pareto-parameters">{selected.window_months} {selected.window_months === 1 ? 'month' : 'months'} · {selected.min_solves} {selected.min_solves === 1 ? 'solve' : 'solves'} minimum · {selected.min_opportunities} published {selected.min_opportunities === 1 ? 'puzzle' : 'puzzles'} minimum</p>
       <dl className="rs-pareto-metrics">
         <div><dt>Later participation</dt><dd>{percent(selected.future_quality)}</dd></div>
@@ -224,9 +228,9 @@ export default function ParetoChart({ data = articleParetoData }: { data?: Paret
           <ul>{equivalentIds.map((configId) => <li key={configId}><code>{configId}</code></li>)}</ul>
         </details>
         <div className="rs-pareto-stepper">
-          <button type="button" aria-label="Inspect previous result" disabled={selectedIndex <= 0} onClick={() => step(selectedIndex - 1)}>←</button>
+          <Button aria-label="Inspect previous result" disabled={selectedIndex <= 0} onClick={() => step(selectedIndex - 1)}>←</Button>
           <span>{selectedIndex + 1}/{representatives.length}</span>
-          <button type="button" aria-label="Inspect next result" disabled={selectedIndex >= representatives.length - 1} onClick={() => step(selectedIndex + 1)}>→</button>
+          <Button aria-label="Inspect next result" disabled={selectedIndex >= representatives.length - 1} onClick={() => step(selectedIndex + 1)}>→</Button>
         </div>
       </div>
     </div>

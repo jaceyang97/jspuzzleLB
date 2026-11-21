@@ -8,7 +8,7 @@ export function solverInitial(name: string): string {
   const trimmed = name.trim();
   if (!trimmed) return '?';
   if (segmenter) {
-    return segmenter.segment(trimmed)[Symbol.iterator]().next().value.segment.toUpperCase();
+    return segmenter.segment(trimmed)[Symbol.iterator]().next().value?.segment.toUpperCase() ?? '?';
   }
   // Older browsers get a neutral avatar for complex text, while the adjacent
   // full name stays intact. This avoids shipping a segmentation polyfill.

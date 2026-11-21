@@ -74,6 +74,11 @@ export default function RisingStarsArticle() {
         <div className="rs-byline"><time dateTime="2026-09-06">6 September 2026</time><span aria-hidden="true">·</span><span>3 min read</span></div>
       </header>
 
+      <nav className="rs-contents" aria-label="Article sections">
+        <a href="#count-title">Calculation</a>
+        <a href="#tradeoff-title">Rule comparison</a>
+        <a href="#period-title">Historical results</a>
+      </nav>
       <section aria-labelledby="count-title">
         <div className="rs-copy">
           <h2 id="count-title">Count from your first solve</h2>

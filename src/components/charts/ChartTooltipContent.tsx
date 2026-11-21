@@ -1,3 +1,4 @@
+import { bindLayer } from '@ui-sdk/core';
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { DefaultTooltipContent, TooltipProps } from 'recharts';
@@ -44,16 +45,11 @@ export default function ChartTooltipContent(props: ChartTooltipProps) {
     return clearClose;
   }, [active, clearClose]);
   useEffect(() => {
-    if (!open) return;
-    const dismiss = () => { clearClose(); hovered.current = false; setRetained(false); setDismissedPoint(point); };
-    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') dismiss(); };
-    const onPointer = (event: PointerEvent) => {
-      const target = event.target as Node;
-      if (!chart.current?.contains(target) && !tip.current?.contains(target)) dismiss();
-    };
-    document.addEventListener('keydown', onKey);
-    document.addEventListener('pointerdown', onPointer);
-    return () => { document.removeEventListener('keydown', onKey); document.removeEventListener('pointerdown', onPointer); };
+    if (!open || !tip.current) return;
+    return bindLayer(tip.current, {
+      contains: (target) => !!chart.current?.contains(target),
+      onDismiss: () => { clearClose(); hovered.current = false; setRetained(false); setDismissedPoint(point); },
+    });
   }, [open, point, clearClose]);
 
   return <>
@@ -67,6 +63,6 @@ export default function ChartTooltipContent(props: ChartTooltipProps) {
         <DefaultTooltipContent {...displayed} contentStyle={{ ...displayed.contentStyle, maxWidth: '100%',
           padding: 0, border: 0, background: 'transparent', whiteSpace: 'normal', overflowWrap: 'anywhere' }} />
       </span>
-    </span>, document.body)}
+    </span>, chart.current?.closest('[aria-modal="true"], dialog[open]') ?? document.body)}
   </>;
 }

@@ -1,6 +1,6 @@
 html:has(.central-flow), body:has(.central-flow), #root:has(.central-flow) { height: auto; min-height: 100%; overflow: visible; }
 html:has(.central-flow) { overflow-x: clip; overflow-y: scroll; scrollbar-gutter: stable; scroll-behavior: auto; overflow-anchor: none; }
-html:has(.central-flow):has(dialog[open]) { overflow: hidden; }
+html:has(.central-flow):has([aria-modal="true"]:not([hidden])) { overflow: hidden; }
 .central-flow {
   --flow-hairline: 1px;
   --flow-panel: var(--bg-secondary);
@@ -84,13 +84,20 @@ html:has(.central-flow):has(dialog[open]) { overflow: hidden; }
 }
 .flow-stats-button { display: none; border-radius: var(--radius-control); }
 .flow-stats-dialog { width: min(620px, calc(100vw - 24px)); max-height: 90dvh; margin: auto; padding: 0; color: var(--text-primary); background: var(--bg-secondary); }
-/* Shared dialog surface and motion for Stats and the solver profile. */
-:is(.flow-stats-dialog, .lab-profile-dialog) { border: 0; border-radius: var(--radius-dialog); box-shadow: var(--shadow-dialog); opacity: 0; transform: translateY(8px) scale(.985); transition: opacity 200ms var(--ease-sheet), transform 200ms var(--ease-sheet); }
-:is(.flow-stats-dialog, .lab-profile-dialog)::backdrop { background: var(--backdrop-dialog); opacity: 0; transition: opacity 200ms var(--ease-sheet); }
-:is(.flow-stats-dialog, .lab-profile-dialog)[data-state='open'] { opacity: 1; transform: none; }
-:is(.flow-stats-dialog, .lab-profile-dialog)[data-state='open']::backdrop { opacity: 1; }
-:is(.flow-stats-dialog, .lab-profile-dialog)[data-state='closing'], :is(.flow-stats-dialog, .lab-profile-dialog)[data-state='closing']::backdrop { transition-duration: 140ms; transition-timing-function: var(--ease-out); }
-@media (prefers-reduced-motion: reduce) { :is(.flow-stats-dialog, .lab-profile-dialog), :is(.flow-stats-dialog, .lab-profile-dialog)::backdrop { transition: none; transform: none; } }
+:is(.flow-stats-dialog, .lab-profile-dialog) {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-dialog);
+  box-shadow: var(--shadow-dialog);
+  transition: opacity 140ms var(--ease-out), transform 140ms var(--ease-sheet);
+}
+:is(.flow-stats-dialog, .lab-profile-dialog)::backdrop { background: var(--backdrop-dialog); }
+:is(.flow-stats-dialog, .lab-profile-dialog):is([data-starting-style], [data-ending-style]) { opacity: 0; transform: translateY(6px); }
+@media (prefers-reduced-motion: reduce) {
+  :is(.flow-stats-dialog, .lab-profile-dialog) { transition: none; }
+}
 .flow-stats-dialog > header { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 18px; background: var(--bg-secondary); border-bottom: var(--flow-hairline) solid var(--border-primary); }
 .flow-stats-dialog > header h2 { font-size: 17px; font-weight: 650; margin: 0; }
 .flow-stats-dialog > header button { width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: var(--radius-control); color: var(--text-primary); background: transparent; }

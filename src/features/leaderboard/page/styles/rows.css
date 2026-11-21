@@ -16,7 +16,21 @@
 .flow-ranking-tabs::-webkit-scrollbar { display: none; }
 .central-flow .flow-ranking-tabs button { position: relative; flex: none; }
 .central-flow .flow-ranking-tabs button::after { display: none; }
-.flow-tab-indicator { position: absolute; inset-inline: 0; bottom: 4px; height: 2px; border-radius: 1px; background: var(--text-primary); pointer-events: none; }
+.flow-tab-indicator {
+  position: absolute;
+  left: var(--active-tab-left);
+  width: var(--active-tab-width);
+  bottom: 4px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--text-primary);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .flow-ranking-tabs:not(:has(:focus-visible)) .flow-tab-indicator:not([data-activation-direction='none']) {
+    transition: left 220ms var(--ease-out), width 220ms var(--ease-out);
+  }
+}
 .central-flow .flow-columns {
   min-height: 48px;
   border-top: 0;

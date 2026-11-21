@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { Tabs as RankingGroup } from '@ui-sdk/react/tabs';
 import { SelectedRankedRows, SelectedRankingTabs } from '../Rankings';
 import { useRankings } from '../shared';
-
-jest.mock('motion/react', () => ({
-  ...jest.requireActual('motion/react'),
-  useReducedMotion: () => true,
-}));
 
 const data = {
   topSolvers: [
@@ -53,7 +49,7 @@ test('arrow, Home, and End keys change the selected ranking and move focus', () 
   HTMLElement.prototype.scrollIntoView = jest.fn();
   function Tabs() {
     const [scope, setScope] = useState('top');
-    return <SelectedRankingTabs scope={scope} onChange={setScope} />;
+    return <RankingGroup value={scope} onValueChange={(value) => value && setScope(value)}><SelectedRankingTabs /></RankingGroup>;
   }
   try {
     render(<Tabs />);

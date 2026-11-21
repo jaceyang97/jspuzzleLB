@@ -1,3 +1,4 @@
+import { Button } from '@ui-sdk/react/button';
 import React from 'react';
 
 // Heroicons, MIT. Source and license: theme-icons/LICENSES.txt.
@@ -11,7 +12,7 @@ export function PersonalThemeIcon({ theme }) {
 
 export default function PersonalThemeButton({ theme, onToggle }) {
   const dark = theme === 'dark';
-  return <button type="button" className="flow-theme-button" onClick={onToggle} aria-label={`Switch to ${dark ? 'light' : 'dark'} mode`} title={`Switch to ${dark ? 'light' : 'dark'} mode`}>
+  return <Button type="button" className="flow-theme-button" onClick={onToggle} aria-label={`Switch to ${dark ? 'light' : 'dark'} mode`} title={`Switch to ${dark ? 'light' : 'dark'} mode`}>
     <PersonalThemeIcon theme={theme} />
-  </button>;
+  </Button>;
 }
