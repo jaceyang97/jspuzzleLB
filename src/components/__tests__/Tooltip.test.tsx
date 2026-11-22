@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import Tooltip from '../Tooltip';
 
 const rect = (left: number, top: number, width: number, height: number) => ({
@@ -16,12 +16,10 @@ beforeEach(() => {
   Object.defineProperty(window, 'innerHeight', { configurable: true, value: 260 });
   anchorBounds = rect(90, 30, 30, 20);
   jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
-    if (this.classList.contains('ui-tooltip-anchor')) return anchorBounds;
+    if (this.classList.contains('ui-tooltip-anchor') || this.tagName === 'BUTTON') return anchorBounds;
+    if (this.classList.contains('ui-tooltip-portal')) return rect(0, 0, Math.min(240, window.innerWidth - 16), 180);
     if (this.classList.contains('clip')) return rect(0, 0, 320, 120);
     return rect(0, 0, 0, 0);
-  });
-  jest.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockImplementation(function (this: HTMLElement) {
-    return this.classList.contains('ui-tooltip-portal') ? 240 : 0;
   });
   jest.spyOn(HTMLElement.prototype, 'scrollHeight', 'get').mockImplementation(function (this: HTMLElement) {
     return this.hasAttribute('data-tooltip-content') ? 180 : 0;
@@ -38,6 +36,15 @@ function fixture(extra: Record<string, unknown> = {}) {
   return { ...rendered, button: screen.getByRole('button'), anchor: rendered.container.querySelector('.ui-tooltip-anchor')! };
 }
 
+test('delays the first hover by 400ms', () => {
+  const { button } = fixture();
+  fireEvent.pointerEnter(button, { pointerType: 'mouse' });
+  act(() => jest.advanceTimersByTime(399));
+  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  act(() => jest.advanceTimersByTime(1));
+  expect(screen.getByRole('tooltip')).toBeVisible();
+});
+
 test('renders outside the clipped card and describes the focused button', () => {
   const { button, container, anchor } = fixture();
   fireEvent.focus(button);
@@ -48,7 +55,7 @@ test('renders outside the clipped card and describes the focused button', () => 
   expect(anchor).not.toHaveAttribute('tabindex');
   fireEvent.blur(button);
   expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
-  expect(button).not.toHaveAttribute('aria-describedby');
+  expect(document.getElementById(button.getAttribute('aria-describedby') ?? '')).not.toBeVisible();
 });
 
 test('flips above near the bottom and clamps the right edge', () => {
@@ -56,7 +63,7 @@ test('flips above near the bottom and clamps the right edge', () => {
   render(<Tooltip content="Long explanation" rich><button>Info</button></Tooltip>);
   fireEvent.focus(screen.getByRole('button'));
   expect(screen.getByRole('tooltip')).toHaveStyle({ left: '72px', top: '22px', position: 'fixed' });
-  expect(screen.getByRole('tooltip')).toHaveAttribute('data-placement', 'top');
+  expect(screen.getByRole('tooltip')).toHaveAttribute('data-side', 'top');
 });
 
 test('wraps and constrains tall content to a narrow viewport', () => {
@@ -65,52 +72,58 @@ test('wraps and constrains tall content to a narrow viewport', () => {
   anchorBounds = rect(150, 4, 20, 20);
   render(<Tooltip content="Very long explanation" rich><button>Info</button></Tooltip>);
   fireEvent.focus(screen.getByRole('button'));
-  expect(screen.getByRole('tooltip')).toHaveStyle({ left: '8px', top: '32px', maxWidth: '164px', maxHeight: '110px' });
+  const tip = screen.getByRole('tooltip');
+  expect(tip).toHaveStyle({ left: '8px', top: '32px' });
+  expect(tip.style.getPropertyValue('--available-height')).toBe('110px');
 });
 
-test('repositions on nested scroll and hides when the anchor is clipped out', () => {
+test('repositions on nested scroll and hides when the anchor is clipped out', async () => {
+  jest.useRealTimers();
   const { button, container } = fixture();
   fireEvent.focus(button);
   const tip = screen.getByRole('tooltip');
   anchorBounds = rect(90, 70, 30, 20);
   fireEvent.scroll(container.firstChild!);
-  expect(tip).toHaveStyle({ top: '98px' });
+  await waitFor(() => expect(tip).toHaveStyle({ top: '98px' }));
   anchorBounds = rect(90, 130, 30, 20);
+  fireEvent(container.querySelector('.ui-tooltip-anchor')!, new CustomEvent('test-intersection', { detail: false }));
   fireEvent.scroll(container.firstChild!);
-  expect(tip).toHaveStyle({ visibility: 'hidden' });
+  expect(tip).toHaveAttribute('data-anchor-clipped');
 });
 
-test('lets a pointer move into the bubble and read it before dismissing', () => {
-  const { anchor } = fixture();
-  fireEvent.mouseEnter(anchor);
-  act(() => { jest.advanceTimersByTime(399); });
-  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
-  act(() => { jest.advanceTimersByTime(1); });
-  const tip = screen.getByRole('tooltip');
-  fireEvent.mouseLeave(anchor, { relatedTarget: document.body });
-  act(() => { jest.advanceTimersByTime(80); });
-  fireEvent.mouseEnter(tip);
-  act(() => { jest.advanceTimersByTime(500); });
+test('lets a pointer cross the gap into the bubble and dismisses it on leaving', async () => {
+  jest.useRealTimers();
+  const { button } = fixture({ openDelay: 30 });
+  fireEvent.pointerEnter(button, { pointerType: 'mouse' });
+  const tip = await screen.findByRole('tooltip');
+  fireEvent.pointerLeave(button, { relatedTarget: tip, pointerType: 'mouse' });
+  fireEvent.pointerEnter(tip, { relatedTarget: button, pointerType: 'mouse' });
   expect(tip).toBeVisible();
+  fireEvent.pointerLeave(tip, { relatedTarget: document.body, pointerType: 'mouse' });
   fireEvent.mouseLeave(tip, { relatedTarget: document.body });
-  act(() => { jest.advanceTimersByTime(150); });
-  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  fireEvent.pointerMove(document.body, { pointerType: 'mouse', clientX: 310, clientY: 250 });
+  await waitFor(() => expect(screen.queryByRole('tooltip')).not.toBeInTheDocument());
 });
 
 test('mouse clicks do not leave a persistent keyboard-focus bubble', () => {
-  const { anchor, button } = fixture();
-  fireEvent.pointerDown(button);
-  fireEvent.focus(button);
+  const { button } = fixture();
+  fireEvent.pointerEnter(button, { pointerType: 'mouse' });
+  fireEvent.pointerDown(button, { pointerType: 'mouse' });
+  act(() => button.focus());
   expect(screen.getByRole('tooltip')).toBeVisible();
-  fireEvent.mouseLeave(anchor, { relatedTarget: document.body });
+  fireEvent.pointerLeave(button, { relatedTarget: document.body, pointerType: 'mouse' });
+  fireEvent.pointerMove(document.body, { pointerType: 'mouse', clientX: 310, clientY: 250 });
+  fireEvent.mouseMove(document.body, { clientX: 310, clientY: 250 });
   act(() => { jest.advanceTimersByTime(150); });
   expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
 });
 
 test('keyboard focus stays open until Escape, without moving focus', () => {
-  const { anchor, button } = fixture();
+  const { button } = fixture();
   act(() => button.focus());
-  fireEvent.mouseLeave(anchor, { relatedTarget: document.body });
+  fireEvent.pointerLeave(button, { relatedTarget: document.body, pointerType: 'mouse' });
+  fireEvent.pointerMove(document.body, { pointerType: 'mouse', clientX: 310, clientY: 250 });
+  fireEvent.mouseMove(document.body, { clientX: 310, clientY: 250 });
   act(() => { jest.advanceTimersByTime(500); });
   expect(screen.getByRole('tooltip')).toBeVisible();
   fireEvent.keyDown(button, { key: 'Escape' });
@@ -129,12 +142,14 @@ test('touch opens immediately and an outside tap dismisses', () => {
 });
 
 test('a pointer click on an already focused trigger does not poison later keyboard focus', () => {
-  const { anchor, button } = fixture();
+  const { button } = fixture();
   act(() => button.focus());
   fireEvent.pointerDown(button);
   fireEvent.blur(button);
   fireEvent.focus(button);
-  fireEvent.mouseLeave(anchor, { relatedTarget: document.body });
+  fireEvent.pointerLeave(button, { relatedTarget: document.body, pointerType: 'mouse' });
+  fireEvent.pointerMove(document.body, { pointerType: 'mouse', clientX: 310, clientY: 250 });
+  fireEvent.mouseMove(document.body, { clientX: 310, clientY: 250 });
   act(() => { jest.advanceTimersByTime(150); });
   expect(screen.getByRole('tooltip')).toBeVisible();
 });
@@ -167,7 +182,7 @@ test('opens an immediate styled tooltip inside its native dialog layer', () => {
   render(<dialog open aria-label="Profile"><Tooltip content="Placement explanation" surfaceClassName="puzzle-info-tooltip" openDelay={0}><button>Placement help</button></Tooltip></dialog>);
   const dialog = screen.getByRole('dialog', { name: 'Profile' });
   const button = screen.getByRole('button', { name: 'Placement help' });
-  fireEvent.mouseEnter(button.closest('.ui-tooltip-anchor')!);
+  fireEvent.pointerEnter(button, { pointerType: 'mouse' });
   const tip = screen.getByRole('tooltip');
   expect(tip.parentElement).toBe(dialog);
   expect(tip).toHaveClass('puzzle-info-tooltip');

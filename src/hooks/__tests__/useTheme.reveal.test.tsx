@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { act, renderHook, within } from '@testing-library/react';
-import usePageTheme from '../usePageTheme';
+import { useTheme } from '../useTheme';
 
 describe('leaderboard theme', () => {
   const matchMedia = window.matchMedia;
@@ -19,7 +19,7 @@ describe('leaderboard theme', () => {
 
   test('uses the existing production preference and keeps browser chrome in sync', async () => {
     localStorage.setItem('theme', 'dark');
-    const { result } = renderHook(usePageTheme);
+    const { result } = renderHook(() => useTheme('reveal'));
     expect(result.current.theme).toBe('dark');
     expect(within(document.head).getByTestId('theme-color')).toHaveAttribute('content', '#1c1c1e');
     expect(within(document.head).getByTestId('site-icon')).toHaveAttribute('href', '/js_puzzle_solver_logo_dark.svg');
@@ -33,7 +33,7 @@ describe('leaderboard theme', () => {
   test('renders and toggles when browser storage is denied', async () => {
     jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new DOMException('Denied', 'SecurityError'); });
     jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new DOMException('Denied', 'SecurityError'); });
-    const { result } = renderHook(usePageTheme);
+    const { result } = renderHook(() => useTheme('reveal'));
     expect(result.current.theme).toBe('light');
     await act(async () => result.current.toggleTheme(undefined));
     expect(result.current.theme).toBe('dark');

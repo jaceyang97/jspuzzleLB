@@ -188,7 +188,7 @@
 .arena :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
 .arena button:active:not(:disabled) { transform: scale(.96); }
 .puzzle-intro-tooltip, .ui-tooltip.ui-tooltip-portal.puzzle-info-tooltip { z-index: var(--z-tooltip); background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-primary); border-radius: 0; box-shadow: var(--shadow-popover); }
-.puzzle-intro-tooltip { padding: 14px; }
+.puzzle-intro-tooltip { box-sizing: border-box; width: min(440px, calc(100vw - 24px)); max-height: min(calc(100dvh - 24px), var(--available-height, 100dvh)); margin: 0; padding: 14px; overflow-y: auto; overscroll-behavior: contain; }
 .ui-tooltip.ui-tooltip-portal.puzzle-info-tooltip { font-size: 14px; line-height: 1.5; }
 .ui-tooltip.puzzle-info-tooltip .ui-tooltip-content { padding: 14px; }
 .ui-tooltip.ui-tooltip-portal.puzzle-info-tooltip::before { display: none; }

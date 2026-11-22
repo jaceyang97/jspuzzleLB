@@ -7,9 +7,12 @@
 | [榜单](../src/features/leaderboard/page/LeaderboardPage.jsx) | `Tabs` 将每个标签与对应面板关联，方向键、Home 和 End 切换榜单。`TabsIndicator` 提供选中位置 | 根据选中的榜单过滤数据并渲染可见行，保留并列名次和选手档案入口 |
 | [搜索](../src/features/leaderboard/page/SolverSearch.jsx) | `Combobox` 支持输入、上下键选人和回车打开档案，`useShortcut` 注册斜杠快捷键 | 榜单按当前标签筛选，候选人从总榜中选取。搜索框为空时可以打开此设备上收藏的档案 |
 | [选手档案](../src/features/leaderboard/page/shared.jsx) | `Toggle` 配合 `createLocalStorage` 记住一位选手，`Select` 筛选年份，`Pagination` 管理翻页，`Dialog` 管理焦点 | 打开档案时同步浏览器历史。年份和分页只影响题目列表，名次和解题总数始终取自总榜 |
-| [题目公告](../src/features/leaderboard/components/NewSolversBanner.tsx)和[提示](../src/components/Tooltip.tsx) | 核心库的 `bindLayer` 将自定义浮层加入与模态框共用的关闭顺序 | 继续按姓名的实际宽度排布标签，按视口调整位置，处理触摸和悬停。打开档案内的提示后，第一次 Escape 收起提示，第二次关闭档案 |
+| [INTRO](../src/features/leaderboard/components/PuzzleNavigation.tsx) 和[新增选手名单](../src/features/leaderboard/components/NewSolversBanner.tsx) | `Popover` 处理定位、视口边界和关闭 | 保留 INTRO 的阅读顺序，按可用宽度排布姓名，点击名单中的选手打开档案 |
+| [帮助提示](../src/components/Tooltip.tsx)和[图表数据提示](../src/components/charts/ChartTooltipContent.tsx) | 简短说明使用 `Tooltip`，含链接的说明使用 `Popover`。图表通过虚拟锚点定位 | Recharts 提供数据点和格式。档案内先按 Escape 关闭提示，再按一次关闭档案 |
 | [研究图表](../src/features/rising-stars/ParetoChart.tsx) | `SegmentedControl` 切换横轴，`Checkbox` 筛选规则，`stepFromKey` 和 `stepBy` 支持逐点或分页浏览 | 根据指针的二维位置寻找最近数据点，并展示对应规则的指标 |
 | [反馈表单](../src/features/leaderboard/page/ProjectInfoCard.jsx) | `Textarea` 的 `onValueChange` 同步草稿，提交按钮反映发送状态 | 服务端接受反馈后才清空草稿；失败保留原文，重试沿用原接口 |
+
+首页与文章页共用 [useTheme](../src/hooks/useTheme.ts) 和 [ThemeToggle](../src/components/ThemeToggle.tsx)。两页读取同一个主题偏好，首页保留方形展开，文章页保留淡入淡出。
 
 ## 扩展控件
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import NewSolversBanner from '../NewSolversBanner';
 import { LeaderboardData } from '../../types';
 
@@ -66,7 +66,7 @@ describe('compact activity popover', () => {
     const trigger = screen.getByRole('button', { name: '2 more solvers added today' });
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(trigger);
-    const popover = screen.getByRole('region', { name: 'More solvers added today' });
+    const popover = screen.getByRole('dialog', { name: 'More solvers added today' });
     return { trigger, popover };
   }
 
@@ -74,33 +74,33 @@ describe('compact activity popover', () => {
     const { trigger, popover } = openNames();
 
     expect(trigger).toHaveAttribute('aria-expanded', 'true');
-    expect(popover).toHaveStyle({ position: 'fixed', left: '12px', top: '119px', maxWidth: '256px', transform: 'none' });
+    expect(popover).toHaveStyle({ position: 'fixed', left: '12px', top: '119px' });
     expect(within(popover).getByText('Ada Lovelace')).toBeVisible();
     expect(within(popover).getByText('Grace Hopper')).toBeVisible();
     expect(within(popover).getByRole('list')).toHaveAttribute('tabindex', '0');
   });
 
-  test('clamps the right edge and repositions when the viewport resizes', () => {
+  test('clamps the right edge and repositions when the viewport resizes', async () => {
     triggerLeft = 240;
     const { popover } = openNames();
     expect(popover).toHaveStyle({ left: '68px' });
 
     window.innerWidth = 320;
-    fireEvent(window, new Event('resize'));
-    expect(popover).toHaveStyle({ left: '108px', maxWidth: '296px' });
+    fireEvent.resize(window);
+    await waitFor(() => expect(popover).toHaveStyle({ left: '108px' }));
   });
 
   test('limits the list to the remaining screen height and preserves Escape and dismissal', () => {
     window.innerHeight = 250;
     const { trigger, popover } = openNames();
     const list = within(popover).getByRole('list');
-    expect(popover).toHaveStyle({ maxHeight: '119px' });
-    expect(list).toHaveStyle({ maxHeight: '79px' });
+    expect(popover.style.getPropertyValue('--available-height')).toBe('119px');
+    act(() => list.focus());
 
     fireEvent.keyDown(list, { key: 'Escape' });
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
     expect(trigger).toHaveFocus();
-    expect(screen.queryByRole('region', { name: 'More solvers added today' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('dialog', { name: 'More solvers added today' })).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: 'Dismiss banner' }));
     expect(screen.queryByRole('region', { name: 'Puzzle activity' })).not.toBeInTheDocument();
@@ -110,7 +110,7 @@ describe('compact activity popover', () => {
     render(<NewSolversBanner inline currentPuzzleProgress={progress} generatedAt="2026-09-06T09:00:00Z" />);
     const trigger = screen.getByRole('button', { name: '2 more solvers added today' });
     fireEvent.click(trigger);
-    const popover = screen.getByRole('region', { name: 'More solvers added today' });
+    const popover = screen.getByRole('dialog', { name: 'More solvers added today' });
     names.slice(1).forEach((name) => expect(within(popover).getByText(name)).toBeVisible());
     expect(within(popover).queryByText(names[0])).not.toBeInTheDocument();
     expect(within(popover).queryByRole('link', { name: 'Hint Singles' })).not.toBeInTheDocument();
@@ -222,55 +222,53 @@ describe('inline activity names', () => {
     const more = within(row).getByRole('button', { name: '1 more solvers added today' });
     expect(more).toHaveTextContent('+1');
     fireEvent.click(more);
-    expect(screen.getByRole('region', { name: 'More solvers added today' })).toBeVisible();
+    expect(screen.getByRole('dialog', { name: 'More solvers added today' })).toBeVisible();
     resizeContainer(460);
     expect(shownNames(row)).toEqual(allNames.slice(0, 3));
     expect(row.querySelector('.header-activity-more')).not.toBeInTheDocument();
-    expect(screen.queryByRole('region', { name: 'More solvers added today' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('dialog', { name: 'More solvers added today' })).not.toBeInTheDocument();
   });
 
   describe('scroll anchoring', () => {
-    beforeEach(() => { jest.useFakeTimers(); });
-    afterEach(() => { jest.useRealTimers(); });
 
     function openNames() {
       containerWidth = 250;
-      render(<div data-testid="scroll-host"><NewSolversBanner inline currentPuzzleProgress={today} generatedAt="2026-09-06T09:00:00Z" /></div>);
+      render(<div data-testid="scroll-host" style={{ overflow: 'auto' }}><NewSolversBanner inline currentPuzzleProgress={today} generatedAt="2026-09-06T09:00:00Z" /></div>);
       const trigger = screen.getByRole('button', { name: '7 more solvers added today' });
       fireEvent.click(trigger);
-      return { trigger, popover: screen.getByRole('region', { name: 'More solvers added today' }) };
+      return { trigger, popover: screen.getByRole('dialog', { name: 'More solvers added today' }) };
     }
 
     function scroll(target: HTMLElement | Window) {
       fireEvent.scroll(target);
-      act(() => { jest.advanceTimersByTime(20); });
     }
 
-    test('moves with its trigger during page scrolling', () => {
+    test('moves with its trigger during page scrolling', async () => {
       const { popover } = openNames();
       triggerTop = 10;
       scroll(window);
-      expect(popover).toHaveStyle({ left: '194px', top: '46px' });
+      await waitFor(() => expect(popover).toHaveStyle({ left: '198px', top: '46px' }));
     });
 
-    test('also follows a scrolling ancestor', () => {
+    test('also follows a scrolling ancestor', async () => {
       const { popover } = openNames();
       triggerTop = 20;
       scroll(screen.getByTestId('scroll-host'));
-      expect(popover).toHaveStyle({ top: '56px' });
+      await waitFor(() => expect(popover).toHaveStyle({ top: '56px' }));
     });
 
-    test.each([-40, window.innerHeight + 10])('closes when the trigger leaves the viewport at %dpx', (top) => {
+    test.each([-40, window.innerHeight + 10])('closes when the trigger leaves the viewport at %dpx', async (top) => {
       const { trigger, popover } = openNames();
       within(popover).getAllByRole('button')[0].focus();
       triggerTop = top;
       scroll(window);
+      fireEvent(trigger, new CustomEvent('test-intersection', { detail: false }));
       expect(trigger).toHaveAttribute('aria-expanded', 'false');
       expect(trigger).toHaveFocus();
-      expect(screen.queryByRole('region', { name: 'More solvers added today' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('dialog', { name: 'More solvers added today' })).not.toBeInTheDocument();
     });
 
-    test('stays open while scrolling the names list itself', () => {
+    test('stays open while scrolling the names list itself', async () => {
       const { trigger, popover } = openNames();
       scroll(within(popover).getByRole('list'));
       expect(trigger).toHaveAttribute('aria-expanded', 'true');
@@ -283,8 +281,8 @@ describe('inline activity names', () => {
     render(<><NewSolversBanner inline currentPuzzleProgress={today} generatedAt="2026-09-06T09:00:00Z" /><button>Elsewhere</button></>);
     const trigger = screen.getByRole('button', { name: '7 more solvers added today' });
     fireEvent.click(trigger);
-    let popover = screen.getByRole('region', { name: 'More solvers added today' });
-    expect(popover).toHaveStyle({ left: '194px', top: '66px' });
+    let popover = screen.getByRole('dialog', { name: 'More solvers added today' });
+    expect(popover).toHaveStyle({ left: '198px', top: '66px' });
     expect(within(popover).getAllByRole('listitem')).toHaveLength(7);
     allNames.slice(1).forEach((name) => expect(within(popover).getByRole('button', { name: `Open profile for ${name}` })).toBeVisible());
     expect(within(popover).queryByText(allNames[0])).not.toBeInTheDocument();
@@ -297,8 +295,9 @@ describe('inline activity names', () => {
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
 
     fireEvent.click(trigger);
-    popover = screen.getByRole('region', { name: 'More solvers added today' });
-    fireEvent.blur(within(popover).getByRole('list'), { relatedTarget: screen.getByRole('button', { name: 'Elsewhere' }) });
+    popover = screen.getByRole('dialog', { name: 'More solvers added today' });
+    act(() => within(popover).getByRole('list').focus());
+    act(() => screen.getByRole('button', { name: 'Elsewhere' }).focus());
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
   });
 
@@ -319,7 +318,7 @@ describe('inline activity names', () => {
     expect(more).toHaveAttribute('aria-expanded', 'false');
 
     fireEvent.click(more);
-    const popover = screen.getByRole('region', { name: 'More solvers added today' });
+    const popover = screen.getByRole('dialog', { name: 'More solvers added today' });
     expect(within(popover).getAllByRole('button').map((button) => button.getAttribute('aria-label'))).toEqual(
       allNames.slice(4).map((name) => `Open profile for ${name}`)
     );
@@ -328,6 +327,6 @@ describe('inline activity names', () => {
     expect(onSolverClick).toHaveBeenLastCalledWith('Edsger Dijkstra');
     expect(more).toHaveFocus();
     expect(more).toHaveAttribute('aria-expanded', 'false');
-    expect(screen.queryByRole('region', { name: 'More solvers added today' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('dialog', { name: 'More solvers added today' })).not.toBeInTheDocument();
   });
 });

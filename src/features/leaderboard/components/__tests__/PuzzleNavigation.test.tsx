@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import PuzzleNavigation from '../PuzzleNavigation';
 import { trackOnce } from '../../../../utils/analytics';
 
@@ -24,7 +24,7 @@ describe('PuzzleNavigation', () => {
     Object.defineProperty(window, 'innerWidth', { configurable: true, writable: true, value: 1000 });
     Object.defineProperty(window, 'innerHeight', { configurable: true, writable: true, value: 700 });
     jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
-      return this.classList.contains('intro-button') ? anchor : rect(0, 0, 440, contentHeight);
+      return this.classList.contains('intro-button') ? anchor : rect(0, 0, Math.min(440, window.innerWidth - 24), Math.min(contentHeight, Math.max(anchor.top - 20, window.innerHeight - anchor.bottom - 20)));
     });
     jest.spyOn(HTMLElement.prototype, 'scrollHeight', 'get').mockImplementation(function (this: HTMLElement) {
       return this.classList.contains('intro-tooltip') ? contentHeight : 0;
@@ -103,6 +103,18 @@ describe('PuzzleNavigation', () => {
     expect(screen.getByRole('dialog')).toBeVisible();
   });
 
+  test('opens on the first tap when the browser focuses INTRO before dispatching the click', () => {
+    render(<PuzzleNavigation />);
+    const intro = screen.getByRole('button', { name: 'INTRO' });
+    fireEvent.pointerDown(intro, { pointerType: 'touch' });
+    fireEvent.pointerUp(intro, { pointerType: 'touch' });
+    act(() => intro.focus());
+    fireEvent.click(intro, { detail: 1 });
+    expect(screen.getByRole('dialog', { name: 'Introduction' })).toBeVisible();
+    fireEvent.click(intro, { detail: 1 });
+    expect(intro).toHaveAttribute('aria-expanded', 'false');
+  });
+
   test('supports trigger toggle and outside-pointer dismissal without a close button', () => {
     render(<PuzzleNavigation />);
     const intro = screen.getByRole('button', { name: 'INTRO' });
@@ -128,21 +140,22 @@ describe('PuzzleNavigation', () => {
     jest.useFakeTimers();
     render(<PuzzleNavigation />);
     const intro = screen.getByRole('button', { name: 'INTRO' });
-    fireEvent.mouseEnter(intro);
+    fireEvent.pointerEnter(intro, { pointerType: 'mouse' });
     const dialog = screen.getByRole('dialog');
-    fireEvent.mouseLeave(intro, { relatedTarget: document.body });
+    fireEvent.pointerLeave(intro, { relatedTarget: document.body });
     act(() => jest.advanceTimersByTime(50));
-    fireEvent.mouseEnter(dialog);
+    fireEvent.pointerEnter(dialog, { pointerType: 'mouse' });
     act(() => jest.advanceTimersByTime(200));
     expect(dialog).toBeVisible();
-    fireEvent.mouseLeave(dialog, { relatedTarget: document.body });
+    fireEvent.pointerLeave(dialog, { relatedTarget: document.body, pointerType: 'mouse' });
+    fireEvent.pointerMove(document.body, { pointerType: 'mouse', clientX: 990, clientY: 690 });
     act(() => jest.advanceTimersByTime(150));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    fireEvent.mouseEnter(intro);
+    fireEvent.pointerEnter(intro, { pointerType: 'mouse' });
     expect(screen.getByRole('dialog')).toBeVisible();
   });
 
-  test('keeps tall copy within phone and landscape viewport bounds after resize', () => {
+  test('keeps tall copy within phone and landscape viewport bounds after resize', async () => {
     window.innerWidth = 280;
     window.innerHeight = 667;
     contentHeight = 760;
@@ -150,13 +163,13 @@ describe('PuzzleNavigation', () => {
     render(<PuzzleNavigation />);
     fireEvent.click(screen.getByRole('button', { name: 'INTRO' }));
     const dialog = screen.getByRole('dialog');
-    expect(dialog).toHaveStyle({ position: 'fixed', left: '12px', top: '12px', width: '256px', maxHeight: '643px', overflowY: 'auto' });
+    expect(dialog).toHaveStyle({ position: 'fixed', left: '12px', top: '12px' });
 
     window.innerWidth = 844;
     window.innerHeight = 300;
     anchor = rect(760, 235, 60, 28);
-    fireEvent(window, new Event('resize'));
-    expect(dialog).toHaveStyle({ left: '392px', top: '12px', width: '440px', maxHeight: '276px' });
+    fireEvent.resize(window);
+    await waitFor(() => expect(dialog).toHaveStyle({ left: '392px', top: '12px' }));
     expect(within(dialog).getByText('So, I ranked the introduction.')).toBeVisible();
   });
 });

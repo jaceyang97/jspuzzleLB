@@ -176,7 +176,7 @@
 @container leaderboard-header (max-width: 360px) {
   .leaderboard-header.lh--selected .lh-main { --lh-title: clamp(17px, 5.1vw, 20px); }
   .leaderboard-header.lh--selected .lh-logo { width: 36px; height: 36px; }
-  .leaderboard-header.lh--selected .puzzle-navigation { gap: 10px; }
+  .leaderboard-header.lh--selected .puzzle-navigation { flex-wrap: wrap; gap: 0 10px; }
 }
 
 .leaderboard-header.lh--final { --lh-title: clamp(40px, 3.1vw, 50px); }

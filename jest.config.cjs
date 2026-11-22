@@ -2,6 +2,7 @@ module.exports = {
   roots: ['<rootDir>/src'],
   testEnvironment: 'jsdom',
   resetMocks: true,
+  fakeTimers: { doNotFake: ['performance'] },
   setupFilesAfterEnv: ['<rootDir>/tests/browserSetup.cjs'],
   transform: {
     '^.+\\.[jt]sx?$': ['babel-jest', {

@@ -6,7 +6,7 @@ import { useSolverProfile } from './hooks/useSolverProfile';
 import LeaderboardPage from './page/LeaderboardPage';
 import LeaderboardLoading, { LeaderboardError } from './page/LeaderboardLoading';
 import { ProfileDialog } from './page/shared';
-import usePageTheme from './page/usePageTheme';
+import { useTheme } from '../../hooks/useTheme';
 import '../../styles/components.css';
 import './page/styles/index.css';
 
@@ -19,13 +19,13 @@ export default function Leaderboard() {
   const { data, loading, error } = useLeaderboardData();
   const [scope, setScope] = useState(initialScope);
   const [search, setSearch] = useState('');
-  const { theme, toggleTheme } = usePageTheme();
+  const { theme, toggleTheme } = useTheme('reveal');
   const { selectedSolver, openSolver, closeSolver } = useSolverProfile(scope === 'top' ? 'top-solvers' : scope === 'rising' ? 'rising-stars' : scope);
   const changeScope = useCallback((next: string) => {
     if (next !== scope) trackEvent('leaderboard_tab_change', { tab: next === 'rising' ? 'rising-stars' : next === 'top' ? 'top-solvers' : next });
     setScope(next);
   }, [scope]);
-  const changeTheme = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+  const changeTheme = useCallback((event: React.MouseEvent<HTMLElement>) => {
     trackEvent('theme_toggle', { to: theme === 'light' ? 'dark' : 'light' });
     toggleTheme(event);
   }, [theme, toggleTheme]);

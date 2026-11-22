@@ -1,6 +1,6 @@
-import { bindLayer } from '@ui-sdk/core';
+import { Popover, PopoverContent, PopoverTitle, PopoverTrigger } from '@ui-sdk/react/popover';
 import { Button } from '@ui-sdk/react/button';
-import React, { ReactNode, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { LeaderboardData } from '../types';
 import Tooltip from '../../../components/Tooltip';
 import { trackEvent } from '../../../utils/analytics';
@@ -56,19 +56,13 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
 }) => {
   const [dismissed, setDismissed] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
-  const [moreRendered, setMoreRendered] = useState(false);
-  const [moreEntered, setMoreEntered] = useState(false);
-  const pointerInteractionRef = useRef(false);
-  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-  const animateMore = inline && pointerInteractionRef.current && !reduceMotion;
+  const [animateMore, setAnimateMore] = useState(false);
   const [inlineVisibleCount, setInlineVisibleCount] = useState(1);
   const activityRef = useRef<HTMLDivElement>(null);
   const rowRef = useRef<HTMLDivElement>(null);
   const measurementRef = useRef<HTMLSpanElement>(null);
   const moreButtonRef = useRef<HTMLButtonElement>(null);
-  const morePopoverRef = useRef<HTMLSpanElement>(null);
-  const moreListRef = useRef<HTMLUListElement>(null);
-  const moreId = useId();
+  const morePopoverRef = useRef<HTMLDivElement>(null);
   const todaysSolvers = useMemo(() => {
     const crawlDate = generatedAt?.slice(0, 10);
     return crawlDate ? currentPuzzleProgress?.timeline.filter((entry) => entry.timestamp.slice(0, 10) === crawlDate) ?? [] : [];
@@ -79,32 +73,6 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
     setMoreOpen(false);
     onSolverClick?.(name);
   };
-
-  useLayoutEffect(() => {
-    if (!inline) return;
-    const popover = morePopoverRef.current;
-    popover?.toggleAttribute('inert', !moreOpen);
-    let firstFrame = 0;
-    let secondFrame = 0;
-    let exitTimer = 0;
-    if (moreOpen) {
-      setMoreRendered(true);
-      if (animateMore) {
-        firstFrame = requestAnimationFrame(() => {
-          secondFrame = requestAnimationFrame(() => setMoreEntered(true));
-        });
-      } else setMoreEntered(true);
-    } else {
-      setMoreEntered(false);
-      if (animateMore) exitTimer = window.setTimeout(() => setMoreRendered(false), 140);
-      else setMoreRendered(false);
-    }
-    return () => {
-      cancelAnimationFrame(firstFrame);
-      cancelAnimationFrame(secondFrame);
-      window.clearTimeout(exitTimer);
-    };
-  }, [inline, moreOpen, animateMore]);
 
   useLayoutEffect(() => {
     if (!inline || dismissed || !inlineNames.length) return;
@@ -162,89 +130,16 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
   }, [inline, inlineVisibleCount, inlineNames.length]);
 
   useEffect(() => {
-    if (!inline || !moreOpen || !morePopoverRef.current) return;
-    return bindLayer(morePopoverRef.current, {
-      contains: (target) => !!activityRef.current?.contains(target),
-      onDismiss: (reason) => {
-        if (reason === 'escape-key') {
-          pointerInteractionRef.current = false;
-          moreButtonRef.current?.focus();
-        }
-        setMoreOpen(false);
-      },
+    const trigger = moreButtonRef.current;
+    if (!moreOpen || !trigger || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) return;
+      if (morePopoverRef.current?.contains(document.activeElement)) trigger.focus({ preventScroll: true });
+      setMoreOpen(false);
     });
-  }, [inline, moreOpen]);
-
-  useLayoutEffect(() => {
-    if ((!compact && !inline) || (!moreOpen && !(inline && moreRendered)) || dismissed) {
-      return;
-    }
-    const button = moreButtonRef.current;
-    const popover = morePopoverRef.current;
-    const list = moreListRef.current;
-    if (!button || !popover || !list) return;
-
-    const position = () => {
-      const viewport = window.visualViewport;
-      const viewportLeft = viewport?.offsetLeft ?? 0;
-      const viewportTop = viewport?.offsetTop ?? 0;
-      const viewportWidth = viewport?.width ?? window.innerWidth;
-      const viewportHeight = viewport?.height ?? window.innerHeight;
-      const anchor = button.getBoundingClientRect();
-      if (anchor.bottom <= viewportTop || anchor.top >= viewportTop + viewportHeight ||
-        anchor.right <= viewportLeft || anchor.left >= viewportLeft + viewportWidth) {
-        if (popover.contains(document.activeElement)) button.focus({ preventScroll: true });
-        setMoreOpen(false);
-        setMoreRendered(false);
-        return;
-      }
-      const box = popover.getBoundingClientRect();
-      const margin = 12;
-      const maxWidth = Math.max(0, viewportWidth - margin * 2);
-      const width = Math.min(box.width, maxWidth);
-      const firstPill = inline ? list.querySelector<HTMLElement>('.solver-chip-name') : null;
-      const preferredLeft = firstPill
-        ? anchor.left - (firstPill.getBoundingClientRect().left - box.left)
-        : anchor.left + anchor.width / 2 - width / 2;
-      const left = Math.max(viewportLeft + margin, Math.min(
-        preferredLeft,
-        viewportLeft + viewportWidth - margin - width,
-      ));
-      const top = Math.max(viewportTop + margin, anchor.bottom + 8);
-      const maxHeight = Math.max(0, viewportTop + viewportHeight - margin - top);
-      const chromeHeight = box.height - list.getBoundingClientRect().height;
-      const listMaxHeight = Math.max(0, Math.min(240, maxHeight - chromeHeight));
-      // Scroll tracking updates geometry without rerendering every name pill.
-      Object.assign(popover.style, {
-        left: `${left}px`, top: `${top}px`, maxWidth: `${maxWidth}px`, maxHeight: `${maxHeight}px`,
-      });
-      list.style.maxHeight = `${listMaxHeight}px`;
-    };
-    let scrollFrame = 0;
-    const followScroll = (event: Event) => {
-      if (event.target === list || scrollFrame) return;
-      scrollFrame = requestAnimationFrame(() => {
-        scrollFrame = 0;
-        position();
-      });
-    };
-    position();
-    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(position);
-    observer?.observe(button);
-    observer?.observe(popover);
-    window.addEventListener('resize', position);
-    window.addEventListener('scroll', followScroll, { capture: true, passive: true });
-    window.visualViewport?.addEventListener('resize', position);
-    window.visualViewport?.addEventListener('scroll', position);
-    return () => {
-      observer?.disconnect();
-      cancelAnimationFrame(scrollFrame);
-      window.removeEventListener('resize', position);
-      window.removeEventListener('scroll', followScroll, true);
-      window.visualViewport?.removeEventListener('resize', position);
-      window.visualViewport?.removeEventListener('scroll', position);
-    };
-  }, [compact, inline, moreOpen, moreRendered, dismissed, inlineVisibleCount]);
+    observer.observe(trigger);
+    return () => observer.disconnect();
+  }, [moreOpen]);
 
   if (dismissed) return null;
 
@@ -270,56 +165,55 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
       const names = todaysSolvers.map((e) => e.solver);
       if (inline) {
         return (
-          <div ref={activityRef} className="header-activity" role="region" aria-label="Puzzle activity"
-            onBlur={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setMoreOpen(false);
-            }}
-            onKeyDown={() => { pointerInteractionRef.current = false; }}>
-            <div ref={rowRef} className="header-activity-row">
-              {puzzleContext && <span className="header-activity-context" data-activity-fixed>{puzzleContext}</span>}
-              <span className="banner-tag" data-activity-fixed>NEW TODAY</span>
-              {announcementIcon && <span className="header-activity-icon" data-activity-fixed aria-hidden="true">{announcementIcon}</span>}
-              <span className="header-activity-preview">
-                {names.slice(0, inlineVisibleCount).map((name, index) => (
-                  <SolverChip key={`${name}-${index}`} name={name} colors={VISIBLE_PALETTE[index % VISIBLE_PALETTE.length]}
-                    onClick={() => selectInlineSolver(name)} />
-                ))}
-                {names.length > inlineVisibleCount && <Button ref={moreButtonRef} type="button" className="header-activity-more"
-                  aria-label={`${names.length - inlineVisibleCount} more solvers added today`}
-                  aria-expanded={moreOpen} aria-controls={moreId}
-                  onClick={(event) => {
-                    pointerInteractionRef.current = event.detail > 0;
-                    setMoreOpen((open) => !open);
-                  }}>+{names.length - inlineVisibleCount}</Button>}
+          <Popover open={moreOpen} onOpenChange={(open, details) => {
+            if (details.reason === 'trigger-press') {
+              setAnimateMore(details.event instanceof MouseEvent && details.event.detail > 0);
+            } else if (details.reason === 'escape-key' || details.reason === 'focus-out') {
+              setAnimateMore(false);
+            }
+            setMoreOpen(open);
+          }}>
+            <div ref={activityRef} className="header-activity" role="region" aria-label="Puzzle activity">
+              <div ref={rowRef} className="header-activity-row">
+                {puzzleContext && <span className="header-activity-context" data-activity-fixed>{puzzleContext}</span>}
+                <span className="banner-tag" data-activity-fixed>NEW TODAY</span>
+                {announcementIcon && <span className="header-activity-icon" data-activity-fixed aria-hidden="true">{announcementIcon}</span>}
+                <span className="header-activity-preview">
+                  {names.slice(0, inlineVisibleCount).map((name, index) => (
+                    <SolverChip key={`${name}-${index}`} name={name} colors={VISIBLE_PALETTE[index % VISIBLE_PALETTE.length]}
+                      onClick={() => selectInlineSolver(name)} />
+                  ))}
+                  {names.length > inlineVisibleCount && <PopoverTrigger ref={moreButtonRef} className="header-activity-more"
+                    aria-label={`${names.length - inlineVisibleCount} more solvers added today`}>+{names.length - inlineVisibleCount}</PopoverTrigger>}
+                </span>
+              </div>
+              <span className="header-activity-measure" aria-hidden="true"
+                style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none', width: 0, height: 0, overflow: 'hidden' }}>
+                <span ref={measurementRef} className="header-activity-preview"
+                  style={{ width: 'max-content', maxWidth: 'none', flex: 'none' }}>
+                  {names.slice(0, 4).map((name, index) => (
+                    <SolverChip key={`${name}-${index}`} name={name} colors={VISIBLE_PALETTE[index % VISIBLE_PALETTE.length]} />
+                  ))}
+                  {names.slice(0, 4).map((_, index) => {
+                    const remaining = names.length - index - 1;
+                    return remaining > 0 ? <span key={remaining} className="header-activity-more" data-remainder={remaining}>+{remaining}</span> : null;
+                  })}
+                </span>
               </span>
+              <PopoverContent ref={morePopoverRef} className="banner-more-tooltip banner-more-popover header-activity-popover"
+                aria-label="More solvers added today" initialFocus="none"
+                side="bottom" align="start" alignOffset={-12} sideOffset={8} collisionPadding={12}
+                data-animate={animateMore || undefined}>
+                <PopoverTitle className="lab-visually-hidden">More solvers added today</PopoverTitle>
+                <ul className="banner-more-list" tabIndex={0}>
+                  {names.slice(inlineVisibleCount).map((name, index) => <li key={`${name}-${index}`}
+                    style={{ '--solver-index': Math.min(index, 5) } as React.CSSProperties}>
+                    <SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} onClick={() => selectInlineSolver(name, moreButtonRef.current)} />
+                  </li>)}
+                </ul>
+              </PopoverContent>
             </div>
-            <span className="header-activity-measure" aria-hidden="true"
-              style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none', width: 0, height: 0, overflow: 'hidden' }}>
-              <span ref={measurementRef} className="header-activity-preview"
-                style={{ width: 'max-content', maxWidth: 'none', flex: 'none' }}>
-                {names.slice(0, 4).map((name, index) => (
-                  <SolverChip key={`${name}-${index}`} name={name} colors={VISIBLE_PALETTE[index % VISIBLE_PALETTE.length]} />
-                ))}
-                {names.slice(0, 4).map((_, index) => {
-                  const remaining = names.length - index - 1;
-                  return remaining > 0 ? <span key={remaining} className="header-activity-more" data-remainder={remaining}>+{remaining}</span> : null;
-                })}
-              </span>
-            </span>
-            <span ref={morePopoverRef} id={moreId}
-              className="banner-more-tooltip banner-more-popover header-activity-popover"
-              role="region" aria-label="More solvers added today" aria-hidden={!moreOpen}
-              data-state={moreOpen && moreEntered ? 'open' : 'closed'} data-animate={animateMore || undefined}
-              hidden={(!moreOpen && !moreRendered) || names.length <= inlineVisibleCount}
-              style={{ position: 'fixed', minWidth: 0, transform: 'none' }}>
-              <ul ref={moreListRef} className="banner-more-list" tabIndex={0}>
-                {names.slice(inlineVisibleCount).map((name, index) => <li key={`${name}-${index}`}
-                  style={{ '--solver-index': Math.min(index, 5) } as React.CSSProperties}>
-                  <SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} onClick={() => selectInlineSolver(name, moreButtonRef.current)} />
-                </li>)}
-              </ul>
-            </span>
-          </div>
+          </Popover>
         );
       }
       const visibleCount = compact ? 1 : 5;
@@ -338,64 +232,23 @@ const NewSolversBanner: React.FC<NewSolversBannerProps> = ({
             ))}
             {!compact && hidden.length > 0 && <span className="solver-chip-and">and</span>}
           </span>
-          {hidden.length > 0 && (
-            <span
-              className={`banner-more${compact ? ' banner-more-compact' : ''}`}
-              tabIndex={compact ? undefined : 0}
-              onBlur={compact ? (event) => {
-                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setMoreOpen(false);
-              } : undefined}
-              onKeyDown={compact ? (event) => {
-                if (event.key === 'Escape') {
-                  event.preventDefault();
-                  setMoreOpen(false);
-                  event.currentTarget.querySelector('button')?.focus();
-                }
-              } : undefined}
-            >
-              {compact ? (
-                <Button
-                  ref={moreButtonRef}
-                  type="button"
-                  className="banner-more-trigger"
-                  aria-expanded={moreOpen}
-                  aria-controls={moreId}
-                  aria-label={`${hidden.length} more solvers added today`}
-                  onClick={() => setMoreOpen((open) => !open)}
-                >
-                  {hidden.length} more
-                </Button>
-              ) : (
-                <span className="banner-more-trigger">{hidden.length} more</span>
-              )}
-              <span
-                ref={compact ? morePopoverRef : undefined}
-                id={compact ? moreId : undefined}
-                className={`banner-more-tooltip${compact ? ' banner-more-popover' : ''}`}
-                role={compact ? 'region' : 'tooltip'}
-                aria-label={compact ? 'More solvers added today' : undefined}
-                hidden={compact ? !moreOpen : undefined}
-                style={compact ? {
-                  position: 'fixed',
-                  minWidth: 0,
-                  transform: 'none',
-                  overflowY: 'auto',
-                } : undefined}
-              >
-                <span className="banner-more-tooltip-label">
-                  Also joined today
-                </span>
-                <ul className="banner-more-list" tabIndex={compact ? 0 : undefined}
-                  ref={compact ? moreListRef : undefined}>
-                  {hidden.map((name) => (
-                    <li key={name}>
-                      <SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} />
-                    </li>
-                  ))}
+          {hidden.length > 0 && <Popover open={moreOpen} onOpenChange={setMoreOpen} openOnHover={!compact} delay={0} closeDelay={140}>
+            <span className={`banner-more${compact ? ' banner-more-compact' : ''}`}>
+              <PopoverTrigger ref={moreButtonRef} className="banner-more-trigger"
+                aria-label={`${hidden.length} more solvers added today`}
+                onFocus={() => { if (!compact) setMoreOpen(true); }}>
+                {hidden.length} more
+              </PopoverTrigger>
+              <PopoverContent ref={morePopoverRef} className="banner-more-tooltip banner-more-popover"
+                aria-label="More solvers added today" side="bottom" sideOffset={8} collisionPadding={12} initialFocus="none">
+                <span className="banner-more-tooltip-label">Also joined today</span>
+                <PopoverTitle className="lab-visually-hidden">More solvers added today</PopoverTitle>
+                <ul className="banner-more-list" tabIndex={0}>
+                  {hidden.map(name => <li key={name}><SolverChip name={name} colors={colorFromName(name, HIDDEN_PALETTE)} /></li>)}
                 </ul>
-              </span>
+              </PopoverContent>
             </span>
-          )}
+          </Popover>}
         </>
       );
 
