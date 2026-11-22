@@ -24,7 +24,7 @@ export function Icon({ name, size = 20 }) {
     arrow: <path d="M5 12h14m-6-6 6 6-6 6" />,
     sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" /></>,
     moon: <path d="M20.5 13A8.6 8.6 0 0 1 11 3.5 8.6 8.6 0 1 0 20.5 13Z" />,
-    chevron: <path d="m9 5 7 7-7 7" />,
+    chevronDown: <path d="m5 8.5 7 7 7-7" />,
     bookmark: <path d="M6 4.5h12v16l-6-4-6 4z" />,
   };
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</svg>;
@@ -118,13 +118,12 @@ export function ProfileContent({ data, name, onClose }) {
           <circle className="lab-avatar-stitch" cx="32" cy="32" r="25.5" />
           <text className="lab-avatar-initial" x="32" y="42.5" textAnchor="middle">{solverInitial(name)}</text>
         </svg>
-        <div className="lab-record-name"><h2>{name}</h2>
-          {standing && <Toggle className="profile-bookmark" aria-label="Save as my profile"
-            title={saved === name ? 'Remove my saved profile' : 'Save as my profile on this device'}
-            pressed={saved === name} onPressedChange={pressed => setSaveError(!saveSolver(pressed ? name : null))}>
-            <Icon name="bookmark" size={19} />
-          </Toggle>}
-        </div>
+        <h2>{name}</h2>
+        {standing && <Toggle className="profile-bookmark" aria-label="Save as my profile"
+          title={saved === name ? 'Remove my saved profile' : 'Save as my profile on this device'}
+          pressed={saved === name} onPressedChange={pressed => setSaveError(!saveSolver(pressed ? name : null))}>
+          <Icon name="bookmark" size={19} />
+        </Toggle>}
         {saveError && <span role="status">This browser couldn’t save your preference.</span>}
       </div>
       <dl className="lab-record-metrics"><div><dt>Overall rank</dt><dd className="lab-record-count">{rank ? `#${rank.toLocaleString()}` : '—'}</dd></div><div><dt>Puzzles solved</dt><dd className="lab-record-count">{standing?.puzzlesSolved ?? (loading ? '…' : placements.length)}</dd></div><div><dt>First recorded</dt><dd>{standing?.firstAppearance || (placements.length ? formatDate(placements[placements.length - 1].puzzle.date_text) : loading ? '…' : '—')}</dd></div><div><dt>Latest solve</dt><dd>{standing?.lastSolve || (placements.length ? formatDate(placements[0].puzzle.date_text) : '—')}</dd></div></dl>
@@ -132,7 +131,9 @@ export function ProfileContent({ data, name, onClose }) {
     </header>
     <section className="lab-record-history"><div className="lab-record-history-title"><h3>Solved puzzles</h3>
       {years.length > 1 && <Select value={selectedYear} onValueChange={next => { if (next) { setYear(next); setPage(0); } }}>
-        <SelectTrigger className="profile-year" aria-label="Filter solved puzzles by year"><SelectValue /> <span aria-hidden="true">⌄</span></SelectTrigger>
+        <SelectTrigger className="profile-year" aria-label="Filter solved puzzles by year">
+          <SelectValue /><Icon name="chevronDown" size={16} />
+        </SelectTrigger>
         <SelectContent className="profile-year-options" align="end" sideOffset={4}>
           <SelectItem value="all" label="All years">All years</SelectItem>
           {years.map(item => <SelectItem key={item} value={item}>{item}</SelectItem>)}
